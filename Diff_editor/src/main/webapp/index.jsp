@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>editor</title>
+<script src="js/jquery.js"></script> 
 <link type="text/css" rel="styleSheet" href="style/base.css" />
 <link type="text/css" rel="styleSheet" href="style/editor.css" />
 <link type="text/css" rel="styleSheet" href="style/color.css" />

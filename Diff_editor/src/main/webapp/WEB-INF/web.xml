@@ -4,4 +4,16 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+  
+  <servlet>
+    <servlet-name>ServletMain</servlet-name>
+    <servlet-class>edu.fdu.se.web.astdiff.FileServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>ServletMain</servlet-name>
+    <url-pattern>/getfile</url-pattern>
+  </servlet-mapping>
 </web-app>
+
+

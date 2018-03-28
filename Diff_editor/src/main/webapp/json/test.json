@@ -1,0 +1,17 @@
+[
+	{
+		"id":"0",
+		"key":"preprocess",
+		"file":"a",
+		"range":"22,27",
+		"type":"member_delete"
+	},
+	{
+		"id":"1",
+		"key":"preprocess",
+		"file":"b",
+		"range":"7,9",
+		"type":"member_insert"
+	}
+]
+

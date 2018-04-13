@@ -4,39 +4,43 @@
 <meta charset="UTF-8">
 <title>editor</title>
 <script src="js/jquery.js"></script> 
+<link type="text/css" rel="styleSheet" href="style/bootstrap-3.3.7-dist/addition.css" />
 <link type="text/css" rel="styleSheet" href="style/base.css" />
 <link type="text/css" rel="styleSheet" href="style/editor.css" />
-<link type="text/css" rel="styleSheet" href="style/color.css" />
+<link type="text/css" rel="styleSheet" href="style/color1.css" />
+<link type="text/css" rel="styleSheet" href="style/addition.css" />
 </head>
 <body>
 	<div class="editor-frame">
 		<div id="diff-editor">
 			<div
 				class="monaco-diff-editor monaco-editor-background side-by-side vs"
-				style="position: relative; height: 100%;">
-				<!--预览边框-->
+				style="position: relative; height: 100%;">	
+				<canvas id="myCanvas3" width="200" height="20000"
+						style="position: absolute; will-change: transform; top: 0px; left: 1086px;"></canvas>
+				<!--é¢è§è¾¹æ¡-->							
 				<div class="diffOverview"
-					style="position: absolute; top: 0px; height: 700px; width: 30px; left: 1086px;">
+					style="position: absolute; top: 0px; height: 700px; width: 30px; left: 1386px;">
 					<div class="diffViewport"
 						style="position: absolute; width: 30px; height: 35px; top: 0px;"></div>
 					<canvas class="original diffOverviewRuler" width="18" height="500"
 						style="position: absolute; will-change: transform; top: 0px; right: 15px; width: 15px; height: 100%;"></canvas>
 					<canvas class="modified diffOverviewRuler" width="18" height="500"
-						style="position: absolute; will-change: transform; top: 0px; right: 0px; width: 15px; height: 100%;"></canvas>
-				</div>
+						style="position: absolute; will-change: transform; top: 0px; right: 0px; width: 15px; height: 100%;"></canvas>												
+				</div>				
 				<!--original-->
 				<div class="editor original" data-keybinding-context="2"
 					data-mode-id="javascript"
 					style="position: absolute; height: 100%; width: 243px; left: 0px;">
 					<div class="monaco-editor original-in-monaco-diff-editor vs"
-						data-uri="inmemory://model/2" style="width: 243px; height: 700px;">						
+						data-uri="inmemory://model/2" style="width: 243px; height: 700px;">			
 						<!-- <div class="monaco-scrollable-element editor-scrollable vs"
 							role="presentation" data-mprt="5"
 							style="position: absolute; overflow: hidden; left: 53px; width: 490px; height: 700px;"> -->
 							<!-- whole background -->
 							<!-- <div class="lines-content monaco-editor-background"
 								style="position: absolute; overflow: hidden; width: 100000px; height: 100000px; will-change: transform; top: 0px; left: 0px;"> -->
-								<!-- 行中的对齐线；删除、增加颜色效果 -->
+								<!-- è¡ä¸­çå¯¹é½çº¿ï¼å é¤ãå¢å é¢è²ææ -->
 <!-- 								<div class="view-overlays" role="presentation"
 									aria-hidden="true"
 									style="position: absolute; height: 0px; width: 538px;">
@@ -253,27 +257,27 @@
 									</div>
 								</div>
  --><!-- 								<div role="presentation" aria-hidden="true" class="view-rulers"></div>
- -->								<!-- 阴影效果 -->
+ -->								<!-- é´å½±ææ -->
 								<!-- <div class="view-zones" role="presentation" aria-hidden="true"
 									style="position: absolute; width: 538px;">
 									<div class="diagonal-fill" monaco-view-zone="1"
 										style="position: absolute; width: 100%; display: block; top: 114px; height: 57px;"
 										monaco-visible-view-zone="true"></div>
 								</div> -->
-								<!-- 代码内容 -->
+								<!-- ä»£ç åå®¹ -->
 						</div>
-							<!-- 下方滚动条 -->
+							<!-- ä¸æ¹æ»å¨æ¡ -->
 							<!-- <div role="presentation" aria-hidden="true"
 								class="invisible scrollbar horizontal fade"
 								style="position: absolute; width: 76px; height: 10px; left: 0px; bottom: 0px;">
 								<div class="slider"
 									style="position: absolute; top: 0px; left: 0px; height: 10px; will-change: transform; width: 20px;"></div>
 							</div> -->
-							<!-- 垂直滚动条 -->
+							<!-- åç´æ»å¨æ¡ -->
 <!-- 							<canvas class="decorationsOverviewRuler" aria-hidden="true"
 								width="17" height="500"
 								style="position: absolute; will-change: transform; top: 0px; right: 0px; width: 14px; height: 700px;"></canvas>
- -->							<!-- 垂直滚动条 -->
+ -->							<!-- åç´æ»å¨æ¡ -->
 							<!-- <div role="presentation" aria-hidden="true"
 								class="visible scrollbar vertical"
 								style="position: absolute; width: 14px; height: 700px; right: 0px; top: 0px;">
@@ -303,7 +307,7 @@
 					style="position: absolute; height: 100%; width: 173px; left: 543px;">
 					<div class="monaco-editor modified-in-monaco-diff-editor vs"
 						data-uri="inmemory://model/3" style="width: 543px; height: 700px;">
-						<!--行号-->
+						<!--è¡å·-->
 						<!-- <div class="margin-view-overlays">
 							<div style="width: 100%; height: 19px;">
 								<div class="current-line" style="width: 53px; height: 19px;"></div>
@@ -445,7 +449,7 @@
 							<!--whole background-->
 							<!-- <div class="lines-content monaco-editor-background"
 								style="position: absolute; overflow: hidden; width: 100000px; height: 100000px; will-change: transform; top: 0px; left: 0px;"> -->
-								<!--行中的对齐线；删除、增加颜色效果-->
+								<!--è¡ä¸­çå¯¹é½çº¿ï¼å é¤ãå¢å é¢è²ææ-->
 								<!-- <div class="view-overlays" role="presentation"
 									aria-hidden="true"
 									style="position: absolute; height: 0px; width: 538px;">
@@ -602,14 +606,14 @@
 
 								</div> -->
 								<!--<div role="presentation" aria-hidden="true" class="view-rulers"></div>-->
-								<!--阴影效果-->
+								<!--é´å½±ææ-->
 								<!-- <div class="view-zones" role="presentation" aria-hidden="true"
 									style="position: absolute; width: 961px;">
 									<div class="diagonal-fill" monaco-view-zone="1"
 										style="position: absolute; width: 100%; display: block; top: 456px; height: 114px;"
 										monaco-visible-view-zone="true"></div>
 								</div> -->
-								<!--代码内容-->
+								<!--ä»£ç åå®¹-->
 								<!-- <div class="view-lines" role="presentation" aria-hidden="true"
 									data-mprt="7"
 									style="position: absolute; font-family: Consolas, monospace; font-weight: normal; font-size: 14px; line-height: 19px; letter-spacing: 0px; width: 538px; height: 4523px;">
@@ -722,18 +726,18 @@
 									</div>
 								</div> -->
 							<!-- </div> -->
-							<!--下方滚动条-->
+							<!--ä¸æ¹æ»å¨æ¡-->
 							<!-- <div role="presentation" aria-hidden="true"
 								class="invisible scrollbar horizontal fade"
 								style="position: absolute; width: 76px; height: 10px; left: 0px; bottom: 0px;">
 								<div class="slider"
 									style="position: absolute; top: 0px; left: 0px; height: 10px; will-change: transform; width: 20px;"></div>
 							</div> -->
-							<!--垂直滚动条-->
+							<!--åç´æ»å¨æ¡-->
 							<!-- <canvas class="decorationsOverviewRuler" aria-hidden="true"
 								width="17" height="500"
 								style="position: absolute; will-change: transform; top: 0px; right: 0px; width: 14px; height: 700px;"></canvas> -->
-							<!--垂直滚动条-->
+							<!--åç´æ»å¨æ¡-->
 							<!-- <div role="presentation" aria-hidden="true"
 								class="visible scrollbar vertical"
 								style="position: absolute; width: 14px; height: 700px; right: 0px; top: 0px;">
@@ -757,7 +761,26 @@
 						</div> -->
 					</div>
 				</div>
-			</div>
+				<div class="bubbleZone" data-keybinding-context="3"
+					data-mode-id="javascript"
+					style="position: absolute; height: 100%; width: 273px; left: 1086px;">
+					<!-- <div class="popover" style="display:true">
+						<div class="arrow"></div>
+						<h3 class="popover-title">Popover 左侧</h3>
+						<div class="popover-content">
+							<p>Sed posuere consectetur est at lobortis. Aenean eu leo
+								quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</p>
+						</div>
+					</div> -->
+				</div>
+			<!-- <svg class="lineWrap" data-keybinding-context="3" width="1200" style="positon:absolute;top:0;left:0;height: 100%;z-index:-9999">
+					<line id="line" xmlns="http://www.w3.org/2000/svg" x1="0"
+						y1="0" x2="1200" y2="50" stroke="#000" stroke-width="2"
+						 stroke-dasharray="10,10"></line>
+						 <line id="line" xmlns="http://www.w3.org/2000/svg" x1="30"
+						y1="0" x2="900" y2="90" stroke="#000" stroke-width="2"
+						 stroke-dasharray="10,10"></line>
+				</svg> -->	
 		</div>
 	</div>
 	<script type="text/javascript"

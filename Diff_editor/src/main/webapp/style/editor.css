@@ -468,7 +468,7 @@
 	overflow: hidden; 
 	left: 53px; 
 	width: 490px; 
-	height: 700px;
+	height: 4000px;
 }
 
 .monaco-list>.monaco-scrollable-element {
@@ -1525,7 +1525,7 @@
     background: none
 }
 
-.monaco-diff-editor .delete-sign,.monaco-diff-editor .insert-sign,.monaco-editor .delete-sign,.monaco-editor .insert-sign {
+.monaco-diff-editor .delete-sign,.monaco-diff-editor .insert-sign,.monaco-diff-editor .change-sign,.monaco-editor .delete-sign,.monaco-editor .insert-sign,.monaco-editor .change-sign {
     background-size: 60%;
     opacity: .7;
     background-repeat: no-repeat;
@@ -1534,6 +1534,10 @@
 
 .monaco-diff-editor.hc-black .delete-sign,.monaco-diff-editor.hc-black .insert-sign,.monaco-editor.hc-black .delete-sign,.monaco-editor.hc-black .insert-sign {
     opacity: 1
+}
+
+.monaco-diff-editor .change-sign,.monaco-editor .change-sign {
+    background-image: url("../image/edit.png")
 }
 
 .monaco-diff-editor .insert-sign,.monaco-editor .insert-sign {

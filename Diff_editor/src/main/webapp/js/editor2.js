@@ -503,13 +503,8 @@ function parseDiff(data,sign,srcLines,dstLines,superDesc) {
 				}
 				srcLines.splice(idx1,end1-start1+1);
 				block1.prevLineNum = start1 -1;
-				block1.array = array1;
-				aMoveBlock[aMoveBlock.length] = block1;	
-				
 				dstLines.splice(idx2,end2-start2+1);
-				block2.prevLineNum = start2 -1;	
-				block2.array = array2;
-				bMoveBlock[bMoveBlock.length] = block2;	
+				block2.prevLineNum = start2 -1;
 				
 				//标记描述节点
 				var entry = new Object();
@@ -540,7 +535,10 @@ function parseDiff(data,sign,srcLines,dstLines,superDesc) {
 //					addArray[addArray.length] = new Object();
 //				}
 				
-											
+				block1.array = array1;
+				aMoveBlock[aMoveBlock.length] = block1;				
+				block2.array = array2;
+				bMoveBlock[bMoveBlock.length] = block2;								
 			}
 			break;
 		}						
@@ -572,7 +570,18 @@ function parseDiff(data,sign,srcLines,dstLines,superDesc) {
 				i--;
 			}
 		}
-
+		for (var i = 0; i < aMoveBlock.length; i++) {
+			if (srcLines[o].number != undefined
+					&& aMoveBlock[i].prevLineNum == srcLines[o].number) {
+				for (a = 0; a < aMoveBlock[i].array.length; a++) {
+					srcLines
+							.splice(o + a + 1, 0, aMoveBlock[i].array[a]);
+					//
+					dstLines.splice(o + a + 1, 0, new Object());
+				}
+				o += aMoveBlock[i].array.length;
+			}
+		}
 	}
 	for (var m = 0; m < dstLines.length; m++) {
 		for (var i = 0; i < bInsertBlock.length; i++) {
@@ -600,32 +609,18 @@ function parseDiff(data,sign,srcLines,dstLines,superDesc) {
 				i--;
 			}
 		}
-
-	}
-	for (var o = 0; o < srcLines.length; o++) {
-		for (var i = 0; i < aMoveBlock.length; i++) {
-			if (srcLines[o].number != undefined
-					&& aMoveBlock[i].prevLineNum == srcLines[o].number) {
-				for (a = 0; a < aMoveBlock[i].array.length; a++) {
-					srcLines
-							.splice(o + a + 1, 0, aMoveBlock[i].array[a]);
-					dstLines.splice(o + a + 1, 0, new Object());
-				}
-				o += aMoveBlock[i].array.length;
-			}
-		}
-	}
-	for (var m = 0; m < dstLines.length; m++) {
-		for (var i = 0; i < bMoveBlock.length; i++) {
-			if (dstLines[m].number != undefined
-					&& bMoveBlock[i].prevLineNum == dstLines[m].number) {
-				for (a = 0; a < bMoveBlock[i].array.length; a++) {
-					dstLines.splice(m + a + 1, 0, bMoveBlock[i].array[a]);
-					 srcLines.splice(m + a + 1, 0, new Object());
-				}
-				m += bMoveBlock[i].array.length;
-			}
-		}
+//		for (var i = 0; i < bMoveBlock.length; i++) {
+//			if (dstLines[m].number != undefined
+//					&& bMoveBlock[i].prevLineNum == dstLines[m].number) {
+//				for (a = 0; a < bMoveBlock[i].array.length; a++) {
+//					dstLines
+//							.splice(m + a + 1, 0, bMoveBlock[i].array[a]);
+//					//
+////					srcLines.splice(m + a + 1, 0, new Object());
+//				}
+//				m += bMoveBlock[i].array.length;
+//			}
+//		}
 	}
 }
 
@@ -662,7 +657,7 @@ function drawBubble(entry,level) {
 	bubbleDiv.className = "popover";
 	bubbleDiv.id = entry.id;
 	bubbleDiv.style.borderColor = getColor(level);
-	bubbleDiv.style.top = (top+9.5)+"px";
+	bubbleDiv.style.top = top+"px";
 	bubbleDiv.innerHTML="<div class='popover-content'>"+entry.description+"</div>";
 	document.querySelector(".bubbleZone").appendChild(bubbleDiv);
 }
@@ -720,28 +715,11 @@ function drawLinkLine() {
 		bottom1 = originalLinesCoordinate[aMoveBlock[i].array[aMoveBlock[i].array.length-1].number]+19-1;
 		top2 = modifiedLinesCoordinate[bMoveBlock[i].array[0].number]+1;
 		bottom2 = modifiedLinesCoordinate[bMoveBlock[i].array[bMoveBlock[i].array.length-1].number]+19-1;
-//		cxt.beginPath();  
-//		cxt.moveTo(0,top1);
-//		cxt.bezierCurveTo(53,top1,0,top2,53,top2);
-//		cxt.lineTo(53,bottom2);
-//		cxt.bezierCurveTo(0,bottom2,53,bottom1,0,bottom1);
-//		cxt.lineTo(0,bottom1);
-//		cxt.fillStyle="rgba(255, 140, 0, 0.2)";
-//		cxt.strokeStyle="rgba(255, 140, 0, 0.2)";
-//		cxt.fill();
-//		cxt.stroke();
-//		cxt.beginPath();  
-//		cxt.lineWidth = 1;  
-//		cxt.moveTo(0,top1);
-//		cxt.bezierCurveTo(53,top1-30,0,top2+30,53,top2);
-//		cxt.moveTo(0,bottom1);
-//		cxt.bezierCurveTo(53,bottom1,0,bottom2,53,bottom2);
 		cxt.beginPath();  
 		cxt.moveTo(0,top1);
-		cxt.lineTo(47,top2);
-		cxt.lineTo(53,top2);
+		cxt.bezierCurveTo(53,top1,0,top2,53,top2);
 		cxt.lineTo(53,bottom2);
-		cxt.lineTo(47,bottom2);
+		cxt.bezierCurveTo(0,bottom2,53,bottom1,0,bottom1);
 		cxt.lineTo(0,bottom1);
 		cxt.fillStyle="rgba(255, 140, 0, 0.2)";
 		cxt.strokeStyle="rgba(255, 140, 0, 0.2)";
@@ -750,11 +728,9 @@ function drawLinkLine() {
 		cxt.beginPath();  
 		cxt.lineWidth = 1;  
 		cxt.moveTo(0,top1);
-		cxt.lineTo(47,top2);
-		cxt.lineTo(53,top2);
+		cxt.bezierCurveTo(53,top1,0,top2,53,top2);
 		cxt.moveTo(0,bottom1);
-		cxt.lineTo(47,bottom2);
-		cxt.lineTo(53,bottom2);
+		cxt.bezierCurveTo(53,bottom1,0,bottom2,53,bottom2);
 		cxt.strokeStyle="rgb(255, 69, 0)";		
 		cxt.stroke();
 		drawArrow(cxt,53,top2);
@@ -765,27 +741,23 @@ function drawLinkLine() {
 function drawArrow(cxt,x,y) {
 	cxt.beginPath();  
 	cxt.moveTo(x,y);
-	cxt.lineTo(x-3.2,y-3.2);
+	cxt.lineTo(x-5,y-5);
 	cxt.moveTo(x,y);
-	cxt.lineTo(x-3.2,y+3.2);
+	cxt.lineTo(x-5,y+5);
 	cxt.stroke();	
 }
 
 function drawTagLine(file,top,middle,bottom,id,color) {
-	var popover = document.getElementById(id);
-	popover.style.visibility="visible";
-	var popoverTop = parseInt(popover.style.top);
 	var borderCanvas,arrowCanvas;
 	var myCanvas,cxt;
-	var tail = popoverTop+1;
 	if(file == 1) {
-		tail = middle;
 		borderCanvas = "myCanvas1";
 		arrowCanvas = "overlayCanvas";
 		
 		myCanvas=document.getElementById("myCanvas2");
 		cxt=myCanvas.getContext("2d");
-		cxt.lineWidth = 1.5;  
+		cxt=myCanvas.getContext("2d");	
+		cxt.lineWidth = 2;  
 		cxt.beginPath();  
 		cxt.moveTo(0,middle);
 		cxt.lineTo(600,middle);
@@ -793,10 +765,11 @@ function drawTagLine(file,top,middle,bottom,id,color) {
 		cxt.stroke();	
 		myCanvas=document.getElementById("myCanvas3");
 		cxt=myCanvas.getContext("2d");
-		cxt.lineWidth = 1.5;  
+		cxt=myCanvas.getContext("2d");	
+		cxt.lineWidth = 2;  
 		cxt.beginPath();  
 		cxt.moveTo(0,middle);
-		cxt.lineTo(90,popoverTop+1);
+		cxt.lineTo(60,middle);
 		cxt.strokeStyle=color;
 		cxt.stroke();
 	}
@@ -804,21 +777,23 @@ function drawTagLine(file,top,middle,bottom,id,color) {
 		borderCanvas = "myCanvas2";
 		arrowCanvas = "myCanvas3";
 	}
-
 	myCanvas=document.getElementById(arrowCanvas);
 	cxt=myCanvas.getContext("2d");
+	cxt=myCanvas.getContext("2d");	
 	cxt.lineWidth = 1.5;  
 	cxt.beginPath();  
 	cxt.moveTo(0,top);
 	cxt.lineTo(30,middle);
 	cxt.lineTo(0,bottom);
-	cxt.moveTo(30,middle);
-	cxt.lineTo(90,tail);
 	cxt.strokeStyle=color;
+	cxt.stroke();
+	cxt.moveTo(30,middle);
+	cxt.lineTo(100,middle);
 	cxt.stroke();
 	myCanvas=document.getElementById(borderCanvas);
 	cxt=myCanvas.getContext("2d");
-	cxt.lineWidth = 1.5;  
+	cxt=myCanvas.getContext("2d");	
+	cxt.lineWidth = 2;  
 	cxt.beginPath();  
 	cxt.moveTo(0,top);
 	cxt.lineTo(600,top);
@@ -827,7 +802,8 @@ function drawTagLine(file,top,middle,bottom,id,color) {
 	cxt.moveTo(1,top);
 	cxt.lineTo(1,bottom);
 	cxt.strokeStyle=color;
-	cxt.stroke();		
+	cxt.stroke();	
+	document.getElementById(id).style.visibility="visible";
 }
 
 function bubble() {

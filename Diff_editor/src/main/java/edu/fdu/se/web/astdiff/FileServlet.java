@@ -3,6 +3,7 @@ package edu.fdu.se.web.astdiff;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Scanner;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
@@ -10,6 +11,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import net.sf.json.JSONArray;
 
 /**
  * Servlet implementation class FileServlet
@@ -47,7 +50,7 @@ public class FileServlet extends HttpServlet {
 	
 	public void responseWithFile (HttpServletResponse response,String fileName,String fileType) throws ServletException, IOException {
 		ServletOutputStream sos = response.getOutputStream();
-		String path = "C:/Users/huangkaifeng/Desktop/"+fileName+"/";
+		String path = "C:/Users/yw/Desktop/"+fileName+"/";
 		if(fileType.equals("src")){
 			path+= "FileSrc.java";
 		}else if(fileType.equals("dst")){
@@ -57,14 +60,27 @@ public class FileServlet extends HttpServlet {
 		}
 		File file = new File(path);
 		if(file.exists()){
-			FileInputStream fis = new FileInputStream(file);
-			byte[] buffer = new byte[1024*1024];
-			int res = -1;
-			while((res = fis.read(buffer))!=-1){
-				sos.write(buffer);
+			if(fileType.equals("json")) {
+				String whole = "";
+				Scanner in = new Scanner(file);
+				while (in.hasNextLine()) {
+					String str = in.nextLine();
+					whole += str;
+				}				
+				JSONArray array = JSONArray.fromObject(whole);
+				sos.write(array.toString().getBytes());
 			}
-			fis.close();
-			sos.flush();
+			else {
+				FileInputStream fis = new FileInputStream(file);
+				byte[] buffer = new byte[1024*1024];
+				int res = -1;
+				while((res = fis.read(buffer))!=-1){
+					sos.write(buffer);
+				}
+				fis.close();
+				sos.flush();
+			}
+			
 		}
 	}
 

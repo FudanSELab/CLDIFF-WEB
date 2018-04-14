@@ -7,24 +7,49 @@ var aMoveBlock = new Array();
 var bMoveBlock = new Array();
 
 $(document).ready(function() {
-	$(function() {
-		$.ajaxSettings.async = false;  
-		initLines(originalLines,getFileFromServer("getfile","File","src"));
-		initLines(modifiedLines,getFileFromServer("getfile","File","dst"));
-    	
-		var text = getFileFromServer("getfile","File","json");
-		text = eval("("+text+")");		
-		parseDiff(text,0,originalLines,modifiedLines);
-			
-		generateContainer();
-    	
-    	for(var d = 0;d<descriptions.length;d++) {
-    		drawBubble(descriptions[d],1);
-    	}
-    	clearPopover();
-    	drawLinkLine();
-    });
+//	$(function() {
+//		$.ajaxSettings.async = false;  
+//		initLines(originalLines,getFileFromServer("getfile","File","src"));
+//		initLines(modifiedLines,getFileFromServer("getfile","File","dst"));
+//    	
+//		var text = getFileFromServer("getfile","File","json");
+//		text = eval("("+text+")");		
+//		parseDiff(text,0,originalLines,modifiedLines);
+//			
+//		generateContainer();
+//    	
+//    	for(var d = 0;d<descriptions.length;d++) {
+//    		drawBubble(descriptions[d],1);
+//    	}
+//    	clearPopover();
+//    	drawLinkLine();
+//    });
 })
+
+function refreshPage(commitID,fileName) {
+	$.ajaxSettings.async = false;  
+	var file = getFileFromServer("getfile",commitID,fileName,"src");
+	alert(file);
+	initLines(originalLines,file);
+	alert(originalLines.length);
+	
+//	initLines(originalLines,getFileFromServer("getfile",commitID,fileName,"src"));
+//	
+//	initLines(modifiedLines,getFileFromServer("getfile",commitID,fileName,"dst"));
+//	alert(modifiedLines.length);
+//	var text = getFileFromServer("getfile",commitID,fileName,"diff.json");
+//	alert(text);
+//	text = eval("("+text+")");		
+//	parseDiff(text,0,originalLines,modifiedLines);
+//		
+//	generateContainer();
+//	
+//	for(var d = 0;d<descriptions.length;d++) {
+//		drawBubble(descriptions[d],1);
+//	}
+//	clearPopover();
+//	drawLinkLine();
+}
 
 function parseDiff(data,sign,srcLines,dstLines,superDesc) {
 	var aDeleteBlock =  new Array();
@@ -274,6 +299,7 @@ function restoreBlockToContent(block,contentLines,lineIdx,anotherLines,isToSplic
 }
 	
 function initLines(contentLines,data) {
+	contentLines = new Array();
 	var tempLines = data.toString().split(/\r\n/);
 	for(var i = 0;i<tempLines.length;i++) {
 		var line = new Object();

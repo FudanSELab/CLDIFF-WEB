@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 /**
  * Servlet implementation class FileServlet
@@ -79,16 +80,15 @@ public class FileServlet extends HttpServlet {
 				}
 			}
 		}
-		//
 		List<File> list = new ArrayList<File>();
 		browse(target,list);
 		for(File tmp:list){
 			if(fileType.equals("src")
-				&&tmp.getAbsolutePath().contains("/prev/")&& tmp.getAbsolutePath().endsWith(fileName)){
+				&&tmp.getAbsolutePath().contains("\\prev\\")&& tmp.getAbsolutePath().endsWith(fileName)){
 					responseWithFile(tmp,sos);
 					return;
 			}else if(fileType.equals("dst")
-				&&tmp.getAbsolutePath().contains("/curr/")&&tmp.getAbsolutePath().endsWith(fileName)){
+				&&tmp.getAbsolutePath().contains("\\curr\\")&&tmp.getAbsolutePath().endsWith(fileName)){
 					responseWithFile(tmp,sos);
 					return;
 			}else if(fileType.equals("diff.json")
@@ -121,15 +121,21 @@ public class FileServlet extends HttpServlet {
 	
 	public void responseWithFile(File file,ServletOutputStream sos)throws ServletException, IOException {
 		if(file.exists()){
-			if(file.getName().equals("json")) {
+			if(file.getName().equals("meta.json")||file.getName().equals("diff.json")) {
 				String whole = "";
 				Scanner in = new Scanner(file);
 				while (in.hasNextLine()) {
 					String str = in.nextLine();
 					whole += str;
-				}				
-				JSONArray array = JSONArray.fromObject(whole);
-				sos.write(array.toString().getBytes());
+				}	
+				if(file.getName().equals("diff.json")) {
+					JSONArray array = JSONArray.fromObject(whole);
+					sos.write(array.toString().getBytes());
+				}					
+				if(file.getName().equals("meta.json")) {
+					JSONObject obj = JSONObject.fromObject(whole);
+					sos.write(obj.toString().getBytes());
+				}
 			}
 			else {
 				FileInputStream fis = new FileInputStream(file);

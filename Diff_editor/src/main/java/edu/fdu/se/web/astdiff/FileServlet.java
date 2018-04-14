@@ -59,11 +59,15 @@ public class FileServlet extends HttpServlet {
 		File f = new File(root);
 		File[] files = f.listFiles();
 		File[] commits = null;
+		List<File> allCommits = new ArrayList<>();;
 		for(File f2:files){
 			commits = f2.listFiles();
+			for(File temp:commits){
+				allCommits.add(temp);
+			}
 		}
 		File target = null;
-		for(File commit:commits){
+		for(File commit:allCommits){
 			if(commit.getName().equals(commitId)){
 				target = commit;
 				break;
@@ -83,11 +87,11 @@ public class FileServlet extends HttpServlet {
 		browse(target,list);
 		for(File tmp:list){
 			if(fileType.equals("src")
-				&&tmp.getAbsolutePath().contains("/prev/")&& tmp.getAbsolutePath().endsWith(fileName)){
+				&&tmp.getAbsolutePath().contains("/prev/")&& tmp.getAbsolutePath().endsWith("\\"+fileName)){
 					responseWithFile(tmp,sos);
 					return;
 			}else if(fileType.equals("dst")
-				&&tmp.getAbsolutePath().contains("/curr/")&&tmp.getAbsolutePath().endsWith(fileName)){
+				&&tmp.getAbsolutePath().contains("/curr/")&&tmp.getAbsolutePath().endsWith("\\"+fileName)){
 					responseWithFile(tmp,sos);
 					return;
 			}else if(fileType.equals("diff.json")

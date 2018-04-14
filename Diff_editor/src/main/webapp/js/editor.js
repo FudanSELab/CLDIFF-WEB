@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 var originalLines =  new Array();
 var modifiedLines =  new Array();
 var descriptions =  new Array();

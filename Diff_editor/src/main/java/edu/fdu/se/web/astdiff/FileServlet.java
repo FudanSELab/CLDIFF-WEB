@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 /**
  * Servlet implementation class FileServlet
@@ -58,6 +59,9 @@ public class FileServlet extends HttpServlet {
 		}else if(fileType.equals("json")){
 			path+="File.json";
 		}
+		else if(fileType.equals("ljson")){
+			path+="FileList.json";
+		}
 		File file = new File(path);
 		if(file.exists()){
 			if(fileType.equals("json")) {
@@ -69,6 +73,16 @@ public class FileServlet extends HttpServlet {
 				}				
 				JSONArray array = JSONArray.fromObject(whole);
 				sos.write(array.toString().getBytes());
+			}
+			else if(fileType.equals("ljson")) {
+				String whole = "";
+				Scanner in = new Scanner(file);
+				while (in.hasNextLine()) {
+					String str = in.nextLine();
+					whole += str;
+				}				
+				JSONObject obj = JSONObject.fromObject(whole);
+				sos.write(obj.toString().getBytes());
 			}
 			else {
 				FileInputStream fis = new FileInputStream(file);

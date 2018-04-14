@@ -28,15 +28,14 @@ $(document).ready(function() {
 
 function refreshPage(commitID,fileName) {
 	$.ajaxSettings.async = false;  
-	var file = getFileFromServer("getfile",commitID,fileName,"src");
-	alert(file);
-	initLines(originalLines,file);
-	alert(originalLines.length);
+//	var file = getFileFromServer("getfile",commitID,fileName,"src");
+//	alert(file);
+//	initLines(originalLines,file);
+//	alert(originalLines.length);
 	
-//	initLines(originalLines,getFileFromServer("getfile",commitID,fileName,"src"));
-//	
-//	initLines(modifiedLines,getFileFromServer("getfile",commitID,fileName,"dst"));
-//	alert(modifiedLines.length);
+	initLines(originalLines,getFileFromServer("getfile",commitID,fileName,"src"));
+	
+	initLines(modifiedLines,getFileFromServer("getfile",commitID,fileName,"dst"));
 //	var text = getFileFromServer("getfile",commitID,fileName,"diff.json");
 //	alert(text);
 //	text = eval("("+text+")");		
@@ -299,7 +298,7 @@ function restoreBlockToContent(block,contentLines,lineIdx,anotherLines,isToSplic
 }
 	
 function initLines(contentLines,data) {
-	contentLines = new Array();
+	contentLines.splice(0,contentLines.length);;
 	var tempLines = data.toString().split(/\r\n/);
 	for(var i = 0;i<tempLines.length;i++) {
 		var line = new Object();

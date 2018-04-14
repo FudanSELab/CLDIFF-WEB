@@ -3,6 +3,8 @@ package edu.fdu.se.web.astdiff;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import javax.servlet.ServletException;
@@ -41,26 +43,84 @@ public class FileServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String commitId = request.getParameter("commitId");
 		String fileName = request.getParameter("fileName");
 		String fileType = request.getParameter("SrcOrDstOrJson");
+		responseWithFile(response,commitId,fileName,fileType);
+	}
+	// commitId:XXXX fileName:null SrcOrDstOrJson: meta.json
+	// commitId:XXXX fileName:XXX.java SrcOrDstOrJson: diff.json
+	// commitId:XXXX fileName:XXX.java SrcOrDstOrJson: src
+	// commitId:XXXX fileName:XXX.java SrcOrDstOrJson: dst
+	// commitId:XXXX fileName:XXX.java SrcOrDstOrJson: link.json
+	
+	public void responseWithFile (HttpServletResponse response,String commitId,String fileName,String fileType) throws ServletException, IOException {
+		String root = "D:\\Workspace\\DiffMiner\\November-GT-Extend\\11-8-GumTree\\RQ3";
+		File f = new File(root);
+		File[] files = f.listFiles();
+		File[] commits = null;
+		for(File f2:files){
+			commits = f2.listFiles();
+		}
+		File target = null;
+		for(File commit:commits){
+			if(commit.getName().equals(commitId)){
+				target = commit;
+				break;
+			}
+		}
+		ServletOutputStream sos = response.getOutputStream();
+		File[] commitMeta = target.listFiles();
+		if(fileType.equals("meta.json")){
+			for(File tmp:commitMeta){
+				if(tmp.getName().equals("meta.json")){
+					responseWithFile(tmp,sos);
+					return;
+				}
+			}
+		}
+		List<File> list = new ArrayList<>();
+		browse(target,list);
+		for(File tmp:list){
+			if(fileType.equals("src")
+				&&tmp.getAbsolutePath().contains("/prev/")&& tmp.getAbsolutePath().endsWith(fileName)){
+					responseWithFile(tmp,sos);
+					return;
+			}else if(fileType.equals("dst")
+				&&tmp.getAbsolutePath().contains("/curr/")&&tmp.getAbsolutePath().endsWith(fileName)){
+					responseWithFile(tmp,sos);
+					return;
+			}else if(fileType.equals("diff.json")
+					&&tmp.getAbsolutePath().endsWith("diff.json")
+					&&tmp.getAbsolutePath().contains(fileName)){
+				responseWithFile(tmp,sos);
+				return;
+			}else if(fileType.equals("link.json")
+					&&tmp.getAbsolutePath().endsWith("link.json")
+					&&tmp.getAbsolutePath().contains(fileName)){
+				responseWithFile(tmp,sos);
+				return;
+			}
+		}
 		
-		responseWithFile(response,fileName,fileType);
-//		doGet(request, response);
 	}
 	
-	public void responseWithFile (HttpServletResponse response,String fileName,String fileType) throws ServletException, IOException {
-		ServletOutputStream sos = response.getOutputStream();
-		String path = "C:/Users/yw/Desktop/"+fileName+"/";
-		if(fileType.equals("src")){
-			path+= "FileSrc.java";
-		}else if(fileType.equals("dst")){
-			path+= "FileDst.java";
-		}else if(fileType.equals("json")){
-			path+="File.json";
+	
+	public void browse(File f,List<File> fileList){
+		File[] list = f.listFiles();
+		for(File tmp:list){
+			if(tmp.isDirectory()){
+				browse(tmp,fileList);
+			}else{
+				fileList.add(tmp);
+			}
+			
 		}
-		File file = new File(path);
+	}
+	
+	public void responseWithFile(File file,ServletOutputStream sos)throws ServletException, IOException {
 		if(file.exists()){
-			if(fileType.equals("json")) {
+			if(file.getName().equals("json")) {
 				String whole = "";
 				Scanner in = new Scanner(file);
 				while (in.hasNextLine()) {
@@ -80,8 +140,8 @@ public class FileServlet extends HttpServlet {
 				fis.close();
 				sos.flush();
 			}
-			
 		}
+		
 	}
 
 }

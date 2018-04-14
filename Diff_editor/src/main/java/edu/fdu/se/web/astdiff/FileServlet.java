@@ -55,7 +55,7 @@ public class FileServlet extends HttpServlet {
 	// commitId:XXXX fileName:XXX.java SrcOrDstOrJson: dst
 	// commitId:XXXX fileName:XXX.java SrcOrDstOrJson: link.json
 	
-	public void responseWithFile (HttpServletResponse response,String commitId,String fileName,String fileType) throws ServletException, IOException {
+	public void responseWithFile(HttpServletResponse response,String commitId,String fileName,String fileType) throws ServletException, IOException {
 		String root = "D:\\Workspace\\DiffMiner\\November-GT-Extend\\11-8-GumTree\\RQ3";
 		File f = new File(root);
 		File[] files = f.listFiles();
@@ -79,7 +79,7 @@ public class FileServlet extends HttpServlet {
 		if(fileType.equals("meta.json")){
 			for(File tmp:commitMeta){
 				if(tmp.getName().equals("meta.json")){
-					responseWithFile(tmp,sos);
+					writeToSos(tmp,sos);
 					return;
 				}
 			}
@@ -88,22 +88,22 @@ public class FileServlet extends HttpServlet {
 		browse(target,list);
 		for(File tmp:list){
 			if(fileType.equals("src")
-				&&tmp.getAbsolutePath().contains("/prev/")&& tmp.getAbsolutePath().endsWith("\\"+fileName)){
-					responseWithFile(tmp,sos);
+				&&tmp.getAbsolutePath().contains("\\prev\\")&& tmp.getAbsolutePath().endsWith("\\"+fileName)){
+				writeToSos(tmp,sos);
 					return;
 			}else if(fileType.equals("dst")
-				&&tmp.getAbsolutePath().contains("/curr/")&&tmp.getAbsolutePath().endsWith("\\"+fileName)){
-					responseWithFile(tmp,sos);
+				&&tmp.getAbsolutePath().contains("\\curr\\")&&tmp.getAbsolutePath().endsWith("\\"+fileName)){
+				writeToSos(tmp,sos);
 					return;
 			}else if(fileType.equals("diff.json")
 					&&tmp.getAbsolutePath().endsWith("diff.json")
 					&&tmp.getAbsolutePath().contains(fileName)){
-				responseWithFile(tmp,sos);
+				writeToSos(tmp,sos);
 				return;
 			}else if(fileType.equals("link.json")
 					&&tmp.getAbsolutePath().endsWith("link.json")
 					&&tmp.getAbsolutePath().contains(fileName)){
-				responseWithFile(tmp,sos);
+				writeToSos(tmp,sos);
 				return;
 			}
 		}
@@ -124,7 +124,7 @@ public class FileServlet extends HttpServlet {
 		}
 	}
 	
-	public void responseWithFile(File file,ServletOutputStream sos)throws ServletException, IOException {
+	public void writeToSos(File file,ServletOutputStream sos)throws ServletException, IOException {
 		if(file.exists()){
 			if(file.getName().equals("meta.json")||file.getName().equals("diff.json")) {
 				String whole = "";

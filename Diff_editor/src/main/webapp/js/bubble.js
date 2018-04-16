@@ -77,8 +77,10 @@ function drawBubble(entry,level) {
 	bubbleDiv.style.borderColor = getColorByType(entry["type2"]);
 	bubbleDiv.style.width = "300px";
 	bubbleDiv.innerHTML="<div class='popover-content'>"+entry.description+"</div>";
+	bubbleDiv.style.borderRadius=0;
 	document.querySelector(".bubbleZone").appendChild(bubbleDiv);
 	bubbleDiv.style.left = bubbleLeft+"px";
+	
 	
 //	var list="";
 //	for (var d = 0; d < bubbleArray.length; d++) {
@@ -161,7 +163,7 @@ function drawLinkLine(srcBlocks,dstBlocks,fillStyleColor,strokeStyleColor) {
 		cxt.fill();
 		cxt.stroke();
 		cxt.beginPath();  
-		cxt.lineWidth = 1;  
+		cxt.lineWidth = 1.5;  
 		cxt.moveTo(0,top1);
 		cxt.lineTo(47,top2);
 		cxt.lineTo(53,top2);
@@ -177,10 +179,10 @@ function drawLinkLine(srcBlocks,dstBlocks,fillStyleColor,strokeStyleColor) {
 
 function drawArrow(cxt,x,y) {
 	cxt.beginPath();  
-	cxt.moveTo(x,y);
-	cxt.lineTo(x-3.2,y-3.2);
-	cxt.moveTo(x,y);
-	cxt.lineTo(x-3.2,y+3.2);
+	cxt.moveTo(x-1,y);
+	cxt.lineTo(x-3.5,y-3.5);
+	cxt.moveTo(x-1,y);
+	cxt.lineTo(x-3.5,y+3.5);
 	cxt.stroke();	
 }
 
@@ -266,6 +268,6 @@ function clearCanvas() {
     myCanvas=document.getElementById("overlayCanvas");
 	cxt = myCanvas.getContext("2d");
     cxt.clearRect(0,0,myCanvas.width,myCanvas.height);
-    drawLinkLine(aMoveBlock,bMoveBlock,"rgba(255, 140, 0, 0.2)","rgb(255, 69, 0)");
-	drawLinkLine(aChangeBlock,bChangeBlock,"rgba(0, 100, 255, 0.2)","rgb(10, 49, 255)");
+    drawLinkLine(aMoveBlock,bMoveBlock,"rgba(255, 140, 0, 0.2)",getColorByType("Move"));
+	drawLinkLine(aChangeBlock,bChangeBlock,"rgba(0, 100, 255, 0.2)",getColorByType("Change"));
 }

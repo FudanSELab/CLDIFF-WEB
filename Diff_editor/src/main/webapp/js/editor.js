@@ -8,6 +8,7 @@ var bMoveBlock = new Array();
 var aChangeBlock = new Array();
 var bChangeBlock = new Array();
 var diff = new Array();
+var link = new Array();
 var changeMove = new Array();
 
 $(document).ready(function() {
@@ -23,6 +24,7 @@ function init() {
 	bChangeBlock.splice(0,bChangeBlock.length);
 	bubbleArray.splice(0,bubbleArray.length);
 	diff.splice(0,diff.length);
+	link.splice(0,link.length);
 	changeMove.splice(0,changeMove.length);
 	document.querySelector(".original-in-monaco-diff-editor").innerHTML="";
 	document.querySelector(".modified-in-monaco-diff-editor").innerHTML="";
@@ -54,8 +56,8 @@ function refreshPage(commitID,fileName) {
 	}
 	
 	clearPopover();
-	drawLinkLine(aMoveBlock,bMoveBlock,"rgba(255, 140, 0, 0.2)","rgb(255, 69, 0)");
-	drawLinkLine(aChangeBlock,bChangeBlock,"rgba(0, 100, 255, 0.2)","rgb(10, 49, 255)");
+	drawLinkLine(aMoveBlock,bMoveBlock,"rgba(255, 140, 0, 0.2)",getColorByType("Move"));
+	drawLinkLine(aChangeBlock,bChangeBlock,"rgba(0, 100, 255, 0.2)",getColorByType("Change"));
 }
 function handleNesting (data) {
 	$.each(data,function(infoIndex,info){  
@@ -103,8 +105,13 @@ function insertOneToDiff(info,diffArray) {
     	else if(info["file"] == "src-dst" && diffArray[i].file == "src-dst") {
     		var po1 = positionRelationship(range[0],range[1],diffArray[i].parsedRange[0],diffArray[i].parsedRange[1]);
     		var po2 = positionRelationship(range[2],range[3],diffArray[i].parsedRange[2],diffArray[i].parsedRange[3]);
-    		if(po1 != po2)
-    			alert("error src-dst : src-dst | "+range[0]+","+range[1]+","+diffArray[i].parsedRange[0]+","+diffArray[i].parsedRange[1]+"   "+range[2]+","+range[3]+","+diffArray[i].parsedRange[2]+","+diffArray[i].parsedRange[3]);
+    		if(po1 != po2) {
+//    			alert("error src-dst : src-dst | "+range[0]+","+range[1]+","+diffArray[i].parsedRange[0]+","+diffArray[i].parsedRange[1]+"   "+range[2]+","+range[3]+","+diffArray[i].parsedRange[2]+","+diffArray[i].parsedRange[3]);
+    			if(po1 == "prev" || po2 =="prev")
+    				position= "prev";
+    			else
+    				position= "next";
+    		}
     		else
     			position = po1;
     	}
@@ -306,7 +313,7 @@ function positionRelationship(x1,y1,x2,y2) {
 			return "child";
 		}
 		else if(parseInt(y1) == parseInt(y2)) {
-			alert("range : "+x1+","+y1+" is repeat!");
+//			alert("range : "+x1+","+y1+" is repeat!");
 			return;
 		}
 		else {

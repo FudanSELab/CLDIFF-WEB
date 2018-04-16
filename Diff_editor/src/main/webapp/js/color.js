@@ -35,7 +35,7 @@ function getSubColorByMark(sub_mark) {
 function getColorByType(type) {
 	switch(type) {
 	case "Insert":
-		return "rgba(155, 185, 85)";
+		return "rgba(0, 205, 102)";
 		break;
 	case "Delete":
 		return "rgba(255, 0, 0)";
@@ -44,10 +44,10 @@ function getColorByType(type) {
 		return "rgb(10, 49, 255)";
 		break;
 	case "Move":
-		return "rgb(255, 69, 0)";
+		return "rgb(255, 185, 15)";
 		break;
 	case "Change.Move":
-		return "rgb(255, 69, 0)";
+		return "rgb(255, 185, 15)";
 		break;
 	}	
 	return "red";

@@ -7,7 +7,7 @@
 <link type="text/css" rel="styleSheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css" />
 <link type="text/css" rel="styleSheet" href="style/base.css" />
 <link type="text/css" rel="styleSheet" href="style/editor.css" />
-<link type="text/css" rel="styleSheet" href="style/color1.css" />
+<link type="text/css" rel="styleSheet" href="style/color.css" />
 <link type="text/css" rel="styleSheet" href="style/addition.css" />
 </head>
 <body>
@@ -58,11 +58,11 @@
 			<div
 				class="monaco-diff-editor monaco-editor-background side-by-side vs"
 				style="position: relative; height: 100%;">	
-				<canvas id="myCanvas3" width="200" height="20000"
+				<canvas id="myCanvas3" width="400" height="20000"
 						style="position: absolute; will-change: transform; top: 0px; left: 1086px;"></canvas>
 				<!--é¢è§è¾¹æ¡-->							
 				<div class="diffOverview"
-					style="position: absolute; top: 0px; height: 700px; width: 30px; left: 1386px;">
+					style="position: absolute; top: 0px; height: 700px; width: 30px; left: 1486px;">
 					<div class="diffViewport"
 						style="position: absolute; width: 30px; height: 35px; top: 0px;"></div>
 					<canvas class="original diffOverviewRuler" width="18" height="500"
@@ -154,7 +154,7 @@
 				</div>
 				<div class="bubbleZone" data-keybinding-context="3"
 					data-mode-id="javascript"
-					style="position: absolute; height: 100%; width: 273px; left: 1086px;">
+					style="position: absolute; height: 100%; width: 410px; left: 1086px;">
 				</div>
 			<!-- <svg class="lineWrap" data-keybinding-context="3" width="1200" style="positon:absolute;top:0;left:0;height: 100%;z-index:-9999">
 					<line id="line" xmlns="http://www.w3.org/2000/svg" x1="0"

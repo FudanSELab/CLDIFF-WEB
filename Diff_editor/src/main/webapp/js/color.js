@@ -31,3 +31,24 @@ function getSubColorByMark(sub_mark) {
 	}
 	return "mtk1";
 }
+
+function getColorByType(type) {
+	switch(type) {
+	case "Insert":
+		return "rgba(155, 185, 85)";
+		break;
+	case "Delete":
+		return "rgba(255, 0, 0)";
+		break;
+	case "Change":
+		return "rgb(10, 49, 255)";
+		break;
+	case "Move":
+		return "rgb(255, 69, 0)";
+		break;
+	case "Change.Move":
+		return "rgb(255, 69, 0)";
+		break;
+	}	
+	return "red";
+}

@@ -1,3 +1,4 @@
+var bubbleArray = new Array();
 function bubble() {
 	clearPopover();
 	clearCanvas();
@@ -10,32 +11,41 @@ function bubble() {
 	var left = parseInt(this.style.left);
 	if(isNaN(left)) 
 		left = 0;
-	drawDescLayer(file,this.number,descriptions,1);
+	drawDescLayer(file,this.number,descriptions);
 //	document.querySelector(".modified-in-monaco-diff-editor .view-overlays").children[top/19].appendChild(currentLineDiv);
 }
 
-function drawDescLayer(file,number,descArray,color) {
+function drawDescLayer(file,number,descArray) {
 	var top1,bottom1,top2,bottom2,middle1,middle2;
-	var str = getColor(color);
+//	var str = getColorByType(color);
 	for(var i=0;i<descArray.length;i++) {
+		var isChangeOrMove = false;
+		if(descArray[i].type2 == "Change" ||descArray[i].type2 == "Move"||descArray[i].type2 == "Change.Move")
+			isChangeOrMove = true;
 		if(file == 1 && descArray[i].range1 != undefined) {
-			if(number>=descArray[i].range1[0]&&number<=descArray[i].range1[1]) {
-				top1 = originalLinesCoordinate[descArray[i].range1[0]];
-				bottom1 = originalLinesCoordinate[descArray[i].range1[1]]+19;
+			if(number>=descArray[i].range1[0]&&number<=descArray[i].range1[1]) {			
+				if(!isChangeOrMove) {
+					top1 = originalLinesCoordinate[descArray[i].range1[0]];
+					bottom1 = originalLinesCoordinate[descArray[i].range1[1]]+19;
+				}
+				else if(descArray[i].range2 != undefined) {
+					top1 = modifiedLinesCoordinate[descArray[i].range2[0]];
+					bottom1 = modifiedLinesCoordinate[descArray[i].range2[1]]+19;
+				}
 				middle1 = (top1 + bottom1)/2;
-				drawTagLine(file,top1,middle1,bottom1,descArray[i].id,str);
+				drawTagLine(file,top1,middle1,bottom1,descArray[i].id,getColorByType(descArray[i].type2),isChangeOrMove);
 			}
 		}
-		else if(file == 2 && descArray[i].range2 != undefined) {			
+		else if(file == 2  && descArray[i].range2 != undefined) {			
 			if(number>=descArray[i].range2[0]&&number<=descArray[i].range2[1]) {				
 				top2 = modifiedLinesCoordinate[descArray[i].range2[0]];
 				bottom2 = modifiedLinesCoordinate[descArray[i].range2[1]]+19;
 				middle2 = (top2 + bottom2)/2;
-				drawTagLine(file,top2,middle2,bottom2,descArray[i].id,str);			
+				drawTagLine(file,top2,middle2,bottom2,descArray[i].id,getColorByType(descArray[i].type2),isChangeOrMove);			
 			}
 		}
 		if(descArray[i].subDesc != undefined) {
-			drawDescLayer(file,number,descArray[i].subDesc,color+1);
+			drawDescLayer(file,number,descArray[i].subDesc);
 		}
 	}
 }
@@ -55,33 +65,90 @@ function drawBubble(entry,level) {
 	if(top1!=undefined) {
 		top = top1;
 		if(top2!=undefined) {
-			top = (top +top2)/2;
+			top = (top2+top1)/2;
 		}
 	}
 	else 
 		top = top2;
-//	alert(entry.id + "  " +top);
 	var bubbleDiv = document.createElement("div");
 	bubbleDiv.className = "popover";
 	bubbleDiv.id = entry.id;
-	bubbleDiv.style.borderColor = getColor(level);
-	bubbleDiv.style.top = (top+9.5)+"px";
+	var bubbleTop = top+9,bubbleLeft = 110;
+	bubbleDiv.style.borderColor = getColorByType(entry["type2"]);
+	bubbleDiv.style.width = "300px";
 	bubbleDiv.innerHTML="<div class='popover-content'>"+entry.description+"</div>";
 	document.querySelector(".bubbleZone").appendChild(bubbleDiv);
+	bubbleDiv.style.left = bubbleLeft+"px";
+	
+//	var list="";
+//	for (var d = 0; d < bubbleArray.length; d++) {
+//		list += bubbleArray[d].id+"  "+parseInt(bubbleArray[d].style.top) +"\n";
+//	}
+//	alert(list);
+	
+	computeBubbleCoordinate(bubbleDiv,bubbleTop,bubbleTop+bubbleDiv.offsetHeight);
+
+}
+
+function computeBubbleCoordinate(bubbleDiv,top,bottom) {
+	var inserted = false;
+	var i = 0;	
+	for (; i < bubbleArray.length; i++) {
+		var topTemp = parseInt(bubbleArray[i].style.top);
+		var bottomTemp = topTemp + bubbleArray[i].offsetHeight;
+		var position = positionRelationship(top,bottom,topTemp,bottomTemp);    		
+		if((position != undefined &&position == "prev") || parseInt(bottom) == parseInt(topTemp)) {
+			bubbleArray.splice(i, 0, bubbleDiv);
+			bubbleDiv.style.top = top+"px";
+			inserted = true;
+			break;
+		}
+		else if((position != undefined && position == "next") || parseInt(top) == parseInt(bottomTemp)) 
+			continue;
+		else {
+			bubbleArray.splice(i+1, 0, bubbleDiv);
+			if(parseInt(top) < parseInt(bottomTemp)) {
+				top = bottomTemp;
+				bottom = top + bubbleDiv.offsetHeight;
+			}
+			bubbleDiv.style.top = top+"px";
+			shiftBubble(i+2,bottom);
+			inserted = true;
+			break;
+		}				
+    }
+	if(!inserted) {
+		bubbleArray.splice(i, 0, bubbleDiv);
+		bubbleDiv.style.top = top+"px";
+	}
+}
+
+function shiftBubble(index,bottom) {
+	for (var i = index; i < bubbleArray.length; i++) {
+		if(parseInt(bubbleArray[i].style.top) < parseInt(bottom)) {
+			bubbleArray[i].style.top = bottom+"px";
+			bottom = bottom + bubbleArray[i].offsetHeight;
+		}
+		else {
+			break;
+		}
+	}
+	
 }
 
 
-function drawLinkLine() {
+function drawLinkLine(srcBlocks,dstBlocks,fillStyleColor,strokeStyleColor) {
 	var borderCanvas,arrowCanvas;
 	var myCanvas,cxt;
 	myCanvas=document.getElementById("overlayCanvas");
 	cxt=myCanvas.getContext("2d");	
-	for(var i=0;i<aMoveBlock.length;i++) {
+	for(var i=0;i<srcBlocks.length;i++) {
 		var top1,bottom1,top2,bottom2;
-		top1 = originalLinesCoordinate[aMoveBlock[i].array[0].number]+1;
-		bottom1 = originalLinesCoordinate[aMoveBlock[i].array[aMoveBlock[i].array.length-1].number]+19-1;
-		top2 = modifiedLinesCoordinate[bMoveBlock[i].array[0].number]+1;
-		bottom2 = modifiedLinesCoordinate[bMoveBlock[i].array[bMoveBlock[i].array.length-1].number]+19-1;
+		top1 = originalLinesCoordinate[srcBlocks[i].array[0].number]+1;
+		bottom1 = originalLinesCoordinate[srcBlocks[i].array[srcBlocks[i].array.length-1].number]+19-1;
+		top2 = modifiedLinesCoordinate[dstBlocks[i].array[0].number]+1;
+		bottom2 = modifiedLinesCoordinate[dstBlocks[i].array[dstBlocks[i].array.length-1].number]+19-1;
+		cxt.lineWidth = 1.5; 
 		cxt.beginPath();  
 		cxt.moveTo(0,top1);
 		cxt.lineTo(47,top2);
@@ -89,8 +156,8 @@ function drawLinkLine() {
 		cxt.lineTo(53,bottom2);
 		cxt.lineTo(47,bottom2);
 		cxt.lineTo(0,bottom1);
-		cxt.fillStyle="rgba(255, 140, 0, 0.2)";
-		cxt.strokeStyle="rgba(255, 140, 0, 0.2)";
+		cxt.fillStyle=fillStyleColor;
+		cxt.strokeStyle=fillStyleColor;
 		cxt.fill();
 		cxt.stroke();
 		cxt.beginPath();  
@@ -101,7 +168,7 @@ function drawLinkLine() {
 		cxt.moveTo(0,bottom1);
 		cxt.lineTo(47,bottom2);
 		cxt.lineTo(53,bottom2);
-		cxt.strokeStyle="rgb(255, 69, 0)";		
+		cxt.strokeStyle=strokeStyleColor;		
 		cxt.stroke();
 		drawArrow(cxt,53,top2);
 		drawArrow(cxt,53,bottom2);
@@ -117,14 +184,15 @@ function drawArrow(cxt,x,y) {
 	cxt.stroke();	
 }
 
-function drawTagLine(file,top,middle,bottom,id,color) {
+function drawTagLine(file,top,middle,bottom,id,color,isChangeOrMove) {
 	var popover = document.getElementById(id);
 	popover.style.visibility="visible";
 	var popoverTop = parseInt(popover.style.top);
+	var popoverLeft = parseInt(popover.style.left);
 	var borderCanvas,arrowCanvas;
 	var myCanvas,cxt;
 	var tail = popoverTop+1;
-	if(file == 1) {
+	if(file == 1 && (!isChangeOrMove)) {
 		tail = middle;
 		borderCanvas = "myCanvas1";
 		arrowCanvas = "overlayCanvas";
@@ -142,7 +210,7 @@ function drawTagLine(file,top,middle,bottom,id,color) {
 		cxt.lineWidth = 1.5;  
 		cxt.beginPath();  
 		cxt.moveTo(0,middle);
-		cxt.lineTo(90,popoverTop+1);
+		cxt.lineTo(popoverLeft,popoverTop+1);
 		cxt.strokeStyle=color;
 		cxt.stroke();
 	}
@@ -159,7 +227,7 @@ function drawTagLine(file,top,middle,bottom,id,color) {
 	cxt.lineTo(30,middle);
 	cxt.lineTo(0,bottom);
 	cxt.moveTo(30,middle);
-	cxt.lineTo(90,tail);
+	cxt.lineTo(popoverLeft,tail);
 	cxt.strokeStyle=color;
 	cxt.stroke();
 	myCanvas=document.getElementById(borderCanvas);
@@ -170,8 +238,10 @@ function drawTagLine(file,top,middle,bottom,id,color) {
 	cxt.lineTo(600,top);
 	cxt.moveTo(0,bottom);
 	cxt.lineTo(600,bottom);
-	cxt.moveTo(1,top);
-	cxt.lineTo(1,bottom);
+	if(!isChangeOrMove) {
+		cxt.moveTo(1,top);
+		cxt.lineTo(1,bottom);
+	}	
 	cxt.strokeStyle=color;
 	cxt.stroke();		
 }
@@ -196,5 +266,6 @@ function clearCanvas() {
     myCanvas=document.getElementById("overlayCanvas");
 	cxt = myCanvas.getContext("2d");
     cxt.clearRect(0,0,myCanvas.width,myCanvas.height);
-    drawLinkLine();
+    drawLinkLine(aMoveBlock,bMoveBlock,"rgba(255, 140, 0, 0.2)","rgb(255, 69, 0)");
+	drawLinkLine(aChangeBlock,bChangeBlock,"rgba(0, 100, 255, 0.2)","rgb(10, 49, 255)");
 }

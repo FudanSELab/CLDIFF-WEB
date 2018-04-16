@@ -704,7 +704,7 @@ function getColor(level) {
 	return str;
 }
 
-function drawLinkLine() {
+function drawLinkLine(srcBlocks,dstBlocks,fillStyleColor,strokeStyleColor) {
 	var borderCanvas,arrowCanvas;
 	var myCanvas,cxt;
 	myCanvas=document.getElementById("overlayCanvas");

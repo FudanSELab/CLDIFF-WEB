@@ -1,7 +1,4 @@
 function generateContainer() {
-	//init
-	document.querySelector(".original-in-monaco-diff-editor").innerHTML="";
-	document.querySelector(".modified-in-monaco-diff-editor").innerHTML="";
 	
 	// original editor
 	var overlaysDiv = document.createElement("div");
@@ -37,7 +34,7 @@ function generateContainer() {
 	myCanvas1.width = 600;
 	linesDiv1.appendChild(myCanvas1);
 	
-	generateEditor(originalLines,originalLinesCoordinate,overlaysDiv,viewOverlaysDiv,linesDiv1,viewZonesDiv1);
+	generateEditor(originalLines,originalLinesCoordinate,overlaysDiv,viewOverlaysDiv,linesDiv1,viewZonesDiv1,1);
 
 	// modified editor
 	var overlaysDiv2 = document.createElement("div");
@@ -80,10 +77,10 @@ function generateContainer() {
 	myCanvas2.height = 20000;
 	myCanvas2.width = 600;
 	linesDiv2.appendChild(myCanvas2);	            
-	generateEditor(modifiedLines,modifiedLinesCoordinate,overlaysDiv2,viewOverlaysDiv2,linesDiv2,viewZonesDiv2);
+	generateEditor(modifiedLines,modifiedLinesCoordinate,overlaysDiv2,viewOverlaysDiv2,linesDiv2,viewZonesDiv2,2);
 }
 
-function generateEditor(contentLines,linesCoordinate,overlaysDiv,viewOverlaysDiv,linesDiv,viewZonesDiv) {
+function generateEditor(contentLines,linesCoordinate,overlaysDiv,viewOverlaysDiv,linesDiv,viewZonesDiv,sign) {
 	//阴影行数
 	var diagonalLine = 0;
 	
@@ -116,7 +113,7 @@ function generateEditor(contentLines,linesCoordinate,overlaysDiv,viewOverlaysDiv
 			var inner;
 			if(contentLines[l].mark != undefined && (contentLines[l].mark == "insert"||contentLines[l].mark == "change"||contentLines[l].mark == "move"||contentLines[l].mark == "delete")) {
 				var mark = contentLines[l].mark;
-				if(contentLines[l].mark == "move")
+				if(contentLines[l].mark == "move"||(contentLines[l].mark == "change" && sign == 2))
 					mark="";
 				newDiv1.innerHTML = "<div class='cmdr line-"+mark+"' style='height: 19px'></div><div class='cldr "+contentLines[l].mark+"-sign' style='left: 38px; width: 15px; height: 19px'></div><div class='line-numbers'>"
 					+ contentLines[l].number
@@ -127,7 +124,7 @@ function generateEditor(contentLines,linesCoordinate,overlaysDiv,viewOverlaysDiv
 						inner += "<div class='cdr char-"
 								+ contentLines[l].mark
 								+ "' style='left:"
-								+ (7.7 * (contentLines[l].code_range[co] - 1))
+								+ (7.7 * (contentLines[l].code_range[co] + contentLines[l].indent))
 								+ "px;width:"
 								+ (7.7 * (contentLines[l].code_range[co+1]
 										- contentLines[l].code_range[co] + 1))
@@ -150,16 +147,7 @@ function generateEditor(contentLines,linesCoordinate,overlaysDiv,viewOverlaysDiv
 //    			}
 //			}
 			newDiv2.innerHTML = inner;
-			var content = contentLines[l].content.replace(/	/g,"&nbsp;&nbsp;&nbsp;&nbsp;");
-			var index = 0;
-			var prefix="";
-			while(content.indexOf(" ") == 0) {
-				content = content.replace(/(^\s)/g, "");
-				prefix+="&nbsp;";
-			}	
-			content =prefix +content;
-//			var sub_class = getSubColorByMark(contentLines[l].sub_mark);
-//			newDiv3.innerHTML = "<span><span class='"+sub_class+"'>"+content+"</span></span>"
+			var content = contentLines[l].content;
 			newDiv3.innerHTML = "<span><span class='mtk1'>"+content+"</span></span>"
 		}								           			            			            		
 		overlaysDiv.appendChild(newDiv1);

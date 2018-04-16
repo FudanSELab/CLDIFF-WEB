@@ -217,9 +217,9 @@ function parseDiff(data,sign,srcLines,dstLines,superDesc) {
 }
 function handleNesting (data) {
 	$.each(data,function(infoIndex,info){  
-		alert(JSON.stringify(info));
+//		alert(JSON.stringify(info));
 		insertOneToDiff(info,diff);	
-		alert(JSON.stringify(diff));
+//		alert(JSON.stringify(diff));
 	});
 }
 

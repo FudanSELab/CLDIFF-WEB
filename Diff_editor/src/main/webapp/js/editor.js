@@ -28,6 +28,9 @@ function init() {
 	document.querySelector(".modified-in-monaco-diff-editor").innerHTML="";
 	document.querySelector(".bubbleZone").innerHTML="";
 	clearPopover();
+	var myCanvas=document.getElementById("myCanvas3");
+	cxt = myCanvas.getContext("2d");
+    cxt.clearRect(0,0,myCanvas.width,myCanvas.height); 
 }
 
 function refreshPage(commitID,fileName) {	

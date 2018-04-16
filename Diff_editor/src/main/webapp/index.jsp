@@ -20,11 +20,11 @@
 		</button>
 		<button type="button" class="list-group-item" onclick="getFileByCommit(this)">
 			<span class="badge" style="float: left; margin-right: 6px">2</span>
-			9b44404b9f7845ea6c4c56eea7ba71525b4e8ad0
+			34e7f4497962d235d94072d1544e22a7a362ae30
 		</button>
 		<button type="button" class="list-group-item" onclick="getFileByCommit(this)">
 			<span class="badge" style="float: left; margin-right: 6px">3</span>
-			5bd4ac2ccb25be1248dd71ff31a39b7e63884c05</button>
+			ea9ad4ee9bd6604fe57f73004bf375c7c4cd7be3</button>
 		<button type="button" class="list-group-item" onclick="getFileByCommit(this)">
 			<span class="badge" style="float: left; margin-right: 6px">4</span>
 			5c58f826364ded0895d96413273d5456bc04f3c6</button>
@@ -48,8 +48,11 @@
 			63572c792182f0c2446ceeb3262d843f28558459
 		</button>
 	</div>
-	<div id ="fileList" class="list-group" style="position:absolute;left:650px;display:inline;width:600px;height:240px;top:20px;overflow:auto">
+	<div style="position:absolute;left:650px;display:inline;width:600px;height:240px;top:20px;overflow:auto">
+		<div id ="fileList" class="list-group" style="width:700px;">
+		</div>
 	</div>
+	
 	<div class="editor-frame" style="margin-top: 230px;">
 		<div id="diff-editor" >
 			<div
@@ -172,11 +175,11 @@
 		src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.0/bootstrap.min.js"
 		integrity="sha256-u+l2mGjpmGK/mFgUncmMcFKdMijvV+J3odlDJZSNUu8="
 		crossorigin="anonymous"></script>
-	<script type="text/javascript" src="js/editor.js"></script>
+	<script type="text/javascript" src="js/file.js"></script>
 	<script type="text/javascript" src="js/webpage.js"></script>
 	<script type="text/javascript" src="js/bubble.js"></script>
-	<script type="text/javascript" src="js/color.js"></script>
-	<script type="text/javascript" src="js/file.js"></script>
+	<script type="text/javascript" src="js/color.js"></script>	
+	<script type="text/javascript" src="js/editor.js"></script>
 	<script type="text/javascript" src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 </body>
 </html>

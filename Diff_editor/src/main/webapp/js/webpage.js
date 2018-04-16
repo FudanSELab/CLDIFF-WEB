@@ -128,14 +128,14 @@ function generateEditor(contentLines,linesCoordinate,overlaysDiv,viewOverlaysDiv
 					+ "</div>";
 				inner = "";	            				
 			}
-			var re=eval("/	/g");
-			var matchResult = contentLines[l].content.match(re);
-			if(matchResult != undefined) {
-				var indent = matchResult.length;
-    			for(var m = 0;m<indent;m++) {
-    				inner += "<div class='cigr' style='left: "+(m*30.78125)+"px; height: 19px; width: 0.8px'></div>"
-    			}
-			}
+//			var re=eval("/	/g");
+//			var matchResult = contentLines[l].content.match(re);
+//			if(matchResult != undefined) {
+//				var indent = matchResult.length;
+//    			for(var m = 0;m<indent;m++) {
+//    				inner += "<div class='cigr' style='left: "+(m*30.78125)+"px; height: 19px; width: 0.8px'></div>"
+//    			}
+//			}
 			newDiv2.innerHTML = inner;
 			var content = contentLines[l].content.replace(/	/g,"&nbsp;&nbsp;&nbsp;&nbsp;");
 			var index = 0;
@@ -145,8 +145,9 @@ function generateEditor(contentLines,linesCoordinate,overlaysDiv,viewOverlaysDiv
 				prefix+="&nbsp;";
 			}	
 			content =prefix +content;
-			var sub_class = getSubColorByMark(contentLines[l].sub_mark);
-			newDiv3.innerHTML = "<span><span class='"+sub_class+"'>"+content+"</span></span>"
+//			var sub_class = getSubColorByMark(contentLines[l].sub_mark);
+//			newDiv3.innerHTML = "<span><span class='"+sub_class+"'>"+content+"</span></span>"
+			newDiv3.innerHTML = "<span><span class='mtk1'>"+content+"</span></span>"
 		}								           			            			            		
 		overlaysDiv.appendChild(newDiv1);
 		viewOverlaysDiv.appendChild(newDiv2);

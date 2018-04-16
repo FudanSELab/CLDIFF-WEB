@@ -22,7 +22,7 @@ function getFileByCommit(button) {
 	$.ajaxSettings.async = false;
 	var json = getFileFromServer("getfile",commitID,"","meta.json");
 	json = eval("("+json+")");
-	fileNameList = json.file_list;
+	fileNameList = json.files;
 
 	for(var i=0;i<fileNameList.length;i++) {
 		var buttonDiv = document.createElement("button");
@@ -41,6 +41,9 @@ function getContentByFileName() {
 	}
 	this.classList.add("active");
 	var name = $(this).text().trim();
+	var index = name.lastIndexOf("/");
+	if(index >=0)
+		name = name.substring(index+1,name.length);
 //	alert(name);
 	var activeCommit = document.querySelector("#commitList .active");
 	var commitID = $(activeCommit).contents().filter(function() { return this.nodeType === 3; }).text().trim();

@@ -56,7 +56,7 @@ public class FileServlet extends HttpServlet {
 	// commitId:XXXX fileName:XXX.java SrcOrDstOrJson: link.json
 	
 	public void responseWithFile(HttpServletResponse response,String commitId,String fileName,String fileType) throws ServletException, IOException {
-		String root = "D:\\Workspace\\DiffMiner\\November-GT-Extend\\11-8-GumTree\\RQ3";
+		String root = "D:\\Workspace\\RQ3";
 		File f = new File(root);
 		File[] files = f.listFiles();
 		File[] commits = null;
@@ -96,13 +96,11 @@ public class FileServlet extends HttpServlet {
 				writeToSos(tmp,sos);
 					return;
 			}else if(fileType.equals("diff.json")
-					&&tmp.getAbsolutePath().endsWith("diff.json")
-					&&tmp.getAbsolutePath().contains(fileName)){
+					&&tmp.getAbsolutePath().endsWith("Diff"+fileName+".json")){
 				writeToSos(tmp,sos);
 				return;
 			}else if(fileType.equals("link.json")
-					&&tmp.getAbsolutePath().endsWith("link.json")
-					&&tmp.getAbsolutePath().contains(fileName)){
+					&&tmp.getAbsolutePath().endsWith("link.json")){
 				writeToSos(tmp,sos);
 				return;
 			}
@@ -126,21 +124,22 @@ public class FileServlet extends HttpServlet {
 	
 	public void writeToSos(File file,ServletOutputStream sos)throws ServletException, IOException {
 		if(file.exists()){
-			if(file.getName().equals("meta.json")||file.getName().equals("diff.json")) {
+			if(file.getName().equals("meta.json")||file.getName().endsWith(".json")) {
 				String whole = "";
 				Scanner in = new Scanner(file);
 				while (in.hasNextLine()) {
 					String str = in.nextLine();
 					whole += str;
 				}	
-				if(file.getName().equals("diff.json")) {
-					JSONArray array = JSONArray.fromObject(whole);
-					sos.write(array.toString().getBytes());
-				}					
+								
 				if(file.getName().equals("meta.json")) {
 					JSONObject obj = JSONObject.fromObject(whole);
 					sos.write(obj.toString().getBytes());
 				}
+				else {
+					JSONArray array = JSONArray.fromObject(whole);
+					sos.write(array.toString().getBytes());
+				}	
 			}
 			else {
 				FileInputStream fis = new FileInputStream(file);

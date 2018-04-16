@@ -11,13 +11,12 @@ $(document).ready(function() {
 
 })
 
-function refreshPage(commitID,fileName) {
-	$.ajaxSettings.async = false;  
+function refreshPage(commitID,fileName) {	
+	init();
 	
+	$.ajaxSettings.async = false;  
 	initLines(originalLines,getFileFromServer("getfile",commitID,fileName,"src"));
 	initLines(modifiedLines,getFileFromServer("getfile",commitID,fileName,"dst"));
-//	alert(originalLines.length);
-//	alert(modifiedLines.length);
 
 	var text = getFileFromServer("getfile",commitID,fileName,"diff.json");
 //	alert(text);
@@ -39,6 +38,16 @@ function refreshPage(commitID,fileName) {
 	drawLinkLine();
 }
 
+
+function init() {
+	descriptions.splice(0,descriptions.length);
+	originalLinesCoordinate.splice(0,originalLinesCoordinate.length);
+	modifiedLinesCoordinate.splice(0,modifiedLinesCoordinate.length);
+	aMoveBlock.splice(0,aMoveBlock.length);
+	bMoveBlock.splice(0,bMoveBlock.length);
+	diff.splice(0,diff.length);
+}
+
 function parseDiff(data,sign,srcLines,dstLines,superDesc) {
 	var aDeleteBlock =  new Array();
 	var bInsertBlock = new Array();
@@ -52,13 +61,17 @@ function parseDiff(data,sign,srcLines,dstLines,superDesc) {
 				var idx = getIdxByLineNum(srcLines,num);
 				if(idx == -1)
 					return true;
-				srcLines[idx].code_range = [start,end];
+				if(srcLines[idx].code_range == undefined)
+					srcLines[idx].code_range = new Array();
+				srcLines[idx].code_range.splice(srcLines[idx].code_range.length,0,start,end);
 			}
 			else {
 				var idx = getIdxByLineNum(dstLines,num);
 				if(idx == -1)
 					return true;
-				dstLines[idx].code_range = [start,end];
+				if(dstLines[idx].code_range == undefined)
+					dstLines[idx].code_range = new Array();
+				dstLines[idx].code_range.splice(dstLines[idx].code_range.length,0,start,end);				
 			}
 				
 			return true;
@@ -81,10 +94,10 @@ function parseDiff(data,sign,srcLines,dstLines,superDesc) {
 					array[array.length] = srcLines[i];
 				}
 				
-				srcLines.splice(idx,range[1]-range[0]+1);
-				block.prevLineNum = range[0] -1;
-				block.array = array;
-				aDeleteBlock[aDeleteBlock.length] = block;
+//				srcLines.splice(idx,range[1]-range[0]+1);
+//				block.prevLineNum = range[0] -1;
+//				block.array = array;
+//				aDeleteBlock[aDeleteBlock.length] = block;
 				
 				//标记描述节点
 				entry = descObj(info,range,1);
@@ -102,10 +115,10 @@ function parseDiff(data,sign,srcLines,dstLines,superDesc) {
 					dstLines[i].mark = "insert";
 					array[array.length] = dstLines[i];
 				}
-				dstLines.splice(idx,range[1]-range[0]+1);
-				block.prevLineNum = range[0] -1;
-				block.array = array;
-				bInsertBlock[bInsertBlock.length] = block;
+//				dstLines.splice(idx,range[1]-range[0]+1);
+//				block.prevLineNum = range[0] -1;
+//				block.array = array;
+//				bInsertBlock[bInsertBlock.length] = block;
 				
 				//标记描述节点
 				entry = descObj(info,range,2);		
@@ -125,10 +138,10 @@ function parseDiff(data,sign,srcLines,dstLines,superDesc) {
 					dstLines[i].mark = "change";
 					array2[array2.length] = dstLines[i];
 				}
-				srcLines.splice(idx1,range[1]-range[0]+1);
-				block1.prevLineNum = range[0] -1;
-				dstLines.splice(idx2,range[3]-range[2]+1);
-				block2.prevLineNum = range[2] -1;
+//				srcLines.splice(idx1,range[1]-range[0]+1);
+//				block1.prevLineNum = range[0] -1;
+//				dstLines.splice(idx2,range[3]-range[2]+1);
+//				block2.prevLineNum = range[2] -1;
 				
 				//标记描述节点
 				entry = descObj(info,range,3);		
@@ -137,20 +150,20 @@ function parseDiff(data,sign,srcLines,dstLines,superDesc) {
 					entry.subDesc = new Array();
 					parseDiff(info["sub-range"],sign+1,array1,array2,entry);
 				}
-				var extra = array1.length - array2.length;
-				var addArray = array2;
-				if(array1.length < array2.length) {
-					extra = array2.length - array1.length;
-					addArray = array1;
-				}								
-				for(var i=0;i<extra;i++) {
-					addArray[addArray.length] = new Object();
-				}
-				
-				block1.array = array1;
-				aChangeBlock[aChangeBlock.length] = block1;				
-				block2.array = array2;
-				bChangeBlock[bChangeBlock.length] = block2;								
+//				var extra = array1.length - array2.length;
+//				var addArray = array2;
+//				if(array1.length < array2.length) {
+//					extra = array2.length - array1.length;
+//					addArray = array1;
+//				}								
+//				for(var i=0;i<extra;i++) {
+//					addArray[addArray.length] = new Object();
+//				}
+//				
+//				block1.array = array1;
+//				aChangeBlock[aChangeBlock.length] = block1;				
+//				block2.array = array2;
+//				bChangeBlock[bChangeBlock.length] = block2;								
 			}
 			break;
 		case info["type2"] == "Move" || info["type2"] =="Change.Move":
@@ -167,22 +180,22 @@ function parseDiff(data,sign,srcLines,dstLines,superDesc) {
 					dstLines[i].mark = "move";
 					array2[array2.length] = dstLines[i];
 				}			
-				if(info["type2"] =="Change.Move") {
-					block1.insertShadow = false;
-					block2.insertShadow = false;
-				}
-				else {
-					srcLines.splice(idx1,range[1]-range[0]+1);
-					dstLines.splice(idx2,range[3]-range[2]+1);
-				}
-								
-				block1.prevLineNum = range[0] -1;
-				block1.array = array1;
-				aMoveBlock[aMoveBlock.length] = block1;	
-				
-				block2.prevLineNum = range[2] -1;	
-				block2.array = array2;
-				bMoveBlock[bMoveBlock.length] = block2;	
+//				if(info["type2"] =="Change.Move") {
+//					block1.insertShadow = false;
+//					block2.insertShadow = false;
+//				}
+//				else {
+//					srcLines.splice(idx1,range[1]-range[0]+1);
+//					dstLines.splice(idx2,range[3]-range[2]+1);
+//				}
+//								
+//				block1.prevLineNum = range[0] -1;
+//				block1.array = array1;
+//				aMoveBlock[aMoveBlock.length] = block1;	
+//				
+//				block2.prevLineNum = range[2] -1;	
+//				block2.array = array2;
+//				bMoveBlock[bMoveBlock.length] = block2;	
 								
 				
 				//标记描述节点
@@ -200,21 +213,22 @@ function parseDiff(data,sign,srcLines,dstLines,superDesc) {
 			superDesc.subDesc[superDesc.subDesc.length] = entry;
     })	
 
-    for (var o = 0; o < srcLines.length; o++) {
-    	o = restoreBlockToContent(aDeleteBlock,srcLines,o,dstLines,true);
-    	o = restoreBlockToContent(aChangeBlock,srcLines,o,undefined,true);
-	}
-	for (var m = 0; m < dstLines.length; m++) {
-		m = restoreBlockToContent(bInsertBlock,dstLines,m,srcLines,true);
-		m = restoreBlockToContent(bChangeBlock,dstLines,m,undefined,true);
-	}
-	for (var o = 0; o < srcLines.length; o++) {
-		o = restoreBlockToContent(aMoveBlock,srcLines,o,dstLines,false);
-	}
-	for (var m = 0; m < dstLines.length; m++) {
-		m = restoreBlockToContent(bMoveBlock,dstLines,m,srcLines,false);
-	}
+//    for (var o = 0; o < srcLines.length; o++) {
+//    	o = restoreBlockToContent(aDeleteBlock,srcLines,o,dstLines,true);
+//    	o = restoreBlockToContent(aChangeBlock,srcLines,o,undefined,true);
+//	}
+//	for (var m = 0; m < dstLines.length; m++) {
+//		m = restoreBlockToContent(bInsertBlock,dstLines,m,srcLines,true);
+//		m = restoreBlockToContent(bChangeBlock,dstLines,m,undefined,true);
+//	}
+//	for (var o = 0; o < srcLines.length; o++) {
+//		o = restoreBlockToContent(aMoveBlock,srcLines,o,dstLines,false);
+//	}
+//	for (var m = 0; m < dstLines.length; m++) {
+//		m = restoreBlockToContent(bMoveBlock,dstLines,m,srcLines,false);
+//	}
 }
+
 function handleNesting (data) {
 	$.each(data,function(infoIndex,info){  
 //		alert(JSON.stringify(info));

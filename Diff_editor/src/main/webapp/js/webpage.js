@@ -1,4 +1,8 @@
 function generateContainer() {
+	//init
+	document.querySelector(".original-in-monaco-diff-editor").innerHTML="";
+	document.querySelector(".modified-in-monaco-diff-editor").innerHTML="";
+	
 	// original editor
 	var overlaysDiv = document.createElement("div");
 	overlaysDiv.className="margin-view-overlays";
@@ -119,7 +123,16 @@ function generateEditor(contentLines,linesCoordinate,overlaysDiv,viewOverlaysDiv
 					+ "</div>";
 				inner = "<div class='cdr line-"+contentLines[l].mark+"' style='left: 0; width: 100%; height: 19px;'></div>";
 				if(contentLines[l].code_range != undefined) {
-					inner+="<div class='cdr char-"+contentLines[l].mark+"' style='left:"+(7.7*(contentLines[l].code_range[0]-1))+"px;width:"+(7.7*(contentLines[l].code_range[1]-contentLines[l].code_range[0]+1))+"px;height:19px;'></div>"
+					for(var co=0;co<contentLines[l].code_range.length;co+=2) {
+						inner += "<div class='cdr char-"
+								+ contentLines[l].mark
+								+ "' style='left:"
+								+ (7.7 * (contentLines[l].code_range[co] - 1))
+								+ "px;width:"
+								+ (7.7 * (contentLines[l].code_range[co+1]
+										- contentLines[l].code_range[co] + 1))
+								+ "px;height:19px;'></div>"
+					}
 				}
 			}	            				
 			else {

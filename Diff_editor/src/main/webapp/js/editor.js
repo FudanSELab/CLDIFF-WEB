@@ -29,7 +29,7 @@ function init() {
 	document.querySelector(".original-in-monaco-diff-editor").innerHTML="";
 	document.querySelector(".modified-in-monaco-diff-editor").innerHTML="";
 	document.querySelector(".bubbleZone").innerHTML="";
-	clearPopover();
+//	clearPopover();
 	var myCanvas=document.getElementById("myCanvas3");
 	cxt = myCanvas.getContext("2d");
     cxt.clearRect(0,0,myCanvas.width,myCanvas.height); 
@@ -43,7 +43,6 @@ function refreshPage(commitID,fileName) {
 	initLines(modifiedLines,getFileFromServer("getfile",commitID,fileName,"dst"));
 
 	var text = getFileFromServer("getfile",commitID,fileName,"diff.json");
-//	alert(text);
 	text = eval("("+text+")");		
 	
 	handleNesting(text);	
@@ -55,15 +54,17 @@ function refreshPage(commitID,fileName) {
 		drawBubble(descriptions[d],0);
 	}
 	
-	clearPopover();
+	for(var d = 0;d<descriptions.length;d++) {
+		drawAllTagLine(descriptions[d]);
+	}	
+	
+//	clearPopover();
 	drawLinkLine(aMoveBlock,bMoveBlock,"rgba(255, 140, 0, 0.2)",getColorByType("Move"));
 	drawLinkLine(aChangeBlock,bChangeBlock,"rgba(0, 100, 255, 0.2)",getColorByType("Change"));
 }
 function handleNesting (data) {
 	$.each(data,function(infoIndex,info){  
-//		alert(JSON.stringify(info));
 		insertOneToDiff(info,diff);	
-//		alert(JSON.stringify(diff));
 	});
 	for(var i=0;i<changeMove.length;i++) {
 		diff.splice(diff.length, 0, changeMove[i]);
@@ -159,10 +160,6 @@ function insertOneToDiff(info,diffArray) {
 }
 
 function parseDiff(data,sign,srcLines,dstLines,superDesc) {
-//	var aDeleteBlock =  new Array();
-//	var bInsertBlock = new Array();
-//	var aChangeBlock = new Array();
-//	var bChangeBlock = new Array();
 	$.each(data,function(infoIndex,info){  
 		if(info["sub-range-code"] != undefined) {
 			var wholeRange = info["sub-range-code"].split(',');

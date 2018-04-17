@@ -3,11 +3,13 @@ function generateContainer() {
 	// original editor
 	var overlaysDiv = document.createElement("div");
 	overlaysDiv.className="margin-view-overlays";
+//	overlaysDiv.style.top = "-100px";
 	document.querySelector(".original-in-monaco-diff-editor").appendChild(overlaysDiv);
 	// 行中的对齐线；删除、增加颜色效果
 	var scrollableDiv = document.createElement("div");
 	scrollableDiv.className="monaco-scrollable-element editor-scrollable vs";
-//	scrollableDiv.style = "position: absolute; overflow: hidden; left: 53px; width: 490px; height: 700px;";
+//	scrollableDiv.style.top = "-100px";
+//	scrollableDiv.style.left = "-100px";
 	document.querySelector(".original-in-monaco-diff-editor").appendChild(scrollableDiv);
 	var backgroundDiv = document.createElement("div");
 	backgroundDiv.className="lines-content monaco-editor-background";
@@ -15,7 +17,7 @@ function generateContainer() {
 	scrollableDiv.appendChild(backgroundDiv);
 	var viewOverlaysDiv = document.createElement("div");
 	viewOverlaysDiv.className="view-overlays";
-	viewOverlaysDiv.style = "position: absolute; height: 0px; width: 538px;";
+	viewOverlaysDiv.style = "position: absolute; height: 0px; width: 100%;";
 	backgroundDiv.appendChild(viewOverlaysDiv);
 	//斜线阴影部分
 	var viewZonesDiv1 = document.createElement("div");
@@ -31,7 +33,7 @@ function generateContainer() {
 	var myCanvas1 = document.createElement("canvas");
 	myCanvas1.id = "myCanvas1";
 	myCanvas1.height = 20000;
-	myCanvas1.width = 600;
+	myCanvas1.width = 5000;
 	linesDiv1.appendChild(myCanvas1);
 	
 	generateEditor(originalLines,originalLinesCoordinate,overlaysDiv,viewOverlaysDiv,linesDiv1,viewZonesDiv1,1);
@@ -50,7 +52,7 @@ function generateContainer() {
 	scrollableDiv2.appendChild(backgroundDiv2);
 	var viewOverlaysDiv2 = document.createElement("div");
 	viewOverlaysDiv2.className="view-overlays";
-	viewOverlaysDiv2.style = "position: absolute; height: 0px; width: 538px;";
+	viewOverlaysDiv2.style = "position: absolute; height: 0px;width: 100%;";
 	backgroundDiv2.appendChild(viewOverlaysDiv2);	            	
 	
 	//斜线阴影部分
@@ -75,7 +77,7 @@ function generateContainer() {
 	var myCanvas2 = document.createElement("canvas");
 	myCanvas2.id = "myCanvas2";
 	myCanvas2.height = 20000;
-	myCanvas2.width = 600;
+	myCanvas2.width = 5000;
 	linesDiv2.appendChild(myCanvas2);	            
 	generateEditor(modifiedLines,modifiedLinesCoordinate,overlaysDiv2,viewOverlaysDiv2,linesDiv2,viewZonesDiv2,2);
 }
@@ -113,7 +115,7 @@ function generateEditor(contentLines,linesCoordinate,overlaysDiv,viewOverlaysDiv
 			var inner;
 			if(contentLines[l].mark != undefined && (contentLines[l].mark == "insert"||contentLines[l].mark == "change"||contentLines[l].mark == "move"||contentLines[l].mark == "delete")) {
 				var mark = contentLines[l].mark;
-				if(contentLines[l].mark == "move"||(contentLines[l].mark == "change" && sign == 2))
+				if((contentLines[l].mark == "move"||contentLines[l].mark == "change") && sign == 2)
 					mark="";
 				newDiv1.innerHTML = "<div class='cmdr line-"+mark+"' style='height: 19px'></div><div class='cldr "+contentLines[l].mark+"-sign' style='left: 38px; width: 15px; height: 19px'></div><div class='line-numbers'>"
 					+ contentLines[l].number
@@ -138,14 +140,6 @@ function generateEditor(contentLines,linesCoordinate,overlaysDiv,viewOverlaysDiv
 					+ "</div>";
 				inner = "";	            				
 			}
-//			var re=eval("/	/g");
-//			var matchResult = contentLines[l].content.match(re);
-//			if(matchResult != undefined) {
-//				var indent = matchResult.length;
-//    			for(var m = 0;m<indent;m++) {
-//    				inner += "<div class='cigr' style='left: "+(m*30.78125)+"px; height: 19px; width: 0.8px'></div>"
-//    			}
-//			}
 			newDiv2.innerHTML = inner;
 			var content = contentLines[l].content;
 			newDiv3.innerHTML = "<span><span class='mtk1'>"+content+"</span></span>"

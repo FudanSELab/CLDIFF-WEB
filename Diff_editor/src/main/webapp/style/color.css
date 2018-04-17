@@ -94,11 +94,14 @@
 }
 
 .monaco-editor .line-insert, .monaco-editor .char-insert {
-    background-color: rgba(155, 185, 85, 0.2);
+/*     background-color: rgba(155, 185, 85, 0.2);*/
+	background-color: rgba(0, 205, 0, 0.2);
+
 }
 
 .monaco-diff-editor .line-insert, .monaco-diff-editor .char-insert {
-    background-color: rgba(155, 185, 85, 0.2);
+    /* background-color: rgba(155, 185, 85, 0.2); */
+    background-color: rgba(0, 205, 0, 0.2);
 }
 
 .monaco-editor .inline-added-margin-view-zone {

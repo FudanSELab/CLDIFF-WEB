@@ -1,9 +1,7 @@
 var bubbleArray = new Array();
 function bubble() {
-	clearPopover();
+//	clearPopover();
 	clearCanvas();
-//	<!--<div class="current-line" style="width:538px; height:19px;"></div>-->
-//    <!--<div class="cdr bracket-match" style="left:0px;width:8px;height:19px;"></div>-->
 	var file = 1;
 	if(this.parentNode.parentNode.parentNode.parentNode.className == "monaco-editor modified-in-monaco-diff-editor vs")
 		file = 2;
@@ -12,12 +10,10 @@ function bubble() {
 	if(isNaN(left)) 
 		left = 0;
 	drawDescLayer(file,this.number,descriptions);
-//	document.querySelector(".modified-in-monaco-diff-editor .view-overlays").children[top/19].appendChild(currentLineDiv);
 }
 
 function drawDescLayer(file,number,descArray) {
 	var top1,bottom1,top2,bottom2,middle1,middle2;
-//	var str = getColorByType(color);
 	for(var i=0;i<descArray.length;i++) {
 		var isChangeOrMove = false;
 		if(descArray[i].type2 == "Change" ||descArray[i].type2 == "Move"||descArray[i].type2 == "Change.Move")
@@ -81,15 +77,31 @@ function drawBubble(entry,level) {
 	document.querySelector(".bubbleZone").appendChild(bubbleDiv);
 	bubbleDiv.style.left = bubbleLeft+"px";
 	
-	
-//	var list="";
-//	for (var d = 0; d < bubbleArray.length; d++) {
-//		list += bubbleArray[d].id+"  "+parseInt(bubbleArray[d].style.top) +"\n";
-//	}
-//	alert(list);
-	
 	computeBubbleCoordinate(bubbleDiv,bubbleTop,bubbleTop+bubbleDiv.offsetHeight);
+}
 
+function drawAllTagLine(entry) {
+	if(entry.subDesc != undefined) {
+		for(var s = 0;s<entry.subDesc.length;s++)		
+			drawAllTagLine(entry.subDesc[s]);
+	}
+	var isChangeOrMove = false,file=2;
+	var tagTop,tagBottom,tagMiddle;
+	if(entry["type2"] == "Change" ||entry["type2"] == "Move"||entry["type2"] == "Change.Move") {
+		isChangeOrMove = true;
+	}
+	if(entry.range2 == undefined) {
+		file=1;
+		tagTop = originalLinesCoordinate[entry.range1[0]];
+		tagBottom = originalLinesCoordinate[entry.range1[1]]+19;
+	}
+	else {
+		tagTop = modifiedLinesCoordinate[entry.range2[0]];
+		tagBottom = modifiedLinesCoordinate[entry.range2[1]]+19;
+	}
+	tagMiddle = (tagTop + tagBottom) /2;
+	
+	drawTagLine(file,tagTop,tagMiddle,tagBottom,entry.id,getColorByType(entry.type2),isChangeOrMove);
 }
 
 function computeBubbleCoordinate(bubbleDiv,top,bottom) {
@@ -110,7 +122,7 @@ function computeBubbleCoordinate(bubbleDiv,top,bottom) {
 		else {
 			bubbleArray.splice(i+1, 0, bubbleDiv);
 			if(parseInt(top) < parseInt(bottomTemp)) {
-				top = bottomTemp;
+				top = bottomTemp + 10;
 				bottom = top + bubbleDiv.offsetHeight;
 			}
 			bubbleDiv.style.top = top+"px";
@@ -128,6 +140,7 @@ function computeBubbleCoordinate(bubbleDiv,top,bottom) {
 function shiftBubble(index,bottom) {
 	for (var i = index; i < bubbleArray.length; i++) {
 		if(parseInt(bubbleArray[i].style.top) < parseInt(bottom)) {
+			bottom = bottom +10;
 			bubbleArray[i].style.top = bottom+"px";
 			bottom = bottom + bubbleArray[i].offsetHeight;
 		}
@@ -204,7 +217,7 @@ function drawTagLine(file,top,middle,bottom,id,color,isChangeOrMove) {
 		cxt.lineWidth = 1.5;  
 		cxt.beginPath();  
 		cxt.moveTo(0,middle);
-		cxt.lineTo(600,middle);
+		cxt.lineTo(10000,middle);
 		cxt.strokeStyle=color;
 		cxt.stroke();	
 		myCanvas=document.getElementById("myCanvas3");
@@ -237,9 +250,9 @@ function drawTagLine(file,top,middle,bottom,id,color,isChangeOrMove) {
 	cxt.lineWidth = 1.5;  
 	cxt.beginPath();  
 	cxt.moveTo(0,top);
-	cxt.lineTo(600,top);
+	cxt.lineTo(10000,top);
 	cxt.moveTo(0,bottom);
-	cxt.lineTo(600,bottom);
+	cxt.lineTo(10000,bottom);
 	if(!isChangeOrMove) {
 		cxt.moveTo(1,top);
 		cxt.lineTo(1,bottom);

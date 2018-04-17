@@ -11,12 +11,13 @@
 <link type="text/css" rel="styleSheet" href="style/addition.css" />
 </head>
 <body>
-    <div style="position:absolute;display:inline;top:0;left:10px;color:blue">commit id:</div>
-    <div style="position:absolute;display:inline;top:0;left:650px;color:blue">file name:</div>
-	<div id ="commitList"class="list-group" style="position:absolute;left:10px;display:inline;width:610px;height:240px;top:20px;overflow:auto">
+    <span class="label label-primary" style="position:absolute;top:0;left:10px;font-size:18px">commit id</span>
+    <span class="label label-primary" style="position:absolute;top:0;left:650px;font-size:18px">file name</span>
+<!--     <div style="position:absolute;display:inline;top:0;left:950px;color:blue">file name:</div>
+ -->	<div id ="commitList"class="list-group" style="position:absolute;left:10px;display:inline;width:500px;height:240px;top:30px;overflow:auto">
 		<button type="button" class="list-group-item" onclick="getFileByCommit(this)">
 			<span class="badge" style="float: left; margin-right: 6px">1</span>
-			3a098c5e67274246b0b62018f0b92fd49b028359
+			3c1adf7f6af0dff9bda74f40dabe8cf428a62003
 		</button>
 		<button type="button" class="list-group-item" onclick="getFileByCommit(this)">
 			<span class="badge" style="float: left; margin-right: 6px">2</span>
@@ -48,21 +49,21 @@
 			63572c792182f0c2446ceeb3262d843f28558459
 		</button>
 	</div>
-	<div style="position:absolute;left:650px;display:inline;width:600px;height:240px;top:20px;overflow:auto">
-		<div id ="fileList" class="list-group" style="width:700px;">
+	<div style="position:absolute;left:650px;display:inline;width:800px;height:240px;top:30px;overflow:auto">
+		<div id ="fileList" class="list-group" style="width:800px;">
 		</div>
 	</div>
 	
-	<div class="editor-frame" style="margin-top: 230px;">
+	<div class="editor-frame" style="margin-top: 240px;">
 		<div id="diff-editor" >
 			<div
 				class="monaco-diff-editor monaco-editor-background side-by-side vs"
 				style="position: relative; height: 100%;">	
 				<canvas id="myCanvas3" width="400" height="20000"
-						style="position: absolute; will-change: transform; top: 0px; left: 1086px;"></canvas>
+						style="position: absolute; will-change: transform; top: 0px; left: 1486px;"></canvas>
 				<!--é¢è§è¾¹æ¡-->							
 				<div class="diffOverview"
-					style="position: absolute; top: 0px; height: 700px; width: 30px; left: 1486px;">
+					style="position: absolute; top: 0px; height: 700px; width: 30px; left: 1886px;">
 					<div class="diffViewport"
 						style="position: absolute; width: 30px; height: 35px; top: 0px;"></div>
 					<canvas class="original diffOverviewRuler" width="18" height="500"
@@ -75,7 +76,7 @@
 					data-mode-id="javascript"
 					style="position: absolute; height: 100%; width: 243px; left: 0px;">
 					<div class="monaco-editor original-in-monaco-diff-editor vs"
-						data-uri="inmemory://model/2" style="width: 243px; height: 700px;">										
+						data-uri="inmemory://model/2" style="width: 743px; height: 8000px;overflow:hidden">										
 						</div>
 							<!-- ä¸æ¹æ»å¨æ¡ -->
 							<!-- <div role="presentation" aria-hidden="true"
@@ -115,9 +116,9 @@
 				<!--modified-->
 				<div class="editor modified" data-keybinding-context="3"
 					data-mode-id="javascript"
-					style="position: absolute; height: 100%; width: 173px; left: 543px;">
+					style="position: absolute; height: 100%; width: 173px; left: 743px;">
 					<div class="monaco-editor modified-in-monaco-diff-editor vs"
-						data-uri="inmemory://model/3" style="width: 543px; height: 700px;">																				
+						data-uri="inmemory://model/3" style="width: 743px; height: 8000px;overflow:hidden">																				
 							<!-- <div role="presentation" aria-hidden="true"
 								class="invisible scrollbar horizontal fade"
 								style="position: absolute; width: 76px; height: 10px; left: 0px; bottom: 0px;">
@@ -154,7 +155,7 @@
 				</div>
 				<div class="bubbleZone" data-keybinding-context="3"
 					data-mode-id="javascript"
-					style="position: absolute; height: 100%; width: 410px; left: 1086px;">
+					style="position: absolute; height: 100%; width: 410px; left: 1486px;">
 				</div>
 			<!-- <svg class="lineWrap" data-keybinding-context="3" width="1200" style="positon:absolute;top:0;left:0;height: 100%;z-index:-9999">
 					<line id="line" xmlns="http://www.w3.org/2000/svg" x1="0"

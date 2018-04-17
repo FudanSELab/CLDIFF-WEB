@@ -1,19 +1,27 @@
 function generateContainer() {
+	var lineLength = modifiedLines.length;
+	if(originalLines.length > modifiedLines.length)
+		lineLength = originalLines.length;
+//	alert(lineLength);
+	var wholeHeight = lineLength * 19;
+	document.querySelector("#myCanvas3").style.height = wholeHeight;
 	
 	// original editor
 	var overlaysDiv = document.createElement("div");
 	overlaysDiv.className="margin-view-overlays";
 //	overlaysDiv.style.top = "-100px";
 	document.querySelector(".original-in-monaco-diff-editor").appendChild(overlaysDiv);
+//	document.querySelector(".original-in-monaco-diff-editor").style.height = originalLines.length"";
 	// 行中的对齐线；删除、增加颜色效果
 	var scrollableDiv = document.createElement("div");
 	scrollableDiv.className="monaco-scrollable-element editor-scrollable vs";
 //	scrollableDiv.style.top = "-100px";
 //	scrollableDiv.style.left = "-100px";
 	document.querySelector(".original-in-monaco-diff-editor").appendChild(scrollableDiv);
+	document.querySelector(".original-in-monaco-diff-editor").style.height = wholeHeight + "px";
 	var backgroundDiv = document.createElement("div");
 	backgroundDiv.className="lines-content monaco-editor-background";
-	backgroundDiv.style = "position: absolute; overflow: hidden; width: 100000px; height: 100000px; will-change: transform; top: 0px; left: 0px;";
+	backgroundDiv.style = "position: absolute; overflow: hidden; width: 100000px; height: "+wholeHeight+"px; will-change: transform; top: 0px; left: 0px;";
 	scrollableDiv.appendChild(backgroundDiv);
 	var viewOverlaysDiv = document.createElement("div");
 	viewOverlaysDiv.className="view-overlays";
@@ -32,8 +40,8 @@ function generateContainer() {
 	//canvas1
 	var myCanvas1 = document.createElement("canvas");
 	myCanvas1.id = "myCanvas1";
-	myCanvas1.height = 20000;
-	myCanvas1.width = 5000;
+	myCanvas1.height = wholeHeight;
+	myCanvas1.width = 2000;
 	linesDiv1.appendChild(myCanvas1);
 	
 	generateEditor(originalLines,originalLinesCoordinate,overlaysDiv,viewOverlaysDiv,linesDiv1,viewZonesDiv1,1);
@@ -46,9 +54,10 @@ function generateContainer() {
 	var scrollableDiv2 = document.createElement("div");
 	scrollableDiv2.className="monaco-scrollable-element editor-scrollable vs";
 	document.querySelector(".modified-in-monaco-diff-editor").appendChild(scrollableDiv2);
+	document.querySelector(".modified-in-monaco-diff-editor").style.height = wholeHeight + "px";
 	var backgroundDiv2 = document.createElement("div");
 	backgroundDiv2.className="lines-content monaco-editor-background";
-	backgroundDiv2.style = "position: absolute; overflow: hidden; width: 100000px; height: 100000px; will-change: transform; top: 0px; left: 0px;";
+	backgroundDiv2.style = "position: absolute; overflow: hidden; width: 100000px; height: "+wholeHeight+"px; will-change: transform; top: 0px; left: 0px;";
 	scrollableDiv2.appendChild(backgroundDiv2);
 	var viewOverlaysDiv2 = document.createElement("div");
 	viewOverlaysDiv2.className="view-overlays";
@@ -69,15 +78,15 @@ function generateContainer() {
 	//overlayCanvas
 	var overlayCanvas = document.createElement("canvas");
 	overlayCanvas.id = "overlayCanvas";
-	overlayCanvas.height = 20000;
+	overlayCanvas.height = wholeHeight;
 	overlayCanvas.width = 200;
 	overlayCanvas.style = "position:absolute;top:0";
 	overlaysDiv2.appendChild(overlayCanvas);
 	//myCanvas2
 	var myCanvas2 = document.createElement("canvas");
 	myCanvas2.id = "myCanvas2";
-	myCanvas2.height = 20000;
-	myCanvas2.width = 5000;
+	myCanvas2.height = wholeHeight;
+	myCanvas2.width = 2000;
 	linesDiv2.appendChild(myCanvas2);	            
 	generateEditor(modifiedLines,modifiedLinesCoordinate,overlaysDiv2,viewOverlaysDiv2,linesDiv2,viewZonesDiv2,2);
 }

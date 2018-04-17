@@ -59,7 +59,7 @@
 			<div
 				class="monaco-diff-editor monaco-editor-background side-by-side vs"
 				style="position: relative; height: 100%;">	
-				<canvas id="myCanvas3" width="400" height="20000"
+				<canvas id="myCanvas3" width="400" height="8000"
 						style="position: absolute; will-change: transform; top: 0px; left: 1486px;"></canvas>
 				<!--é¢è§è¾¹æ¡-->							
 				<div class="diffOverview"

@@ -53,12 +53,12 @@ function refreshPage(commitID,fileName) {
 	for(var d = 0;d<descriptions.length;d++) {
 		drawBubble(descriptions[d],0);
 	}
-	
+//	
 	for(var d = 0;d<descriptions.length;d++) {
 		drawAllTagLine(descriptions[d]);
 	}	
-	
-//	clearPopover();
+//	
+////	clearPopover();
 	drawLinkLine(aMoveBlock,bMoveBlock,"rgba(255, 140, 0, 0.2)",getColorByType("Move"));
 	drawLinkLine(aChangeBlock,bChangeBlock,"rgba(0, 100, 255, 0.2)",getColorByType("Change"));
 }

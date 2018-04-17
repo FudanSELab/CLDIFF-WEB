@@ -157,6 +157,7 @@ function drawLinkLine(srcBlocks,dstBlocks,fillStyleColor,strokeStyleColor) {
 	var myCanvas,cxt;
 	myCanvas=document.getElementById("overlayCanvas");
 	cxt=myCanvas.getContext("2d");	
+	cxt.save(); 
 	for(var i=0;i<srcBlocks.length;i++) {
 		var top1,bottom1,top2,bottom2;
 		top1 = originalLinesCoordinate[srcBlocks[i].array[0].number]+1;
@@ -188,6 +189,7 @@ function drawLinkLine(srcBlocks,dstBlocks,fillStyleColor,strokeStyleColor) {
 		drawArrow(cxt,53,top2);
 		drawArrow(cxt,53,bottom2);
 	}
+	cxt.restore(); 
 }
 
 function drawArrow(cxt,x,y) {

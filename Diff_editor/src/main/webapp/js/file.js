@@ -33,19 +33,16 @@ function getFileByCommit(button) {
 		listGroup.appendChild(buttonDiv);
 	}
 	//link json
-	var json = getFileFromServer("getfile",commitID,"","link.json");
-	json = eval("("+json+")");
-	link = json.links;
-
-	for(var i=0;i<link.length;i++) {
-		link.parsedLink = new Array();
-		for(var l=0;l<link[i].links.length;l++) {
-			link.parsedLink[link.parsedLink.length] = parseLink(link[i].links[l]);
-		}
-//		if(link["file-name"] != undefined) {
-//			
+//	var json = getFileFromServer("getfile",commitID,"","link.json");
+//	json = eval("("+json+")");
+//	link = json.links;
+//
+//	for(var i=0;i<link.length;i++) {
+//		link.parsedLink = new Array();
+//		for(var l=0;l<link[i].links.length;l++) {
+//			link.parsedLink[link.parsedLink.length] = parseLink(link[i].links[l]);
 //		}
-	}
+//	}
 }
 
 function getContentByFileName() {

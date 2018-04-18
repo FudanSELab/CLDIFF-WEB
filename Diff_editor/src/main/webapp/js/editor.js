@@ -8,9 +8,12 @@ var bMoveBlock = new Array();
 var aChangeBlock = new Array();
 var bChangeBlock = new Array();
 var diff = new Array();
-var link = new Array();
+var inFilelink = new Array();
+var otherFilelink = new Object();
 var changeMove = new Array();
+var ceCoordinate = new Object();
 var commitId,fileName;
+var scrollTo = 0;
 
 $(document).ready(function() {
 
@@ -25,7 +28,7 @@ function init() {
 	bChangeBlock.splice(0,bChangeBlock.length);
 	bubbleArray.splice(0,bubbleArray.length);
 	diff.splice(0,diff.length);
-	link.splice(0,link.length);
+//	inFilelink.splice(0,inFilelink.length);
 	changeMove.splice(0,changeMove.length);
 	document.querySelector(".original-in-monaco-diff-editor").innerHTML="";
 	document.querySelector(".modified-in-monaco-diff-editor").innerHTML="";
@@ -34,6 +37,9 @@ function init() {
 	var myCanvas=document.getElementById("myCanvas3");
 	cxt = myCanvas.getContext("2d");
     cxt.clearRect(0,0,myCanvas.width,myCanvas.height); 
+    ceCoordinate = new Object();
+//    otherFilelink = new Object();
+    scrollTo = 0;
 }
 
 function refreshPage(commitID,fileName) {	

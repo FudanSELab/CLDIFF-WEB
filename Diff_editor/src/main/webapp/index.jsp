@@ -229,6 +229,7 @@
 	<script type="text/javascript" src="js/file.js"></script>
 	<script type="text/javascript" src="js/webpage.js"></script>
 	<script type="text/javascript" src="js/bubble.js"></script>
+	<script type="text/javascript" src="js/link.js"></script>
 	<script type="text/javascript" src="js/color.js"></script>	
 	<script type="text/javascript" src="js/editor.js"></script>
 	<script type="text/javascript" src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>

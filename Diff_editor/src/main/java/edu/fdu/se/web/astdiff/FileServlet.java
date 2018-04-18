@@ -132,7 +132,7 @@ public class FileServlet extends HttpServlet {
 					whole += str;
 				}	
 								
-				if(file.getName().equals("meta.json")) {
+				if(file.getName().equals("meta.json")||file.getName().equals("link.json")) {
 					JSONObject obj = JSONObject.fromObject(whole);
 					sos.write(obj.toString().getBytes());
 				}

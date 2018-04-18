@@ -346,7 +346,11 @@ function descObj(info,range,sign) {
 		entry.range1 = [range[0],range[1]];
 		entry.range2 = [range[2],range[3]];
 	}	
-	entry.description = info["description"];
+	if(info["opt2-exp2"] != undefined) {
+		entry.type2 = info["type2"];
+	}
+	entry["opt2-exp2"] = info["opt2-exp2"];
+	entry["description"] = info["description"];
 	return entry;
 }
 

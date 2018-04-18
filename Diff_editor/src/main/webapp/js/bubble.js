@@ -15,28 +15,54 @@ var linkRecord = new Object();
 //}
 
 function showLink() {
+	clearPopoverTop();
 	linkObj = new Object();
 	linkRecord = new Object();
-	var file = 1;
-	if(this.parentNode.parentNode.parentNode.parentNode.className == "monaco-editor modified-in-monaco-diff-editor vs")
+	var file = 1,container = document.querySelector(".original-in-monaco-diff-editor");
+	if(this.parentNode.parentNode.parentNode.parentNode.className == "monaco-editor modified-in-monaco-diff-editor vs") {
 		file = 2;
+		container = document.querySelector(".modified-in-monaco-diff-editor");
+	}
 	var top = parseInt(this.style.top);
 	var left = parseInt(this.style.left);
 	if(isNaN(left)) 
 		left = 0;
-	for(var i=0;i<descriptions.length;i++) 
-		drawLinkLayer(file,this.number,descriptions[i],descriptions[i].id);
+	var id= "12";
+	var popoverTop = document.getElementsByClassName("popover top "+id);
+	if(popoverTop.length != 0) {
+		popoverTop[0].style.visibility="visible";
+	}
+	else {
+		var popoverTopDiv = document.createElement("div");
+		popoverTopDiv.className = "popover top 12";
+		popoverTopDiv.id = 12;
+		popoverTopDiv.style = "position:absolute;left:"+left+"px;";
+		var inner = "<div class='arrow'></div>";
+		inner += " <div class='popover-content' style='max-height:100px;overflow:auto;'>" +
+//				"<p>Sed posuere consectetur e.</br>" +
+//				"<p>Sed posuere consectetur e.</br>" +
+//				"<p>Sed posuere consectetur e.</br>" +
+//				"<p>Sed posuere consectetur e.</br>" +
+				"Sed posuere consectetur e.</br></p></div>";
+		popoverTopDiv.innerHTML=inner;
+		this.parentNode.appendChild(popoverTopDiv);
+//		container.appendChild(popoverTopDiv);
+		popoverTopDiv.style.top = (top - popoverTopDiv.offsetHeight) + "px";
+	}
 	
-	for(var attribute in linkObj){    
-		if(linkObj[attribute] != undefined) {
-			var desc = new Object();
-			getDescById(desc,descriptions,linkObj[attribute]);
-			var top;
-			(file == 1) ? top= originalLinesCoordinate[desc.range1[0]] : top= modifiedLinesCoordinate[desc.range2[0]];
-			
-			//draw
-		}
-	} 
+//	for(var i=0;i<descriptions.length;i++) 
+//		drawLinkLayer(file,this.number,descriptions[i],descriptions[i].id);
+//	
+//	for(var attribute in linkObj){    
+//		if(linkObj[attribute] != undefined) {
+//			var desc = new Object();
+//			getDescById(desc,descriptions,linkObj[attribute]);
+//			var top;
+//			(file == 1) ? top= originalLinesCoordinate[desc.range1[0]] : top= modifiedLinesCoordinate[desc.range2[0]];
+//			
+//			//draw
+//		}
+//	} 
 }
 
 function drawLinkLayer(file,number,descObj,mostParentId) {
@@ -159,7 +185,15 @@ function drawBubble(entry,level) {
 	var bubbleTop = top+9,bubbleLeft = 110;
 	bubbleDiv.style.borderColor = getColorByType(entry["type2"]);
 	bubbleDiv.style.width = "300px";
-	bubbleDiv.innerHTML="<div class='popover-content'>"+entry.description+"</div>";
+	var list = entry.description;
+	if(entry["opt2-exp2"] != undefined) {
+		list += "<ul style='color:rgb(141,182,205)'>";
+		for(var op =0;op<entry["opt2-exp2"].length;op++) {
+			list+="<li>"+entry["opt2-exp2"][op]+"</li>";
+		}
+		list += "</ul>";
+	}
+	bubbleDiv.innerHTML="<div class='popover-content' style = 'max-height:100px;overflow:auto;'>"+list+"</div>";
 	bubbleDiv.style.borderRadius=0;
 	document.querySelector(".bubbleZone").appendChild(bubbleDiv);
 	bubbleDiv.style.left = bubbleLeft+"px";
@@ -350,8 +384,16 @@ function drawTagLine(file,top,middle,bottom,id,color,isChangeOrMove) {
 	cxt.stroke();		
 }
 
-function clearPopover() {
-	var popovers = document.querySelectorAll("div[class='popover']");
+//function clearPopover() {
+//	var popovers = document.querySelectorAll("div[class='popover']");
+//	for(var p=0;p<popovers.length;p++) {
+//		popovers[p].style.visibility="hidden";
+//	}
+//}
+
+function clearPopoverTop() {
+	var popovers = document.querySelectorAll(".popover.top");
+//	var popovers = document.querySelectorAll("div[class='popover top']");
 	for(var p=0;p<popovers.length;p++) {
 		popovers[p].style.visibility="hidden";
 	}

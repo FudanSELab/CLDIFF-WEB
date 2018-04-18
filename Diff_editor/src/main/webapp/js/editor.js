@@ -10,6 +10,7 @@ var bChangeBlock = new Array();
 var diff = new Array();
 var link = new Array();
 var changeMove = new Array();
+var commitId,fileName;
 
 $(document).ready(function() {
 

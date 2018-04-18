@@ -19,6 +19,7 @@ function getFileByCommit(button) {
 	}
 	button.classList.add("active");
 	var commitID = $(button).contents().filter(function() { return this.nodeType === 3; }).text().trim();
+	commitId = commitID;
 	$.ajaxSettings.async = false;
 	var json = getFileFromServer("getfile",commitID,"","meta.json");
 	json = eval("("+json+")");
@@ -40,7 +41,7 @@ function getFileByCommit(button) {
 //	for(var i=0;i<link.length;i++) {
 //		link.parsedLink = new Array();
 //		for(var l=0;l<link[i].links.length;l++) {
-//			link.parsedLink[link.parsedLink.length] = parseLink(link[i].links[l]);
+//			link[i].parsedLink[link[i].parsedLink.length] = parseLink(link[i].links[l]);
 //		}
 //	}
 }
@@ -55,6 +56,7 @@ function getContentByFileName() {
 	var index = name.lastIndexOf("/");
 	if(index >=0)
 		name = name.substring(index+1,name.length);
+	fileName = name;
 //	alert(name);
 	var activeCommit = document.querySelector("#commitList .active");
 	var commitID = $(activeCommit).contents().filter(function() { return this.nodeType === 3; }).text().trim();
@@ -71,4 +73,16 @@ function parseLink(rangeStr) {
 		alert("json error: link range :"+rangeStr);
 		return [];
 	}	
+}
+
+function getDescById(obj,descArray,id) {
+	for(var i=0;i<descArray.length;i++) {
+		if(descArray[i].id == id) {
+			obj = descArray[i];
+			return;
+		}
+		if(descArray[i].subDesc != undefined) {
+			getDescById(obj,descArray[i].subDesc,id);
+		}
+	}
 }

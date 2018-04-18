@@ -1,7 +1,22 @@
 var bubbleArray = new Array();
-function bubble() {
-//	clearPopover();
-	clearCanvas();
+var linkObj = new Object();
+var linkRecord = new Object();
+//function bubble() {
+////	clearPopover();
+//	clearCanvas();
+//	var file = 1;
+//	if(this.parentNode.parentNode.parentNode.parentNode.className == "monaco-editor modified-in-monaco-diff-editor vs")
+//		file = 2;
+//	var top = parseInt(this.style.top);
+//	var left = parseInt(this.style.left);
+//	if(isNaN(left)) 
+//		left = 0;
+//	drawDescLayer(file,this.number,descriptions);
+//}
+
+function showLink() {
+	linkObj = new Object();
+	linkRecord = new Object();
 	var file = 1;
 	if(this.parentNode.parentNode.parentNode.parentNode.className == "monaco-editor modified-in-monaco-diff-editor vs")
 		file = 2;
@@ -9,42 +24,114 @@ function bubble() {
 	var left = parseInt(this.style.left);
 	if(isNaN(left)) 
 		left = 0;
-	drawDescLayer(file,this.number,descriptions);
+	for(var i=0;i<descriptions.length;i++) 
+		drawLinkLayer(file,this.number,descriptions[i],descriptions[i].id);
+	
+	for(var attribute in linkObj){    
+		if(linkObj[attribute] != undefined) {
+			var desc = new Object();
+			getDescById(desc,descriptions,linkObj[attribute]);
+			var top;
+			(file == 1) ? top= originalLinesCoordinate[desc.range1[0]] : top= modifiedLinesCoordinate[desc.range2[0]];
+			
+			//draw
+		}
+	} 
 }
 
-function drawDescLayer(file,number,descArray) {
+function drawLinkLayer(file,number,descObj,mostParentId) {
 	var top1,bottom1,top2,bottom2,middle1,middle2;
-	for(var i=0;i<descArray.length;i++) {
-		var isChangeOrMove = false;
-		if(descArray[i].type2 == "Change" ||descArray[i].type2 == "Move"||descArray[i].type2 == "Change.Move")
-			isChangeOrMove = true;
-		if(file == 1 && descArray[i].range1 != undefined) {
-			if(number>=descArray[i].range1[0]&&number<=descArray[i].range1[1]) {			
-				if(!isChangeOrMove) {
-					top1 = originalLinesCoordinate[descArray[i].range1[0]];
-					bottom1 = originalLinesCoordinate[descArray[i].range1[1]]+19;
+//	for(var i=0;i<descArray.length;i++) {
+		if(file == 1 && descObj.range1 != undefined) {
+			if(number>=descObj.range1[0]&&number<=descObj.range1[1]) {		
+				if(hasLink(descObj.id,mostParentId))
+					linkObj[mostParentId] = descObj.id;
+				if(descObj.subDesc != undefined) {
+					for(var i=0;i<descObj.subDesc.length;i++) 
+						drawLinkLayer(file,number,descObj.subDesc[i],mostParentId);
 				}
-				else if(descArray[i].range2 != undefined) {
-					top1 = modifiedLinesCoordinate[descArray[i].range2[0]];
-					bottom1 = modifiedLinesCoordinate[descArray[i].range2[1]]+19;
-				}
-				middle1 = (top1 + bottom1)/2;
-				drawTagLine(file,top1,middle1,bottom1,descArray[i].id,getColorByType(descArray[i].type2),isChangeOrMove);
 			}
 		}
-		else if(file == 2  && descArray[i].range2 != undefined) {			
-			if(number>=descArray[i].range2[0]&&number<=descArray[i].range2[1]) {				
-				top2 = modifiedLinesCoordinate[descArray[i].range2[0]];
-				bottom2 = modifiedLinesCoordinate[descArray[i].range2[1]]+19;
-				middle2 = (top2 + bottom2)/2;
-				drawTagLine(file,top2,middle2,bottom2,descArray[i].id,getColorByType(descArray[i].type2),isChangeOrMove);			
+		else if(file == 2  && descObj.range2 != undefined) {			
+			if(number>=descObj.range2[0]&&number<=descObj.range2[1]) {	
+				if(hasLink(descObj.id,mostParentId))
+					linkObj[mostParentId] = descObj.id;
+				if(descObj.subDesc != undefined) {
+					for(var i=0;i<descObj.subDesc.length;i++) 
+						drawLinkLayer(file,number,descObj.subDesc[i],mostParentId);
+				}
+			}
+		}		
+//	}
+}
+
+function hasLink(descId,mostParentId) {
+	var hasLink = false;
+	for(var i=0;i<link.length;i++) {
+		if(link[i]["file-name"] == fileName && link[i]["file-name2"] == undefined ) {
+			for(var l=0;l<link[i].parsedLink.length;l++) {
+				if(parseInt(link[i][l][0]) == parseInt(descId) || parseInt(link[i][l][1]) == parseInt(descId)) {
+					hasLink = true;
+					var obj = new Object();
+					(parseInt(link[i][l][0]) == parseInt(descId))? obj.id=link[i][l][1]:obj.id=link[i][l][0];
+					if(linkRecord[mostParentId] == undefined) 
+						linkRecord[mostParentId] = new Array();
+					linkRecord[mostParentId][linkRecord[mostParentId].length] = obj;
+				}
 			}
 		}
-		if(descArray[i].subDesc != undefined) {
-			drawDescLayer(file,number,descArray[i].subDesc);
+		if(link[i]["file-name"] == fileName || link[i]["file-name2"] == fileName) {
+			var idx;
+			(link[i]["file-name"] == fileName) ? idx=0 : idx=1;
+			for(var l=0;l<link[i].parsedLink.length;l++) {
+				if(parseInt(link[i][l][idx]) == parseInt(descId)) {
+					hasLink = true;
+					var obj = new Object();
+					obj.id=link[i][l][idx^1];
+					(idx==0) ? obj.fileName = link[i]["file-name2"] : obj.fileName = link[i]["file-name"];
+					if(linkRecord[mostParentId] == undefined) 
+						linkRecord[mostParentId] = new Array();
+					linkRecord[mostParentId][linkRecord[mostParentId].length] = obj;
+				}
+			}
 		}
 	}
+	return hasLink;
 }
+
+//function drawDescLayer(file,number,descArray) {
+//	var top1,bottom1,top2,bottom2,middle1,middle2;
+//	for(var i=0;i<descArray.length;i++) {
+//		var isChangeOrMove = false;
+//		if(descArray[i].type2 == "Change" ||descArray[i].type2 == "Move"||descArray[i].type2 == "Change.Move")
+//			isChangeOrMove = true;
+//		if(file == 1 && descArray[i].range1 != undefined) {
+//			if(number>=descArray[i].range1[0]&&number<=descArray[i].range1[1]) {			
+//				if(!isChangeOrMove) {
+//					top1 = originalLinesCoordinate[descArray[i].range1[0]];
+//					bottom1 = originalLinesCoordinate[descArray[i].range1[1]]+19;
+//				}
+//				else if(descArray[i].range2 != undefined) {
+//					top1 = modifiedLinesCoordinate[descArray[i].range2[0]];
+//					bottom1 = modifiedLinesCoordinate[descArray[i].range2[1]]+19;
+//				}
+//				middle1 = (top1 + bottom1)/2;
+//				drawTagLine(file,top1,middle1,bottom1,descArray[i].id,getColorByType(descArray[i].type2),isChangeOrMove);
+//			}
+//		}
+//		else if(file == 2  && descArray[i].range2 != undefined) {			
+//			if(number>=descArray[i].range2[0]&&number<=descArray[i].range2[1]) {				
+//				top2 = modifiedLinesCoordinate[descArray[i].range2[0]];
+//				bottom2 = modifiedLinesCoordinate[descArray[i].range2[1]]+19;
+//				middle2 = (top2 + bottom2)/2;
+//				drawTagLine(file,top2,middle2,bottom2,descArray[i].id,getColorByType(descArray[i].type2),isChangeOrMove);			
+//			}
+//		}
+//		if(descArray[i].subDesc != undefined) {
+//			drawDescLayer(file,number,descArray[i].subDesc);
+//		}
+//	}
+//}
 
 function drawBubble(entry,level) {
 	if(entry.subDesc != undefined) {

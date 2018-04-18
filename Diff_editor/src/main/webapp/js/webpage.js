@@ -103,7 +103,7 @@ function generateEditor(contentLines,linesCoordinate,overlaysDiv,viewOverlaysDiv
 		var newDiv3 = document.createElement("div");
 		newDiv3.style="top: "+(l*19)+"px; height: 19px;";
 		newDiv3.className = "view-line";
-		newDiv3.onclick = bubble;
+		newDiv3.onclick = showLink;
 		
 		if(contentLines[l].number == undefined) {
 			diagonalLine ++;

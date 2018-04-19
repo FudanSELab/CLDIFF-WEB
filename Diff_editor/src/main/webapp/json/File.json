@@ -3,7 +3,7 @@
 		"id":"0",
 		"key":"preprocess",
 		"file":"src",
-		"range":"3,9",  3,10 空行必须算
+		"range":"3,9",
 		"type":"member_delete"
 	},
 	{

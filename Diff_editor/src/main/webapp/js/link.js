@@ -10,31 +10,6 @@ function showLink() {
 	if(this.parentNode.parentNode.parentNode.parentNode.className == "monaco-editor modified-in-monaco-diff-editor vs") {
 		file = 2;
 	}
-//	var top = parseInt(this.style.top);
-//	var left = parseInt(this.style.left);
-//	if(isNaN(left)) 
-//		left = 0;
-//	var id= "12";
-//	var popoverTop = document.getElementsByClassName("popover top "+id);
-//	if(popoverTop.length != 0) {
-//		popoverTop[0].style.visibility="visible";
-//	}
-//	else {
-//		var popoverTopDiv = document.createElement("div");
-//		popoverTopDiv.className = "popover top 12";
-//		popoverTopDiv.id = 12;
-//		popoverTopDiv.style = "position:absolute;left:"+left+"px;";
-//		var inner = "<div class='arrow'></div>";
-//		inner += " <div class='popover-content' style='max-height:100px;overflow:auto;'>" +
-////				"<p>Sed posuere consectetur e.</br>" +
-////				"<p>Sed posuere consectetur e.</br>" +
-////				"<p>Sed posuere consectetur e.</br>" +
-////				"<p>Sed posuere consectetur e.</br>" +
-//				"<a onclick='linkTo("+top+")'>Sed posuere consectetur e.</a></br></p></div>";
-//		popoverTopDiv.innerHTML=inner;
-//		this.parentNode.appendChild(popoverTopDiv);
-//		popoverTopDiv.style.top = (top - popoverTopDiv.offsetHeight) + "px";
-//	}
 	
 	for(var i=0;i<descriptions.length;i++) 
 		drawLinkLayer(file,this.number,descriptions[i],descriptions[i].id);	
@@ -42,160 +17,133 @@ function showLink() {
 }
 
 function drawLink(file,parent) {
-	var top;
+	var top,bottom;
 	var idArray = new Array();
 	var id;
-	for(var attribute in linkObj){    
+	for(var attribute in linkObj){  
 		if(linkObj[attribute] != undefined) {
 			desc = new Object();
 			getDescById(descriptions,linkObj[attribute]);
-			var temp;
-			(file == 1) ? temp= originalLinesCoordinate[desc.range1[0]] : temp= modifiedLinesCoordinate[desc.range2[0]];
+			var tempTop,tempBottom;
+			(file == 1) ? tempTop= originalLinesCoordinate[desc.range1[0]] : tempTop= modifiedLinesCoordinate[desc.range2[0]];
+			(file == 1) ? tempBottom= originalLinesCoordinate[desc.range1[1]] : tempBottom= modifiedLinesCoordinate[desc.range2[1]];
 			if(top == undefined) {
-				top = temp;
+				top = tempTop;
+				bottom = tempBottom;
 				idArray[0] = attribute;
 			}
-			else if(parseInt(temp) == parseInt(top)) {
+			else if(parseInt(tempTop) == parseInt(top) && parseInt(tempBottom) == parseInt(bottom)) {
 				idArray[idArray.length] = attribute;
 			}
-			else if(parseInt(temp) >= parseInt(top)) {
-				top = temp;
+			else if(parseInt(tempTop) >= parseInt(top) && parseInt(tempBottom) <= parseInt(bottom)) {
+				top = tempTop;
+				bottom = tempBottom;
 				idArray.splice(0,idArray.length);
 				idArray[0] = attribute;
 			}
+			else if(parseInt(tempTop) > parseInt(top)) {
+				top = tempTop;
+				bottom = tempBottom;
+				idArray.splice(0,idArray.length);
+				idArray[0] = attribute;
+			}
+//			else if(parseInt(tempTop) == parseInt(top) && parseInt(tempBottom) == parseInt(bottom)) {
+//				idArray[idArray.length] = attribute;
+//			}
+//			else {
+//				idArray[idArray.length] = attribute;
+//			}
 			//draw
 		}
 	} 
 	
-	var content = "";
-//	alert(idArray[0].length);
+	var content = "<ul>";
 	for(var i =0; i< idArray.length;i++){ 
-		var linkList = linkRecord[idArray[0]]; 
+		var linkList = linkRecord[idArray[i]]; 
 		for(var l=0;l<linkList.length;l++) {
-			content += "<a onclick='linkTo("+linkList[l].id+","+linkList[l].fileName+")'>"+linkList[l].id+"   "+linkList[l].desc+"</a></br>";
+//			content += "<a onclick='linkTo()'>"+linkList[l].id+". "+linkList[l].desc+"</a></br>";
+			var name="";
+			if(linkList[l].fileName != undefined && linkList[l].fileName != 'undefined' && linkList[l].fileName != '')
+				name ="("+linkList[l].fileName+")";
+			content += "<li><a onclick=\"linkTo('"+linkList[l].id+"','"+linkList[l].fileName+"')\">"+linkList[l].id+". "+linkList[l].desc+" "+name+"</a></li>";
 		}
 		id = linkObj[idArray[i]];
 	}
+	content += "</ul>"
 	
 	if(id != undefined) {
-		var popoverTop = document.getElementsByClassName("popover top "+id);
-//		alert(popoverTop.length);
-		if(parseInt(popoverTop.length) > 0) {
-//			alert(popoverTop[0]);
-//			popoverTop[0].parentNode.removeChild(popoverTop[0]);
-//			var temp = popoverTop[0];			
-			var temp = popoverTop[0].parentNode.removeChild(popoverTop[0]);
-			parent.appendChild(temp);
-			temp.style.visibility="visible";
-			temp.style.top = (top - temp.offsetHeight) + "px";
-			
-//			popoverTop[0].style.top = top;
-//			parent.appendChild(popoverTop[0]);
-		}
-		else {
+//		var popoverTop = document.getElementsByClassName("popover top "+id);
+//		if(parseInt(popoverTop.length) > 0) {		
+//			var temp = popoverTop[0].parentNode.removeChild(popoverTop[0]);
+//			parent.appendChild(temp);
+//			temp.style.visibility="visible";
+//			temp.style.top = (top - temp.offsetHeight) + "px";
+//		}
+//		else {
 			var popoverTopDiv = document.createElement("div");
 			popoverTopDiv.className = "popover top "+id;
 			popoverTopDiv.style = "position:absolute;left:0;";
 			var inner = "<div class='arrow'></div>";
-			inner += " <div class='popover-content' style='max-height:100px;overflow:auto;'>" +
-			content+
-//					"<p>Sed posuere consectetur e.</br>" +
-//					"<p>Sed posuere consectetur e.</br>" +
-//					"<p>Sed posuere consectetur e.</br>" +
-//					"<p>Sed posuere consectetur e.</br>" +
-//					"<a onclick='linkTo("+top+")'>Sed posuere consectetur e.</a></br></p>" +
-							"</div>";
+			inner += " <div class='popover-content' style='max-height:100px;overflow:auto;'>" + content+"</div>";
 			popoverTopDiv.innerHTML=inner;
 			parent.appendChild(popoverTopDiv);
 			popoverTopDiv.style.top = (top - popoverTopDiv.offsetHeight) + "px";
-		}		
+//		}		
 	}
 	
 }
 
 function drawLinkLayer(file,number,descObj,mostParentId) {
-//	for(var i=0;i<descArray.length;i++) {
-		if(file == 1 && descObj.range1 != undefined) {
-			if(number>=descObj.range1[0]&&number<=descObj.range1[1]) {	
-//				alert("o  "+descObj.id);
-				if(hasLink(descObj.id,mostParentId))
-					linkObj[mostParentId] = descObj.id;
-				if(descObj.subDesc != undefined) {
-					for(var i=0;i<descObj.subDesc.length;i++) 
-						drawLinkLayer(file,number,descObj.subDesc[i],mostParentId);
-				}
+	if(file == 1 && descObj.range1 != undefined) {
+		if(number>=descObj.range1[0]&&number<=descObj.range1[1]) {	
+			if(hasLink(descObj.id,mostParentId))
+				linkObj[mostParentId] = descObj.id;
+			if(descObj.subDesc != undefined) {
+				for(var i=0;i<descObj.subDesc.length;i++) 
+					drawLinkLayer(file,number,descObj.subDesc[i],mostParentId);
 			}
 		}
-		else if(file == 2  && descObj.range2 != undefined) {			
-			if(number>=descObj.range2[0]&&number<=descObj.range2[1]) {	
-				if(hasLink(descObj.id,mostParentId)) {
-					linkObj[mostParentId] = descObj.id;
-				}
-				if(descObj.subDesc != undefined) {
-					for(var i=0;i<descObj.subDesc.length;i++) 
-						drawLinkLayer(file,number,descObj.subDesc[i],mostParentId);
-				}
+	}
+	else if(file == 2  && descObj.range2 != undefined) {			
+		if(number>=descObj.range2[0]&&number<=descObj.range2[1]) {	
+			if(hasLink(descObj.id,mostParentId)) {
+				linkObj[mostParentId] = descObj.id;
 			}
-		}		
-//	}
+			if(descObj.subDesc != undefined) {
+				for(var i=0;i<descObj.subDesc.length;i++) 
+					drawLinkLayer(file,number,descObj.subDesc[i],mostParentId);
+			}
+		}
+	}			
 }
 
 function hasLink(descId,mostParentId) {
 	var tempRecord = new Array();
 	var hasLink = false;
 	for(var i=0;i<inFilelink.length;i++) {
-//		alert("id "+descId);
 		if(parseInt(inFilelink[i]["from"]) == parseInt(descId) || parseInt(inFilelink[i]["to"]) == parseInt(descId)) {
 			hasLink = true;
 			var obj = new Object();
 			(parseInt(inFilelink[i]["from"]) == parseInt(descId)) ? obj.id=inFilelink[i]["to"]:obj.id=inFilelink[i]["from"];
 			obj.desc = inFilelink[i]["desc"];
-//			if(linkRecord[mostParentId] == undefined) 
-//				linkRecord[mostParentId] = new Array();
-//			linkRecord[mostParentId][linkRecord[mostParentId].length] = obj;
 			tempRecord[tempRecord.length] = obj;
 		}
-//		if(link[i]["file-name"] == fileName && link[i]["file-name2"] == undefined ) {
-//			for(var l=0;l<link[i].parsedLink.length;l++) {
-//				if(parseInt(link[i][l][0]) == parseInt(descId) || parseInt(link[i][l][1]) == parseInt(descId)) {
-//					hasLink = true;
-//					var obj = new Object();
-//					(parseInt(link[i][l][0]) == parseInt(descId))? obj.id=link[i][l][1]:obj.id=link[i][l][0];
-//					if(linkRecord[mostParentId] == undefined) 
-//						linkRecord[mostParentId] = new Array();
-//					linkRecord[mostParentId][linkRecord[mostParentId].length] = obj;
-//				}
-//			}
-//		}
-//		if(link[i]["file-name"] == fileName || link[i]["file-name2"] == fileName) {
-//			var idx;
-//			(link[i]["file-name"] == fileName) ? idx=0 : idx=1;
-//			for(var l=0;l<link[i].parsedLink.length;l++) {
-//				if(parseInt(link[i][l][idx]) == parseInt(descId)) {
-//					hasLink = true;
-//					var obj = new Object();
-//					obj.id=link[i][l][idx^1];
-//					(idx==0) ? obj.fileName = link[i]["file-name2"] : obj.fileName = link[i]["file-name"];
-//					if(linkRecord[mostParentId] == undefined) 
-//						linkRecord[mostParentId] = new Array();
-//					linkRecord[mostParentId][linkRecord[mostParentId].length] = obj;
-//				}
-//			}
-//		}
 	}
 	for(var attribute in otherFilelink) {
 		if(otherFilelink[attribute] != undefined) {
 			var array = otherFilelink[attribute];
-			for(var o=0;o<array.length;o++) {
+//			alert(JSON.stringify(array));
+			for(var i=0;i<array.length;i++) {
+//				alert(descId +"  " +array[i]["from"] +"  "+array[i]["to"]);
 				if(parseInt(array[i]["from"]) == parseInt(descId) || parseInt(array[i]["to"]) == parseInt(descId)) {
+//					alert(JSON.stringify(otherFilelink));
+//					alert(1111111);
+
 					hasLink = true;
 					var obj = new Object();
 					(parseInt(array[i]["from"]) == parseInt(descId)) ? obj.id=array[i]["to"]:obj.id=array[i]["from"];
 					obj.desc = inFilelink[i]["desc"];
-					obj.fileName = attribute;
-//					if(linkRecord[mostParentId] == undefined) 
-//						linkRecord[mostParentId] = new Array();
-//					linkRecord[mostParentId][linkRecord[mostParentId].length] = obj;
+					obj.fileName = attribute;					
 					tempRecord[tempRecord.length] = obj;
 				}
 			}
@@ -207,19 +155,43 @@ function hasLink(descId,mostParentId) {
 	return hasLink;
 }
 
-function linkTo(id,fileName) {
-	if(fileName == undefined) {
-		window.scrollTo(0,ceCoordinate[id]+240);
+function linkTo(id,name) {
+	if(name == undefined || name == 'undefined' || name == '') {
+		clearPopoverTop();
+		window.scroll(0,ceCoordinate[id].top+240);
+		
 	}
-//	alert(document.body.scrollTop);
-//	document.body.scrollTop=500;
-//	window.scrollTo(0,top+240);
+	else {
+		fileName = name;
+		refreshPage(commitId,name);
+		var childrenList = document.querySelector("#fileList").children;
+		for(var i=0;i<childrenList.length;i++) {
+			childrenList[i].classList.remove("active");
+			if(getFileName($(childrenList[i]).text().trim()) == name) {
+				childrenList[i].classList.add("active")
+			}
+		}
+//		this.classList.add("active");
+//		var name = $(this).text().trim();
+		window.scroll(0,ceCoordinate[id].top+240);
+	}
+	var parent;
+	if(ceCoordinate[id].file == 1) 
+		parent = document.querySelector(".original-in-monaco-diff-editor .margin-view-overlays");
+	else
+		parent = document.querySelector(".modified-in-monaco-diff-editor .margin-view-overlays");
+	var popoverTopDiv = document.createElement("div");
+	popoverTopDiv.className = "popover top "+id;
+	popoverTopDiv.style = "position:absolute;left:47px;";
+	var inner = "<div class='arrow' style='height:13px;border-top-color:red;border-width:15px;bottom:-24px;'></div>";
+	popoverTopDiv.innerHTML=inner;
+	parent.appendChild(popoverTopDiv);
+	popoverTopDiv.style.top = (ceCoordinate[id].top - popoverTopDiv.offsetHeight) + "px";
 }
 
 function clearPopoverTop() {
 	var popovers = document.querySelectorAll(".popover.top");
-//	var popovers = document.querySelectorAll("div[class='popover top']");
 	for(var p=0;p<popovers.length;p++) {
-		popovers[p].style.visibility="hidden";
+		popovers[p].parentNode.removeChild(popovers[p]);
 	}
 }

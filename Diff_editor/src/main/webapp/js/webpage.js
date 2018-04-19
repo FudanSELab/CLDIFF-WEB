@@ -4,18 +4,18 @@ function generateContainer() {
 		lineLength = originalLines.length;
 //	alert(lineLength);
 	var wholeHeight = lineLength * 19;
-	document.querySelector("#myCanvas3").style.height = wholeHeight;
+	document.querySelector("#myCanvas3").height = wholeHeight;
 	
 	// original editor
 	var overlaysDiv = document.createElement("div");
 	overlaysDiv.className="margin-view-overlays";
 //	overlaysDiv.style.top = "-100px";
 	document.querySelector(".original-in-monaco-diff-editor").appendChild(overlaysDiv);
-//	document.querySelector(".original-in-monaco-diff-editor").style.height = originalLines.length"";
+	document.querySelector(".original-in-monaco-diff-editor").style.height = wholeHeight + "px";
 	// 行中的对齐线；删除、增加颜色效果
 	var scrollableDiv = document.createElement("div");
 	scrollableDiv.className="monaco-scrollable-element editor-scrollable vs";
-//	scrollableDiv.style.top = "-100px";
+	scrollableDiv.style.height = wholeHeight + "px";
 //	scrollableDiv.style.left = "-100px";
 	document.querySelector(".original-in-monaco-diff-editor").appendChild(scrollableDiv);
 	document.querySelector(".original-in-monaco-diff-editor").style.height = wholeHeight + "px";
@@ -53,6 +53,7 @@ function generateContainer() {
 	// 行中的对齐线；删除、增加颜色效果
 	var scrollableDiv2 = document.createElement("div");
 	scrollableDiv2.className="monaco-scrollable-element editor-scrollable vs";
+	scrollableDiv2.style.height = wholeHeight + "px";
 	document.querySelector(".modified-in-monaco-diff-editor").appendChild(scrollableDiv2);
 	document.querySelector(".modified-in-monaco-diff-editor").style.height = wholeHeight + "px";
 	var backgroundDiv2 = document.createElement("div");

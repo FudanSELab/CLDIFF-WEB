@@ -13,7 +13,6 @@ var otherFilelink = new Object();
 var changeMove = new Array();
 var ceCoordinate = new Object();
 var commitId,fileName;
-var scrollTo = 0;
 
 $(document).ready(function() {
 
@@ -39,17 +38,20 @@ function init() {
     cxt.clearRect(0,0,myCanvas.width,myCanvas.height); 
     ceCoordinate = new Object();
 //    otherFilelink = new Object();
-    scrollTo = 0;
 }
 
-function refreshPage(commitID,fileName) {	
+function refreshPage(commitID,name) {	
+//	commitId = commitID;
+//	fileName = name;
+	getLinkJson(commitID);
+	
 	init();
 	
 	$.ajaxSettings.async = false;  
-	initLines(originalLines,getFileFromServer("getfile",commitID,fileName,"src"));
-	initLines(modifiedLines,getFileFromServer("getfile",commitID,fileName,"dst"));
+	initLines(originalLines,getFileFromServer("getfile",commitID,name,"src"));
+	initLines(modifiedLines,getFileFromServer("getfile",commitID,name,"dst"));
 
-	var text = getFileFromServer("getfile",commitID,fileName,"diff.json");
+	var text = getFileFromServer("getfile",commitID,name,"diff.json");
 	text = eval("("+text+")");		
 	
 	handleNesting(text);	
@@ -68,6 +70,7 @@ function refreshPage(commitID,fileName) {
 ////	clearPopover();
 	drawLinkLine(aMoveBlock,bMoveBlock,"rgba(255, 140, 0, 0.2)",getColorByType("Move"));
 	drawLinkLine(aChangeBlock,bChangeBlock,"rgba(0, 100, 255, 0.2)",getColorByType("Change"));
+//	alert(JSON.stringify(ceCoordinate));
 }
 function handleNesting (data) {
 	$.each(data,function(infoIndex,info){  

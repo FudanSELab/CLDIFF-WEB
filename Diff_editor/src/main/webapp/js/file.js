@@ -52,6 +52,18 @@ function getContentByFileName() {
 	var commitID = $(activeCommit).contents().filter(function() { return this.nodeType === 3; }).text().trim();
 //	alert(commitID);
 	
+	refreshPage(commitID,name);
+}
+
+function getFileName(path) {
+	var name;
+	var index = path.lastIndexOf("/");
+	if(index >=0)
+		name = path.substring(index+1,path.length);
+	return name;
+}
+
+function getLinkJson(commitID) {
     otherFilelink = new Object();
     inFilelink.splice(0,inFilelink.length);
 //	link json
@@ -63,45 +75,20 @@ function getContentByFileName() {
 		if(links[i]["file-name"] == fileName && links[i]["link-type"] == "one-file-link") {
 			if(links[i].links.length > 0)
 				inFilelink = links[i].links;
-//			for(var li =0;li<links[i].links.length;li++) {
-////				inFilelink[inFilelink.length] = [links[i].links[li].from,links[i].links[li].to];
-//				inFilelink[inFilelink.length] = links[i].links[li];
-//			}
 		}
 		else if((links[i]["file-name"] == fileName)||(links[i]["file-name2"] == fileName) && links[i]["link-type"] == "two-file-link") {
 			if(links[i].links.length > 0) {
 				var thisIdx,otherFile;
-//				(links[i]["file-name"] == fileName) ? thisIdx = 0:thisIdx = 1;
-//				var thisIdx;
-				(links[i]["file-name"] == fileName) ? thisIdx ="from":thisIdx = "to";
-				otherFilelink[otherFile] = new Object();
-				otherFilelink[otherFile]["thisIdx"] = thisIdx;
-				otherFilelink[otherFile]["links"] = links[i].links;
+//				(links[i]["file-name"] == fileName) ? thisIdx ="from":thisIdx = "to";
+				(links[i]["file-name"] == fileName) ? otherFile =links[i]["file-name2"]:otherFile = links[i]["file-name"];
+//				otherFilelink[otherFile] = new Object();
+//				otherFilelink[otherFile]["thisIdx"] = thisIdx;
+//				otherFilelink[otherFile]["links"] = links[i].links;
+				otherFilelink[otherFile] = links[i].links;
 			}
-			
-//			for(var li =0;li<links[i].links.length;li++) {
-//				
-//			}
 		}
-//		link[i].parsedLink = [];
-//		for(var l=0;l<link[i].links.length;l++) {
-//			link[i].parsedLink[link[i].parsedLink.length] = parseLink(link[i].links[l]);
-//		}
 	}
-	
-//	for(var i=0;i<link.length;i++) {
-//		if()
-//		link[i].parsedLink = [];
-////		for(var l=0;l<link[i].links.length;l++) {
-////			link[i].parsedLink[link[i].parsedLink.length] = parseLink(link[i].links[l]);
-////		}
-//	}
-//	alert(JSON.stringify(inFilelink));
-//	alert(JSON.stringify(otherFilelink));
-	
-	refreshPage(commitID,name);
 }
-
 function parseLink(rangeStr) {
 	var wholeRange = rangeStr.split(',');
 	if(wholeRange.length == 2) {

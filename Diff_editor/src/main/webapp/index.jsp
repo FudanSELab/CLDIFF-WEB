@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <title>editor</title>
-<script src="js/jquery.js"></script> 
 <link type="text/css" rel="styleSheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css" />
 <link type="text/css" rel="styleSheet" href="style/base.css" />
 <link type="text/css" rel="styleSheet" href="style/editor.css" />
@@ -126,7 +125,7 @@
 					data-mode-id="javascript"
 					style="position: absolute; height: 100%; width: 243px; left: 0px;">
 					<div class="monaco-editor original-in-monaco-diff-editor vs"
-						data-uri="inmemory://model/2" style="width: 743px; height: 8000px;overflow:hidden">										
+						data-uri="inmemory://model/2" style="width: 743px; height: 4000px;overflow:hidden">										
 						</div>
 							<!-- ä¸æ¹æ»å¨æ¡ -->
 							<!-- <div role="presentation" aria-hidden="true"
@@ -168,7 +167,7 @@
 					data-mode-id="javascript"
 					style="position: absolute; height: 100%; width: 173px; left: 743px;">
 					<div class="monaco-editor modified-in-monaco-diff-editor vs"
-						data-uri="inmemory://model/3" style="width: 743px; height: 8000px;overflow:hidden">																				
+						data-uri="inmemory://model/3" style="width: 743px; height: 4000px;overflow:hidden">																				
 							<!-- <div role="presentation" aria-hidden="true"
 								class="invisible scrollbar horizontal fade"
 								style="position: absolute; width: 76px; height: 10px; left: 0px; bottom: 0px;">
@@ -218,14 +217,15 @@
 		</div>
 	</div>
 	</div>
-	<script type="text/javascript"
+	<!-- <script type="text/javascript"
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"
 		integrity="sha256-wS9gmOZBqsqWxgIVgA8Y9WcQOa7PgSIX+rPA0VL2rbQ="
 		crossorigin="anonymous"></script>
 	<script type="text/javascript"
 		src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.0/bootstrap.min.js"
 		integrity="sha256-u+l2mGjpmGK/mFgUncmMcFKdMijvV+J3odlDJZSNUu8="
-		crossorigin="anonymous"></script>
+		crossorigin="anonymous"></script> -->
+	<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
 	<script type="text/javascript" src="js/file.js"></script>
 	<script type="text/javascript" src="js/webpage.js"></script>
 	<script type="text/javascript" src="js/bubble.js"></script>

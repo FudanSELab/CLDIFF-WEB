@@ -1,51 +1,4 @@
 var bubbleArray = new Array();
-//function bubble() {
-////	clearPopover();
-//	clearCanvas();
-//	var file = 1;
-//	if(this.parentNode.parentNode.parentNode.parentNode.className == "monaco-editor modified-in-monaco-diff-editor vs")
-//		file = 2;
-//	var top = parseInt(this.style.top);
-//	var left = parseInt(this.style.left);
-//	if(isNaN(left)) 
-//		left = 0;
-//	drawDescLayer(file,this.number,descriptions);
-//}
-
-
-//function drawDescLayer(file,number,descArray) {
-//	var top1,bottom1,top2,bottom2,middle1,middle2;
-//	for(var i=0;i<descArray.length;i++) {
-//		var isChangeOrMove = false;
-//		if(descArray[i].type2 == "Change" ||descArray[i].type2 == "Move"||descArray[i].type2 == "Change.Move")
-//			isChangeOrMove = true;
-//		if(file == 1 && descArray[i].range1 != undefined) {
-//			if(number>=descArray[i].range1[0]&&number<=descArray[i].range1[1]) {			
-//				if(!isChangeOrMove) {
-//					top1 = originalLinesCoordinate[descArray[i].range1[0]];
-//					bottom1 = originalLinesCoordinate[descArray[i].range1[1]]+19;
-//				}
-//				else if(descArray[i].range2 != undefined) {
-//					top1 = modifiedLinesCoordinate[descArray[i].range2[0]];
-//					bottom1 = modifiedLinesCoordinate[descArray[i].range2[1]]+19;
-//				}
-//				middle1 = (top1 + bottom1)/2;
-//				drawTagLine(file,top1,middle1,bottom1,descArray[i].id,getColorByType(descArray[i].type2),isChangeOrMove);
-//			}
-//		}
-//		else if(file == 2  && descArray[i].range2 != undefined) {			
-//			if(number>=descArray[i].range2[0]&&number<=descArray[i].range2[1]) {				
-//				top2 = modifiedLinesCoordinate[descArray[i].range2[0]];
-//				bottom2 = modifiedLinesCoordinate[descArray[i].range2[1]]+19;
-//				middle2 = (top2 + bottom2)/2;
-//				drawTagLine(file,top2,middle2,bottom2,descArray[i].id,getColorByType(descArray[i].type2),isChangeOrMove);			
-//			}
-//		}
-//		if(descArray[i].subDesc != undefined) {
-//			drawDescLayer(file,number,descArray[i].subDesc);
-//		}
-//	}
-//}
 
 function drawBubble(entry,level) {
 	if(entry.subDesc != undefined) {
@@ -67,7 +20,9 @@ function drawBubble(entry,level) {
 	}
 	else 
 		top = top2;
-	ceCoordinate[entry.id] = getDescCoordinate(entry);
+	ceCoordinate[entry.id] = new Object();
+	ceCoordinate[entry.id].file = getDescCoordinate(entry)[0];
+	ceCoordinate[entry.id].top = getDescCoordinate(entry)[1];
 	var bubbleDiv = document.createElement("div");
 	bubbleDiv.className = "popover";
 	bubbleDiv.id = entry.id;
@@ -91,19 +46,22 @@ function drawBubble(entry,level) {
 }
 
 function getDescCoordinate(entry) {
-	var top,top1,top2;
+	var file,top,top1,top2;
 	if(entry.range1 != undefined) {
 		top1 = originalLinesCoordinate[entry.range1[0]];
 		top=top1;
+		file=1;
 	}
 	if(entry.range2 != undefined) {
 		top2 = modifiedLinesCoordinate[entry.range2[0]];
 		top=top2;
+		file=2;
 		if(top1 !=undefined || parseInt(top1) < parseInt(top2)) {
 			top = top1;
+			file=1;
 		}
-	}		
-	return top;
+	}	
+	return [file,top];
 }
 
 function drawAllTagLine(entry) {
@@ -176,7 +134,6 @@ function shiftBubble(index,bottom) {
 	}
 	
 }
-
 
 function drawLinkLine(srcBlocks,dstBlocks,fillStyleColor,strokeStyleColor) {
 	var borderCanvas,arrowCanvas;
@@ -288,13 +245,6 @@ function drawTagLine(file,top,middle,bottom,id,color,isChangeOrMove) {
 	cxt.strokeStyle=color;
 	cxt.stroke();		
 }
-
-//function clearPopover() {
-//	var popovers = document.querySelectorAll("div[class='popover']");
-//	for(var p=0;p<popovers.length;p++) {
-//		popovers[p].style.visibility="hidden";
-//	}
-//}
 
 function clearCanvas() {
 	var myCanvas=document.getElementById("myCanvas1");

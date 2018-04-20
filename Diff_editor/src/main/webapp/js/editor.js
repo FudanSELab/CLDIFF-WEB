@@ -12,7 +12,7 @@ var inFilelink = new Array();
 var otherFilelink = new Object();
 var changeMove = new Array();
 var ceCoordinate = new Object();
-var commitId,fileName;
+var commitId,fileName,fileId;
 
 $(document).ready(function() {
 
@@ -27,47 +27,39 @@ function init() {
 	bChangeBlock.splice(0,bChangeBlock.length);
 	bubbleArray.splice(0,bubbleArray.length);
 	diff.splice(0,diff.length);
-//	inFilelink.splice(0,inFilelink.length);
 	changeMove.splice(0,changeMove.length);
 	document.querySelector(".original-in-monaco-diff-editor").innerHTML="";
 	document.querySelector(".modified-in-monaco-diff-editor").innerHTML="";
 	document.querySelector(".bubbleZone").innerHTML="";
-//	clearPopover();
 	var myCanvas=document.getElementById("myCanvas3");
 	cxt = myCanvas.getContext("2d");
     cxt.clearRect(0,0,myCanvas.width,myCanvas.height); 
     ceCoordinate = new Object();
-//    otherFilelink = new Object();
 }
 
 function refreshPage(commitID,name) {	
-//	commitId = commitID;
-//	fileName = name;
-	getLinkJson(commitID);
-	
-	init();
+	init();	
 	
 	$.ajaxSettings.async = false;  
 	var src = getFileFromServer("getfile",commitID,name,"src");
 	var dst = getFileFromServer("getfile",commitID,name,"dst");
+
 	if(src =="") {
 		initLines(modifiedLines,dst);
+		getLinkJson(commitID,1);
 		generateContainer(1);
 		return;
 	}
+	fileId = -1;
 	initLines(originalLines,src);
 	initLines(modifiedLines,dst);
-//	initLines(originalLines,getFileFromServer("getfile",commitID,name,"src"));
-//	initLines(modifiedLines,getFileFromServer("getfile",commitID,name,"dst"));
+	getLinkJson(commitID,2);
 
 	var text = getFileFromServer("getfile",commitID,name,"diff.json");
 	text = eval("("+text+")");		
 	
 	handleNesting(text);	
-	parseDiff(diff,0,originalLines,modifiedLines);	
-	
-	alert(JSON.stringify(diff));
-	
+	parseDiff(diff,0,originalLines,modifiedLines);		
 	generateContainer(2);
 	
 	for(var d = 0;d<descriptions.length;d++) {
@@ -222,6 +214,10 @@ function parseDiff(data,sign,srcLines,dstLines,superDesc) {
 				
 				//标记描述节点
 				entry = descObj(info,range,1);
+				if(info["sub-range"] != undefined) {
+					entry.subDesc = new Array();
+					parseDiff(info["sub-range"],sign+1,srcLines,dstLines,entry);
+				}
 			}							
 		    break;
 		case info["type2"] =="Insert":
@@ -237,6 +233,10 @@ function parseDiff(data,sign,srcLines,dstLines,superDesc) {
 				
 				//标记描述节点
 				entry = descObj(info,range,2);		
+				if(info["sub-range"] != undefined) {
+					entry.subDesc = new Array();
+					parseDiff(info["sub-range"],sign+1,srcLines,dstLines,entry);
+				}
 			}
 				break;
 		case info["type2"] == "Change":

@@ -13,6 +13,7 @@ function showLink() {
 	
 	for(var i=0;i<descriptions.length;i++) 
 		drawLinkLayer(file,this.number,descriptions[i],descriptions[i].id);	
+//	alert(JSON.stringify(linkObj));
 	drawLink(file,this.parentNode);
 }
 
@@ -86,9 +87,10 @@ function drawLink(file,parent) {
 			var inner = "<div class='arrow'></div>";
 			inner += " <div class='popover-content' style='max-height:100px;overflow:auto;'>" + content+"</div>";
 			popoverTopDiv.innerHTML=inner;
+			if(top == 0)
+				parent = document.querySelector(".editor.modified");
 			parent.appendChild(popoverTopDiv);
-			popoverTopDiv.style.top = (top - popoverTopDiv.offsetHeight) + "px";
-//		}		
+			popoverTopDiv.style.top = (top - popoverTopDiv.offsetHeight) + "px";	
 	}
 	
 }
@@ -104,7 +106,7 @@ function drawLinkLayer(file,number,descObj,mostParentId) {
 			}
 		}
 	}
-	else if(file == 2  && descObj.range2 != undefined) {			
+	else if(file == 2  && descObj.range2 != undefined) {	
 		if(number>=descObj.range2[0]&&number<=descObj.range2[1]) {	
 			if(hasLink(descObj.id,mostParentId)) {
 				linkObj[mostParentId] = descObj.id;
@@ -134,15 +136,11 @@ function hasLink(descId,mostParentId) {
 			var array = otherFilelink[attribute];
 //			alert(JSON.stringify(array));
 			for(var i=0;i<array.length;i++) {
-//				alert(descId +"  " +array[i]["from"] +"  "+array[i]["to"]);
 				if(parseInt(array[i]["from"]) == parseInt(descId) || parseInt(array[i]["to"]) == parseInt(descId)) {
-//					alert(JSON.stringify(otherFilelink));
-//					alert(1111111);
-
 					hasLink = true;
 					var obj = new Object();
 					(parseInt(array[i]["from"]) == parseInt(descId)) ? obj.id=array[i]["to"]:obj.id=array[i]["from"];
-					obj.desc = inFilelink[i]["desc"];
+					obj.desc = array[i]["desc"];
 					obj.fileName = attribute;					
 					tempRecord[tempRecord.length] = obj;
 				}
@@ -156,10 +154,13 @@ function hasLink(descId,mostParentId) {
 }
 
 function linkTo(id,name) {
+	clearPopoverTop();
+	var popTop,file;
 	if(name == undefined || name == 'undefined' || name == '') {
 		clearPopoverTop();
-		window.scroll(0,ceCoordinate[id].top+240);
-		
+		popTop= ceCoordinate[id].top;
+		window.scroll(0,popTop+240);
+		file = ceCoordinate[id].file;
 	}
 	else {
 		fileName = name;
@@ -171,12 +172,19 @@ function linkTo(id,name) {
 				childrenList[i].classList.add("active")
 			}
 		}
-//		this.classList.add("active");
-//		var name = $(this).text().trim();
-		window.scroll(0,ceCoordinate[id].top+240);
+		if(ceCoordinate[id] == undefined) {
+			popTop = 20;
+			fileId= id;
+			file = 2;
+		}
+		else {
+			popTop= ceCoordinate[id].top;
+			file = ceCoordinate[id].file;
+		}
+		window.scroll(0,popTop+240);
 	}
 	var parent;
-	if(ceCoordinate[id].file == 1) 
+	if(file == 1) 
 		parent = document.querySelector(".original-in-monaco-diff-editor .margin-view-overlays");
 	else
 		parent = document.querySelector(".modified-in-monaco-diff-editor .margin-view-overlays");
@@ -186,7 +194,8 @@ function linkTo(id,name) {
 	var inner = "<div class='arrow' style='height:13px;border-top-color:red;border-width:15px;bottom:-24px;'></div>";
 	popoverTopDiv.innerHTML=inner;
 	parent.appendChild(popoverTopDiv);
-	popoverTopDiv.style.top = (ceCoordinate[id].top - popoverTopDiv.offsetHeight) + "px";
+	popoverTopDiv.style.top = (popTop - popoverTopDiv.offsetHeight) + "px";
+
 }
 
 function clearPopoverTop() {

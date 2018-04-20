@@ -63,7 +63,7 @@ function getFileName(path) {
 	return name;
 }
 
-function getLinkJson(commitID) {
+function getLinkJson(commitID,fileCount) {
     otherFilelink = new Object();
     inFilelink.splice(0,inFilelink.length);
 //	link json
@@ -79,12 +79,19 @@ function getLinkJson(commitID) {
 		else if((links[i]["file-name"] == fileName)||(links[i]["file-name2"] == fileName) && links[i]["link-type"] == "two-file-link") {
 			if(links[i].links.length > 0) {
 				var thisIdx,otherFile;
-//				(links[i]["file-name"] == fileName) ? thisIdx ="from":thisIdx = "to";
 				(links[i]["file-name"] == fileName) ? otherFile =links[i]["file-name2"]:otherFile = links[i]["file-name"];
 //				otherFilelink[otherFile] = new Object();
 //				otherFilelink[otherFile]["thisIdx"] = thisIdx;
 //				otherFilelink[otherFile]["links"] = links[i].links;
 				otherFilelink[otherFile] = links[i].links;
+				if(fileCount ==1 && descriptions.length == 0) {
+					(links[i]["file-name"] == fileName) ? thisIdx ="from":thisIdx = "to";
+					var entry = new Object();					
+					entry.id = links[i].links[0][thisIdx];
+					entry.file = "dst";
+					entry.range2 = [1,modifiedLines.length];	
+					descriptions.splice(0,0,entry);
+				}
 			}
 		}
 	}
@@ -111,4 +118,8 @@ function getDescById(descArray,id) {
 			getDescById(descArray[i].subDesc,id);
 		}
 	}
+}
+
+function checkFileName() {
+	
 }

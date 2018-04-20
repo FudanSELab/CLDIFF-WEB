@@ -1,11 +1,15 @@
-function generateContainer() {
+function generateContainer(num) {
 	var lineLength = modifiedLines.length;
 	if(originalLines.length > modifiedLines.length)
 		lineLength = originalLines.length;
-//	alert(lineLength);
 	var wholeHeight = lineLength * 19;
 	document.querySelector("#myCanvas3").height = wholeHeight;
-	
+	if(num == 2)
+		generateoOriginalEditor(wholeHeight);
+	generateModifiedEditor(wholeHeight);
+}
+
+function generateoOriginalEditor(wholeHeight) {
 	// original editor
 	var overlaysDiv = document.createElement("div");
 	overlaysDiv.className="margin-view-overlays";
@@ -45,7 +49,9 @@ function generateContainer() {
 	linesDiv1.appendChild(myCanvas1);
 	
 	generateEditor(originalLines,originalLinesCoordinate,overlaysDiv,viewOverlaysDiv,linesDiv1,viewZonesDiv1,1);
+}
 
+function generateModifiedEditor(wholeHeight) {
 	// modified editor
 	var overlaysDiv2 = document.createElement("div");
 	overlaysDiv2.className="margin-view-overlays";

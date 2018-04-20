@@ -17,22 +17,17 @@
         <p>Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</p>
       </div>
     </div> -->
-    <span class="label label-primary" style="position:absolute;top:0;left:10px;font-size:18px">commit id</span>
-    <span class="label label-primary" style="position:absolute;top:0;left:650px;font-size:18px">file name</span>
-<!--     <div style="position:absolute;display:inline;top:0;left:950px;color:blue">file name:</div>
- -->	<div id ="commitList"class="list-group" style="position:absolute;left:10px;display:inline;width:500px;height:240px;top:30px;overflow:auto">
+    <span class="label label-primary" style="position:absolute;top:0;left:10px;font-size:18px">RQ</span>
+    <span class="label label-primary" style="position:absolute;top:0;left:160px;font-size:18px">commit id</span>
+    <span class="label label-primary" style="position:absolute;top:0;left:670px;font-size:18px">file name</span>
+    <div id ="RQList"class="list-group" style="position:absolute;left:10px;display:inline;width:70px;height:240px;top:30px;overflow:auto">	
+    	<button type="button" class="list-group-item" onclick="getCommitByRQ(this)">
+			RQ3</button>
+		<button type="button" class="list-group-item" onclick="getCommitByRQ(this)">
+			RQ4</button>
+    </div>
+	<div id ="commitList"class="list-group" style="position:absolute;left:160px;display:inline;width:450px;height:200px;top:30px;overflow:auto">		
 		<!-- <button type="button" class="list-group-item" onclick="getFileByCommit(this)">
-			<span class="badge" style="float: left; margin-right: 6px">1</span>
-			3c1adf7f6af0dff9bda74f40dabe8cf428a62003
-		</button>
-		<button type="button" class="list-group-item" onclick="getFileByCommit(this)">
-			<span class="badge" style="float: left; margin-right: 6px">2</span>
-			34e7f4497962d235d94072d1544e22a7a362ae30
-		</button>
-		<button type="button" class="list-group-item" onclick="getFileByCommit(this)">
-			<span class="badge" style="float: left; margin-right: 6px">3</span>
-			ea9ad4ee9bd6604fe57f73004bf375c7c4cd7be3</button> -->
-		<button type="button" class="list-group-item" onclick="getFileByCommit(this)">
 			<span class="badge" style="float: left; margin-right: 6px">1</span>
 			3c1adf7f6af0dff9bda74f40dabe8cf428a62003</button>
 		<button type="button" class="list-group-item" onclick="getFileByCommit(this)">
@@ -68,9 +63,9 @@
 		<button type="button" class="list-group-item" onclick="getFileByCommit(this)">
 			<span class="badge" style="float: left; margin-right: 6px">10</span>
 			fccec210b4fecbbc3ab758d127a95fb741b21175
-		</button>		
+		</button>		 -->
 	</div>
-	<div style="position:absolute;left:650px;display:inline;width:800px;height:240px;top:30px;overflow:auto">
+	<div style="position:absolute;left:670px;display:inline;width:800px;height:200px;top:30px;overflow:auto">
 		<div id ="fileList" class="list-group" style="width:800px;">
 		</div>
 	</div>
@@ -103,7 +98,7 @@
 		</div>
 	</div>
 
-	<div class="editor-frame" style="margin-top: 240px;">
+	<div class="editor-frame" style="margin-top: 200px;">
 		<div id="diff-editor" >
 			<div
 				class="monaco-diff-editor monaco-editor-background side-by-side vs"

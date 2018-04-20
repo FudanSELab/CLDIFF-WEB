@@ -140,7 +140,7 @@ function linkTo(id,name) {
 	if(name == undefined || name == 'undefined' || name == '') {
 		clearPopoverTop();
 		popTop= ceCoordinate[id].top;
-		window.scroll(0,popTop+240);
+		window.scroll(0,popTop+200);
 		file = ceCoordinate[id].file;
 	}
 	else {
@@ -162,7 +162,7 @@ function linkTo(id,name) {
 			popTop= ceCoordinate[id].top;
 			file = ceCoordinate[id].file;
 		}
-		window.scroll(0,popTop+240);
+		window.scroll(0,popTop+200);
 	}
 	var parent;
 	if(file == 1) 

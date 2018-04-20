@@ -84,6 +84,14 @@ public class FileServlet extends HttpServlet {
 				}
 			}
 		}
+		if(fileType.equals("link.json")){
+			for(File tmp:commitMeta){
+				if(tmp.getName().equals("link.json")){
+					writeToSos(tmp,sos);
+					return;
+				}
+			}
+		}
 		List<File> list = new ArrayList<>();
 		browse(target,list);
 		for(File tmp:list){
@@ -97,10 +105,6 @@ public class FileServlet extends HttpServlet {
 					return;
 			}else if(fileType.equals("diff.json")
 					&&tmp.getAbsolutePath().endsWith("Diff"+fileName+".json")){
-				writeToSos(tmp,sos);
-				return;
-			}else if(fileType.equals("link.json")
-					&&tmp.getAbsolutePath().endsWith("link.json")){
 				writeToSos(tmp,sos);
 				return;
 			}

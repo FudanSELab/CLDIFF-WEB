@@ -48,13 +48,6 @@ function drawLink(file,parent) {
 				idArray.splice(0,idArray.length);
 				idArray[0] = attribute;
 			}
-//			else if(parseInt(tempTop) == parseInt(top) && parseInt(tempBottom) == parseInt(bottom)) {
-//				idArray[idArray.length] = attribute;
-//			}
-//			else {
-//				idArray[idArray.length] = attribute;
-//			}
-			//draw
 		}
 	} 
 	
@@ -62,7 +55,6 @@ function drawLink(file,parent) {
 	for(var i =0; i< idArray.length;i++){ 
 		var linkList = linkRecord[idArray[i]]; 
 		for(var l=0;l<linkList.length;l++) {
-//			content += "<a onclick='linkTo()'>"+linkList[l].id+". "+linkList[l].desc+"</a></br>";
 			var name="";
 			if(linkList[l].fileName != undefined && linkList[l].fileName != 'undefined' && linkList[l].fileName != '')
 				name ="("+linkList[l].fileName+")";
@@ -73,24 +65,16 @@ function drawLink(file,parent) {
 	content += "</ul>"
 	
 	if(id != undefined) {
-//		var popoverTop = document.getElementsByClassName("popover top "+id);
-//		if(parseInt(popoverTop.length) > 0) {		
-//			var temp = popoverTop[0].parentNode.removeChild(popoverTop[0]);
-//			parent.appendChild(temp);
-//			temp.style.visibility="visible";
-//			temp.style.top = (top - temp.offsetHeight) + "px";
-//		}
-//		else {
-			var popoverTopDiv = document.createElement("div");
-			popoverTopDiv.className = "popover top "+id;
-			popoverTopDiv.style = "position:absolute;left:0;";
-			var inner = "<div class='arrow'></div>";
-			inner += " <div class='popover-content' style='max-height:100px;overflow:auto;'>" + content+"</div>";
-			popoverTopDiv.innerHTML=inner;
-			if(top == 0)
-				parent = document.querySelector(".editor.modified");
-			parent.appendChild(popoverTopDiv);
-			popoverTopDiv.style.top = (top - popoverTopDiv.offsetHeight) + "px";	
+		var popoverTopDiv = document.createElement("div");
+		popoverTopDiv.className = "popover top "+id;
+		popoverTopDiv.style = "position:absolute;left:0;";
+		var inner = "<div class='arrow'></div>";
+		inner += " <div class='popover-content' style='max-height:100px;overflow:auto;'>" + content+"</div>";
+		popoverTopDiv.innerHTML=inner;
+		if(top == 0)
+			parent = document.querySelector(".editor.modified");
+		parent.appendChild(popoverTopDiv);
+		popoverTopDiv.style.top = (top - popoverTopDiv.offsetHeight) + "px";		
 	}
 	
 }
@@ -100,10 +84,6 @@ function drawLinkLayer(file,number,descObj,mostParentId) {
 		if(number>=descObj.range1[0]&&number<=descObj.range1[1]) {	
 			if(hasLink(descObj.id,mostParentId))
 				linkObj[mostParentId] = descObj.id;
-			if(descObj.subDesc != undefined) {
-				for(var i=0;i<descObj.subDesc.length;i++) 
-					drawLinkLayer(file,number,descObj.subDesc[i],mostParentId);
-			}
 		}
 	}
 	else if(file == 2  && descObj.range2 != undefined) {	
@@ -111,17 +91,18 @@ function drawLinkLayer(file,number,descObj,mostParentId) {
 			if(hasLink(descObj.id,mostParentId)) {
 				linkObj[mostParentId] = descObj.id;
 			}
-			if(descObj.subDesc != undefined) {
-				for(var i=0;i<descObj.subDesc.length;i++) 
-					drawLinkLayer(file,number,descObj.subDesc[i],mostParentId);
-			}
 		}
-	}			
+	}	
+	if(descObj.subDesc != undefined) {
+		for(var i=0;i<descObj.subDesc.length;i++) 
+			drawLinkLayer(file,number,descObj.subDesc[i],mostParentId);
+	}
 }
 
 function hasLink(descId,mostParentId) {
 	var tempRecord = new Array();
 	var hasLink = false;
+
 	for(var i=0;i<inFilelink.length;i++) {
 		if(parseInt(inFilelink[i]["from"]) == parseInt(descId) || parseInt(inFilelink[i]["to"]) == parseInt(descId)) {
 			hasLink = true;

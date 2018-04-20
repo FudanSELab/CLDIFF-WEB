@@ -48,8 +48,17 @@ function refreshPage(commitID,name) {
 	init();
 	
 	$.ajaxSettings.async = false;  
-	initLines(originalLines,getFileFromServer("getfile",commitID,name,"src"));
-	initLines(modifiedLines,getFileFromServer("getfile",commitID,name,"dst"));
+	var src = getFileFromServer("getfile",commitID,name,"src");
+	var dst = getFileFromServer("getfile",commitID,name,"dst");
+	if(src =="") {
+		initLines(modifiedLines,dst);
+		generateContainer(1);
+		return;
+	}
+	initLines(originalLines,src);
+	initLines(modifiedLines,dst);
+//	initLines(originalLines,getFileFromServer("getfile",commitID,name,"src"));
+//	initLines(modifiedLines,getFileFromServer("getfile",commitID,name,"dst"));
 
 	var text = getFileFromServer("getfile",commitID,name,"diff.json");
 	text = eval("("+text+")");		
@@ -57,7 +66,9 @@ function refreshPage(commitID,name) {
 	handleNesting(text);	
 	parseDiff(diff,0,originalLines,modifiedLines);	
 	
-	generateContainer();
+	alert(JSON.stringify(diff));
+	
+	generateContainer(2);
 	
 	for(var d = 0;d<descriptions.length;d++) {
 		drawBubble(descriptions[d],0);

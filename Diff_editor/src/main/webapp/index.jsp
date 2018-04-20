@@ -69,6 +69,10 @@
 			<span class="badge" style="float: left; margin-right: 6px">10</span>
 			fccec210b4fecbbc3ab758d127a95fb741b21175
 		</button>
+		<button type="button" class="list-group-item" onclick="getFileByCommit(this)">
+			<span class="badge" style="float: left; margin-right: 6px">11</span>
+			6560aed1c85eef68faeb0356c34e12035a2826bf
+		</button>
 	</div>
 	<div style="position:absolute;left:650px;display:inline;width:800px;height:240px;top:30px;overflow:auto">
 		<div id ="fileList" class="list-group" style="width:800px;">

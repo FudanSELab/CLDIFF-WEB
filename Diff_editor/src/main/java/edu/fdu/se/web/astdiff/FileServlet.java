@@ -56,7 +56,8 @@ public class FileServlet extends HttpServlet {
 	// commitId:XXXX fileName:XXX.java SrcOrDstOrJson: link.json
 	
 	public void responseWithFile(HttpServletResponse response,String commitId,String fileName,String fileType) throws ServletException, IOException {
-		String root = "D:\\Workspace\\RQ3";
+		ProjectProperties pp =  ProjectProperties.getInstance();
+		String root = ProjectProperties.getInstance().getValue(PropertyKeys.RQ3);
 		File f = new File(root);
 		File[] files = f.listFiles();
 		File[] commits = null;
@@ -84,6 +85,14 @@ public class FileServlet extends HttpServlet {
 				}
 			}
 		}
+		if(fileType.equals("link.json")){
+			for(File tmp:commitMeta){
+				if(tmp.getName().equals("link.json")){
+					writeToSos(tmp,sos);
+					return;
+				}
+			}
+		}
 		List<File> list = new ArrayList<>();
 		browse(target,list);
 		for(File tmp:list){
@@ -97,10 +106,6 @@ public class FileServlet extends HttpServlet {
 					return;
 			}else if(fileType.equals("diff.json")
 					&&tmp.getAbsolutePath().endsWith("Diff"+fileName+".json")){
-				writeToSos(tmp,sos);
-				return;
-			}else if(fileType.equals("link.json")
-					&&tmp.getAbsolutePath().endsWith("link.json")){
 				writeToSos(tmp,sos);
 				return;
 			}

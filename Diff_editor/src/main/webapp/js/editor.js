@@ -39,6 +39,7 @@ function init() {
 
 function refreshPage(commitID,name) {	
 	init();	
+	clearPopoverTop();
 	
 	$.ajaxSettings.async = false;  
 	var src = getFileFromServer("getfile",commitID,name,"src");

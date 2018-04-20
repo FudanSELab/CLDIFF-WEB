@@ -139,9 +139,13 @@ function linkTo(id,name) {
 	var popTop,file;
 	if(name == undefined || name == 'undefined' || name == '') {
 		clearPopoverTop();
-		popTop= ceCoordinate[id].top;
-		window.scroll(0,popTop+200);
-		file = ceCoordinate[id].file;
+		if(ceCoordinate[id].top1 != undefined)
+			showPointer(1,ceCoordinate[id].top1,id);
+		if(ceCoordinate[id].top2 != undefined)
+			showPointer(2,ceCoordinate[id].top2,id);
+//		popTop= ceCoordinate[id].top;
+		window.scroll(0,ceCoordinate[id].top+200);
+//		file = ceCoordinate[id].file;
 	}
 	else {
 		fileName = name;
@@ -156,14 +160,24 @@ function linkTo(id,name) {
 		if(ceCoordinate[id] == undefined) {
 			popTop = 20;
 			fileId= id;
-			file = 2;
+			showPointer(2,popTop,id);
+//			file = 2;
 		}
 		else {
 			popTop= ceCoordinate[id].top;
-			file = ceCoordinate[id].file;
+			if(ceCoordinate[id].top1 != undefined)
+				showPointer(1,ceCoordinate[id].top1,id);
+			if(ceCoordinate[id].top2 != undefined)
+				showPointer(2,ceCoordinate[id].top2,id);
+//			file = ceCoordinate[id].file;
 		}
 		window.scroll(0,popTop+200);
-	}
+		
+	}	
+
+}
+
+function showPointer(file,popTop,id) {
 	var parent;
 	if(file == 1) 
 		parent = document.querySelector(".original-in-monaco-diff-editor .margin-view-overlays");
@@ -176,7 +190,6 @@ function linkTo(id,name) {
 	popoverTopDiv.innerHTML=inner;
 	parent.appendChild(popoverTopDiv);
 	popoverTopDiv.style.top = (popTop - popoverTopDiv.offsetHeight) + "px";
-
 }
 
 function clearPopoverTop() {

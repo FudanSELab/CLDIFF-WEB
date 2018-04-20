@@ -21,8 +21,11 @@ function drawBubble(entry,level) {
 	else 
 		top = top2;
 	ceCoordinate[entry.id] = new Object();
-	ceCoordinate[entry.id].file = getDescCoordinate(entry)[0];
-	ceCoordinate[entry.id].top = getDescCoordinate(entry)[1];
+	ceCoordinate[entry.id].top = getDescCoordinate(entry)[0];
+	ceCoordinate[entry.id].top1 = getDescCoordinate(entry)[1];
+	ceCoordinate[entry.id].top2 = getDescCoordinate(entry)[2];
+//	ceCoordinate[entry.id].file = getDescCoordinate(entry)[0];
+//	ceCoordinate[entry.id].top = getDescCoordinate(entry)[1];
 	var bubbleDiv = document.createElement("div");
 	bubbleDiv.className = "popover";
 	bubbleDiv.id = entry.id;
@@ -46,22 +49,35 @@ function drawBubble(entry,level) {
 }
 
 function getDescCoordinate(entry) {
-	var file,top,top1,top2;
+	var top,top1,top2;
 	if(entry.range1 != undefined) {
 		top1 = originalLinesCoordinate[entry.range1[0]];
 		top=top1;
-		file=1;
 	}
 	if(entry.range2 != undefined) {
 		top2 = modifiedLinesCoordinate[entry.range2[0]];
 		top=top2;
-		file=2;
 		if(top1 !=undefined || parseInt(top1) < parseInt(top2)) {
 			top = top1;
-			file=1;
 		}
 	}	
-	return [file,top];
+	return [top,top1,top2];
+//	var file,top,top1,top2;
+//	if(entry.range1 != undefined) {
+//		top1 = originalLinesCoordinate[entry.range1[0]];
+//		top=top1;
+//		file=1;
+//	}
+//	if(entry.range2 != undefined) {
+//		top2 = modifiedLinesCoordinate[entry.range2[0]];
+//		top=top2;
+//		file=2;
+//		if(top1 !=undefined || parseInt(top1) < parseInt(top2)) {
+//			top = top1;
+//			file=1;
+//		}
+//	}	
+//	return [file,top];
 }
 
 function drawAllTagLine(entry) {

@@ -50,11 +50,19 @@ function getCommitByRQ(button) {
 				"<span class='badge' style='float: left; margin-right: 6px'>"+(i+1)+"</span>"+commits[i]+"</button>";
 	}
 	listGroup.innerHTML = inner;
+	
+	listGroup = document.getElementById("fileList");
+	listGroup.innerHTML="";
+	document.querySelector(".original-in-monaco-diff-editor").innerHTML="";
+	document.querySelector(".modified-in-monaco-diff-editor").innerHTML="";
 }
 
 function getFileByCommit(button) {
 	var listGroup = document.getElementById("fileList");
 	listGroup.innerHTML="";
+	
+	document.querySelector(".original-in-monaco-diff-editor").innerHTML="";
+	document.querySelector(".modified-in-monaco-diff-editor").innerHTML="";
 	
 	var activeList = document.querySelectorAll("#commitList .active");
 	for(var i=0;i<activeList.length;i++) {

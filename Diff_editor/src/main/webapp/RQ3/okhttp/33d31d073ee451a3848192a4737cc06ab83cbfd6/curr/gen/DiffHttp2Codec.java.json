@@ -1,0 +1,53 @@
+[
+    {
+        "file": "dst",
+        "type2": "Insert",
+        "range": "(190,190)",
+        "description": "Insert Variable Declaration",
+        "id": 27,
+        "type1": "Statement",
+        "key": "gumtree"
+    },
+    {
+        "file": "dst",
+        "type2": "Insert",
+        "range": "(191,191)",
+        "description": "Insert Variable Declaration",
+        "id": 28,
+        "type1": "Statement",
+        "key": "gumtree"
+    },
+    {
+        "file": "src-dst",
+        "type2": "Change",
+        "sub-range": [
+            {
+                "file": "dst",
+                "sub-range-code": "193,32,43",
+                "sub-type": "insert"
+            },
+            {
+                "file": "dst",
+                "sub-range-code": "193,45,58",
+                "sub-type": "insert"
+            },
+            {
+                "file": "src",
+                "sub-range-code": "190,32,50",
+                "sub-type": "delete"
+            }
+        ],
+        "range": "(190,190)-(193,193)",
+        "description": "Change Return null with/by",
+        "id": 29,
+        "type1": "Statement",
+        "opt2-exp2": [
+            "Insert contentType",
+            "Insert contentLength",
+            "Delete MethodInvocation",
+            "Delete response",
+            "Delete headers"
+        ],
+        "key": "gumtree"
+    }
+]

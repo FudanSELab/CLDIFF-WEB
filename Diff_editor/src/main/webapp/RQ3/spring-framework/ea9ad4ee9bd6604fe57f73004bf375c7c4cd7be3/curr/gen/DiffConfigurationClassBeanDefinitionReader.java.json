@@ -1,0 +1,76 @@
+[
+    {
+        "file": "src-dst",
+        "type2": "Move",
+        "range": "(394,397)-(400,403)",
+        "description": "Move If",
+        "id": 15,
+        "type1": "Statement",
+        "key": "gumtree"
+    },
+    {
+        "file": "src-dst",
+        "type2": "Change.Move",
+        "sub-range": [
+            {
+                "file": "src",
+                "sub-range-code": "394,20,47",
+                "sub-type": "move"
+            },
+            {
+                "file": "dst",
+                "sub-range-code": "395,42,69",
+                "sub-type": "move"
+            }
+        ],
+        "range": "(394,394)-(395,395)",
+        "description": "Change.Move MethodInvocation",
+        "id": 16,
+        "type1": "Statement",
+        "key": "gumtree"
+    },
+    {
+        "file": "dst",
+        "type2": "Insert",
+        "range": "(394,394)",
+        "description": "Insert Variable Declaration",
+        "id": 17,
+        "type1": "Statement",
+        "key": "gumtree"
+    },
+    {
+        "file": "dst",
+        "type2": "Insert",
+        "range": "(395,399)",
+        "description": "Insert Enhanced For",
+        "id": 18,
+        "type1": "Statement",
+        "key": "gumtree"
+    },
+    {
+        "file": "src-dst",
+        "type2": "Change",
+        "sub-range": [
+            {
+                "file": "dst",
+                "sub-range-code": "400,9,19",
+                "sub-type": "insert"
+            },
+            {
+                "file": "src",
+                "sub-range-code": "394,9,48",
+                "sub-type": "delete"
+            }
+        ],
+        "range": "(394,397)-(400,403)",
+        "description": "Change If condition with/by",
+        "id": 19,
+        "type1": "Statement",
+        "opt2-exp2": [
+            "Insert allSkipped",
+            "Delete MethodInvocation",
+            "Delete shouldSkip"
+        ],
+        "key": "gumtree"
+    }
+]

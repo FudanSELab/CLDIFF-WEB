@@ -1,0 +1,15 @@
+[{
+    "file": "src-dst",
+    "type2": "Change",
+    "sub-range": [{
+        "file": "dst",
+        "sub-range-code": "126,45,49",
+        "sub-type": "insert"
+    }],
+    "range": "(126,126)-(126,126)",
+    "description": "Change Expression Statement null with/by",
+    "id": 0,
+    "type1": "Statement",
+    "opt2-exp2": ["Insert true"],
+    "key": "gumtree"
+}]

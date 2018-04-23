@@ -1,0 +1,88 @@
+{"links": [
+    {
+        "link-type": "one-file-link",
+        "links": [],
+        "file-name": "SubProtocolWebSocketHandler.java"
+    },
+    {
+        "link-type": "one-file-link",
+        "links": [
+            {
+                "from": 1,
+                "to": 6,
+                "desc": "a control dependency b null"
+            },
+            {
+                "from": 5,
+                "to": 2,
+                "desc": "a control dependency b null"
+            },
+            {
+                "from": 0,
+                "to": 8,
+                "desc": "a control dependency b null"
+            },
+            {
+                "from": 8,
+                "to": 3,
+                "desc": "a control dependency b null"
+            },
+            {
+                "from": 8,
+                "to": 7,
+                "desc": "a control dependency b null"
+            },
+            {
+                "from": 3,
+                "to": 7,
+                "desc": "a control dependency b null"
+            },
+            {
+                "from": 6,
+                "to": 4,
+                "desc": "a field acess same as b limitExceeded"
+            },
+            {
+                "from": 6,
+                "to": 8,
+                "desc": "a field acess same as b limitExceeded"
+            },
+            {
+                "from": 4,
+                "to": 8,
+                "desc": "a field acess same as b limitExceeded"
+            },
+            {
+                "from": 6,
+                "to": 10,
+                "desc": "a call method b isDisabled"
+            },
+            {
+                "from": 4,
+                "to": 10,
+                "desc": "a call method b isDisabled"
+            },
+            {
+                "from": 5,
+                "to": 10,
+                "desc": "a call method b isDisabled"
+            },
+            {
+                "from": 7,
+                "to": 10,
+                "desc": "a call method b isDisabled"
+            }
+        ],
+        "file-name": "ConcurrentWebSocketSessionDecorator.java"
+    },
+    {
+        "link-type": "two-file-link",
+        "file-name2": "SubProtocolWebSocketHandler.java",
+        "links": [{
+            "from": 9,
+            "to": 12,
+            "desc": "a call method b close"
+        }],
+        "file-name": "ConcurrentWebSocketSessionDecorator.java"
+    }
+]}

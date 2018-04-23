@@ -1,0 +1,1 @@
+{"files":["okhttp/src/main/java/okhttp3/internal/cache/CacheInterceptor.java","okhttp/src/main/java/okhttp3/internal/http/BridgeInterceptor.java","okhttp/src/main/java/okhttp3/internal/http/RealResponseBody.java","okhttp/src/main/java/okhttp3/internal/http1/Http1Codec.java","okhttp/src/main/java/okhttp3/internal/http2/Http2Codec.java"]}

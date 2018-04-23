@@ -1,0 +1,229 @@
+[
+    {
+        "file": "src-dst",
+        "type2": "Change.Move",
+        "sub-range": [
+            {
+                "file": "src",
+                "sub-range-code": "112,6,30",
+                "sub-type": "move"
+            },
+            {
+                "file": "dst",
+                "sub-range-code": "117,6,30",
+                "sub-type": "move"
+            }
+        ],
+        "range": "(112,112)-(117,117)",
+        "description": "Change.Move MethodInvocation",
+        "id": 0,
+        "type1": "Statement",
+        "key": "gumtree"
+    },
+    {
+        "file": "src-dst",
+        "type2": "Change.Move",
+        "sub-range": [
+            {
+                "file": "src",
+                "sub-range-code": "135,6,30",
+                "sub-type": "move"
+            },
+            {
+                "file": "dst",
+                "sub-range-code": "140,23,47",
+                "sub-type": "move"
+            }
+        ],
+        "range": "(135,135)-(140,140)",
+        "description": "Change.Move MethodInvocation",
+        "id": 1,
+        "type1": "Statement",
+        "key": "gumtree"
+    },
+    {
+        "file": "src-dst",
+        "type2": "Change.Move",
+        "sub-range": [
+            {
+                "file": "src",
+                "sub-range-code": "108,9,31",
+                "sub-type": "move"
+            },
+            {
+                "file": "dst",
+                "sub-range-code": "109,9,31",
+                "sub-type": "move"
+            }
+        ],
+        "range": "(108,108)-(109,109)",
+        "description": "Change.Move PrefixExpression",
+        "id": 2,
+        "type1": "Statement",
+        "key": "gumtree"
+    },
+    {
+        "file": "src-dst",
+        "type2": "Change.Move",
+        "sub-range": [
+            {
+                "file": "src",
+                "sub-range-code": "116,9,30",
+                "sub-type": "move"
+            },
+            {
+                "file": "dst",
+                "sub-range-code": "121,9,30",
+                "sub-type": "move"
+            }
+        ],
+        "range": "(116,116)-(121,121)",
+        "description": "Change.Move InfixExpression",
+        "id": 3,
+        "type1": "Statement",
+        "key": "gumtree"
+    },
+    {
+        "file": "src-dst",
+        "type2": "Change",
+        "sub-range": [
+            {
+                "file": "dst",
+                "sub-range-code": "91,6,18",
+                "sub-type": "insert"
+            },
+            {
+                "file": "src",
+                "sub-range-code": "90,6,24",
+                "sub-type": "delete"
+            }
+        ],
+        "range": "(90,92)-(91,93)",
+        "description": "Change If condition with/by",
+        "id": 4,
+        "type1": "Statement",
+        "opt2-exp2": [
+            "Insert MethodInvocation",
+            "Insert isDisabled",
+            "Delete FieldAccess",
+            "Delete ThisExpression",
+            "Delete limitExceeded"
+        ],
+        "key": "gumtree"
+    },
+    {
+        "file": "src-dst",
+        "type2": "Change",
+        "sub-range": [{
+            "file": "dst",
+            "sub-range-code": "109,9,48",
+            "sub-type": "insert"
+        }],
+        "range": "(97,108)-(98,109)",
+        "description": "Change Do condition with/by",
+        "id": 5,
+        "type1": "Statement",
+        "opt2-exp2": [
+            "Insert InfixExpression",
+            "Insert PrefixExpression",
+            "Insert MethodInvocation",
+            "Insert isDisabled"
+        ],
+        "key": "gumtree"
+    },
+    {
+        "file": "src-dst",
+        "type2": "Change",
+        "sub-range": [
+            {
+                "file": "dst",
+                "sub-range-code": "140,7,19",
+                "sub-type": "insert"
+            },
+            {
+                "file": "src",
+                "sub-range-code": "135,35,53",
+                "sub-type": "delete"
+            }
+        ],
+        "range": "(135,156)-(140,161)",
+        "description": "Change If condition with/by",
+        "id": 6,
+        "type1": "Statement",
+        "opt2-exp2": [
+            "Insert MethodInvocation",
+            "Insert isDisabled",
+            "Delete FieldAccess",
+            "Delete ThisExpression",
+            "Delete limitExceeded"
+        ],
+        "key": "gumtree"
+    },
+    {
+        "file": "src-dst",
+        "type2": "Change",
+        "sub-range": [{
+            "file": "dst",
+            "sub-range-code": "121,9,46",
+            "sub-type": "insert"
+        }],
+        "range": "(116,118)-(121,123)",
+        "description": "Change If condition with/by",
+        "id": 7,
+        "type1": "Statement",
+        "opt2-exp2": [
+            "Insert InfixExpression",
+            "Insert MethodInvocation",
+            "Insert isDisabled"
+        ],
+        "key": "gumtree"
+    },
+    {
+        "file": "src-dst",
+        "type2": "Change",
+        "sub-range": [{
+            "file": "src",
+            "sub-range-code": "112,6,53",
+            "sub-type": "delete"
+        }],
+        "range": "(112,130)-(117,135)",
+        "description": "Change If condition with/by",
+        "id": 8,
+        "type1": "Statement",
+        "opt2-exp2": [
+            "Delete InfixExpression",
+            "Delete PrefixExpression",
+            "Delete FieldAccess",
+            "Delete ThisExpression",
+            "Delete limitExceeded"
+        ],
+        "key": "gumtree"
+    },
+    {
+        "file": "dst",
+        "type2": "Insert",
+        "range": "(169,173)",
+        "description": "Insert Method",
+        "id": 9,
+        "type1": "Member",
+        "key": "preprocess"
+    },
+    {
+        "file": "dst",
+        "type2": "Insert",
+        "range": "(112,114)",
+        "description": "Insert Method",
+        "id": 10,
+        "type1": "Member",
+        "key": "preprocess"
+    },
+    {
+        "file": "dst",
+        "type2": "Insert",
+        "range": "(64,64)",
+        "description": "Insert Field",
+        "id": 11,
+        "type1": "Member",
+        "key": "preprocess"
+    }
+]

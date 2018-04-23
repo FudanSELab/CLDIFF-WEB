@@ -1,0 +1,37 @@
+[
+    {
+        "file": "dst",
+        "type2": "Insert",
+        "range": "(109,109)",
+        "description": "Insert Variable Declaration",
+        "id": 3,
+        "type1": "Statement",
+        "key": "gumtree"
+    },
+    {
+        "file": "src-dst",
+        "type2": "Change",
+        "sub-range": [
+            {
+                "file": "dst",
+                "sub-range-code": "110,61,64",
+                "sub-type": "insert"
+            },
+            {
+                "file": "src",
+                "sub-range-code": "109,48,63",
+                "sub-type": "update"
+            }
+        ],
+        "range": "(109,109)-(110,110)",
+        "description": "Change Expression Statement null with/by",
+        "id": 4,
+        "type1": "Statement",
+        "opt2-exp2": [
+            "Insert PrefixExpression",
+            "Insert 1L",
+            "Update strippedHeaders->contentType"
+        ],
+        "key": "gumtree"
+    }
+]

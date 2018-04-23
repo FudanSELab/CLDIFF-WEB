@@ -17,7 +17,7 @@ public class ProjectProperties {
         	String url = this.getClass().getResource("").getPath(); 
         	String path = url.substring(0, url.indexOf("WEB-INF")) + "WEB-INF/classes/config.properties"; 
         	System.out.println(path);
-        	path = path.substring(1);
+//        	path = path.substring(1);
 //        	InputStream in = this.getClass().getResourceAsStream(path);
             InputStream in = new BufferedInputStream (new FileInputStream(path));
             prop.load(in);  

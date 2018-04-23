@@ -3,10 +3,28 @@ function generateContainer(num) {
 	if(originalLines.length > modifiedLines.length)
 		lineLength = originalLines.length;
 	var wholeHeight = lineLength * 19;
+
 	document.querySelector("#myCanvas3").height = wholeHeight;
 	if(num == 2)
 		generateoOriginalEditor(wholeHeight);
 	generateModifiedEditor(wholeHeight);
+}
+
+function adjustHeight() {
+	var currentHeight = parseInt(document.querySelector(".original-in-monaco-diff-editor").style.height);
+	if(parseInt(bubbleBottom) > parseInt(currentHeight)) {
+		currentHeight = bubbleBottom;
+		document.querySelector(".original-in-monaco-diff-editor").style.height = currentHeight + "px";
+		document.querySelector("#myCanvas1").height = currentHeight;	
+		document.querySelector("#overlayCanvas").height = currentHeight;	
+		document.querySelector("#myCanvas2").height = currentHeight;	
+		document.querySelector("#myCanvas3").height = currentHeight;
+		document.querySelector(".modified-in-monaco-diff-editor").style.height = currentHeight + "px";
+		document.querySelector(".original-in-monaco-diff-editor .monaco-scrollable-element.editor-scrollable.vs").style.height = currentHeight + "px";
+		document.querySelector(".modified-in-monaco-diff-editor .monaco-scrollable-element.editor-scrollable.vs").style.height = currentHeight + "px";
+		document.querySelector(".original-in-monaco-diff-editor .lines-content.monaco-editor-background").style.height = currentHeight + "px";
+		document.querySelector(".modified-in-monaco-diff-editor .lines-content.monaco-editor-background").style.height = currentHeight + "px";
+	}	
 }
 
 function generateoOriginalEditor(wholeHeight) {

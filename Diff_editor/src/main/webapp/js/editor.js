@@ -15,7 +15,7 @@ var ceCoordinate = new Object();
 var commitId,fileName,fileId;
 
 $(document).ready(function() {
-
+	getCommitByRQ(document.querySelector("#RQ4"));
 })
 function init() {
 	descriptions.splice(0,descriptions.length);
@@ -35,6 +35,9 @@ function init() {
 	cxt = myCanvas.getContext("2d");
     cxt.clearRect(0,0,myCanvas.width,myCanvas.height); 
     ceCoordinate = new Object();
+    bubbleBottom = 0;
+	clearPopoverTop();
+
 }
 
 function refreshPage(commitID,name) {	
@@ -66,15 +69,14 @@ function refreshPage(commitID,name) {
 	for(var d = 0;d<descriptions.length;d++) {
 		drawBubble(descriptions[d],0);
 	}
-//	
+	
+	adjustHeight();
 	for(var d = 0;d<descriptions.length;d++) {
 		drawAllTagLine(descriptions[d]);
 	}	
-//	
-////	clearPopover();
+
 	drawLinkLine(aMoveBlock,bMoveBlock,"rgba(255, 140, 0, 0.2)",getColorByType("Move"));
 	drawLinkLine(aChangeBlock,bChangeBlock,"rgba(0, 100, 255, 0.2)",getColorByType("Change"));
-//	alert(JSON.stringify(ceCoordinate));
 }
 function handleNesting (data) {
 	$.each(data,function(infoIndex,info){  

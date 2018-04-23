@@ -1,8 +1,8 @@
 package edu.fdu.se.web.astdiff;
 
-import java.io.InputStream;
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -15,7 +15,8 @@ public class ProjectProperties {
 		Properties prop = new Properties();     
         try{
         	String url = this.getClass().getResource("").getPath(); 
-        	String path = url.substring(0, url.indexOf("WEB-INF")) + "WEB-INF/classes/config.properties";    
+        	String path = url.substring(0, url.indexOf("WEB-INF")) + "WEB-INF/classes/config.properties"; 
+        	System.out.println(path);
         	path = path.substring(1);
 //        	InputStream in = this.getClass().getResourceAsStream(path);
             InputStream in = new BufferedInputStream (new FileInputStream(path));

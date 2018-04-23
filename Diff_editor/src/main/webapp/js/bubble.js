@@ -1,4 +1,5 @@
 var bubbleArray = new Array();
+var bubbleBottom = 0;
 
 function drawBubble(entry,level) {
 	if(entry.subDesc != undefined) {
@@ -32,7 +33,7 @@ function drawBubble(entry,level) {
 	var bubbleTop = top+9,bubbleLeft = 110;
 	bubbleDiv.style.borderColor = getColorByType(entry["type2"]);
 	bubbleDiv.style.width = "300px";
-	var list = entry.description;
+	var list = entry.id + ". " +entry.description;
 	if(entry["opt2-exp2"] != undefined) {
 		list += "<ul style='color:rgb(141,182,205)'>";
 		for(var op =0;op<entry["opt2-exp2"].length;op++) {
@@ -46,6 +47,8 @@ function drawBubble(entry,level) {
 	bubbleDiv.style.left = bubbleLeft+"px";
 	
 	computeBubbleCoordinate(bubbleDiv,bubbleTop,bubbleTop+bubbleDiv.offsetHeight);
+	
+	bubbleBottom = parseInt(bubbleArray[bubbleArray.length - 1].style.top) + bubbleArray[bubbleArray.length - 1].offsetHeight;
 }
 
 function getDescCoordinate(entry) {

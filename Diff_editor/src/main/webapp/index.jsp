@@ -21,9 +21,9 @@
     <span class="label label-primary" style="position:absolute;top:0;left:160px;font-size:18px">commit id</span>
     <span class="label label-primary" style="position:absolute;top:0;left:670px;font-size:18px">file name</span>
     <div id ="RQList"class="list-group" style="position:absolute;left:10px;display:inline;width:70px;height:240px;top:30px;overflow:auto">	
-    	<button type="button" class="list-group-item" onclick="getCommitByRQ(this)">
+    	<button id ="RQ3" type="button" class="list-group-item">
 			RQ3</button>
-		<button type="button" class="list-group-item" onclick="getCommitByRQ(this)">
+		<button id ="RQ4" type="button" class="list-group-item" onclick="getCommitByRQ(this)">
 			RQ4</button>
     </div>
 	<div id ="commitList"class="list-group" style="position:absolute;left:160px;display:inline;width:450px;height:200px;top:30px;overflow:auto">		
@@ -103,7 +103,7 @@
 			<div
 				class="monaco-diff-editor monaco-editor-background side-by-side vs"
 				style="position: relative; height: 100%;">	
-				<canvas id="myCanvas3" width="400" height="8000"
+				<canvas id="myCanvas3" width="400" height="300"
 						style="position: absolute; will-change: transform; top: 0px; left: 1486px;"></canvas>		
 				<!--original-->
 				<div class="editor original" data-keybinding-context="2"

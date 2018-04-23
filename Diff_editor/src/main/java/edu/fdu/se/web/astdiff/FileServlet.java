@@ -58,8 +58,7 @@ public class FileServlet extends HttpServlet {
 	public void responseWithFile(HttpServletResponse response,String commitId,String fileName,String fileType) throws ServletException, IOException {
 //		ProjectProperties pp =  ProjectProperties.getInstance();
 //		String root = ProjectProperties.getInstance().getValue(PropertyKeys.RQ3);
-		String root ="";
-		System.out.println(this.getServletContext().getRealPath(""));
+		String root =this.getServletContext().getRealPath("") +File.separator+"RQ3";
 		File f = new File(root);
 		File[] files = f.listFiles();
 		File[] commits = null;
@@ -99,11 +98,11 @@ public class FileServlet extends HttpServlet {
 		browse(target,list);
 		for(File tmp:list){
 			if(fileType.equals("src")
-				&&tmp.getAbsolutePath().contains("\\prev\\")&& tmp.getAbsolutePath().endsWith("\\"+fileName)){
+				&&tmp.getAbsolutePath().contains(File.separator+"prev"+File.separator)&& tmp.getAbsolutePath().endsWith(File.separator+fileName)){
 				writeToSos(tmp,sos);
 					return;
 			}else if(fileType.equals("dst")
-				&&tmp.getAbsolutePath().contains("\\curr\\")&&tmp.getAbsolutePath().endsWith("\\"+fileName)){
+				&&tmp.getAbsolutePath().contains(File.separator+"curr"+File.separator)&&tmp.getAbsolutePath().endsWith(File.separator+fileName)){
 				writeToSos(tmp,sos);
 					return;
 			}else if(fileType.equals("diff.json")

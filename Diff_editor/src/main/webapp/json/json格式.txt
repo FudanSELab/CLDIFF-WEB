@@ -1,9 +1,0 @@
-1. Member 增 member_insert
-2. Member 删 member_delete
-3. Member 改 member_change
-	3.1 Method修改，一般涉及Method的签名,将两个Method用浅色透明阴影框link，method 修改签名的部分再用深色标记
-	3.2 Field修改，Field修改用浅色透明阴影框link，内部修改再用深色标记
-4. Memeber内部
-	4.1 Statement 增 statement_insert 同上
-	4.2 Statement 删 statement_delete 同上
-	4.3 Statement 改 statement_change 同上

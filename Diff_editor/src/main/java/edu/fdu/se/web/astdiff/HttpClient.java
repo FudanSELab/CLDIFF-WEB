@@ -84,7 +84,7 @@ public class HttpClient {
             // 设置连接请求方式
             connection.setRequestMethod("POST");
             // 设置连接主机服务器超时时间：15000毫秒
-            connection.setConnectTimeout(15000);
+            connection.setConnectTimeout(150000);
             // 设置读取主机服务器返回数据超时时间：60000毫秒
             connection.setReadTimeout(60000);
 

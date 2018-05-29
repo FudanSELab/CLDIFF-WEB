@@ -1,0 +1,45 @@
+[
+    {
+        "file": "src-dst",
+        "type2": "Change",
+        "sub-range": [{
+            "file": "dst",
+            "sub-range-code": "386,63,80",
+            "sub-type": "insert"
+        }],
+        "range": "(383,383)-(386,386)",
+        "description": "Change Expression Statement null with/by",
+        "id": 8,
+        "type1": "Statement",
+        "opt2-exp2": [
+            "Insert FieldAccess",
+            "Insert ThisExpression",
+            "Insert stompDecoder"
+        ],
+        "key": "gumtree"
+    },
+    {
+        "file": "src-dst",
+        "type2": "Change",
+        "sub-range": [{
+            "file": "src",
+            "sub-range-code": "151,35,39",
+            "sub-type": "delete"
+        }],
+        "range": "(151,151)-(154,154)",
+        "description": "Change Variable Declaration null with/by",
+        "id": 9,
+        "type1": "Statement",
+        "opt2-exp2": ["Delete "],
+        "key": "gumtree"
+    },
+    {
+        "file": "dst",
+        "type2": "Insert",
+        "range": "(90,90)",
+        "description": "Insert Field",
+        "id": 10,
+        "type1": "Member",
+        "key": "preprocess"
+    }
+]

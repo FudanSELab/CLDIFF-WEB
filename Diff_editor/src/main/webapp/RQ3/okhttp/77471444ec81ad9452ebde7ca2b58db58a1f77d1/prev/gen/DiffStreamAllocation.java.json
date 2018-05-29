@@ -1,0 +1,126 @@
+[
+    {
+        "file": "src-dst",
+        "type2": "Move",
+        "range": "(245,245)-(276,276)",
+        "description": "Move Expression Statement",
+        "id": 1,
+        "type1": "Statement",
+        "key": "gumtree"
+    },
+    {
+        "file": "src-dst",
+        "type2": "Change.Move",
+        "sub-range": [
+            {
+                "file": "src",
+                "sub-range-code": "443,10,28",
+                "sub-type": "move"
+            },
+            {
+                "file": "dst",
+                "sub-range-code": "449,10,28",
+                "sub-type": "move"
+            }
+        ],
+        "range": "(443,443)-(449,449)",
+        "description": "Change.Move InfixExpression",
+        "id": 2,
+        "type1": "Statement",
+        "key": "gumtree"
+    },
+    {
+        "file": "dst",
+        "type2": "Insert",
+        "range": "(467,467)",
+        "description": "Insert Expression Statement",
+        "id": 3,
+        "type1": "Statement",
+        "key": "gumtree"
+    },
+    {
+        "file": "dst",
+        "type2": "Insert",
+        "range": "(180,183)",
+        "description": "Insert If",
+        "id": 4,
+        "type1": "Statement",
+        "key": "gumtree"
+    },
+    {
+        "file": "dst",
+        "type2": "Insert",
+        "range": "(251,251)",
+        "description": "Insert Expression Statement",
+        "id": 5,
+        "type1": "Statement",
+        "key": "gumtree"
+    },
+    {
+        "file": "dst",
+        "type2": "Insert",
+        "range": "(262,262)",
+        "description": "Insert Expression Statement",
+        "id": 6,
+        "type1": "Statement",
+        "key": "gumtree"
+    },
+    {
+        "file": "src-dst",
+        "type2": "Change",
+        "sub-range": [{
+            "file": "dst",
+            "sub-range-code": "462,49,73",
+            "sub-type": "insert"
+        }],
+        "range": "(452,462)-(458,469)",
+        "description": "Change Method declaration with/by",
+        "id": 7,
+        "type1": "Member",
+        "opt2-exp2": [],
+        "key": "gumtree"
+    },
+    {
+        "file": "src-dst",
+        "type2": "Change",
+        "sub-range": [{
+            "file": "dst",
+            "sub-range-code": "449,10,49",
+            "sub-type": "insert"
+        }],
+        "range": "(443,443)-(449,449)",
+        "description": "Change If condition with/by",
+        "id": 8,
+        "type1": "Statement",
+        "opt2-exp2": [
+            "Insert InfixExpression",
+            "Insert PrefixExpression",
+            "Insert reportedAcquired"
+        ],
+        "key": "gumtree"
+    },
+    {
+        "file": "src-dst",
+        "type2": "Change",
+        "sub-range": [{
+            "file": "dst",
+            "sub-range-code": "245,24,29",
+            "sub-type": "insert"
+        }],
+        "range": "(240,240)-(245,245)",
+        "description": "Change Expression Statement null with/by",
+        "id": 9,
+        "type1": "Statement",
+        "opt2-exp2": ["Insert false"],
+        "key": "gumtree"
+    },
+    {
+        "file": "dst",
+        "type2": "Insert",
+        "range": "(90,90)",
+        "description": "Insert Field",
+        "id": 10,
+        "type1": "Member",
+        "key": "preprocess"
+    }
+]

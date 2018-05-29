@@ -1,0 +1,56 @@
+[
+    {
+        "file": "src-dst",
+        "type2": "Change",
+        "sub-range": [
+            {
+                "file": "dst",
+                "sub-range-code": "86,55,67",
+                "sub-type": "insert"
+            },
+            {
+                "file": "src",
+                "sub-range-code": "86,55,62",
+                "sub-type": "delete"
+            }
+        ],
+        "range": "(86,86)-(86,86)",
+        "description": "Change Variable Declaration null with/by",
+        "id": 0,
+        "type1": "Statement",
+        "opt2-exp2": [
+            "Insert FieldAccess",
+            "Insert ThisExpression",
+            "Insert context",
+            "Delete context"
+        ],
+        "key": "gumtree"
+    },
+    {
+        "file": "src-dst",
+        "type2": "Change",
+        "sub-range": [
+            {
+                "file": "dst",
+                "sub-range-code": "92,28,40",
+                "sub-type": "insert"
+            },
+            {
+                "file": "src",
+                "sub-range-code": "92,28,35",
+                "sub-type": "delete"
+            }
+        ],
+        "range": "(92,94)-(92,94)",
+        "description": "Change If condition with/by",
+        "id": 1,
+        "type1": "Statement",
+        "opt2-exp2": [
+            "Insert FieldAccess",
+            "Insert ThisExpression",
+            "Insert context",
+            "Delete context"
+        ],
+        "key": "gumtree"
+    }
+]

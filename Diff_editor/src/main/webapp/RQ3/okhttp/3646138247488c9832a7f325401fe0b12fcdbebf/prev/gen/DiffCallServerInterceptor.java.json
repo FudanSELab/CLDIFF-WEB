@@ -1,0 +1,91 @@
+[
+    {
+        "file": "src-dst",
+        "type2": "Change.Move",
+        "sub-range": [
+            {
+                "file": "src",
+                "sub-range-code": "52,79,86",
+                "sub-type": "move"
+            },
+            {
+                "file": "dst",
+                "sub-range-code": "51,66,73",
+                "sub-type": "move"
+            }
+        ],
+        "range": "(52,52)-(51,51)",
+        "description": "Change.Move SimpleName",
+        "id": 5,
+        "type1": "Statement",
+        "key": "gumtree"
+    },
+    {
+        "file": "src-dst",
+        "type2": "Change.Move",
+        "sub-range": [
+            {
+                "file": "src",
+                "sub-range-code": "100,59,67",
+                "sub-type": "move"
+            },
+            {
+                "file": "dst",
+                "sub-range-code": "99,46,54",
+                "sub-type": "move"
+            }
+        ],
+        "range": "(100,100)-(99,99)",
+        "description": "Change.Move SimpleName",
+        "id": 6,
+        "type1": "Statement",
+        "key": "gumtree"
+    },
+    {
+        "file": "src-dst",
+        "type2": "Change",
+        "sub-range": [{
+            "file": "src",
+            "sub-range-code": "52,66,97",
+            "sub-type": "delete"
+        }],
+        "range": "(52,52)-(51,51)",
+        "description": "Change Expression Statement null with/by",
+        "id": 7,
+        "type1": "Statement",
+        "opt2-exp2": [
+            "Delete MethodInvocation",
+            "Delete headerLength",
+            "Delete headers"
+        ],
+        "key": "gumtree"
+    },
+    {
+        "file": "src-dst",
+        "type2": "Change",
+        "sub-range": [{
+            "file": "src",
+            "sub-range-code": "100,46,78",
+            "sub-type": "delete"
+        }],
+        "range": "(99,100)-(98,99)",
+        "description": "Change Expression Statement null with/by",
+        "id": 8,
+        "type1": "Statement",
+        "opt2-exp2": [
+            "Delete MethodInvocation",
+            "Delete headerLength",
+            "Delete headers"
+        ],
+        "key": "gumtree"
+    },
+    {
+        "file": "src",
+        "type2": "Delete",
+        "range": "(127,136)",
+        "description": "Delete Method",
+        "id": 9,
+        "type1": "Member",
+        "key": "preprocess"
+    }
+]

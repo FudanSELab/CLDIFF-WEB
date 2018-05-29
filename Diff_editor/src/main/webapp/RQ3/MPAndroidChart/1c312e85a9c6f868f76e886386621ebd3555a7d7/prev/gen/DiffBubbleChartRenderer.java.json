@@ -1,0 +1,118 @@
+[
+    {
+        "file": "src-dst",
+        "type2": "Change.Move",
+        "sub-range": [
+            {
+                "file": "src",
+                "sub-range-code": "60,29,90",
+                "sub-type": "move"
+            },
+            {
+                "file": "dst",
+                "sub-range-code": "64,19,80",
+                "sub-type": "move"
+            }
+        ],
+        "range": "(60,60)-(64,64)",
+        "description": "Change.Move ConditionalExpression",
+        "id": 7,
+        "type1": "Statement",
+        "key": "gumtree"
+    },
+    {
+        "file": "dst",
+        "type2": "Insert",
+        "range": "(88,88)",
+        "description": "Insert Variable Declaration",
+        "id": 8,
+        "type1": "Statement",
+        "key": "gumtree"
+    },
+    {
+        "file": "dst",
+        "type2": "Insert",
+        "range": "(224,224)",
+        "description": "Insert Variable Declaration",
+        "id": 9,
+        "type1": "Statement",
+        "key": "gumtree"
+    },
+    {
+        "file": "src-dst",
+        "type2": "Change",
+        "sub-range": [{
+            "file": "dst",
+            "sub-range-code": "62,33,54",
+            "sub-type": "insert"
+        }],
+        "range": "(59,63)-(59,68)",
+        "description": "Change Method declaration with/by",
+        "id": 10,
+        "type1": "Member",
+        "opt2-exp2": [],
+        "key": "gumtree"
+    },
+    {
+        "file": "src-dst",
+        "type2": "Change",
+        "sub-range": [
+            {
+                "file": "dst",
+                "sub-range-code": "63,29,2022",
+                "sub-type": "insert"
+            },
+            {
+                "file": "dst",
+                "sub-range-code": "63,0,2104",
+                "sub-type": "insert"
+            },
+            {
+                "file": "dst",
+                "sub-range-code": "65,0,27",
+                "sub-type": "insert"
+            }
+        ],
+        "range": "(60,60)-(63,65)",
+        "description": "Change Variable Declaration null with/by",
+        "id": 11,
+        "type1": "Statement",
+        "opt2-exp2": [
+            "Insert ConditionalExpression",
+            "Insert normalizeSize",
+            "Insert ParenthesizedExpression",
+            "Insert entrySize"
+        ],
+        "key": "gumtree"
+    },
+    {
+        "file": "src-dst",
+        "type2": "Change",
+        "sub-range": [{
+            "file": "dst",
+            "sub-range-code": "103,97,110",
+            "sub-type": "insert"
+        }],
+        "range": "(96,96)-(103,103)",
+        "description": "Change Variable Declaration null with/by",
+        "id": 12,
+        "type1": "Statement",
+        "opt2-exp2": ["Insert normalizeSize"],
+        "key": "gumtree"
+    },
+    {
+        "file": "src-dst",
+        "type2": "Change",
+        "sub-range": [{
+            "file": "dst",
+            "sub-range-code": "235,97,110",
+            "sub-type": "insert"
+        }],
+        "range": "(226,226)-(235,235)",
+        "description": "Change Variable Declaration null with/by",
+        "id": 13,
+        "type1": "Statement",
+        "opt2-exp2": ["Insert normalizeSize"],
+        "key": "gumtree"
+    }
+]

@@ -1,0 +1,56 @@
+{"links": [
+    {
+        "link-type": "one-file-link",
+        "links": [],
+        "file-name": "EventListener.java"
+    },
+    {
+        "link-type": "two-file-link",
+        "file-name2": "Headers.java",
+        "links": [],
+        "file-name": "CallServerInterceptor.java"
+    },
+    {
+        "link-type": "one-file-link",
+        "links": [
+            {
+                "from": 5,
+                "to": 7,
+                "desc": "a control dependency b"
+            },
+            {
+                "from": 8,
+                "to": 6,
+                "desc": "a control dependency b"
+            },
+            {
+                "from": 7,
+                "to": 9,
+                "desc": "a call method b"
+            },
+            {
+                "from": 8,
+                "to": 9,
+                "desc": "a call method b"
+            }
+        ],
+        "file-name": "CallServerInterceptor.java"
+    },
+    {
+        "link-type": "two-file-link",
+        "file-name2": "EventListener.java",
+        "links": [],
+        "file-name": "CallServerInterceptor.java"
+    },
+    {
+        "link-type": "two-file-link",
+        "file-name2": "Headers.java",
+        "links": [],
+        "file-name": "EventListener.java"
+    },
+    {
+        "link-type": "one-file-link",
+        "links": [],
+        "file-name": "Headers.java"
+    }
+]}

@@ -1,0 +1,101 @@
+{"links": [{
+    "link-type": "one-file-link",
+    "links": [
+        {
+            "from": 2,
+            "to": 3,
+            "desc": "a same variable as b serverName"
+        },
+        {
+            "from": 8,
+            "to": 9,
+            "desc": "a same variable as b stopWatch"
+        },
+        {
+            "from": 8,
+            "to": 10,
+            "desc": "a same variable as b stopWatch"
+        },
+        {
+            "from": 9,
+            "to": 10,
+            "desc": "a same variable as b stopWatch"
+        },
+        {
+            "from": 0,
+            "to": 1,
+            "desc": "a same variable as b serverName"
+        },
+        {
+            "from": 4,
+            "to": 5,
+            "desc": "a same variable as b stopWatch"
+        },
+        {
+            "from": 4,
+            "to": 6,
+            "desc": "a same variable as b stopWatch"
+        },
+        {
+            "from": 5,
+            "to": 6,
+            "desc": "a same variable as b stopWatch"
+        },
+        {
+            "from": 6,
+            "to": 7,
+            "desc": "a same variable as b millis"
+        },
+        {
+            "from": 3,
+            "to": 11,
+            "desc": "a access field b logger"
+        },
+        {
+            "from": 10,
+            "to": 11,
+            "desc": "a access field b logger"
+        },
+        {
+            "from": 1,
+            "to": 11,
+            "desc": "a access field b logger"
+        },
+        {
+            "from": 7,
+            "to": 11,
+            "desc": "a access field b logger"
+        },
+        {
+            "from": 3,
+            "to": 10,
+            "desc": "a field acess same as b logger"
+        },
+        {
+            "from": 3,
+            "to": 1,
+            "desc": "a field acess same as b logger"
+        },
+        {
+            "from": 3,
+            "to": 7,
+            "desc": "a field acess same as b logger"
+        },
+        {
+            "from": 10,
+            "to": 1,
+            "desc": "a field acess same as b logger"
+        },
+        {
+            "from": 10,
+            "to": 7,
+            "desc": "a field acess same as b logger"
+        },
+        {
+            "from": 1,
+            "to": 7,
+            "desc": "a field acess same as b logger"
+        }
+    ],
+    "file-name": "AbstractHttpServer.java"
+}]}

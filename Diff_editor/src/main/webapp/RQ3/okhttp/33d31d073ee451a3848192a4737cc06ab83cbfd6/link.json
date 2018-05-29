@@ -1,0 +1,352 @@
+{"links": [
+    {
+        "link-type": "one-file-link",
+        "links": [
+            {
+                "from": 0,
+                "to": 2,
+                "desc": "a control dependency b"
+            },
+            {
+                "from": 0,
+                "to": 2,
+                "desc": "a same variable as b"
+            },
+            {
+                "from": 0,
+                "to": 1,
+                "desc": "a same variable as b"
+            },
+            {
+                "from": 2,
+                "to": 1,
+                "desc": "a control dependency b"
+            },
+            {
+                "from": 2,
+                "to": 1,
+                "desc": "a same variable as b"
+            }
+        ],
+        "file-name": "CacheInterceptor.java"
+    },
+    {
+        "link-type": "two-file-link",
+        "file-name2": "RealResponseBody.java",
+        "links": [],
+        "file-name": "Http1Codec.java"
+    },
+    {
+        "link-type": "two-file-link",
+        "file-name2": "RealResponseBody.java",
+        "links": [],
+        "file-name": "Http2Codec.java"
+    },
+    {
+        "link-type": "one-file-link",
+        "links": [
+            {
+                "from": 5,
+                "to": 7,
+                "desc": "a control dependency b"
+            },
+            {
+                "from": 7,
+                "to": 11,
+                "desc": "a same variable as b"
+            },
+            {
+                "from": 7,
+                "to": 14,
+                "desc": "a access field b"
+            },
+            {
+                "from": 11,
+                "to": 13,
+                "desc": "a access field b"
+            },
+            {
+                "from": 9,
+                "to": 14,
+                "desc": "a access field b"
+            },
+            {
+                "from": 9,
+                "to": 12,
+                "desc": "a access field b"
+            },
+            {
+                "from": 10,
+                "to": 13,
+                "desc": "a access field b"
+            },
+            {
+                "from": 10,
+                "to": 14,
+                "desc": "a access field b"
+            },
+            {
+                "from": 6,
+                "to": 12,
+                "desc": "a access field b"
+            },
+            {
+                "from": 7,
+                "to": 9,
+                "desc": "a field acess same as b"
+            },
+            {
+                "from": 7,
+                "to": 10,
+                "desc": "a field acess same as b"
+            },
+            {
+                "from": 11,
+                "to": 10,
+                "desc": "a field acess same as b"
+            },
+            {
+                "from": 9,
+                "to": 10,
+                "desc": "a field acess same as b"
+            },
+            {
+                "from": 9,
+                "to": 6,
+                "desc": "a field acess same as b"
+            }
+        ],
+        "file-name": "RealResponseBody.java"
+    },
+    {
+        "link-type": "two-file-link",
+        "file-name2": "Http2Codec.java",
+        "links": [],
+        "file-name": "CacheInterceptor.java"
+    },
+    {
+        "link-type": "two-file-link",
+        "file-name2": "Http2Codec.java",
+        "links": [],
+        "file-name": "Http1Codec.java"
+    },
+    {
+        "link-type": "two-file-link",
+        "file-name2": "Http2Codec.java",
+        "links": [],
+        "file-name": "BridgeInterceptor.java"
+    },
+    {
+        "link-type": "two-file-link",
+        "file-name2": "CacheInterceptor.java",
+        "links": [],
+        "file-name": "BridgeInterceptor.java"
+    },
+    {
+        "link-type": "two-file-link",
+        "file-name2": "RealResponseBody.java",
+        "links": [],
+        "file-name": "CacheInterceptor.java"
+    },
+    {
+        "link-type": "one-file-link",
+        "links": [
+            {
+                "from": 18,
+                "to": 25,
+                "desc": "a control dependency b"
+            },
+            {
+                "from": 18,
+                "to": 25,
+                "desc": "a same variable as b"
+            },
+            {
+                "from": 18,
+                "to": 24,
+                "desc": "a same variable as b"
+            },
+            {
+                "from": 18,
+                "to": 19,
+                "desc": "a same variable as b"
+            },
+            {
+                "from": 18,
+                "to": 20,
+                "desc": "a same variable as b"
+            },
+            {
+                "from": 18,
+                "to": 21,
+                "desc": "a same variable as b"
+            },
+            {
+                "from": 18,
+                "to": 22,
+                "desc": "a same variable as b"
+            },
+            {
+                "from": 18,
+                "to": 23,
+                "desc": "a same variable as b"
+            },
+            {
+                "from": 25,
+                "to": 24,
+                "desc": "a same variable as b"
+            },
+            {
+                "from": 25,
+                "to": 19,
+                "desc": "a same variable as b"
+            },
+            {
+                "from": 25,
+                "to": 20,
+                "desc": "a same variable as b"
+            },
+            {
+                "from": 25,
+                "to": 21,
+                "desc": "a same variable as b"
+            },
+            {
+                "from": 24,
+                "to": 19,
+                "desc": "a same variable as b"
+            },
+            {
+                "from": 24,
+                "to": 20,
+                "desc": "a same variable as b"
+            },
+            {
+                "from": 24,
+                "to": 21,
+                "desc": "a same variable as b"
+            },
+            {
+                "from": 19,
+                "to": 20,
+                "desc": "a same variable as b"
+            },
+            {
+                "from": 19,
+                "to": 21,
+                "desc": "a same variable as b"
+            },
+            {
+                "from": 19,
+                "to": 22,
+                "desc": "a same variable as b"
+            },
+            {
+                "from": 19,
+                "to": 23,
+                "desc": "a same variable as b"
+            },
+            {
+                "from": 20,
+                "to": 21,
+                "desc": "a same variable as b"
+            },
+            {
+                "from": 20,
+                "to": 22,
+                "desc": "a field acess same as b"
+            },
+            {
+                "from": 20,
+                "to": 22,
+                "desc": "a same variable as b"
+            },
+            {
+                "from": 20,
+                "to": 23,
+                "desc": "a same variable as b"
+            },
+            {
+                "from": 21,
+                "to": 22,
+                "desc": "a same variable as b"
+            },
+            {
+                "from": 22,
+                "to": 23,
+                "desc": "a same variable as b"
+            },
+            {
+                "from": 20,
+                "to": 22,
+                "desc": "a field acess same as b"
+            },
+            {
+                "from": 25,
+                "to": 26,
+                "desc": "a call method b"
+            }
+        ],
+        "file-name": "Http1Codec.java"
+    },
+    {
+        "link-type": "two-file-link",
+        "file-name2": "Http1Codec.java",
+        "links": [],
+        "file-name": "CacheInterceptor.java"
+    },
+    {
+        "link-type": "one-file-link",
+        "links": [
+            {
+                "from": 27,
+                "to": 29,
+                "desc": "a control dependency b"
+            },
+            {
+                "from": 27,
+                "to": 29,
+                "desc": "a same variable as b"
+            },
+            {
+                "from": 27,
+                "to": 28,
+                "desc": "a same variable as b"
+            },
+            {
+                "from": 29,
+                "to": 28,
+                "desc": "a same variable as b"
+            }
+        ],
+        "file-name": "Http2Codec.java"
+    },
+    {
+        "link-type": "two-file-link",
+        "file-name2": "RealResponseBody.java",
+        "links": [],
+        "file-name": "BridgeInterceptor.java"
+    },
+    {
+        "link-type": "one-file-link",
+        "links": [
+            {
+                "from": 3,
+                "to": 4,
+                "desc": "a control dependency b"
+            },
+            {
+                "from": 3,
+                "to": 4,
+                "desc": "a same variable as b"
+            }
+        ],
+        "file-name": "BridgeInterceptor.java"
+    },
+    {
+        "link-type": "two-file-link",
+        "file-name2": "Http1Codec.java",
+        "links": [],
+        "file-name": "BridgeInterceptor.java"
+    }
+]}

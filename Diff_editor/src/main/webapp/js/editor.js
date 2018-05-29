@@ -15,7 +15,7 @@ var ceCoordinate = new Object();
 var commitId,fileName,fileId;
 
 $(document).ready(function() {
-	getCommitByRQ(document.querySelector("#RQ4"));
+//	getCommitByRQ(document.querySelector("#RQ4"));
 })
 function init() {
 	descriptions.splice(0,descriptions.length);

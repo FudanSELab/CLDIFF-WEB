@@ -44,6 +44,37 @@ function getFileFromServer(url,commitID,name,type) {
 	return content;
 }
 
+function getMetaFileFromServer(url,commitURL) {
+	var content;
+	$.ajaxSettings.async = false;
+	$.post(url,{commit_url:commitURL}, function(data) {
+		content = data;
+	});
+	return content;
+}
+
+function getFileByCommitUrl() {	
+	init();
+	var listGroup = document.getElementById("fileList");
+	listGroup.innerHTML="";
+	var commitUrl = document.getElementById("commitUrl").value.trim();
+//	alert(commitUrl);
+	var json = getMetaFileFromServer("TestServlet/",commitUrl);
+	json = eval("("+json+")");
+	var files = json.files;
+	fileNameList = new Array();
+	for(var i=0;i<files.length;i++) {
+		var buttonDiv = document.createElement("button");
+		buttonDiv.type="button";
+		buttonDiv.className="list-group-item";
+		buttonDiv.innerHTML=files[i]["file_name"];
+		buttonDiv.onclick = getContentByFileName;
+		listGroup.appendChild(buttonDiv);
+		fileNameList.push(files[i]["file_name"]);
+	}
+	alert(fileNameList);
+}
+
 function getCommitByRQ(button) {	
 	init();	
 	var listGroup = document.getElementById("commitList");

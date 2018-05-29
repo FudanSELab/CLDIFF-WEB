@@ -1,26 +1,5 @@
 var fileNameList;
-//var RQ3 = [
-//           "3c1adf7f6af0dff9bda74f40dabe8cf428a62003",
-//		   "ace6bd2418cba892f793e9e3666ac02a541074c7",
-//		   "65b17b80ba353d3c21ab392d711d347bcbcce42b",
-//		   "90309ab0b5c5cc3b406825fd3f9db730db03ad36",
-//		   "f5cce14fe7749183a766e6335ee511d8918a81d4",
-//		   "3f392e32f56993e4cf92e5c61ed227b80fa10b82",
-//		   "96da77ef759e8f9623b20d7f28adbb72dc13a946",
-//		   "6560aed1c85eef68faeb0356c34e12035a2826bf",
-//		   "ea9ad4ee9bd6604fe57f73004bf375c7c4cd7be3",
-//		   "fccec210b4fecbbc3ab758d127a95fb741b21175"];
-//var RQ4 = [
-//	       "3646138247488c9832a7f325401fe0b12fcdbebf",
-//	       "33d31d073ee451a3848192a4737cc06ab83cbfd6",
-//	       "77471444ec81ad9452ebde7ca2b58db58a1f77d1",
-//	       "e6824c1ab2b649654bebabc3cedb5a15f7605141",
-//	       "0f1542d7d5d2ce2e89118a5701a6d6fd7d5684b0",
-//	       "2a4b18e743f0958551f4e31fdf81e618cc35f238",
-//	       "1c312e85a9c6f868f76e886386621ebd3555a7d7",
-//	       "9399db9ec77560669dc598379fd88a2b0014ad8e",
-//	       "8c37ad7ac5034faed74cb53fd37b9865adfd56a5",
-//	       "a6d527e57aedd94a2e23cc8d35572076dbf0e417"];
+var fileNameWithParent;
 
 var RQ4 = [
            "3c1adf7f6af0dff9bda74f40dabe8cf428a62003",
@@ -58,22 +37,54 @@ function getFileByCommitUrl() {
 	var listGroup = document.getElementById("fileList");
 	listGroup.innerHTML="";
 	var commitUrl = document.getElementById("commitUrl").value.trim();
-//	alert(commitUrl);
 	var json = getMetaFileFromServer("TestServlet/",commitUrl);
 	json = eval("("+json+")");
+	var parents = json.parents;
 	var files = json.files;
-	fileNameList = new Array();
+	fileNameWithParent = new Object();
 	for(var i=0;i<files.length;i++) {
-		var buttonDiv = document.createElement("button");
-		buttonDiv.type="button";
-		buttonDiv.className="list-group-item";
-		buttonDiv.innerHTML=files[i]["file_name"];
-		buttonDiv.onclick = getContentByFileName;
-		listGroup.appendChild(buttonDiv);
-		fileNameList.push(files[i]["file_name"]);
+		var parent_commit = files[i]["parent_commit"];
+		var file_name = files[i]["file_name"];
+		if(parent_commit in fileNameWithParent) {
+			fileNameWithParent[parent_commit].push(file_name);
+		}
+		else {
+			var array = new Array();
+			array.push(file_name);
+			fileNameWithParent[parent_commit] = array;
+		}		
 	}
-	alert(fileNameList);
+	for(var attribute in fileNameWithParent){  
+		if(fileNameWithParent[attribute] != undefined) {
+			var dividerDiv = document.createElement("li");
+			dividerDiv.className = "dropdown-header";
+			dividerDiv.innerHTML="diff with parent commit id : " + attribute;
+			dividerDiv.style = "color:#000079";
+			listGroup.appendChild(dividerDiv);
+			for(var file=0;file<fileNameWithParent[attribute].length;file++) {
+				var li = document.createElement("li");
+				li.parentId = attribute;
+				li.innerHTML="<a onclick = 'getContentByFileNameAndParentId(this)'>"+fileNameWithParent[attribute][file]+"</a>";
+				listGroup.appendChild(li);
+			}
+		}			
+	}
+	listGroup.style.display = "inline";
+//	var last=JSON.stringify(fileNameWithParent); //将JSON对象转化为JSON字符
+//	alert(last);
 }
+
+function getContentByFileNameAndParentId(file) {
+	var activeList = document.querySelectorAll("#fileList .active");
+	for(var i=0;i<activeList.length;i++) {
+		activeList[i].classList.remove("active");
+	}
+	file.classList.add("active");
+	var fileName = file.innerHTML.trim();
+	var parentId = file.parentNode.parentId;
+//	alert(parentId+fileName);
+}
+
 
 function getCommitByRQ(button) {	
 	init();	

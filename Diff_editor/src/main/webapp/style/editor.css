@@ -4,6 +4,25 @@
  * Released under the MIT license
  * https://github.com/Microsoft/vscode/blob/master/LICENSE.txt
  *-----------------------------------------------------------*/
+/* .dropdown-menu .active,.dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover {
+	color: #333;
+	background-color: #e6e6e6;
+	border-color: #adadad
+} */
+
+/* .dropdown-menu .active,.dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover {
+	color: #ffffff;
+	background-color: #337ab7;
+	background-image: none;
+	border-color: #245580
+} */
+.dropdown-menu .active,.dropdown-menu .active:focus, .dropdown-menu .active:hover {
+	color: #ffffff;
+	background-color: #337ab7;
+	background-image: none;
+	border-color: #245580
+}
+
 .builder-hidden {
     display: none!important;
     visibility: hidden!important

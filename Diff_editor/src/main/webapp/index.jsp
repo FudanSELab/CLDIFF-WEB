@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <title>editor</title>
 <link type="text/css" rel="styleSheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css" />
+<!-- <link type="text/css" rel="styleSheet" href="bootstrap-3.3.7-dist/css/bootstrap.css" /> -->
 <link type="text/css" rel="styleSheet" href="bootstrap-3.3.7-dist/css/bootstrap-theme.min.css" />
 <!-- <link type="text/css" rel="styleSheet" href="style/base.css" />
  --><link type="text/css" rel="styleSheet" href="style/editor.css" />
@@ -26,8 +27,6 @@
 		<div id ="fileList" class="list-group" style="width:800px;">
 		</div>
 	</div> -->
-<!-- 	<form action="/Diff_editor/TestServlet/" method="POST" class="form-inline" style="position: absolute; left: 50px; width: 1400px;top: 30px;">
- -->	
  	<form class="form-inline" style="position: absolute; left: 50px; width: 1400px;top: 30px;">	
  		<div class="form-group">
 			<label style="display: inline;">commitURL:&nbsp;&nbsp;</label > 
@@ -36,12 +35,22 @@
 		<button type="button" class="btn btn-primary" onclick = "getFileByCommitUrl()">search</button>
 	</form>
 	
-	<div style="position:absolute;left:144px;display:inline;width:1000px;height:160px;top:70px;overflow:auto">
-		<div id ="fileList" class="list-group" style="width:1000px;">
-		</div>
-	</div>
+	<!-- <div style="position:absolute;left:144px;display:inline;width:1000px;height:130px;top:70px;"> -->
+		<!-- <div id ="fileList" class="list-group" style="width:1000px;">
+		
+		</div> -->
+		<ul id ="fileList" class="dropdown-menu" aria-labelledby="dropdownMenu3" style="position:absolute;left:144px;width:1000px;height:130px;top:70px;width:1000px;overflow:auto"> 
+			<!-- <li class="dropdown-header">Dropdown header</li>
+			<li><a href="#">Action</a></li>
+			<li><a href="#">Another action</a></li>
+			<li><a href="#">Something else here</a></li>
+			<li class="dropdown-header">Dropdown header</li>
+			<li><a href="#">Separated link</a></li> -->
+		</ul>
+		
+	<!-- </div> -->
 
-	<div class="panel panel-default"
+		<div class="panel panel-default"
 		style="position: absolute; left: 1550px; display: inline; width: 250px; height: 200px; top: 30px;">
 		<div class="panel-heading">
 			<h3 class="panel-title">Legend</h3>

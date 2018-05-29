@@ -58,10 +58,10 @@ function getFileByCommitUrl() {
 	var listGroup = document.getElementById("fileList");
 	listGroup.innerHTML="";
 	var commitUrl = document.getElementById("commitUrl").value.trim();
-//	alert(commitUrl);
 	var json = getMetaFileFromServer("TestServlet/",commitUrl);
 	json = eval("("+json+")");
 	var files = json.files;
+
 	fileNameList = new Array();
 	for(var i=0;i<files.length;i++) {
 		var buttonDiv = document.createElement("button");

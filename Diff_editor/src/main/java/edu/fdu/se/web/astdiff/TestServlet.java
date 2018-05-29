@@ -26,8 +26,14 @@ public class TestServlet extends HttpServlet { // Must be public and extend Http
             System.out.println(postString);
             String result = HttpClient.doPost("http://127.0.0.1:8081/", postString);
             System.out.println(result);
+            PrintWriter out = response.getWriter();    //设定传参变量
+            out.print(result);      //结果传到前端
 
-            JSONObject resultJson = JSONObject.fromObject(result);
+//            //将result数据打包
+//            request.setAttribute("meta", result);
+//            //将result数据发送到.jap文件中
+//            request.getRequestDispatcher("index.jsp").forward(request, response);
+            /*JSONObject resultJson = JSONObject.fromObject(result);
             if (resultJson.getBoolean("result")&&!resultJson.getString("errorMessage").isEmpty()) {
                 PrintWriter out = response.getWriter();
                 out.println("<script type=\"text/javascript\">");
@@ -35,7 +41,7 @@ public class TestServlet extends HttpServlet { // Must be public and extend Http
                 out.println(alert);
                 System.out.println(alert);
                 out.println("</script>");
-            }
+            }*/
 
         }
 

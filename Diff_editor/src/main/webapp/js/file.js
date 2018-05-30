@@ -1,23 +1,20 @@
 var fileNameList;
 var fileNameWithParent;
+var metaObject;
 
-var RQ4 = [
-           "3c1adf7f6af0dff9bda74f40dabe8cf428a62003",
-           "ace6bd2418cba892f793e9e3666ac02a541074c7",
-		   "65b17b80ba353d3c21ab392d711d347bcbcce42b",
-		   "f5cce14fe7749183a766e6335ee511d8918a81d4",
-		   "ea9ad4ee9bd6604fe57f73004bf375c7c4cd7be3",
-	       "3646138247488c9832a7f325401fe0b12fcdbebf",
-	       "33d31d073ee451a3848192a4737cc06ab83cbfd6",
-	       "77471444ec81ad9452ebde7ca2b58db58a1f77d1",
-	       "1c312e85a9c6f868f76e886386621ebd3555a7d7",
-	       "8c37ad7ac5034faed74cb53fd37b9865adfd56a5",];
+//function getFileFromServer(url,commitID,name,type) {
+//	var content;
+//	$.ajaxSettings.async = false;
+//	$.post(url,{commitId:commitID,fileName:name,SrcOrDstOrJson:type}, function(data) {
+//		content = data;
+//	});
+//	return content;
+//}
 
-
-function getFileFromServer(url,commitID,name,type) {
+function getAllFileFromServer(url,author,commitHash,parentCommitHash,projectName,prevFilePath,currFilePath) {
 	var content;
 	$.ajaxSettings.async = false;
-	$.post(url,{commitId:commitID,fileName:name,SrcOrDstOrJson:type}, function(data) {
+	$.post(url,{author:author,commit_hash:commitHash,parent_commit_hash:parentCommitHash,project_name:projectName,prev_file_path:prevFilePath,curr_file_path:currFilePath}, function(data) {
 		content = data;
 	});
 	return content;
@@ -37,39 +34,51 @@ function getFileByCommitUrl() {
 	var listGroup = document.getElementById("fileList");
 	listGroup.innerHTML="";
 	var commitUrl = document.getElementById("commitUrl").value.trim();
-	var json = getMetaFileFromServer("TestServlet/",commitUrl);
+//	var json = getMetaFileFromServer("TestServlet/",commitUrl);
+	var json = getMetaFileFromServer("TestFileServlet",commitUrl);
 	json = eval("("+json+")");
 	var parents = json.parents;
 	var files = json.files;
+	metaObject = new Object();
+	metaObject["author"] = json["author"];
+	metaObject["date_time"] = json["date_time"];
+	metaObject["commit_hash"] = json["commit_hash"];
+	metaObject["project_name"] = json["project_name"];
+//	metaObject["parent_commit_hash"] = json["parent_commit_hash"];//????
 	fileNameWithParent = new Object();
 	for(var i=0;i<files.length;i++) {
-		var parent_commit = files[i]["parent_commit"];
 		var file_name = files[i]["file_name"];
-		if(parent_commit in fileNameWithParent) {
-			fileNameWithParent[parent_commit].push(file_name);
+		var parent_commit = files[i]["parent_commit"];
+		var fileObj = new Object();
+		fileObj["parent_commit"] = parent_commit;
+		fileObj["prev_file_path"] = files[i]["prev_file_path"];
+		fileObj["curr_file_path"] = files[i]["curr_file_path"];
+		if(parent_commit in fileNameWithParent) {			
+			fileNameWithParent[parent_commit][file_name] = fileObj;
 		}
 		else {
-			var array = new Array();
-			array.push(file_name);
-			fileNameWithParent[parent_commit] = array;
+			var parentCommitObj = new Object();
+			parentCommitObj[file_name] = fileObj;
+			fileNameWithParent[parent_commit] = parentCommitObj;
 		}		
 	}
-	for(var attribute in fileNameWithParent){  
-		if(fileNameWithParent[attribute] != undefined) {
+	for(var parentCommit in fileNameWithParent){  
+		if(fileNameWithParent[parentCommit] != undefined) {
 			var dividerDiv = document.createElement("li");
 			dividerDiv.className = "dropdown-header";
-			dividerDiv.innerHTML="diff with parent commit id : " + attribute;
+			dividerDiv.innerHTML="diff with parent commit id : " + parentCommit;
 			dividerDiv.style = "color:#000079";
 			listGroup.appendChild(dividerDiv);
-			for(var file=0;file<fileNameWithParent[attribute].length;file++) {
+			for(var fileName in fileNameWithParent[parentCommit]){ 
 				var li = document.createElement("li");
-				li.parentId = attribute;
-				li.innerHTML="<a onclick = 'getContentByFileNameAndParentId(this)'>"+fileNameWithParent[attribute][file]+"</a>";
+				li.parentId = parentCommit;
+				li.innerHTML="<a onclick = 'getContentByFileNameAndParentId(this)'>"+fileName+"</a>";
 				listGroup.appendChild(li);
 			}
 		}			
 	}
-	listGroup.style.display = "inline";
+	if(listGroup.children.length > 0)
+		listGroup.style.display = "inline";
 //	var last=JSON.stringify(fileNameWithParent); //将JSON对象转化为JSON字符
 //	alert(last);
 }
@@ -82,67 +91,10 @@ function getContentByFileNameAndParentId(file) {
 	file.classList.add("active");
 	var fileName = file.innerHTML.trim();
 	var parentId = file.parentNode.parentId;
-//	alert(parentId+fileName);
-}
-
-
-function getCommitByRQ(button) {	
-	init();	
-	var listGroup = document.getElementById("commitList");
-	listGroup.innerHTML="";
-	
-	var activeList = document.querySelectorAll("#RQList .active");
-	for(var i=0;i<activeList.length;i++) {
-		activeList[i].classList.remove("active");
-	}
-	button.classList.add("active");
-	var RQ = $(button).contents().filter(function() { return this.nodeType === 3; }).text().trim();
-	
-	var commits;
-	(RQ == "RQ3") ? commits = RQ3 : commits = RQ4;
-	var inner ="";
-	for(var i=0;i<commits.length;i++) {
-		inner += "<button type='button' class='list-group-item' onclick='getFileByCommit(this)'>" +
-				"<span class='badge' style='float: left; margin-right: 6px'>"+(i+1)+"</span>"+commits[i]+"</button>";
-	}
-	listGroup.innerHTML = inner;
-	
-	listGroup = document.getElementById("fileList");
-	listGroup.innerHTML="";
-	document.querySelector(".original-in-monaco-diff-editor").innerHTML="";
-	document.querySelector(".modified-in-monaco-diff-editor").innerHTML="";
-}
-
-function getFileByCommit(button) {
-	init();	
-
-	var listGroup = document.getElementById("fileList");
-	listGroup.innerHTML="";
-	
-	document.querySelector(".original-in-monaco-diff-editor").innerHTML="";
-	document.querySelector(".modified-in-monaco-diff-editor").innerHTML="";
-	
-	var activeList = document.querySelectorAll("#commitList .active");
-	for(var i=0;i<activeList.length;i++) {
-		activeList[i].classList.remove("active");
-	}
-	button.classList.add("active");
-	var commitID = $(button).contents().filter(function() { return this.nodeType === 3; }).text().trim();
-	commitId = commitID;
-	$.ajaxSettings.async = false;
-	var json = getFileFromServer("getfile",commitID,"","meta.json");
-	json = eval("("+json+")");
-	fileNameList = json.files;
-
-	for(var i=0;i<fileNameList.length;i++) {
-		var buttonDiv = document.createElement("button");
-		buttonDiv.type="button";
-		buttonDiv.className="list-group-item";
-		buttonDiv.innerHTML=fileNameList[i];
-		buttonDiv.onclick = getContentByFileName;
-		listGroup.appendChild(buttonDiv);
-	}
-
+	var prevFilePath = fileNameWithParent[parentId][fileName]["prev_file_path"];
+	var currFilePath = fileNameWithParent[parentId][fileName]["curr_file_path"];
+//	alert(parentId+"\n"+fileName+"\n"+prevFilePath+"\n"+currFilePath);
+	refreshPage("TestFileServlet",parentId,prevFilePath,currFilePath);
 }
 
 function getContentByFileName() {
@@ -205,6 +157,37 @@ function getLinkJson(commitID,fileCount) {
 		}
 	}
 }
+
+function parseLinkFile(links,fileCount) {
+	otherFilelink = new Object();
+    inFilelink.splice(0,inFilelink.length);
+
+	for(var i=0;i<links.length;i++) {
+		if(links[i]["file-name"] == fileName && links[i]["link-type"] == "one-file-link") {
+			if(links[i].links.length > 0)
+				inFilelink = links[i].links;
+		}
+		else if((links[i]["file-name"] == fileName)||(links[i]["file-name2"] == fileName) && links[i]["link-type"] == "two-file-link") {
+			if(links[i].links.length > 0) {
+				var thisIdx,otherFile;
+				(links[i]["file-name"] == fileName) ? otherFile =links[i]["file-name2"]:otherFile = links[i]["file-name"];
+//				otherFilelink[otherFile] = new Object();
+//				otherFilelink[otherFile]["thisIdx"] = thisIdx;
+//				otherFilelink[otherFile]["links"] = links[i].links;
+				otherFilelink[otherFile] = links[i].links;
+				if(fileCount ==1 && descriptions.length == 0) {
+					(links[i]["file-name"] == fileName) ? thisIdx ="from":thisIdx = "to";
+					var entry = new Object();					
+					entry.id = links[i].links[0][thisIdx];
+					entry.file = "dst";
+					entry.range2 = [1,modifiedLines.length];	
+					descriptions.splice(0,0,entry);
+				}
+			}
+		}
+	}
+}
+
 function parseLink(rangeStr) {
 	var wholeRange = rangeStr.split(',');
 	if(wholeRange.length == 2) {
@@ -227,8 +210,4 @@ function getDescById(descArray,id) {
 			getDescById(descArray[i].subDesc,id);
 		}
 	}
-}
-
-function checkFileName() {
-	
 }

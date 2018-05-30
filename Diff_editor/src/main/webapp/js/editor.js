@@ -40,29 +40,30 @@ function init() {
 
 }
 
-function refreshPage(commitID,name) {	
+function refreshPage(url,parentCommitHash,prevFilePath,currFilePath) {	
+	var json = getAllFileFromServer(url,metaObject["author"],metaObject["commit_hash"],parentCommitHash,metaObject["project_name"],prevFilePath,currFilePath);
+	json = eval("("+json+")");
+	
 	init();	
 	clearPopoverTop();
 	
-	$.ajaxSettings.async = false;  
-	var src = getFileFromServer("getfile",commitID,name,"src");
-	var dst = getFileFromServer("getfile",commitID,name,"dst");
+	var src = json.prev;
+	var dst = json.curr;
+	var linkFile = json.link;
+	var diffFile = json.diff;
 
 	if(src =="") {
 		initLines(modifiedLines,dst);
-		getLinkJson(commitID,1);
+		parseLinkFile(linkFile,1);
 		generateContainer(1);
 		return;
 	}
 	fileId = -1;
 	initLines(originalLines,src);
 	initLines(modifiedLines,dst);
-	getLinkJson(commitID,2);
-
-	var text = getFileFromServer("getfile",commitID,name,"diff.json");
-	text = eval("("+text+")");		
+	parseLinkFile(linkFile,2);
 	
-	handleNesting(text);	
+	handleNesting(diffFile);	
 	parseDiff(diff,0,originalLines,modifiedLines);		
 	generateContainer(2);
 	
@@ -78,6 +79,45 @@ function refreshPage(commitID,name) {
 	drawLinkLine(aMoveBlock,bMoveBlock,"rgba(255, 140, 0, 0.2)",getColorByType("Move"));
 	drawLinkLine(aChangeBlock,bChangeBlock,"rgba(0, 100, 255, 0.2)",getColorByType("Change"));
 }
+
+//function refreshPage(commitID,name) {	
+//	init();	
+//	clearPopoverTop();
+//	
+//	$.ajaxSettings.async = false;  
+//	var src = getFileFromServer("getfile",commitID,name,"src");
+//	var dst = getFileFromServer("getfile",commitID,name,"dst");
+//
+//	if(src =="") {
+//		initLines(modifiedLines,dst);
+//		getLinkJson(commitID,1);
+//		generateContainer(1);
+//		return;
+//	}
+//	fileId = -1;
+//	initLines(originalLines,src);
+//	initLines(modifiedLines,dst);
+//	getLinkJson(commitID,2);
+//
+//	var text = getFileFromServer("getfile",commitID,name,"diff.json");
+//	text = eval("("+text+")");		
+//	
+//	handleNesting(text);	
+//	parseDiff(diff,0,originalLines,modifiedLines);		
+//	generateContainer(2);
+//	
+//	for(var d = 0;d<descriptions.length;d++) {
+//		drawBubble(descriptions[d],0);
+//	}
+//	
+//	adjustHeight();
+//	for(var d = 0;d<descriptions.length;d++) {
+//		drawAllTagLine(descriptions[d]);
+//	}	
+//
+//	drawLinkLine(aMoveBlock,bMoveBlock,"rgba(255, 140, 0, 0.2)",getColorByType("Move"));
+//	drawLinkLine(aChangeBlock,bChangeBlock,"rgba(0, 100, 255, 0.2)",getColorByType("Change"));
+//}
 function handleNesting (data) {
 	$.each(data,function(infoIndex,info){  
 		insertOneToDiff(info,diff);	

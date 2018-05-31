@@ -19,7 +19,7 @@ public class TestServlet extends HttpServlet { // Must be public and extend Http
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        System.out.println("post");
+        System.out.println("TestServlet");
         if (request.getParameter("commit_url") != null) {
             String commitUrl = request.getParameter("commit_url");
             String postString = "url=" + commitUrl;

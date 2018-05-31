@@ -2,6 +2,7 @@ package edu.fdu.se.web.astdiff;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Scanner;
 
 import javax.servlet.ServletException;
@@ -44,23 +45,35 @@ public class TestFileServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		 //author、commit_hash、parent_commit_hash、project_name、prev_file_path、curr_file_path
 		System.out.println("post");
-        if (request.getParameter("commit_url") != null) {
-            String commitUrl = request.getParameter("commit_url");
-            String postString = "url=" + commitUrl;
-            System.out.println(postString);
-            ServletOutputStream sos = response.getOutputStream();
-            String whole = "";
-            File file = new File("C:\\Users\\yw\\Desktop\\meta.json");
-            Scanner in = new Scanner(file);
-            while (in.hasNextLine()) {
-                String str = in.nextLine();
-                whole += str;
-            }
-            System.out.println(whole);
-            JSONObject obj = JSONObject.fromObject(whole);
-            sos.write(obj.toString().getBytes());
-        }
-        else if (request.getParameter("author") != null) {
+//        if (request.getParameter("commit_url") != null) {
+//            String commitUrl = request.getParameter("commit_url");
+//            String postString = "url=" + commitUrl;
+//            System.out.println(postString);
+//            ServletOutputStream sos = response.getOutputStream();
+//            String whole = "";
+//            File file = new File("C:\\Users\\yw\\Desktop\\meta.json");
+//            Scanner in = new Scanner(file);
+//            while (in.hasNextLine()) {
+//                String str = in.nextLine();
+//                whole += str;
+//            }
+//            System.out.println(whole);
+//            JSONObject obj = JSONObject.fromObject(whole);
+//            sos.write(obj.toString().getBytes());
+//        }
+        if (request.getParameter("author") != null) {
+            String commit_hash = request.getParameter("commit_hash");
+            String parent_commit_hash = request.getParameter("parent_commit_hash");
+            String project_name = request.getParameter("project_name");
+            String prev_file_path = request.getParameter("prev_file_path");
+            String curr_file_path = request.getParameter("curr_file_path");
+
+            String params = "commit_hash=" + commit_hash + "&parent_commit_hash=" + parent_commit_hash + "&project_name=" + project_name + "&prev_file_path=" + prev_file_path + "&curr_file_path=" + curr_file_path;
+            System.out.println(params);
+            String result = HttpClient.doPost("http://127.0.0.1:8081/fetchFile", params);
+            System.out.println(result);
+            PrintWriter out = response.getWriter();    //设定传参变量
+            out.print(result);      //结果传到前端
             System.out.println("author"+request.getParameter("author"));
             System.out.println("commit_hash"+request.getParameter("commit_hash"));
             System.out.println("parent_commit_hash"+request.getParameter("parent_commit_hash"));

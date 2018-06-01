@@ -2,15 +2,6 @@ var fileNameList;
 var fileNameWithParent;
 var metaObject;
 
-//function getFileFromServer(url,commitID,name,type) {
-//	var content;
-//	$.ajaxSettings.async = false;
-//	$.post(url,{commitId:commitID,fileName:name,SrcOrDstOrJson:type}, function(data) {
-//		content = data;
-//	});
-//	return content;
-//}
-
 function getAllFileFromServer(url,author,commitHash,parentCommitHash,projectName,prevFilePath,currFilePath) {
 	var content;
 	$.ajaxSettings.async = false;
@@ -88,13 +79,12 @@ function getContentByFileNameAndParentId(file) {
 	for(var i=0;i<activeList.length;i++) {
 		activeList[i].classList.remove("active");
 	}
-	file.classList.add("active");
-	var fileName = file.innerHTML.trim();
+	file.parentNode.classList.add("active");
+	var fn = file.innerHTML.trim();
 	var parentId = file.parentNode.parentId;
-	var prevFilePath = fileNameWithParent[parentId][fileName]["prev_file_path"];
-	var currFilePath = fileNameWithParent[parentId][fileName]["curr_file_path"];
-//	alert(parentId+"\n"+fileName+"\n"+prevFilePath+"\n"+currFilePath);
-	refreshPage("TestFileServlet",parentId,prevFilePath,currFilePath);
+	parentCommitId = parentId;
+	fileName = fn;
+	refreshPage(parentId,fn);
 }
 
 function getContentByFileName() {
@@ -141,9 +131,6 @@ function getLinkJson(commitID,fileCount) {
 			if(links[i].links.length > 0) {
 				var thisIdx,otherFile;
 				(links[i]["file-name"] == fileName) ? otherFile =links[i]["file-name2"]:otherFile = links[i]["file-name"];
-//				otherFilelink[otherFile] = new Object();
-//				otherFilelink[otherFile]["thisIdx"] = thisIdx;
-//				otherFilelink[otherFile]["links"] = links[i].links;
 				otherFilelink[otherFile] = links[i].links;
 				if(fileCount ==1 && descriptions.length == 0) {
 					(links[i]["file-name"] == fileName) ? thisIdx ="from":thisIdx = "to";
@@ -163,20 +150,31 @@ function parseLinkFile(links,fileCount) {
     inFilelink.splice(0,inFilelink.length);
 
 	for(var i=0;i<links.length;i++) {
-		if(links[i]["file-name"] == fileName && links[i]["link-type"] == "one-file-link") {
+		if(links[i]["link-type"] == "one-file-link" && links[i]["file-name"] == fileName && links[i]["parent-commit"] == parentCommitId) {
 			if(links[i].links.length > 0)
 				inFilelink = links[i].links;
 		}
-		else if((links[i]["file-name"] == fileName)||(links[i]["file-name2"] == fileName) && links[i]["link-type"] == "two-file-link") {
-			if(links[i].links.length > 0) {
-				var thisIdx,otherFile;
-				(links[i]["file-name"] == fileName) ? otherFile =links[i]["file-name2"]:otherFile = links[i]["file-name"];
-//				otherFilelink[otherFile] = new Object();
-//				otherFilelink[otherFile]["thisIdx"] = thisIdx;
-//				otherFilelink[otherFile]["links"] = links[i].links;
-				otherFilelink[otherFile] = links[i].links;
+		else if(links[i]["link-type"] == "two-file-link") {
+			var thisIdx,otherFile,otherParentCommit;
+			var find = false;
+			if(links[i]["file-name"] == fileName && links[i]["parent-commit"] == parentCommitId) {
+				otherFile =links[i]["file-name2"];
+				otherParentCommit =links[i]["parent-commit2"];
+				thisIdx ="from";
+				find = true;
+			}
+			else if(links[i]["file-name2"] == fileName && links[i]["parent-commit2"] == parentCommitId) {
+				otherFile =links[i]["file-name"];
+				otherParentCommit =links[i]["parent-commit"];
+				thisIdx = "to";
+				find = true;
+			}
+			if(links[i].links.length > 0 && find) {
+				if(!(otherFile in otherFilelink)) {			
+					otherFilelink[otherFile] = new Object();
+				}
+				otherFilelink[otherFile][otherParentCommit] = links[i].links;
 				if(fileCount ==1 && descriptions.length == 0) {
-					(links[i]["file-name"] == fileName) ? thisIdx ="from":thisIdx = "to";
 					var entry = new Object();					
 					entry.id = links[i].links[0][thisIdx];
 					entry.file = "dst";
@@ -184,7 +182,7 @@ function parseLinkFile(links,fileCount) {
 					descriptions.splice(0,0,entry);
 				}
 			}
-		}
+		} 
 	}
 }
 

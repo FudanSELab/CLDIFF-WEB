@@ -12,7 +12,7 @@ var inFilelink = new Array();
 var otherFilelink = new Object();
 var changeMove = new Array();
 var ceCoordinate = new Object();
-var commitId,fileName,fileId;
+var parentCommitId,fileName,fileId;
 
 $(document).ready(function() {
 //	getCommitByRQ(document.querySelector("#RQ4"));
@@ -40,8 +40,10 @@ function init() {
 
 }
 
-function refreshPage(url,parentCommitHash,prevFilePath,currFilePath) {	
-	var json = getAllFileFromServer(url,metaObject["author"],metaObject["commit_hash"],parentCommitHash,metaObject["project_name"],prevFilePath,currFilePath);
+function refreshPage(parentCommitHash,fn) {	
+	var prevFilePath = fileNameWithParent[parentCommitHash][fn]["prev_file_path"];
+	var currFilePath = fileNameWithParent[parentCommitHash][fn]["curr_file_path"];
+	var json = getAllFileFromServer("TestFileServlet",metaObject["author"],metaObject["commit_hash"],parentCommitHash,metaObject["project_name"],prevFilePath,currFilePath);
 	json = eval("("+json+")");
 	
 	init();	
@@ -52,7 +54,6 @@ function refreshPage(url,parentCommitHash,prevFilePath,currFilePath) {
 	var linkFile = json.link;
 	var diffFile = json.diff;
 	
-//	alert(srcFile);
 	linkFile = eval("("+linkFile+")");
 	diffFile = eval("("+diffFile+")");
 
@@ -66,8 +67,9 @@ function refreshPage(url,parentCommitHash,prevFilePath,currFilePath) {
 	initLines(originalLines,srcFile);
 	initLines(modifiedLines,dstFile);
 	parseLinkFile(linkFile.links,2);
-//	var last=JSON.stringify(inFilelink); //将JSON对象转化为JSON字符
+//	var last=JSON.stringify(otherFilelink);
 //	alert(last);
+//	alert(fileName);
 	
 	handleNesting(diffFile);	
 	parseDiff(diff,0,originalLines,modifiedLines);		

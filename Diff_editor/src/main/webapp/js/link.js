@@ -60,7 +60,7 @@ function drawLink(file,parent) {
 			var name="";
 			if(linkList[l].fileName != undefined && linkList[l].fileName != 'undefined' && linkList[l].fileName != '')
 				name ="("+linkList[l].fileName+")";
-			content += "<li><a onclick=\"linkTo('"+linkList[l].id+"','"+linkList[l].fileName+"')\">"+linkList[l].id+". "+linkList[l].desc+" "+name+"</a></li>";
+			content += "<li><a onclick=\"linkTo('"+linkList[l].id+"','"+linkList[l].fileName+"','"+linkList[l].parentCommit+"')\">"+linkList[l].id+". "+linkList[l].desc+" "+name+"</a></li>";
 		}
 		id = linkObj[idArray[i]];
 	}
@@ -140,20 +140,38 @@ function hasLink(descId,mostParentId) {
 			tempRecord[tempRecord.length] = obj;
 		}
 	}
-	for(var attribute in otherFilelink) {
-		if(otherFilelink[attribute] != undefined) {
-			var array = otherFilelink[attribute];
-//			alert(JSON.stringify(array));
-			for(var i=0;i<array.length;i++) {
-				if(parseInt(array[i]["from"]) == parseInt(descId) || parseInt(array[i]["to"]) == parseInt(descId)) {
-					hasLink = true;
-					var obj = new Object();
-					(parseInt(array[i]["from"]) == parseInt(descId)) ? obj.id=array[i]["to"]:obj.id=array[i]["from"];
-					obj.desc = array[i]["desc"];
-					obj.fileName = attribute;					
-					tempRecord[tempRecord.length] = obj;
+//	for(var fn in otherFilelink) {
+//		if(otherFilelink[fn] != undefined) {
+//			var array = otherFilelink[fn];
+//			for(var i=0;i<array.length;i++) {
+//				if(parseInt(array[i]["from"]) == parseInt(descId) || parseInt(array[i]["to"]) == parseInt(descId)) {
+//					hasLink = true;
+//					var obj = new Object();
+//					(parseInt(array[i]["from"]) == parseInt(descId)) ? obj.id=array[i]["to"]:obj.id=array[i]["from"];
+//					obj.desc = array[i]["desc"];
+//					obj.fileName = fn;					
+//					tempRecord[tempRecord.length] = obj;
+//				}
+//			}
+//		}
+//	}
+	
+	for(var fn in otherFilelink) {
+		if(otherFilelink[fn] != undefined) {
+			for(var pc in otherFilelink[fn]) {
+				var array = otherFilelink[fn][pc];
+				for(var i=0;i<array.length;i++) {
+					if(parseInt(array[i]["from"]) == parseInt(descId) || parseInt(array[i]["to"]) == parseInt(descId)) {
+						hasLink = true;
+						var obj = new Object();
+						(parseInt(array[i]["from"]) == parseInt(descId)) ? obj.id=array[i]["to"]:obj.id=array[i]["from"];
+						obj.desc = array[i]["desc"];
+						obj.fileName = fn;		
+						obj.parentCommit = pc;
+						tempRecord[tempRecord.length] = obj;
+					}
 				}
-			}
+			}			
 		}
 	}
 	if(tempRecord.length > 0) {
@@ -162,7 +180,7 @@ function hasLink(descId,mostParentId) {
 	return hasLink;
 }
 
-function linkTo(id,name) {
+function linkTo(id,name,pc) {
 	clearPopoverTop();
 	var popTop,file;
 	if(name == undefined || name == 'undefined' || name == '') {
@@ -172,16 +190,18 @@ function linkTo(id,name) {
 		if(ceCoordinate[id].top2 != undefined)
 			showPointer(2,ceCoordinate[id].top2,id);
 //		popTop= ceCoordinate[id].top;
-		window.scroll(0,ceCoordinate[id].top+200);
+		window.scroll(0,ceCoordinate[id].top+160);
 //		file = ceCoordinate[id].file;
 	}
 	else {
 		fileName = name;
-		refreshPage(commitId,name);
+		parentCommitId = pc;
+		refreshPage(pc,name);
+		
 		var childrenList = document.querySelector("#fileList").children;
 		for(var i=0;i<childrenList.length;i++) {
 			childrenList[i].classList.remove("active");
-			if(getFileName($(childrenList[i]).text().trim()) == name) {
+			if(childrenList[i].parentId == parentCommitId && childrenList[i].children[0].innerHTML.trim() == name) {
 				childrenList[i].classList.add("active")
 			}
 		}
@@ -199,7 +219,7 @@ function linkTo(id,name) {
 				showPointer(2,ceCoordinate[id].top2,id);
 //			file = ceCoordinate[id].file;
 		}
-		window.scroll(0,popTop+200);
+		window.scroll(0,popTop+160);
 		
 	}	
 

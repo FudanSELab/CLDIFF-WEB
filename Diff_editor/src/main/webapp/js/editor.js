@@ -47,21 +47,27 @@ function refreshPage(url,parentCommitHash,prevFilePath,currFilePath) {
 	init();	
 	clearPopoverTop();
 	
-	var src = json.prev;
-	var dst = json.curr;
+	var srcFile = json.prev;
+	var dstFile = json.curr;
 	var linkFile = json.link;
 	var diffFile = json.diff;
+	
+//	alert(srcFile);
+	linkFile = eval("("+linkFile+")");
+	diffFile = eval("("+diffFile+")");
 
-	if(src =="") {
-		initLines(modifiedLines,dst);
-		parseLinkFile(linkFile,1);
+	if(srcFile =="") {
+		initLines(modifiedLines,dstFile);
+		parseLinkFile(linkFile.links,1);
 		generateContainer(1);
 		return;
 	}
 	fileId = -1;
-	initLines(originalLines,src);
-	initLines(modifiedLines,dst);
-	parseLinkFile(linkFile,2);
+	initLines(originalLines,srcFile);
+	initLines(modifiedLines,dstFile);
+	parseLinkFile(linkFile.links,2);
+//	var last=JSON.stringify(inFilelink); //将JSON对象转化为JSON字符
+//	alert(last);
 	
 	handleNesting(diffFile);	
 	parseDiff(diff,0,originalLines,modifiedLines);		
@@ -441,8 +447,8 @@ function parseRange(rangeStr,num) {
 	
 function initLines(contentLines,data) {
 	contentLines.splice(0,contentLines.length);;
-//	var tempLines = data.toString().split(/\r\n/);
-	var tempLines = data.toString().split(/\n/);
+	var tempLines = data.toString().split(/\r\n/);
+//	var tempLines = data.toString().split(/\n/);
 	for(var i = 0;i<tempLines.length;i++) {
 		var line = new Object();
 		line.number = i+1;

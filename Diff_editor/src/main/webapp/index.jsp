@@ -39,7 +39,7 @@
 		<!-- <div id ="fileList" class="list-group" style="width:1000px;">
 		
 		</div> -->
-		<ul id ="fileList" class="dropdown-menu" aria-labelledby="dropdownMenu3" style="position:absolute;left:144px;width:1000px;height:130px;top:70px;width:1000px;overflow:auto"> 
+		<ul id ="fileList" class="dropdown-menu" aria-labelledby="dropdownMenu3" style="position:absolute;left:144px;width:1000px;max-height:120px;top:70px;width:1000px;overflow:auto"> 
 			<!-- <li class="dropdown-header">Dropdown header</li>
 			<li><a href="#">Action</a></li>
 			<li><a href="#">Another action</a></li>

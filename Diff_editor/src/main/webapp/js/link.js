@@ -140,21 +140,6 @@ function hasLink(descId,mostParentId) {
 			tempRecord[tempRecord.length] = obj;
 		}
 	}
-//	for(var fn in otherFilelink) {
-//		if(otherFilelink[fn] != undefined) {
-//			var array = otherFilelink[fn];
-//			for(var i=0;i<array.length;i++) {
-//				if(parseInt(array[i]["from"]) == parseInt(descId) || parseInt(array[i]["to"]) == parseInt(descId)) {
-//					hasLink = true;
-//					var obj = new Object();
-//					(parseInt(array[i]["from"]) == parseInt(descId)) ? obj.id=array[i]["to"]:obj.id=array[i]["from"];
-//					obj.desc = array[i]["desc"];
-//					obj.fileName = fn;					
-//					tempRecord[tempRecord.length] = obj;
-//				}
-//			}
-//		}
-//	}
 	
 	for(var fn in otherFilelink) {
 		if(otherFilelink[fn] != undefined) {

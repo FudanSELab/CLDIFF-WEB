@@ -55,77 +55,47 @@ function refreshPage(parentCommitHash,fn) {
 	var diffFile = json.diff;
 	
 	linkFile = eval("("+linkFile+")");
-	diffFile = eval("("+diffFile+")");
+	if(diffFile != "")
+		diffFile = eval("("+diffFile+")");
 
 	if(srcFile =="") {
 		initLines(modifiedLines,dstFile);
-		parseLinkFile(linkFile.links,1);
+		if(diffFile != "")
+			parseLinkFile(linkFile.links,1);
 		generateContainer(1);
 		return;
 	}
 	fileId = -1;
 	initLines(originalLines,srcFile);
 	initLines(modifiedLines,dstFile);
-	parseLinkFile(linkFile.links,2);
-//	var last=JSON.stringify(otherFilelink);
-//	alert(last);
-//	alert(fileName);
 	
-	handleNesting(diffFile);	
-	parseDiff(diff,0,originalLines,modifiedLines);		
+	if(diffFile != "") {
+		parseLinkFile(linkFile.links,2);
+//		var last=JSON.stringify(otherFilelink);
+//		alert(last);
+//		alert(fileName);
+		
+		handleNesting(diffFile);	
+		parseDiff(diff,0,originalLines,modifiedLines);
+	}
+			
 	generateContainer(2);
 	
-	for(var d = 0;d<descriptions.length;d++) {
-		drawBubble(descriptions[d],0);
-	}
-	
-	adjustHeight();
-	for(var d = 0;d<descriptions.length;d++) {
-		drawAllTagLine(descriptions[d]);
-	}	
+	if(diffFile != "") {
+		for(var d = 0;d<descriptions.length;d++) {
+			drawBubble(descriptions[d],0);
+		}
+		
+		adjustHeight();
+		for(var d = 0;d<descriptions.length;d++) {
+			drawAllTagLine(descriptions[d]);
+		}	
 
-	drawLinkLine(aMoveBlock,bMoveBlock,"rgba(255, 140, 0, 0.2)",getColorByType("Move"));
-	drawLinkLine(aChangeBlock,bChangeBlock,"rgba(0, 100, 255, 0.2)",getColorByType("Change"));
+		drawLinkLine(aMoveBlock,bMoveBlock,"rgba(255, 140, 0, 0.2)",getColorByType("Move"));
+		drawLinkLine(aChangeBlock,bChangeBlock,"rgba(0, 100, 255, 0.2)",getColorByType("Change"));
+	}	
 }
 
-//function refreshPage(commitID,name) {	
-//	init();	
-//	clearPopoverTop();
-//	
-//	$.ajaxSettings.async = false;  
-//	var src = getFileFromServer("getfile",commitID,name,"src");
-//	var dst = getFileFromServer("getfile",commitID,name,"dst");
-//
-//	if(src =="") {
-//		initLines(modifiedLines,dst);
-//		getLinkJson(commitID,1);
-//		generateContainer(1);
-//		return;
-//	}
-//	fileId = -1;
-//	initLines(originalLines,src);
-//	initLines(modifiedLines,dst);
-//	getLinkJson(commitID,2);
-//
-//	var text = getFileFromServer("getfile",commitID,name,"diff.json");
-//	text = eval("("+text+")");		
-//	
-//	handleNesting(text);	
-//	parseDiff(diff,0,originalLines,modifiedLines);		
-//	generateContainer(2);
-//	
-//	for(var d = 0;d<descriptions.length;d++) {
-//		drawBubble(descriptions[d],0);
-//	}
-//	
-//	adjustHeight();
-//	for(var d = 0;d<descriptions.length;d++) {
-//		drawAllTagLine(descriptions[d]);
-//	}	
-//
-//	drawLinkLine(aMoveBlock,bMoveBlock,"rgba(255, 140, 0, 0.2)",getColorByType("Move"));
-//	drawLinkLine(aChangeBlock,bChangeBlock,"rgba(0, 100, 255, 0.2)",getColorByType("Change"));
-//}
 function handleNesting (data) {
 	$.each(data,function(infoIndex,info){  
 		insertOneToDiff(info,diff);	

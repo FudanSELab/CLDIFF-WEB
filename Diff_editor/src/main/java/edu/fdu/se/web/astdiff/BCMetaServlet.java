@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 //@WebServlet("/TestServlet") // This is the URL of the servlet.
-public class TestServlet extends HttpServlet { // Must be public and extend HttpServlet.
+public class BCMetaServlet extends HttpServlet { // Must be public and extend HttpServlet.
     // ...
 
     /**

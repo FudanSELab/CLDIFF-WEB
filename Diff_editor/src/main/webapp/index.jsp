@@ -9,9 +9,14 @@
 <!-- <link type="text/css" rel="styleSheet" href="style/base.css" />
  --><link type="text/css" rel="styleSheet" href="style/editor.css" />
 <link type="text/css" rel="styleSheet" href="style/color.css" />
-<link type="text/css" rel="styleSheet" href="style/addition.css" />
+	<link type="text/css" rel="styleSheet" href="style/addition.css" />
+	<link type="text/css" rel="styleSheet" href="http://bigcode.fudan.edu.cn/css/nav.css" />
 </head>
 <body>
+
+	<div id="navigation">
+
+	</div>
     <!-- <span class="label label-primary" style="position:absolute;top:0;left:10px;font-size:18px">RQ</span>
     <span class="label label-primary" style="position:absolute;top:0;left:160px;font-size:18px">commit id</span>
     <span class="label label-primary" style="position:absolute;top:0;left:670px;font-size:18px">file name</span>
@@ -27,7 +32,7 @@
 		<div id ="fileList" class="list-group" style="width:800px;">
 		</div>
 	</div> -->
- 	<form class="form-inline" style="position: absolute; left: 50px; width: 1400px;top: 30px;">	
+ 	<form class="form-inline" style="margin-top:80px;position: absolute; left: 50px; width: 1400px;top: 30px;">
  		<div class="form-group">
 			<label style="display: inline;">commitURL:&nbsp;&nbsp;</label > 
 			<input id="commitUrl" type="text" style="width: 1000px;top: 30px;" class="form-control" name="commit_url">
@@ -51,7 +56,7 @@
 	<!-- </div> -->
 
 		<div class="panel panel-default"
-		style="position: absolute; left: 1550px; display: inline; width: 250px; height: 200px; top: 30px;">
+		style="margin-top:80px;position: absolute; left: 1550px; display: inline; width: 250px; height: 200px; top: 30px;">
 		<div class="panel-heading">
 			<h3 class="panel-title">Legend</h3>
 		</div>
@@ -116,5 +121,6 @@
 	<script type="text/javascript" src="js/color.js"></script>	
 	<script type="text/javascript" src="js/editor.js"></script>
 	<script type="text/javascript" src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="http://bigcode.fudan.edu.cn/js/nav.js"></script>
 </body>
 </html>

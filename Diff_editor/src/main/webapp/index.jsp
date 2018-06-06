@@ -34,17 +34,17 @@
 	</div> -->
  	<form class="form-inline" style="margin-top:80px;position: absolute; left: 50px; width: 1400px;top: 30px;">
  		<div class="form-group">
-			<label style="display: inline;">commitURL:&nbsp;&nbsp;</label > 
+			<label style="display: inline;">Commit Url:&nbsp;&nbsp;</label >
 			<input id="commitUrl" type="text" style="width: 1000px;top: 30px;" class="form-control" name="commit_url">
 		</div>
-		<button type="button" class="btn btn-primary" onclick = "getFileByCommitUrl()">search</button>
+		<button type="button" class="btn btn-primary" onclick = "getFileByCommitUrl()">Analyze</button>
 	</form>
 	
 	<!-- <div style="position:absolute;left:144px;display:inline;width:1000px;height:130px;top:70px;"> -->
 		<!-- <div id ="fileList" class="list-group" style="width:1000px;">
 		
 		</div> -->
-		<ul id ="fileList" class="dropdown-menu" aria-labelledby="dropdownMenu3" style="position:absolute;left:144px;width:1000px;max-height:120px;top:70px;width:1000px;overflow:auto"> 
+		<ul id ="fileList" class="dropdown-menu" aria-labelledby="dropdownMenu3" style="position:absolute;left:144px;width:1000px;max-height:120px;top:144px;width:1000px;overflow:auto">
 			<!-- <li class="dropdown-header">Dropdown header</li>
 			<li><a href="#">Action</a></li>
 			<li><a href="#">Another action</a></li>
@@ -83,7 +83,7 @@
 		</div>
 	</div>
 
-	<div class="editor-frame" style="margin-top: 200px;">
+	<div class="editor-frame" style="margin-top: 280px;">
 		<div id="diff-editor" >
 			<div
 				class="monaco-diff-editor monaco-editor-background side-by-side vs"

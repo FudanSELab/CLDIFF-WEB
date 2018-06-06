@@ -34,17 +34,24 @@
 	</div> -->
  	<form class="form-inline" style="margin-top:80px;position: absolute; left: 50px; width: 1400px;top: 30px;">
  		<div class="form-group">
-			<label style="display: inline;">Commit Url:&nbsp;&nbsp;</label >
-			<input id="commitUrl" type="text" style="width: 1000px;top: 30px;" class="form-control" name="commit_url">
+			<div class="input-group-btn" >
+			<input type="text" class="form-control" id="commitUrl"  name="commit_url" placeholder="Commit Url" style="width: 600px;top: 30px;">
+				<%--<input id="commitUrl" type="text" style="width: 1000px;top: 30px;" class="form-control" name="commit_url">--%>
+				<button id="searchButton" class="btn btn-info" type="button" onclick = "getFileByCommitUrl()">Analyze</button>
+			</div>
 		</div>
-		<button type="button" class="btn btn-primary" onclick = "getFileByCommitUrl()">Analyze</button>
+		<%--<button type="button" class="btn btn-primary" onclick = "getFileByCommitUrl()">Analyze</button>--%>
+
+
+
 	</form>
+	<%--<button id="searchButton2" class="btn btn-info" type="button">Search</button>--%>
 	
 	<!-- <div style="position:absolute;left:144px;display:inline;width:1000px;height:130px;top:70px;"> -->
 		<!-- <div id ="fileList" class="list-group" style="width:1000px;">
 		
 		</div> -->
-		<ul id ="fileList" class="dropdown-menu" aria-labelledby="dropdownMenu3" style="position:absolute;left:144px;width:1000px;max-height:120px;top:144px;width:1000px;overflow:auto">
+		<ul id ="fileList" class="dropdown-menu" aria-labelledby="dropdownMenu3" style="position:absolute;left:50px;width:1000px;max-height:120px;top:144px;width:1000px;overflow:auto">
 			<!-- <li class="dropdown-header">Dropdown header</li>
 			<li><a href="#">Action</a></li>
 			<li><a href="#">Another action</a></li>
@@ -56,7 +63,8 @@
 	<!-- </div> -->
 
 		<div class="panel panel-default"
-		style="margin-top:80px;position: absolute; left: 1550px; display: inline; width: 250px; height: 200px; top: 30px;">
+		<%--style="margin-top:80px;position: absolute; left: 1550px; display: inline; width: 250px; height: 200px; top: 30px;">--%>
+		style="margin-top:80px;position: absolute; left: 1550px; display: inline; width: 250px; height: 200px; top: 30px;display: none;" id="info_panel">
 		<div class="panel-heading">
 			<h3 class="panel-title">Legend</h3>
 		</div>

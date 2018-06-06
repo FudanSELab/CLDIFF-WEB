@@ -204,7 +204,7 @@ function linkTo(id,name,pc) {
 				showPointer(2,ceCoordinate[id].top2,id);
 //			file = ceCoordinate[id].file;
 		}
-		window.scroll(0,popTop+160);
+		window.scroll(0,popTop+160+100);
 		
 	}	
 

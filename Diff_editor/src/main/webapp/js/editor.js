@@ -44,6 +44,8 @@ function refreshPage(parentCommitHash,fn) {
 	var prevFilePath = fileNameWithParent[parentCommitHash][fn]["prev_file_path"];
 	var currFilePath = fileNameWithParent[parentCommitHash][fn]["curr_file_path"];
 	var json = getAllFileFromServer("BCGetFileServlet",metaObject["author"],metaObject["commit_hash"],parentCommitHash,metaObject["project_name"],prevFilePath,currFilePath);
+	var a = document.getElementById("info_panel");
+	a.style.display="";
 	json = eval("("+json+")");
 	init();	
 	clearPopoverTop();

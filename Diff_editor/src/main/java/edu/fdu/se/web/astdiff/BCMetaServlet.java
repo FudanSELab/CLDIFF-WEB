@@ -1,7 +1,5 @@
 package edu.fdu.se.web.astdiff;
 
-import net.sf.json.JSONObject;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-//@WebServlet("/TestServlet") // This is the URL of the servlet.
+@WebServlet("/BCMetaServlet") // This is the URL of the servlet.
 public class BCMetaServlet extends HttpServlet { // Must be public and extend HttpServlet.
     // ...
 

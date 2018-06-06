@@ -25,7 +25,7 @@ function getFileByCommitUrl() {
 	var listGroup = document.getElementById("fileList");
 	listGroup.innerHTML="";
 	var commitUrl = document.getElementById("commitUrl").value.trim();
-	var json = getMetaFileFromServer("BCMetaServlet/",commitUrl);
+	var json = getMetaFileFromServer("BCMetaServlet",commitUrl);
 	//var json = getMetaFileFromServer("TestFileServlet",commitUrl);
 	json = eval("("+json+")");
 	var parents = json.parents;

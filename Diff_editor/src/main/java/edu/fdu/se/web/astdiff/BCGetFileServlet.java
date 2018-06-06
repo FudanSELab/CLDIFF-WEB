@@ -12,12 +12,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.sf.json.JSONObject;
-
 /**
  * Servlet implementation class TestFileServlet
  */
-@WebServlet("/TestFileServlet")
+@WebServlet("/BCGetFileServlet")
 public class BCGetFileServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

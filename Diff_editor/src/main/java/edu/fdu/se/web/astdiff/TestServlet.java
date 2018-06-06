@@ -24,7 +24,7 @@ public class TestServlet extends HttpServlet { // Must be public and extend Http
             String commitUrl = request.getParameter("commit_url");
             String postString = "url=" + commitUrl;
             System.out.println(postString);
-            String result = HttpClient.doPost("http://10.141.221.83:8081/", postString);
+            String result = HttpClient.doPost(API.FETCH_META, postString);
             System.out.println(result);
             PrintWriter out = response.getWriter();    //设定传参变量
             out.print(result);      //结果传到前端

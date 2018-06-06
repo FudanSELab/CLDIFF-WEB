@@ -70,7 +70,8 @@ public class TestFileServlet extends HttpServlet {
 
             String params = "commit_hash=" + commit_hash + "&parent_commit_hash=" + parent_commit_hash + "&project_name=" + project_name + "&prev_file_path=" + prev_file_path + "&curr_file_path=" + curr_file_path;
             System.out.println(params);
-            String result = HttpClient.doPost("http://10.141.221.83:8081/fetchFile", params);
+            //String result = HttpClient.doPost("http://10.141.221.83:8081/fetchFile", params);
+            String result = HttpClient.doPost(API.FETCH_CONTENT, params);
             System.out.println(result);
             PrintWriter out = response.getWriter();    //设定传参变量
             out.print(result);      //结果传到前端

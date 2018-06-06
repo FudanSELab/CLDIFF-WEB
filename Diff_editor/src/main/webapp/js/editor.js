@@ -43,7 +43,7 @@ function init() {
 function refreshPage(parentCommitHash,fn) {	
 	var prevFilePath = fileNameWithParent[parentCommitHash][fn]["prev_file_path"];
 	var currFilePath = fileNameWithParent[parentCommitHash][fn]["curr_file_path"];
-	var json = getAllFileFromServer("TestFileServlet",metaObject["author"],metaObject["commit_hash"],parentCommitHash,metaObject["project_name"],prevFilePath,currFilePath);
+	var json = getAllFileFromServer("BCGetFileServlet",metaObject["author"],metaObject["commit_hash"],parentCommitHash,metaObject["project_name"],prevFilePath,currFilePath);
 	json = eval("("+json+")");
 	
 	init();	

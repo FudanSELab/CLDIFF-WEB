@@ -18,13 +18,13 @@ import net.sf.json.JSONObject;
  * Servlet implementation class TestFileServlet
  */
 @WebServlet("/TestFileServlet")
-public class TestFileServlet extends HttpServlet {
+public class BCGetFileServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public TestFileServlet() {
+    public BCGetFileServlet() {
         super();
         // TODO Auto-generated constructor stub
     }

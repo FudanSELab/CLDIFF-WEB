@@ -47,99 +47,113 @@
 	<section id="one" class="wrapper style2 special">
 		<!-- <header class="major">
 			<h2>
-				Main area to put editor content<br /> and others
+				Enter you github commit url here:<br />
 			</h2>
 		</header> -->
-
-		<form class="form-inline"
-			style="margin-top: 80px; position: relative; left: 50px; width: 1400px; top: 30px;">
-			<div class="form-group">
-				<div class="input-group-btn">
-					<input type="text" class="form-control" id="commitUrl"
-						name="commit_url" placeholder="Commit Url"
-						style="width: 600px; top: 30px;">
-					<!-- <input id="commitUrl" type="text" style="width: 1000px;top: 30px;" class="form-control" name="commit_url"> -->
-					<button id="searchButton" class="btn btn-info" type="button"
-						onclick="getFileByCommitUrl()">Analyze</button>
-				</div>
-			</div>
-
-		</form>
-		<ul id="fileList" class="dropdown-menu"
-			aria-labelledby="dropdownMenu3"
-			style="position: relative; left: 50px; width: 1000px; max-height: 120px; top: 144px; width: 1000px; overflow: auto">
-		</ul>
-
-		<!-- </div> -->
-
-		<div class="panel panel-default"
-			style="margin-top: 80px; position: relative; left: 1550px; display: inline; width: 250px; height: 200px; top: 30px; display: none;"
-			id="info_panel">
-
-			<div class="panel-heading">
-				<h3 class="panel-title">Legend</h3>
-			</div>
-			<div class="panel-body">
-
-				<ul style="position: relative; top: 60px; left: 0;">
-					<li style="height: 25px;">
-						<div
-							style="position: relative; top: 1px; left: 40px; display: inline; background-color: rgba(0, 205, 0, 0.2); width: 45px; height: 18px;"></div>
-						<span style="position: relative; left: 100px;">Insert</span>
-					</li>
-					<li style="height: 25px;">
-						<div
-							style="position: relative; top: 26px; left: 40px; display: inline; background-color: rgba(255, 0, 0, 0.2); width: 45px; height: 18px;"></div>
-						<span style="position: relative; left: 100px;">Delete</span>
-					</li>
-					<li style="height: 25px;">
-						<div
-							style="position: relative; top: 51px; left: 40px; display: inline; background-color: rgba(0, 100, 255, 0.2); width: 45px; height: 18px;"></div>
-						<span style="position: relative; left: 100px;">Change</span>
-					</li>
-					<li style="height: 25px;">
-						<div
-							style="position: relative; top: 76px; left: 40px; display: inline; background-color: rgba(255, 140, 0, 0.2); width: 45px; height: 18px;"></div>
-						<span style="position: relative; left: 100px;">Move</span>
-					</li>
-				</ul>
-			</div>
-		</div>
-
-		<div class="editor-frame" style="margin-top: 280px;">
-			<div id="diff-editor">
-				<div
-					class="monaco-diff-editor monaco-editor-background side-by-side vs"
-					style="position: relative; height: 100%;">
-					<canvas id="myCanvas3" width="400" height="300"
-						style="position: absolute; will-change: transform; top: 0px; left: 1486px;"></canvas>
-					<!--original-->
-					<div class="editor original" data-keybinding-context="2"
-						data-mode-id="javascript"
-						style="position: absolute; height: 100%; width: 243px; left: 0px;">
-						<div class="monaco-editor original-in-monaco-diff-editor vs"
-							data-uri="inmemory://model/2"
-							style="width: 743px; height: 4000px; overflow: hidden"></div>
-					</div>
-					<!--modified-->
-					<div class="editor modified" data-keybinding-context="3"
-						data-mode-id="javascript"
-						style="position: absolute; height: 100%; width: 173px; left: 743px;">
-						<div class="monaco-editor modified-in-monaco-diff-editor vs"
-							data-uri="inmemory://model/3"
-							style="width: 743px; height: 4000px; overflow: hidden"></div>
-					</div>
-					<div class="bubbleZone" data-keybinding-context="3"
-						data-mode-id="javascript"
-						style="position: absolute; height: 100%; width: 410px; left: 1486px;">
+		<div id="input_form_div">
+			<form class="form-inline">
+				<div class="form-group">
+					<div class="input-group-btn">
+						<input type="text" class="form-control" id="commitUrl"
+							name="commit_url" placeholder="Commit Url"
+							style="width: 600px; top: 30px;">
+						<!-- <input id="commitUrl" type="text" style="width: 1000px;top: 30px;" class="form-control" name="commit_url"> -->
+						<button id="searchButton" class="btn btn-info" type="button"
+							onclick="getFileByCommitUrl()">Analyze</button>
 					</div>
 				</div>
-			</div>
+				<!-- <button type="button" class="btn btn-primary" onclick = "getFileByCommitUrl()">Analyze</button> -->
+	
+	
+	
+			</form>
 		</div>
+		
+		<!-- <%--<button id="searchButton2" class="btn btn-info" type="button">Search</button>--%> -->
+
+		<!-- <div style="position:absolute;left:144px;display:inline;width:1000px;height:130px;top:70px;"> -->
+		<!-- <div id ="fileList" class="list-group" style="width:1000px;"> -->
+		<div id="diff_editor_container" >
+			<div id="diff_editor_meta" class="container">
+				<div id= "file_list_container" class="row">
+					<ul id="fileList" class="dropdown-menu"
+						aria-labelledby="dropdownMenu3">
+						<li class="dropdown-header">Dropdown header</li>
+						<li><a href="#">Action</a></li>
+						<li><a href="#">Another action</a></li>
+						<li><a href="#">Something else here</a></li>
+						<li class="dropdown-header">Dropdown header</li>
+						<li><a href="#">Separated link</a></li>
+					</ul>
+				</div>
+				
+				
+				<div id="info_panel" class="panel panel-default" class="row" style="width:300px;">
+				<div class="panel-heading">
+					<h3 class="panel-title">Legend</h3>
+				</div>
+				<div class="panel-body">
+					<ul>
+						<li style="height: 25px;">
+							<div 
+								style="position: absolute; top: 51px; left: 40px; display: inline; background-color: rgba(0, 205, 0, 0.2); width: 45px; height: 18px;"></div>
+							<span >Insert</span>
+						</li>
+						<li style="height: 25px;">
+							<div
+								style="position: absolute; top: 51px; left: 40px;display: inline; background-color: rgba(255, 0, 0, 0.2); width: 45px; height: 18px;"></div>
+							<span>Delete</span>
+						</li>
+						<li style="height: 25px;">
+							<div
+								style="position: absolute; top: 51px; left: 40px;display: inline; background-color: rgba(0, 100, 255, 0.2); width: 45px; height: 18px;"></div>
+							<span>Change</span>
+						</li>
+						<li style="height: 25px;">
+							<div 
+								style="position: absolute; top: 51px; left: 40px;display: inline; background-color: rgba(255, 140, 0, 0.2); width: 45px; height: 18px;"></div>
+							<span>Move</span>
+						</li>
+					</ul>
+				</div>
+				</div>
+				
+				
+			</div>
+			<!-- editor -->
+			<div class="editor-frame" style="margin-top: 280px;">
+				<div id="diff-editor">
+					<div
+						class="monaco-diff-editor monaco-editor-background side-by-side vs"
+						style="position: relative; height: 100%;">
+						<canvas id="myCanvas3" width="400" height="300"
+							style="position: absolute; will-change: transform; top: 0px; left: 1486px;"></canvas>
+						<!--original-->
+						<div class="editor original" data-keybinding-context="2"
+							data-mode-id="javascript"
+							style="position: absolute; height: 100%; width: 243px; left: 0px;">
+							<div class="monaco-editor original-in-monaco-diff-editor vs"
+								data-uri="inmemory://model/2"
+								style="width: 743px; height: 4000px; overflow: hidden"></div>
+						</div>
+						<!--modified-->
+						<div class="editor modified" data-keybinding-context="3"
+							data-mode-id="javascript"
+							style="position: absolute; height: 100%; width: 173px; left: 743px;">
+							<div class="monaco-editor modified-in-monaco-diff-editor vs"
+								data-uri="inmemory://model/3"
+								style="width: 743px; height: 4000px; overflow: hidden"></div>
+						</div>
+						<div class="bubbleZone" data-keybinding-context="3"
+							data-mode-id="javascript"
+							style="position: absolute; height: 100%; width: 410px; left: 1486px;">
+						</div>
+					</div>
+				</div>
+			</div>	
+		</div>
+
 	</section>
-
-
-
 
 
 	<!-- Scripts -->

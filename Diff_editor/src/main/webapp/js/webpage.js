@@ -6,7 +6,7 @@ function generateContainer(num) {
 
 	document.querySelector("#myCanvas3").height = wholeHeight;
 	if(num == 2)
-		generateoOriginalEditor(wholeHeight);
+		generateOriginalEditor(wholeHeight);
 	generateModifiedEditor(wholeHeight);
 }
 
@@ -27,7 +27,7 @@ function adjustHeight() {
 	}	
 }
 
-function generateoOriginalEditor(wholeHeight) {
+function generateOriginalEditor(wholeHeight) {
 	// original editor
 	var overlaysDiv = document.createElement("div");
 	overlaysDiv.className="margin-view-overlays";
@@ -69,6 +69,24 @@ function generateoOriginalEditor(wholeHeight) {
 	generateEditor(originalLines,originalLinesCoordinate,overlaysDiv,viewOverlaysDiv,linesDiv1,viewZonesDiv1,1);
 }
 
+function generateEditorTest(contentLines,linesCoordinate,overlaysDiv,viewOverlaysDiv,linesDiv,viewZonesDiv,sign) {
+	var diagonalLine = 0;
+	var newDiv1 = document.createElement("div");
+	newDiv1.style="width: 100%; height: 19px;";	            		
+	var newDiv2 = document.createElement("div");
+	newDiv2.style="width: 100%; height: 19px;";            		
+	var newDiv3 = document.createElement("div");
+	newDiv3.style="top: 0px; height: 19px;";
+	newDiv3.className = "view-line";
+	newDiv3.onclick = showLink;
+	newDiv2.innerHTML = "";
+	var content = "**";
+	newDiv3.innerHTML = "<span style='float:left'><span class='mtk1'>"+content+"</span></span>";
+	overlaysDiv.appendChild(newDiv1);
+	viewOverlaysDiv.appendChild(newDiv2);
+	linesDiv.appendChild(newDiv3);
+}
+
 function generateModifiedEditor(wholeHeight) {
 	// modified editor
 	var overlaysDiv2 = document.createElement("div");
@@ -105,7 +123,7 @@ function generateModifiedEditor(wholeHeight) {
 	overlayCanvas.id = "overlayCanvas";
 	overlayCanvas.height = wholeHeight;
 	overlayCanvas.width = 200;
-	overlayCanvas.style = "position:absolute;top:0";
+	overlayCanvas.style = "position:absolute;top:0;left:0";
 	overlaysDiv2.appendChild(overlayCanvas);
 	//myCanvas2
 	var myCanvas2 = document.createElement("canvas");
@@ -176,10 +194,32 @@ function generateEditor(contentLines,linesCoordinate,overlaysDiv,viewOverlaysDiv
 			}
 			newDiv2.innerHTML = inner;
 			var content = contentLines[l].content;
-			newDiv3.innerHTML = "<span><span class='mtk1'>"+content+"</span></span>"
+			newDiv3.innerHTML = "<span style='float:left'><span class='mtk1'>"+content+"</span></span>"
 		}								           			            			            		
 		overlaysDiv.appendChild(newDiv1);
 		viewOverlaysDiv.appendChild(newDiv2);
 		linesDiv.appendChild(newDiv3);
 	}	  
 }
+
+//function generateLegend() {
+//	var panelDiv = document.createElement("div");
+//	panelDiv.className="panel panel-default";
+//	panelDiv.id="info_panel";
+//	panelDiv.style="width: 260px;top:0;height:180px";
+//	var panelHeadingDiv = document.createElement("div");
+//	panelHeadingDiv.innerHTML="<h3 class='panel-title'>Legend</h3>";
+//	panelDiv.appendChild(panelHeadingDiv);
+//	var panelBodyDiv = document.createElement("div");
+//	panelBodyDiv.className="panel-body";
+//	
+//	var types = ["Insert","Delete","Change","Move"];
+//	var inner ="<ul>";
+//	for(var i=0;i<types.length;i++)
+//		inner += "<li><div style='background-color: "+getColorByType(types[i])+";' class='legend_icon'></div><span>"+types[i]+"</span></li>";
+//	inner +="</ul>";
+//	
+//	panelBodyDiv.innerHTML = inner;
+//	
+//	document.querySelector(".bubbleZone").appendChild(panelDiv);
+//}

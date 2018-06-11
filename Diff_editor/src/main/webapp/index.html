@@ -56,16 +56,12 @@
 					<div class="input-group-btn">
 						<input type="text" class="form-control" id="commitUrl"
 							name="commit_url" placeholder="Commit Url"
-							style="width: 600px; top: 30px;">
+							style="width: 600px;">
 						<!-- <input id="commitUrl" type="text" style="width: 1000px;top: 30px;" class="form-control" name="commit_url"> -->
 						<button id="searchButton" class="btn btn-info" type="button"
 							onclick="getFileByCommitUrl()">Analyze</button>
 					</div>
-				</div>
-				<!-- <button type="button" class="btn btn-primary" onclick = "getFileByCommitUrl()">Analyze</button> -->
-	
-	
-	
+				</div>	
 			</form>
 		</div>
 		
@@ -76,52 +72,23 @@
 		<div id="diff_editor_container" >
 			<div id="diff_editor_meta" class="container">
 				<div id= "file_list_container" class="row">
-					<ul id="fileList" class="dropdown-menu"
-						aria-labelledby="dropdownMenu3">
+					<div class="col-md-6 col-md-offset-3">
+					<ul id="fileList" class="file-menu" style="max-height:210px;overflow:auto;visibility:hidden">
+						<!-- <li class="dropdown-header">Dropdown header</li>
+						<li><a onclick = 'getContentByFileNameAndParentId(this)'>Action</a></li>
+						<li><a>Another action</a></li>
+						<li><a>Something else here</a></li>
 						<li class="dropdown-header">Dropdown header</li>
-						<li><a href="#">Action</a></li>
-						<li><a href="#">Another action</a></li>
-						<li><a href="#">Something else here</a></li>
-						<li class="dropdown-header">Dropdown header</li>
-						<li><a href="#">Separated link</a></li>
+						<li><a>Separated link</a></li>
+						<li><a>Separated link</a></li> -->
 					</ul>
-				</div>
-				
-				
-				<div id="info_panel" class="panel panel-default" class="row" style="width:300px;">
-				<div class="panel-heading">
-					<h3 class="panel-title">Legend</h3>
-				</div>
-				<div class="panel-body">
-					<ul>
-						<li style="height: 25px;">
-							<div 
-								style="position: absolute; top: 51px; left: 40px; display: inline; background-color: rgba(0, 205, 0, 0.2); width: 45px; height: 18px;"></div>
-							<span >Insert</span>
-						</li>
-						<li style="height: 25px;">
-							<div
-								style="position: absolute; top: 51px; left: 40px;display: inline; background-color: rgba(255, 0, 0, 0.2); width: 45px; height: 18px;"></div>
-							<span>Delete</span>
-						</li>
-						<li style="height: 25px;">
-							<div
-								style="position: absolute; top: 51px; left: 40px;display: inline; background-color: rgba(0, 100, 255, 0.2); width: 45px; height: 18px;"></div>
-							<span>Change</span>
-						</li>
-						<li style="height: 25px;">
-							<div 
-								style="position: absolute; top: 51px; left: 40px;display: inline; background-color: rgba(255, 140, 0, 0.2); width: 45px; height: 18px;"></div>
-							<span>Move</span>
-						</li>
-					</ul>
-				</div>
-				</div>
-				
+					</div>
+				</div>																
+				</div>				
 				
 			</div>
 			<!-- editor -->
-			<div class="editor-frame" style="margin-top: 280px;">
+			<div class="editor-frame">
 				<div id="diff-editor">
 					<div
 						class="monaco-diff-editor monaco-editor-background side-by-side vs"
@@ -144,9 +111,38 @@
 								data-uri="inmemory://model/3"
 								style="width: 743px; height: 4000px; overflow: hidden"></div>
 						</div>
-						<div class="bubbleZone" data-keybinding-context="3"
-							data-mode-id="javascript"
-							style="position: absolute; height: 100%; width: 410px; left: 1486px;">
+					<div class="bubbleZone" data-keybinding-context="3"
+						data-mode-id="javascript"
+						style="position: absolute; height: 100%; width: 410px; left: 1486px;">
+						<div id="info_panel" class="panel panel-default"
+							style="width: 260px;top:0;height:180px;visibility:hidden">
+							<div class="panel-heading">
+								<h3 class="panel-title">Legend</h3>
+							</div>
+							<div class="panel-body">
+								<ul>
+									<li style="height: 25px;">
+										<div
+											style="background-color: rgba(0, 205, 0, 0.2);" class="legend_icon"></div>
+										<span>Insert</span>
+									</li>
+									<li style="height: 25px;">
+										<div
+											style="background-color: rgba(255, 0, 0, 0.2);" class="legend_icon"></div>
+										<span>Delete</span>
+									</li>
+									<li style="height: 25px;">
+										<div
+											style="background-color: rgba(0, 100, 255, 0.2);" class="legend_icon"></div>
+										<span>Change</span>
+									</li>
+									<li style="height: 25px;">
+										<div
+											style="background-color: rgba(255, 140, 0, 0.2);" class="legend_icon"></div>
+										<span>Move</span>
+									</li>
+								</ul>
+							</div>
 						</div>
 					</div>
 				</div>

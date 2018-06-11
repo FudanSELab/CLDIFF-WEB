@@ -30,7 +30,8 @@ function init() {
 	changeMove.splice(0,changeMove.length);
 	document.querySelector(".original-in-monaco-diff-editor").innerHTML="";
 	document.querySelector(".modified-in-monaco-diff-editor").innerHTML="";
-	document.querySelector(".bubbleZone").innerHTML="";
+//	document.querySelector(".bubbleZone").innerHTML="";
+	clearBubble();
 	var myCanvas=document.getElementById("myCanvas3");
 	cxt = myCanvas.getContext("2d");
     cxt.clearRect(0,0,myCanvas.width,myCanvas.height); 
@@ -45,7 +46,8 @@ function refreshPage(parentCommitHash,fn) {
 	var currFilePath = fileNameWithParent[parentCommitHash][fn]["curr_file_path"];
 	var json = getAllFileFromServer("BCGetFileServlet",metaObject["author"],metaObject["commit_hash"],parentCommitHash,metaObject["project_name"],prevFilePath,currFilePath);
 	var a = document.getElementById("info_panel");
-	a.style.display="";
+//	a.style.display="";
+	a.style.visibility="visible";
 	json = eval("("+json+")");
 	init();	
 	clearPopoverTop();

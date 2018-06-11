@@ -73,7 +73,7 @@ function getFileByCommitUrl() {
 		}			
 	}
 	if(listGroup.children.length > 0)
-		listGroup.style.display = "inline";
+		listGroup.style.visibility = "visible";
 //	var last=JSON.stringify(fileNameWithParent); //将JSON对象转化为JSON字符
 //	alert(last);
 }
@@ -83,6 +83,7 @@ function getContentByFileNameAndParentId(file) {
 	for(var i=0;i<activeList.length;i++) {
 		activeList[i].classList.remove("active");
 	}
+//	file.parentNode.classList.add("active");
 	file.parentNode.classList.add("active");
 	var fn = file.innerHTML.trim();
 	var parentId = file.parentNode.parentId;

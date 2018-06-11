@@ -16,11 +16,67 @@
 	background-image: none;
 	border-color: #245580
 } */
-.dropdown-menu .active,.dropdown-menu .active:focus, .dropdown-menu .active:hover {
+#fileList {
+}
+
+.panel-body {
+	font-size:15px;
+}
+.panel-body li {
+	height:25px;
+}
+.legend_icon {
+	position: absolute;
+	left: 40px;
+	display: inline;
+	width: 65px;
+	height: 17px;
+	margin: 4px
+}
+
+.file-menu {
+    padding: 5px 0;
+    margin: 2px 0 0;
+    font-size: 14px;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: 4px;
+    -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+    box-shadow: 0 6px 12px rgba(0,0,0,.175);
+}
+
+.file-menu>li>a {
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: 400;
+    line-height: 1.42857143;
+    color: #333;
+    white-space: nowrap;
+    text-decoration:none;
+}
+
+.file-menu>li {
+    padding: 1px;
+}
+
+.file-menu>li>a:hover {
+    color: #0080ff;
+	background-color: #c0c0c0;
+	border-color: #c0c0c0;
+	
+}
+
+.file-menu .active,.file-menu .active:focus, .file-menu .active:hover {
 	color: #ffffff;
 	background-color: #337ab7;
 	background-image: none;
-	border-color: #245580
+	/* border-color: #245580 */
 }
 
 .builder-hidden {

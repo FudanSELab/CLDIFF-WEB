@@ -138,6 +138,13 @@ function computeBubbleCoordinate(bubbleDiv,top,bottom) {
 		bubbleArray.splice(i, 0, bubbleDiv);
 		bubbleDiv.style.top = top+"px";
 	}
+	
+	if(bubbleArray.length > 0) {
+		var allTop = parseInt(bubbleArray[0].style.top);
+		if(allTop < 190){
+			shiftBubble(0,190);
+		}
+	}
 }
 
 function shiftBubble(index,bottom) {
@@ -263,6 +270,14 @@ function drawTagLine(file,top,middle,bottom,id,color,isChangeOrMove) {
 	}	
 	cxt.strokeStyle=color;
 	cxt.stroke();		
+}
+
+function clearBubble() {
+	var popovers = document.querySelectorAll(".bubbleZone .popover");
+	for(var p=0;p<popovers.length;p++) {
+		popovers[p].parentNode.removeChild(popovers[p]);
+	}
+	document.querySelector("#info_panel").style.visibility="hidden";
 }
 
 function clearCanvas() {

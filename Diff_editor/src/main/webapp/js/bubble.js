@@ -277,7 +277,7 @@ function clearBubble() {
 	for(var p=0;p<popovers.length;p++) {
 		popovers[p].parentNode.removeChild(popovers[p]);
 	}
-	document.querySelector("#info_panel").style.visibility="hidden";
+//	document.querySelector("#info_panel").style.visibility="hidden";
 }
 
 function clearCanvas() {

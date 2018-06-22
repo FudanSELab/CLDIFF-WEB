@@ -136,9 +136,10 @@
     background-color: rgba(255, 0, 0, 0.2);
 }
 
-.monaco-diff-editor.side-by-side .editor.modified {
+/*.monaco-diff-editor.side-by-side .editor.modified {
     box-shadow: -6px 0 5px -5px #dddddd;
 }
+*/)
 
 .monaco-editor .bracket-match {
     background-color: rgba(0, 100, 0, 0.1);

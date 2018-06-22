@@ -20,17 +20,31 @@ function getMetaFileFromServer(url,commitURL) {
 	return content;
 }
 
+function isValidUrl(url){
+    var patt = /^(https:[/]{2,})?(github.com[/]+)([A-Za-z0-9_-]+[/]+){2}(commit[/]+)[A-Za-z0-9]+$/;
+
+    return patt.test(url);
+}
+
 function getFileByCommitUrl() {	
 	init();
-	var listGroup = document.getElementById("fileList");
-	listGroup.innerHTML="";
+	var listGroup = $("#toc")
+//	listGroup.innerHTML="";
+	var first = listGroup.children().fisrt();
+	var last = listGroup.children().last();
+	
 	var commitUrl = document.getElementById("commitUrl").value.trim();
+	var isValid = isValidUrl(commitUrl);
+	if(isValid==false){
+		console.log("invalid url");
+		return;
+	}
 	console.log(commitUrl);
 	var json = getMetaFileFromServer("BCMetaServlet",commitUrl);
-	//var json = getMetaFileFromServer("TestFileServlet",commitUrl);
 	json = eval("("+json+")");
 	if(json==null){
 		alert("Response is null");
+		return;
 	}
 	var parents = json.parents;
 	var files = json.files;
@@ -57,18 +71,31 @@ function getFileByCommitUrl() {
 			fileNameWithParent[parent_commit] = parentCommitObj;
 		}		
 	}
+	console.log(fileNameWithParent);
 	for(var parentCommit in fileNameWithParent){  
 		if(fileNameWithParent[parentCommit] != undefined) {
-			var dividerDiv = document.createElement("li");
-			dividerDiv.className = "dropdown-header";
-			dividerDiv.innerHTML="diff with parent commit id : " + parentCommit;
-			dividerDiv.style = "color:#000079";
-			listGroup.appendChild(dividerDiv);
+			var appendString = "";
+			appendString += "<li>";
+			appendString += '<svg title="modified" class="octicon octicon-diff-modified" ' +
+				'viewBox="0 0 14 16" version="1.1" width="14" height="16" ' +
+					'aria-hidden="true"> '+
+					'<path fill-rule="evenodd" ' +
+						'd="M13 1H1c-.55 0-1 .45-1 1v12c0 .55.45 1 1 1h12c.55 0 1-.45 1-1V2c0-.55-.45-1-1-1zm0 13H1V2h12v12zM4 8c0-1.66 1.34-3 3-3s3 1.34 3 3-1.34 3-3 3-3-1.34-3-3z"></path></svg>';
+			appendString += '<a style="color:#000079">"'+"diff with parent commit id : "+parentCommit+'"</a>';
+			appendString += "</li>";
+//			dividerDiv.className = "dropdown-header";
+//			listGroup.appendChild(dividerDiv);
 			for(var fileName in fileNameWithParent[parentCommit]){ 
-				var li = document.createElement("li");
 				li.parentId = parentCommit;
-				li.innerHTML="<a onclick = 'getContentByFileNameAndParentId(this)'>"+fileName+"</a>";
-				listGroup.appendChild(li);
+				
+				appendString += "<li>";
+				appendString += '<svg title="modified" class="octicon octicon-diff-modified" ' +
+					'viewBox="0 0 14 16" version="1.1" width="14" height="16" ' +
+						'aria-hidden="true"> '+
+						'<path fill-rule="evenodd" ' +
+							'd="M13 1H1c-.55 0-1 .45-1 1v12c0 .55.45 1 1 1h12c.55 0 1-.45 1-1V2c0-.55-.45-1-1-1zm0 13H1V2h12v12zM4 8c0-1.66 1.34-3 3-3s3 1.34 3 3-1.34 3-3 3-3-1.34-3-3z"></path></svg>';
+				appendString += '<a onclick = "getContentByFileNameAndParentId(this)">'+fileName+'</a>';
+				appendString += "</li>";
 			}
 		}			
 	}

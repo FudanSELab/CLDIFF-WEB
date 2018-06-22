@@ -28,10 +28,11 @@ function isValidUrl(url){
 
 function getFileByCommitUrl() {	
 	init();
-	var listGroup = $("#toc")
+	var listGroup = document.getElementById("toc");
+	listGroup.style.visibility = "visible";
 //	listGroup.innerHTML="";
-	var first = listGroup.children().fisrt();
-	var last = listGroup.children().last();
+	var first = listGroup.children[0];
+	var last = listGroup.children[1];
 	
 	var commitUrl = document.getElementById("commitUrl").value.trim();
 	var isValid = isValidUrl(commitUrl);
@@ -75,27 +76,38 @@ function getFileByCommitUrl() {
 	for(var parentCommit in fileNameWithParent){  
 		if(fileNameWithParent[parentCommit] != undefined) {
 			var appendString = "";
-			appendString += "<li>";
 			appendString += '<svg title="modified" class="octicon octicon-diff-modified" ' +
-				'viewBox="0 0 14 16" version="1.1" width="14" height="16" ' +
-					'aria-hidden="true"> '+
-					'<path fill-rule="evenodd" ' +
-						'd="M13 1H1c-.55 0-1 .45-1 1v12c0 .55.45 1 1 1h12c.55 0 1-.45 1-1V2c0-.55-.45-1-1-1zm0 13H1V2h12v12zM4 8c0-1.66 1.34-3 3-3s3 1.34 3 3-1.34 3-3 3-3-1.34-3-3z"></path></svg>';
+			'viewBox="0 0 14 16" version="1.1" width="14" height="16" ' +
+				'aria-hidden="true"> '+
+				'<path fill-rule="evenodd" ' +
+					'd="M13 1H1c-.55 0-1 .45-1 1v12c0 .55.45 1 1 1h12c.55 0 1-.45 1-1V2c0-.55-.45-1-1-1zm0 13H1V2h12v12zM4 8c0-1.66 1.34-3 3-3s3 1.34 3 3-1.34 3-3 3-3-1.34-3-3z"></path></svg>';
 			appendString += '<a style="color:#000079">"'+"diff with parent commit id : "+parentCommit+'"</a>';
-			appendString += "</li>";
+			var dividerDiv = document.createElement("li");
 //			dividerDiv.className = "dropdown-header";
-//			listGroup.appendChild(dividerDiv);
+			dividerDiv.innerHTML= appendString;
+			dividerDiv.style = "color:#000079";
+			last.appendChild(dividerDiv);
+			
 			for(var fileName in fileNameWithParent[parentCommit]){ 
-				li.parentId = parentCommit;
-				
-				appendString += "<li>";
-				appendString += '<svg title="modified" class="octicon octicon-diff-modified" ' +
+				var fileObj = fileNameWithParent[parentCommit][fileName];
+				var appendString2 = "";
+				appendString2 += '<svg title="modified" class="octicon octicon-diff-modified" ' +
 					'viewBox="0 0 14 16" version="1.1" width="14" height="16" ' +
 						'aria-hidden="true"> '+
 						'<path fill-rule="evenodd" ' +
 							'd="M13 1H1c-.55 0-1 .45-1 1v12c0 .55.45 1 1 1h12c.55 0 1-.45 1-1V2c0-.55-.45-1-1-1zm0 13H1V2h12v12zM4 8c0-1.66 1.34-3 3-3s3 1.34 3 3-1.34 3-3 3-3-1.34-3-3z"></path></svg>';
-				appendString += '<a onclick = "getContentByFileNameAndParentId(this)">'+fileName+'</a>';
-				appendString += "</li>";
+				var path  = "";
+				if(fileObj["curr_file_path"]==null){
+					path = fileObj["prev_file_path"];
+				}else{
+					path = fileObj["curr_file_path"];
+				}
+				appendString2 += '<a onclick = "getContentByFileNameAndParentId(this)" name="'+fileName+'">'+path.substring(45)+'</a>';
+				var li = document.createElement("li");
+				li.parentId = parentCommit;
+				li.innerHTML = appendString2;
+				last.appendChild(li);
+				
 			}
 		}			
 	}
@@ -110,9 +122,8 @@ function getContentByFileNameAndParentId(file) {
 	for(var i=0;i<activeList.length;i++) {
 		activeList[i].classList.remove("active");
 	}
-//	file.parentNode.classList.add("active");
 	file.parentNode.classList.add("active");
-	var fn = file.innerHTML.trim();
+	var fn = file.name;
 	var parentId = file.parentNode.parentId;
 	parentCommitId = parentId;
 	fileName = fn;

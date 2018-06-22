@@ -79,17 +79,7 @@
 		<!-- test file list -->
 		<div id="toc"
 			class="details-collapse table-of-contents js-details-container Details js-transitionable open Details--on panel panel-default"
-			style="margin-left:10%;margin-right:10%" >
-			<!-- <div class="BtnGroup float-right"
-				data-ga-load="Diff, view, Viewed Split Diff">
-				<a class="btn btn-sm BtnGroup-item"
-					href="https://github.com/calvinhkf/DiffMiner/commit/b15d7d7f7b95d6b0443f10f6eccfb9e210dbe11d?diff=unified">
-					Unified </a> <a class="btn btn-sm selected BtnGroup-item"
-					href="https://github.com/calvinhkf/DiffMiner/commit/b15d7d7f7b95d6b0443f10f6eccfb9e210dbe11d?diff=split">
-					Split </a>
-			</div>
-			-->
-
+			style="margin-left:5%;margin-right:5%;visibility:hidden" >
 			<div class="toc-diff-stats">
 				<svg class="octicon octicon-diff" viewBox="0 0 13 16" version="1.1"
 					width="13" height="16" aria-hidden="true">
@@ -101,67 +91,33 @@
 					files</button>
 				with <strong>19 additions</strong> and <strong>19 deletions</strong>.
 			</div>
-
-			<ol class="content collapse js-transitionable" style="">
-			<!-- 
-				<li><svg title="modified" class="octicon octicon-diff-modified"
-						viewBox="0 0 14 16" version="1.1" width="14" height="16"
-						aria-hidden="true">
-						<path fill-rule="evenodd"
-							d="M13 1H1c-.55 0-1 .45-1 1v12c0 .55.45 1 1 1h12c.55 0 1-.45 1-1V2c0-.55-.45-1-1-1zm0 13H1V2h12v12zM4 8c0-1.66 1.34-3 3-3s3 1.34 3 3-1.34 3-3 3-3-1.34-3-3z"></path></svg>
-					<a href="#diff-cff329f009d7a94c3109ee4bf80e5a16">src/edu/fdu/se/astdiff/preprocessingfile/DstBodyCheck.java</a>
-				</li>
-				<li><svg title="modified" class="octicon octicon-diff-modified"
-						viewBox="0 0 14 16" version="1.1" width="14" height="16"
-						aria-hidden="true">
-						<path fill-rule="evenodd"
-							d="M13 1H1c-.55 0-1 .45-1 1v12c0 .55.45 1 1 1h12c.55 0 1-.45 1-1V2c0-.55-.45-1-1-1zm0 13H1V2h12v12zM4 8c0-1.66 1.34-3 3-3s3 1.34 3 3-1.34 3-3 3-3-1.34-3-3z"></path></svg>
-					<a href="#diff-3da7d7895884e3a89e2c8256e76c1566">src/edu/fdu/se/main/astdiff/MyHttpServer.java</a>
-				</li>
-				-->
-			</ol>
+			<ol class="content collapse js-transitionable" style=""></ol>
 		</div>
-		<!--  <div id="diff_editor_container"> 
-		<div class="container">
-			<div class="row">
-				<div class="col-md-6 col-md-offset-3">
-					<ul id="fileList" class="file-menu"
-						style="max-height: 210px; overflow: auto; visibility: hidden">
-						<!-- <li class="dropdown-header">Dropdown header</li>
-						<li><a onclick = 'getContentByFileNameAndParentId(this)'>Action</a></li>
-						<li><a>Another action</a></li>
-						<li><a>Something else here</a></li>
-						<li class="dropdown-header">Dropdown header</li>
-						<li><a>Separated link</a></li>
-						<li><a>Separated link</a></li> 
-					</ul>
-				</div>
-			</div>
-		</div>-->
+
 		<!-- editor -->
 		<div id="diff-editor"
-			class="editor-frame container-fluid panel panel-default" style="margin-left:10%;margin-right:10%">
+			class="editor-frame container-fluid panel panel-default" style="margin-left:5%;margin-right:5%">
 			
 			<div
 				class="monaco-diff-editor monaco-editor-background side-by-side vs row" style="height: 100%;">
 				<!--original-->
-				<div class="editor original col-md-5" data-keybinding-context="2"
+				<div class="editor original col-md-4 nopadding" data-keybinding-context="2"
 					data-mode-id="javascript" style="height: 100%;">
 					<div class="monaco-editor original-in-monaco-diff-editor vs"
 						data-uri="inmemory://model/2"
 						style="overflow: hidden"></div>
 				</div>
 				<!--modified-->
-				<div class="editor modified col-md-5" data-keybinding-context="3"
+				<div class="editor modified col-md-4 nopadding" data-keybinding-context="3"
 					data-mode-id="javascript" style="height: 100%;">
 					<div class="monaco-editor modified-in-monaco-diff-editor vs"
 						data-uri="inmemory://model/3"
 						style="overflow: hidden"></div>
 				</div>
-				<div class="bubbleZone col-md-2" data-keybinding-context="3"
-					data-mode-id="javascript" style="height: 100%; width: 200px;">
+				<div class="bubbleZone col-md-3 nopadding" data-keybinding-context="3"
+					data-mode-id="javascript" style="height: 100%;">
 					<div id="info_panel" class="panel panel-default"
-						style="width: 100px; top: 0; height: 180px; visibility: hidden">
+						style="top: 0;visibility: hidden;width:270px">
 						<div class="panel-heading">
 							<h3 class="panel-title">Legend</h3>
 						</div>

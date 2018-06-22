@@ -16,6 +16,10 @@
 	background-image: none;
 	border-color: #245580
 } */
+.nopadding {
+   padding: 0 !important;
+ /*  margin: 0 !important; */
+}
 #fileList {
 }
 
@@ -27,7 +31,7 @@
 }
 .legend_icon {
 	position: absolute;
-	left: 90px;
+	left: 120px;
 	display: inline;
 	width: 65px;
 	height: 17px;

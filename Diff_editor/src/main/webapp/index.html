@@ -65,7 +65,7 @@
 						<span class="input-group-addon" style="background-color: white;"><span
 							class="glyphicon glyphicon-search"></span></span> <input type="text"
 							class="form-control" id="commitUrl" name="commit_url"
-							placeholder="your github commit url" style="width: 600px;">
+							placeholder="enter your github commit url" style="width: 600px;">
 
 						<span class="input-group-btn">
 							<button id="searchButton" class="btn btn-info" type="button"
@@ -76,10 +76,9 @@
 			</div>
 		</div>
 
-		<!-- test file list -->
 		<div id="toc"
 			class="details-collapse table-of-contents js-details-container Details js-transitionable open Details--on panel panel-default"
-			style="margin-left:5%;margin-right:5%;visibility:hidden" >
+			style="margin-left:5%;margin-right:5%;margin-top:5%;visibility:hidden" >
 			<div class="toc-diff-stats">
 				<svg class="octicon octicon-diff" viewBox="0 0 13 16" version="1.1"
 					width="13" height="16" aria-hidden="true">
@@ -89,14 +88,14 @@
 				<button type="button" class="btn-link js-details-target"
 					aria-expanded="true" data-initial-state="false">2 changed
 					files</button>
-				with <strong>19 additions</strong> and <strong>19 deletions</strong>.
+				<!-- with <strong>19 additions</strong> and <strong>19 deletions</strong>.-->
 			</div>
 			<ol class="content collapse js-transitionable" style=""></ol>
 		</div>
 
 		<!-- editor -->
 		<div id="diff-editor"
-			class="editor-frame container-fluid panel panel-default" style="margin-left:5%;margin-right:5%">
+			class="editor-frame container-fluid panel panel-default;visibility:hidden;" style="margin-left:5%;margin-right:5%">
 			
 			<div
 				class="monaco-diff-editor monaco-editor-background side-by-side vs row" style="height: 100%;">

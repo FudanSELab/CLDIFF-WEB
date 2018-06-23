@@ -73,6 +73,8 @@ function getFileByCommitUrl() {
 		}		
 	}
 	console.log(fileNameWithParent);
+	last.innerHTML = ""; 
+	var cnt = 0;
 	for(var parentCommit in fileNameWithParent){  
 		if(fileNameWithParent[parentCommit] != undefined) {
 			var appendString = "";
@@ -111,10 +113,13 @@ function getFileByCommitUrl() {
 				li.parentId = parentCommit;
 				li.innerHTML = appendString2;
 				last.appendChild(li);
+				cnt++;
 				
 			}
 		}			
 	}
+	first.children[1].innerHTML = cnt +" changed files";
+	console.log(first.children[1].text);
 	if(listGroup.children.length > 0)
 		listGroup.style.visibility = "visible";
 //	var last=JSON.stringify(fileNameWithParent); //将JSON对象转化为JSON字符

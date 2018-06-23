@@ -46,6 +46,8 @@ function refreshPage(parentCommitHash,fn) {
 	var currFilePath = fileNameWithParent[parentCommitHash][fn]["curr_file_path"];
 	var json = getAllFileFromServer("BCGetFileServlet",metaObject["author"],metaObject["commit_hash"],parentCommitHash,metaObject["project_name"],prevFilePath,currFilePath);
 	var a = document.getElementById("info_panel");
+	var b = document.getElementById("diff-editor");
+	b.style.visibility="visible";
 //	a.style.display="";
 	a.style.visibility="visible";
 	json = eval("("+json+")");

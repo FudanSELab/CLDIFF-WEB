@@ -33,7 +33,8 @@ function drawBubble(entry,level) {
 	var bubbleTop = top+9,bubbleLeft = 110;
 	bubbleDiv.style.borderColor = getColorByType(entry["type2"]);
 	bubbleDiv.style.width = "300px";
-	var list = entry.id + ". " +entry.description;
+//	var list = entry.id + ". " +entry.description;
+	var list = entry.description;
 	if(entry["opt2-exp2"] != undefined) {
 		list += "<ul style='color:rgb(141,182,205)'>";
 		for(var op =0;op<entry["opt2-exp2"].length;op++) {

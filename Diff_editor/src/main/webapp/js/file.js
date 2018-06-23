@@ -90,17 +90,21 @@ function getFileByCommitUrl() {
 			
 			for(var fileName in fileNameWithParent[parentCommit]){ 
 				var fileObj = fileNameWithParent[parentCommit][fileName];
+				var path  = "";
 				var appendString2 = "";
-				appendString2 += '<svg title="modified" class="octicon octicon-diff-modified" ' +
+				if(fileObj["curr_file_path"]==null){
+					path = fileObj["prev_file_path"];
+					appendString2 += '<svg title="removed" class="octicon octicon-diff-removed" viewBox="0 0 14 16" version="1.1" width="14" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M13 1H1c-.55 0-1 .45-1 1v12c0 .55.45 1 1 1h12c.55 0 1-.45 1-1V2c0-.55-.45-1-1-1zm0 13H1V2h12v12zm-2-5H3V7h8v2z"></path></svg>';
+				}else if(fileObj["prev_file_path"]==null){
+					path = fileObj["curr_file_path"];
+					appendString2 += '<svg title="added" class="octicon octicon-diff-added" viewBox="0 0 14 16" version="1.1" width="14" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M13 1H1c-.55 0-1 .45-1 1v12c0 .55.45 1 1 1h12c.55 0 1-.45 1-1V2c0-.55-.45-1-1-1zm0 13H1V2h12v12zM6 9H3V7h3V4h2v3h3v2H8v3H6V9z"></path></svg>';
+				}else{
+					path = fileObj["curr_file_path"];
+					appendString2 += '<svg title="modified" class="octicon octicon-diff-modified" ' +
 					'viewBox="0 0 14 16" version="1.1" width="14" height="16" ' +
 						'aria-hidden="true"> '+
 						'<path fill-rule="evenodd" ' +
 							'd="M13 1H1c-.55 0-1 .45-1 1v12c0 .55.45 1 1 1h12c.55 0 1-.45 1-1V2c0-.55-.45-1-1-1zm0 13H1V2h12v12zM4 8c0-1.66 1.34-3 3-3s3 1.34 3 3-1.34 3-3 3-3-1.34-3-3z"></path></svg>';
-				var path  = "";
-				if(fileObj["curr_file_path"]==null){
-					path = fileObj["prev_file_path"];
-				}else{
-					path = fileObj["curr_file_path"];
 				}
 				appendString2 += '<a onclick = "getContentByFileNameAndParentId(this)" name="'+fileName+'">'+path.substring(45)+'</a>';
 				var li = document.createElement("li");

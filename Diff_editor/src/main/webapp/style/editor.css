@@ -1374,7 +1374,7 @@
     -webkit-user-select: text;
     user-select: text
 }
-
+/*
 .monaco-editor .lines-content,.monaco-editor .view-line,.monaco-editor .view-lines {
     -webkit-user-select: none;
     -ms-user-select: none;
@@ -1382,6 +1382,7 @@
     -o-user-select: none;
     user-select: none
 }
+*/
 
 .monaco-editor .view-lines {
     cursor: text;

@@ -5,9 +5,14 @@ function generateContainer(num) {
 	var wholeHeight = lineLength * 19;
 
 	document.querySelector("#myCanvas3").height = wholeHeight;
-	if (num == 2)
+	if (num == 1)
 		generateOriginalEditor(wholeHeight);
-	generateModifiedEditor(wholeHeight);
+	else if(num == 2)
+		generateModifiedEditor(wholeHeight);
+	else if(num == 3){
+		generateOriginalEditor(wholeHeight);
+		generateModifiedEditor(wholeHeight);
+	}
 }
 
 function adjustHeight() {

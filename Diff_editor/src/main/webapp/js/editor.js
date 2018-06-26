@@ -42,9 +42,9 @@ function init() {
 }
 
 function refreshPage(parentCommitHash,fn) {	
-	var prevFilePath = fileNameWithParent[parentCommitHash][fn]["prev_file_path"];
-	var currFilePath = fileNameWithParent[parentCommitHash][fn]["curr_file_path"];
-	var json = getAllFileFromServer("BCGetFileServlet",metaObject["author"],metaObject["commit_hash"],parentCommitHash,metaObject["project_name"],prevFilePath,currFilePath);
+//	var prevFilePath = fileNameWithParent[parentCommitHash][fn]["prev_file_path"];
+//	var currFilePath = fileNameWithParent[parentCommitHash][fn]["curr_file_path"];
+	var json = getAllFileFromServer("BCGetFileServlet",metaObject["author"],metaObject["commit_hash"],parentCommitHash,metaObject["project_name"],fn);
 	var a = document.getElementById("info_panel");
 	var b = document.getElementById("diff-editor");
 	b.style.visibility="visible";
@@ -53,26 +53,37 @@ function refreshPage(parentCommitHash,fn) {
 	json = eval("("+json+")");
 	init();	
 	clearPopoverTop();
-	
-	var srcFile = json.prev;
-	var dstFile = json.curr;
-	var linkFile = json.link;
-	var diffFile = json.diff;
-	
-	linkFile = eval("("+linkFile+")");
-	if(diffFile != "")
-		diffFile = eval("("+diffFile+")");
 
-	if(srcFile =="") {
+	
+	var srcFile = "";
+	var dstFile = "";
+	var linkFile = "";
+	var diffFile = "";
+	if(json.prev == ""){
+		dstFile = json.curr;
 		initLines(modifiedLines,dstFile);
-		if(diffFile != "")
-			parseLinkFile(linkFile.links,1);
+		generateContainer(2);
+		return;
+	}else if(json.curr == ""){
+		srcFile = json.prev;
+		initLines(originalLines,srcFile);
 		generateContainer(1);
 		return;
+	}else{
+		srcFile = json.prev;
+		dstFile = json.curr;
+		linkFile = json.link;
+		diffFile = json.diff;
 	}
+	
 	fileId = -1;
 	initLines(originalLines,srcFile);
 	initLines(modifiedLines,dstFile);
+	if(diffFile != ""){
+		diffFile = eval("("+diffFile+")");
+		linkFile = eval("("+linkFile+")");
+		parseLinkFile(linkFile.links,1);
+	}
 	
 	if(diffFile != "") {
 		parseLinkFile(linkFile.links,2);
@@ -98,7 +109,7 @@ function refreshPage(parentCommitHash,fn) {
 
 		drawLinkLine(aMoveBlock,bMoveBlock,"rgba(255, 140, 0, 0.2)",getColorByType("Move"));
 		drawLinkLine(aChangeBlock,bChangeBlock,"rgba(0, 100, 255, 0.2)",getColorByType("Change"));
-	}	
+	}
 }
 
 function handleNesting (data) {

@@ -2,10 +2,10 @@ var fileNameList;
 var fileNameWithParent;
 var metaObject;
 
-function getAllFileFromServer(url,author,commitHash,parentCommitHash,projectName,prevFilePath,currFilePath) {
+function getAllFileFromServer(url,author,commitHash,parentCommitHash,projectName,fileName) {
 	var content;
 	$.ajaxSettings.async = false;
-	$.post(url,{author:author,commit_hash:commitHash,parent_commit_hash:parentCommitHash,project_name:projectName,prev_file_path:prevFilePath,curr_file_path:currFilePath}, function(data) {
+	$.post(url,{author:author,commit_hash:commitHash,parent_commit_hash:parentCommitHash,project_name:projectName,file_name:fileName}, function(data) {
 		content = data;
 	});
 	return content;
@@ -57,6 +57,7 @@ function getFileByCommitUrl() {
 //	metaObject["parent_commit_hash"] = json["parent_commit_hash"];//????
 	fileNameWithParent = new Object();
 	for(var i=0;i<files.length;i++) {
+		var id = files[i]["id"];
 		var file_name = files[i]["file_name"];
 		var parent_commit = files[i]["parent_commit"];
 		var fileObj = new Object();
@@ -64,11 +65,11 @@ function getFileByCommitUrl() {
 		fileObj["prev_file_path"] = files[i]["prev_file_path"];
 		fileObj["curr_file_path"] = files[i]["curr_file_path"];
 		if(parent_commit in fileNameWithParent) {			
-			fileNameWithParent[parent_commit][file_name] = fileObj;
+			fileNameWithParent[parent_commit][id+"---"+file_name] = fileObj;
 		}
 		else {
 			var parentCommitObj = new Object();
-			parentCommitObj[file_name] = fileObj;
+			parentCommitObj[id+"---"+file_name] = fileObj;
 			fileNameWithParent[parent_commit] = parentCommitObj;
 		}		
 	}

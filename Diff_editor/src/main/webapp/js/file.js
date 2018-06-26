@@ -54,6 +54,7 @@ function getFileByCommitUrl() {
 	metaObject["date_time"] = json["date_time"];
 	metaObject["commit_hash"] = json["commit_hash"];
 	metaObject["project_name"] = json["project_name"];
+	metaObject["actions"] = json["actions"];
 //	metaObject["parent_commit_hash"] = json["parent_commit_hash"];//????
 	fileNameWithParent = new Object();
 	for(var i=0;i<files.length;i++) {
@@ -64,6 +65,8 @@ function getFileByCommitUrl() {
 		fileObj["parent_commit"] = parent_commit;
 		fileObj["prev_file_path"] = files[i]["prev_file_path"];
 		fileObj["curr_file_path"] = files[i]["curr_file_path"];
+		fileObj["id"] = id;
+		fileObj["action"] = metaObject["actions"][id]; 
 		if(parent_commit in fileNameWithParent) {			
 			fileNameWithParent[parent_commit][id+"---"+file_name] = fileObj;
 		}
@@ -95,10 +98,10 @@ function getFileByCommitUrl() {
 				var fileObj = fileNameWithParent[parentCommit][fileName];
 				var path  = "";
 				var appendString2 = "";
-				if(fileObj["curr_file_path"]==null){
+				if(fileObj["action"]=="removed"){
 					path = fileObj["prev_file_path"];
 					appendString2 += '<svg title="removed" class="octicon octicon-diff-removed" viewBox="0 0 14 16" version="1.1" width="14" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M13 1H1c-.55 0-1 .45-1 1v12c0 .55.45 1 1 1h12c.55 0 1-.45 1-1V2c0-.55-.45-1-1-1zm0 13H1V2h12v12zm-2-5H3V7h8v2z"></path></svg>';
-				}else if(fileObj["prev_file_path"]==null){
+				}else if(fileObj["action"]=="added"){
 					path = fileObj["curr_file_path"];
 					appendString2 += '<svg title="added" class="octicon octicon-diff-added" viewBox="0 0 14 16" version="1.1" width="14" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M13 1H1c-.55 0-1 .45-1 1v12c0 .55.45 1 1 1h12c.55 0 1-.45 1-1V2c0-.55-.45-1-1-1zm0 13H1V2h12v12zM6 9H3V7h3V4h2v3h3v2H8v3H6V9z"></path></svg>';
 				}else{
@@ -201,22 +204,22 @@ function getLinkJson(commitID,fileCount) {
 function parseLinkFile(links,fileCount) {
 	otherFilelink = new Object();
     inFilelink.splice(0,inFilelink.length);
-
+    var fileShortName = fileName.split("---")[1];
 	for(var i=0;i<links.length;i++) {
-		if(links[i]["link-type"] == "one-file-link" && links[i]["file-name"] == fileName && links[i]["parent-commit"] == parentCommitId) {
+		if(links[i]["link-type"] == "one-file-link" && links[i]["file-name"] == fileShortName && links[i]["parent-commit"] == parentCommitId) {
 			if(links[i].links.length > 0)
 				inFilelink = links[i].links;
 		}
 		else if(links[i]["link-type"] == "two-file-link") {
 			var thisIdx,otherFile,otherParentCommit;
 			var find = false;
-			if(links[i]["file-name"] == fileName && links[i]["parent-commit"] == parentCommitId) {
+			if(links[i]["file-name"] == fileShortName && links[i]["parent-commit"] == parentCommitId) {
 				otherFile =links[i]["file-name2"];
 				otherParentCommit =links[i]["parent-commit2"];
 				thisIdx ="from";
 				find = true;
 			}
-			else if(links[i]["file-name2"] == fileName && links[i]["parent-commit2"] == parentCommitId) {
+			else if(links[i]["file-name2"] == fileShortName && links[i]["parent-commit2"] == parentCommitId) {
 				otherFile =links[i]["file-name"];
 				otherParentCommit =links[i]["parent-commit"];
 				thisIdx = "to";

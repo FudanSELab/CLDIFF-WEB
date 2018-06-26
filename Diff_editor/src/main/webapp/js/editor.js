@@ -75,38 +75,26 @@ function refreshPage(parentCommitHash,fn) {
 		linkFile = json.link;
 		diffFile = json.diff;
 	}
-	
 	fileId = -1;
 	initLines(originalLines,srcFile);
 	initLines(modifiedLines,dstFile);
 	if(diffFile != ""){
 		diffFile = eval("("+diffFile+")");
 		linkFile = eval("("+linkFile+")");
-		parseLinkFile(linkFile.links,1);
-	}
-	
-	if(diffFile != "") {
-		parseLinkFile(linkFile.links,2);
 //		var last=JSON.stringify(otherFilelink);
-//		alert(last);
-//		alert(fileName);
-		
+		parseLinkFile(linkFile.links,2);
 		handleNesting(diffFile);	
 		parseDiff(diff,0,originalLines,modifiedLines);
 	}
-			
-	generateContainer(2);
-	
+	generateContainer(3);
 	if(diffFile != "") {
 		for(var d = 0;d<descriptions.length;d++) {
 			drawBubble(descriptions[d],0);
 		}
-		
 		adjustHeight();
 		for(var d = 0;d<descriptions.length;d++) {
 			drawAllTagLine(descriptions[d]);
 		}	
-
 		drawLinkLine(aMoveBlock,bMoveBlock,"rgba(255, 140, 0, 0.2)",getColorByType("Move"));
 		drawLinkLine(aChangeBlock,bChangeBlock,"rgba(0, 100, 255, 0.2)",getColorByType("Change"));
 	}

@@ -32,6 +32,14 @@ function setInputBar(){
 }
 
 function getFileByCommitUrl() {	
+	var commitUrl = document.getElementById("commitUrl").value.trim();
+	var isValid = isValidUrl(commitUrl);
+	if(isValid==false){
+		console.log("invalid url");
+		alert("invalid github url");
+		return;
+	}
+	
 	init();
 	var listGroup = document.getElementById("toc");
 	listGroup.style.visibility = "visible";
@@ -39,12 +47,7 @@ function getFileByCommitUrl() {
 	var first = listGroup.children[0];
 	var last = listGroup.children[1];
 	
-	var commitUrl = document.getElementById("commitUrl").value.trim();
-	var isValid = isValidUrl(commitUrl);
-	if(isValid==false){
-		console.log("invalid url");
-		return;
-	}
+	
 	console.log(commitUrl);
 	var json = getMetaFileFromServer("BCMetaServlet",commitUrl);
 	json = eval("("+json+")");

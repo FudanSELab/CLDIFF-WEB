@@ -26,6 +26,11 @@ function isValidUrl(url){
     return patt.test(url);
 }
 
+function setInputBar(){
+	var commitUrl = document.getElementById("commitUrl");
+	commitUrl.value = "https://github.com/spring-projects/spring-framework/commit/3c1adf7f6af0dff9bda74f40dabe8cf428a62003"
+}
+
 function getFileByCommitUrl() {	
 	init();
 	var listGroup = document.getElementById("toc");

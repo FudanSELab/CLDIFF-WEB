@@ -18,6 +18,15 @@
 <link type="text/css" rel="styleSheet" href="style/file_list.css" />
 <link type="text/css" rel="styleSheet"
 	href="http://bigcode.fudan.edu.cn/css/nav.css" />
+<script>
+	var _hmt = _hmt || [];
+	(function() {
+		var hm = document.createElement("script");
+		hm.src = "https://hm.baidu.com/hm.js?27e7bc7feb4fd4dcd226c97ea8ea137a";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hm, s);
+	})();
+</script>
 </head>
 <body id="top">
 
@@ -39,7 +48,7 @@
 		</div>
 		<div class="image">
 			<div class="inner">
-				<img src="image/cr2.jpg" alt="" height="400" width="400" />
+				<img src="image/cc.png" alt="" height="300" width="1100" />
 			</div>
 		</div>
 	</header>
@@ -75,10 +84,13 @@
 				</div>
 			</div>
 		</div>
+		<div id="example1" style="text-align: center;text-decoration:underline; "  onclick="setInputBar()" > 
+			Example commit in spring-framework
+		</div>
 
 		<div id="toc"
 			class="details-collapse table-of-contents js-details-container Details js-transitionable open Details--on panel panel-default"
-			style="margin-left:5%;margin-right:5%;margin-top:5%;visibility:hidden" >
+			style="margin-left: 5%; margin-right: 5%; margin-top: 5%; visibility: hidden">
 			<div class="toc-diff-stats">
 				<svg class="octicon octicon-diff" viewBox="0 0 13 16" version="1.1"
 					width="13" height="16" aria-hidden="true">
@@ -95,28 +107,33 @@
 
 		<!-- editor -->
 		<div id="diff-editor"
-			class="editor-frame container-fluid panel panel-default" style="margin-left:5%;margin-right:5%;visibility:hidden;">
-			
+			class="editor-frame container-fluid panel panel-default"
+			style="margin-left: 5%; margin-right: 5%; visibility: hidden;">
+
 			<div
-				class="monaco-diff-editor monaco-editor-background side-by-side vs row" style="height: 100%;">
+				class="monaco-diff-editor monaco-editor-background side-by-side vs row"
+				style="height: 100%;">
 				<!--original-->
-				<div class="editor original col-md-4 nopadding" data-keybinding-context="2"
-					data-mode-id="javascript" style="height: 100%;">
+				<div class="editor original col-md-4 nopadding"
+					data-keybinding-context="2" data-mode-id="javascript"
+					style="height: 100%;">
 					<div class="monaco-editor original-in-monaco-diff-editor vs"
 						data-uri="inmemory://model/2"
-						style="overflow-x: auto;overflow-y:hidden;"></div>
+						style="overflow-x: auto; overflow-y: hidden;"></div>
 				</div>
 				<!--modified-->
-				<div class="editor modified col-md-4 nopadding" data-keybinding-context="3"
-					data-mode-id="javascript" style="height: 100%;">
+				<div class="editor modified col-md-4 nopadding"
+					data-keybinding-context="3" data-mode-id="javascript"
+					style="height: 100%;">
 					<div class="monaco-editor modified-in-monaco-diff-editor vs"
 						data-uri="inmemory://model/3"
-						style="overflow-x: auto;overflow-y:hidden;"></div>
+						style="overflow-x: auto; overflow-y: hidden;"></div>
 				</div>
-				<div class="bubbleZone col-md-3 nopadding" data-keybinding-context="3"
-					data-mode-id="javascript" style="height: 100%;">
+				<div class="bubbleZone col-md-3 nopadding"
+					data-keybinding-context="3" data-mode-id="javascript"
+					style="height: 100%;">
 					<div id="info_panel" class="panel panel-default"
-						style="top: 0;visibility: hidden;width:270px;height:180px;margin-left:90px;">
+						style="top: 0; visibility: hidden; width: 270px; height: 180px; margin-left: 90px;">
 						<div class="panel-heading">
 							<h3 class="panel-title">Legend</h3>
 						</div>
@@ -142,7 +159,7 @@
 						</div>
 					</div>
 					<canvas id="myCanvas3" width="200" height="300"
-						style="will-change: transform; margin-top: -180px;"></canvas>
+						style="will-change: transform; margin-top: -200px;"></canvas>
 				</div>
 			</div>
 		</div>

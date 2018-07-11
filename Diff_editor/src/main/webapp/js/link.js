@@ -166,6 +166,7 @@ function hasLink(descId,mostParentId) {
 }
 
 function linkTo(id,name,pc) {
+	
 	clearPopoverTop();
 	var popTop,file;
 	if(name == undefined || name == 'undefined' || name == '') {
@@ -175,21 +176,44 @@ function linkTo(id,name,pc) {
 		if(ceCoordinate[id].top2 != undefined)
 			showPointer(2,ceCoordinate[id].top2,id);
 //		popTop= ceCoordinate[id].top;
-		window.scroll(0,ceCoordinate[id].top+160);
+		window.scroll(0,ceCoordinate[id].top+1500);
 //		file = ceCoordinate[id].file;
 	}
 	else {
 		fileName = name;
 		parentCommitId = pc;
-		refreshPage(pc,name);
+//		fileNameKeys = [];
+//		fileNameKeys.push("1---ThreadPoolTaskExecutor.java");
+//		console.log(fileNameKeys);
+		var flag = true;
+		var tmp;
+		for(var i=0;i<fileNameKeys.length;i++){
+			tmp = fileNameKeys[i];
+			if(tmp.endsWith(name)){
+				flag = false;
+				break;
+			}
+		}
+
+		if(flag == true){
+			return;
+		}
+		console.log("FileName:"+ tmp);
+		refreshPage(pc,tmp);
+		var listGroup = document.getElementById("toc");
+		var last = listGroup.children[1];
+		var childrenList = last.children;
 		
-		var childrenList = document.querySelector("#fileList").children;
+//		var childrenList = document.querySelector("#fileList").children;
 		for(var i=0;i<childrenList.length;i++) {
 			childrenList[i].classList.remove("active");
 			if(childrenList[i].parentId == parentCommitId && childrenList[i].children[0].innerHTML.trim() == name) {
 				childrenList[i].classList.add("active")
 			}
 		}
+		console.log(id);
+		console.log(ceCoordinate[id]);
+//		id = 9;
 		if(ceCoordinate[id] == undefined) {
 			popTop = 20;
 			fileId= id;
@@ -198,13 +222,14 @@ function linkTo(id,name,pc) {
 		}
 		else {
 			popTop= ceCoordinate[id].top;
+			
 			if(ceCoordinate[id].top1 != undefined)
 				showPointer(1,ceCoordinate[id].top1,id);
 			if(ceCoordinate[id].top2 != undefined)
 				showPointer(2,ceCoordinate[id].top2,id);
 //			file = ceCoordinate[id].file;
 		}
-		window.scroll(0,popTop+160+100);
+		window.scroll(0,popTop+1500);
 		
 	}	
 

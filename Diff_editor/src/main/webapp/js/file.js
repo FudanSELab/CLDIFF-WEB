@@ -1,6 +1,7 @@
 var fileNameList;
 var fileNameWithParent;
 var metaObject;
+var fileNameKeys;
 
 function getAllFileFromServer(url,author,commitHash,parentCommitHash,projectName,fileName) {
 	var content;
@@ -87,6 +88,7 @@ function getFileByCommitUrl() {
 	console.log(fileNameWithParent);
 	last.innerHTML = ""; 
 	var cnt = 0;
+	fileNameKeys = [];
 	for(var parentCommit in fileNameWithParent){  
 		if(fileNameWithParent[parentCommit] != undefined) {
 			var appendString = "";
@@ -103,6 +105,7 @@ function getFileByCommitUrl() {
 			last.appendChild(dividerDiv);
 			
 			for(var fileName in fileNameWithParent[parentCommit]){ 
+				fileNameKeys.push(fileName);
 				var fileObj = fileNameWithParent[parentCommit][fileName];
 				var path  = "";
 				var appendString2 = "";

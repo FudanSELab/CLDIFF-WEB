@@ -3,3 +3,5 @@ Diff_editor/target
 Diff_editor/.classpath
 Diff_editor/.project
 Diff_editor/src/main/resources/config.properties
+Diff_editor/.idea
+.idea

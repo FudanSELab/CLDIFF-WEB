@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="Diff_editor:war">
-    <output-path>$PROJECT_DIR$/target</output-path>
-    <root id="archive" name="Diff_editor.war">
-      <element id="artifact" artifact-name="Diff_editor:war exploded" />
-    </root>
-  </artifact>
-</component>

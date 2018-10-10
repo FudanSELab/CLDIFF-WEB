@@ -23,28 +23,34 @@ function getMetaFileFromServer(url,commitURL) {
 
 function isValidUrl(url){
     var patt = /^(https:[/]{2,})?(github.com[/]+)([A-Za-z0-9_-]+[/]+){2}(commit[/]+)[A-Za-z0-9]+$/;
-
     return patt.test(url);
 }
 
-function setInputBar(){
+function setInputBar(flag) {
 	var commitUrl = document.getElementById("commitUrl");
-	commitUrl.value = "https://github.com/spring-projects/spring-framework/commit/3c1adf7f6af0dff9bda74f40dabe8cf428a62003"
+	if (flag == 1) {
+		commitUrl.value = "3c1adf7f6af0dff9bda74f40dabe8cf428a62003";
+	} else {
+		commitUrl.value = "https://github.com/spring-projects/spring-framework/commit/3c1adf7f6af0dff9bda74f40dabe8cf428a62003"
+	}
 }
-
-function getFileByCommitUrl() {	
+//entrance
+function getFileByCommitUrl(flag) {
 	var commitUrl = document.getElementById("commitUrl").value.trim();
-	var isValid = isValidUrl(commitUrl);
+	var isValid;
+	if(flag==1){
+		isValid = true;
+	} else {
+		isValid = isValidUrl(commitUrl);
+	}
 	if(isValid==false){
 		console.log("invalid url");
 		alert("invalid github url");
 		return;
 	}
-	
 	init();
 	var listGroup = document.getElementById("toc");
 	listGroup.style.visibility = "visible";
-//	listGroup.innerHTML="";
 	var first = listGroup.children[0];
 	var last = listGroup.children[1];
 	

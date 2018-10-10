@@ -1,4 +1,6 @@
-package edu.fdu.se.web.astdiff;
+package edu.fdu.se.web.test;
+
+import edu.fdu.se.web.astdiff.HttpClient;
 
 import java.io.IOException;
 
@@ -30,7 +32,6 @@ public class ProxyServlet extends HttpServlet {
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        int b = 1;
         String commitId = request.getParameter("commitId");
         String repository = request.getParameter("repository");
         String repositoryId = request.getParameter("repositoryId");

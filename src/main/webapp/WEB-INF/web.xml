@@ -7,23 +7,14 @@
 
     <servlet>
         <servlet-name>ServletMain</servlet-name>
-        <servlet-class>edu.fdu.se.web.astdiff.FileServlet</servlet-class>
+        <servlet-class>edu.fdu.se.web.test.FileServlet</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>ProxyServlet</servlet-name>
-        <servlet-class>edu.fdu.se.web.astdiff.ProxyServlet</servlet-class>
+        <servlet-class>edu.fdu.se.web.test.ProxyServlet</servlet-class>
     </servlet>
 
-    <servlet>
-        <servlet-name>TestServlet</servlet-name>
-        <servlet-class>edu.fdu.se.web.astdiff.TestServlet</servlet-class>
-    </servlet>
-
-    <!--<servlet>-->
-    <!--<servlet-name>TestServlet</servlet-name>-->
-    <!--<servlet-class>edu.fdu.se.web.astdiff.TestServlet</servlet-class>-->
-    <!--</servlet>-->
     <servlet-mapping>
         <servlet-name>ServletMain</servlet-name>
         <url-pattern>/getfile</url-pattern>
@@ -34,10 +25,7 @@
         <url-pattern>/getfiles</url-pattern>
     </servlet-mapping>
 
-    <servlet-mapping>
-        <servlet-name>TestServlet</servlet-name>
-        <url-pattern>/TestServlet/</url-pattern>
-    </servlet-mapping>
+
 
     <!--<servlet-mapping>-->
     <!--<servlet-name>TestServlet</servlet-name>-->

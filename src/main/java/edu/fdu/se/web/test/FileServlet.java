@@ -1,4 +1,4 @@
-package edu.fdu.se.web.astdiff;
+package edu.fdu.se.web.test;
 
 import java.io.File;
 import java.io.FileInputStream;

@@ -1,14 +1,10 @@
 package edu.fdu.se.web.astdiff;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Enumeration;
-import java.util.Map;
-import java.util.Scanner;
 
 import javax.servlet.ServletException;
-import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -45,7 +41,6 @@ public class BCGetFileServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		 //author、commit_hash、parent_commit_hash、project_name、prev_file_path、curr_file_path
 		System.out.println("post");
-		
         if (request.getParameter("author") != null) {
         	String file_name = request.getParameter("file_name");
         	System.out.println("POST: "+file_name);

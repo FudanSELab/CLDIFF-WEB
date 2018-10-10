@@ -3,10 +3,10 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>cn.edu.fudan.se</groupId>
-  <artifactId>Diff_editor</artifactId>
+  <artifactId>CLDIFF-WEB</artifactId>
   <packaging>war</packaging>
   <version>0.0.1-SNAPSHOT</version>
-  <name>Diff_editor Maven Webapp</name>
+  <name>CLDIFF-WEB Maven Webapp</name>
   <url>http://maven.apache.org</url>
   <dependencies>
     <dependency>
@@ -56,7 +56,7 @@
 
   </dependencies>
   <build>
-    <finalName>Diff_editor</finalName>
+    <finalName>CLDIFF-WEB</finalName>
       <plugins>
           <plugin>
               <groupId>org.apache.maven.plugins</groupId>

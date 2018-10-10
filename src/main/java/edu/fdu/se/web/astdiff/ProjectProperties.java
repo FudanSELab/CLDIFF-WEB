@@ -1,5 +1,8 @@
 package edu.fdu.se.web.astdiff;
 
+import jdk.internal.util.xml.impl.Input;
+
+import javax.servlet.ServletContext;
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.InputStream;
@@ -10,16 +13,28 @@ import java.util.Properties;
 
 public class ProjectProperties {
 	private Map<String,String> kvMap;
+
+	public boolean isWindows() {
+		return System.getProperties().getProperty("os.name").toUpperCase().indexOf("WINDOWS") != -1;
+
+	}
 	private ProjectProperties(){
 		kvMap = new HashMap();
 		Properties prop = new Properties();     
         try{
-        	String url = this.getClass().getResource("").getPath(); 
-        	String path = url.substring(0, url.indexOf("WEB-INF")) + "WEB-INF/classes/config.properties"; 
-        	System.out.println(path);
+//        	String url = this.getClass().getResource("").getPath();
+			InputStream in = ServletContext.class.getResourceAsStream("/WEB-INF/classes/config.properties");
+//        	String path = url.substring(0, url.indexOf("WEB-INF")) + "WEB-INF/classes/config.properties";
+
+//			if(isWindows()){
+//				if(path.startsWith("/")){
+//					path = path.substring(1);
+//				}
+//			}
+//			System.out.println("Path: "+path);
 //        	path = path.substring(1);
 //        	InputStream in = this.getClass().getResourceAsStream(path);
-            InputStream in = new BufferedInputStream (new FileInputStream(path));
+//            InputStream in = new BufferedInputStream (new FileInputStream(path));
             prop.load(in);  
             Iterator<String> it=prop.stringPropertyNames().iterator();
             while(it.hasNext()){

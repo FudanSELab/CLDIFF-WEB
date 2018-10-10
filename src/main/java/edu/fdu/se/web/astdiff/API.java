@@ -6,10 +6,10 @@ public class API {
     // starts server in CLDIFF
     public static final String SERVER_LOCAL = "http://localhost:8082";
 
-    {
+    static {
         String value = ProjectProperties.getInstance().getValue("deploy_type");
-
-        if("remote".equals(value)){
+        String value2 = ProjectProperties.getInstance().getValue("offline");
+        if("online".equals(value) && "online".equals(value2)){
             SERVER = SERVER_REMOTE;
         }else{
             SERVER = SERVER_LOCAL;

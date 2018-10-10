@@ -22,6 +22,7 @@ public class BCMetaServlet extends HttpServlet { // Must be public and extend Ht
             String commitUrl = request.getParameter("commit_url");
             String postString = "url=" + commitUrl;
             System.out.println(postString);
+            System.out.println("MetaUrl:" +API.FETCH_META);
             String result = HttpClient.doPost(API.FETCH_META, postString);
             System.out.println(result);
             PrintWriter out = response.getWriter();    //设定传参变量

@@ -16,7 +16,7 @@ public class API {
         }
     }
     public static String SERVER;
-    public static String FETCH_META = SERVER;
+    public static String FETCH_META = SERVER+"/fetchMeta";
     public static String FETCH_CONTENT = SERVER+"/fetchFile";
 
 }

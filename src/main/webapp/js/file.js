@@ -34,7 +34,7 @@ function setInputBar(flag) {
 		commitUrl.value = "https://github.com/spring-projects/spring-framework/commit/3c1adf7f6af0dff9bda74f40dabe8cf428a62003"
 	}
 }
-//entrance
+//entrance:click enter button
 function getFileByCommitUrl(flag) {
 	var commitUrl = document.getElementById("commitUrl").value.trim();
 	var isValid;
@@ -53,8 +53,6 @@ function getFileByCommitUrl(flag) {
 	listGroup.style.visibility = "visible";
 	var first = listGroup.children[0];
 	var last = listGroup.children[1];
-	
-	
 	console.log(commitUrl);
 	var json = getMetaFileFromServer("BCMetaServlet",commitUrl);
 	json = eval("("+json+")");
@@ -146,7 +144,7 @@ function getFileByCommitUrl(flag) {
 //	var last=JSON.stringify(fileNameWithParent); //将JSON对象转化为JSON字符
 //	alert(last);
 }
-
+//single file entrance
 function getContentByFileNameAndParentId(file) {
 	var activeList = document.querySelectorAll("#fileList .active");
 	for(var i=0;i<activeList.length;i++) {
@@ -159,7 +157,7 @@ function getContentByFileNameAndParentId(file) {
 	fileName = fn;
 	refreshPage(parentId,fn);
 }
-
+//deprecated
 function getContentByFileName() {
 	var activeList = document.querySelectorAll("#fileList .active");
 	for(var i=0;i<activeList.length;i++) {

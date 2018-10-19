@@ -48,13 +48,10 @@ function refreshPage(parentCommitHash,fn) {
 	var a = document.getElementById("info_panel");
 	var b = document.getElementById("diff-editor");
 	b.style.visibility="visible";
-//	a.style.display="";
 	a.style.visibility="visible";
 	json = eval("("+json+")");
-	init();	
+	init();
 	clearPopoverTop();
-
-	
 	var srcFile = "";
 	var dstFile = "";
 	var linkFile = "";
@@ -78,7 +75,9 @@ function refreshPage(parentCommitHash,fn) {
 	fileId = -1;
 	initLines(originalLines,srcFile);
 	initLines(modifiedLines,dstFile);
-	if(diffFile != ""){
+	if(typeof(diffFile)=="undefined" || diffFile =="") {
+
+	}else{
 		diffFile = eval("("+diffFile+")");
 		linkFile = eval("("+linkFile+")");
 //		var last=JSON.stringify(otherFilelink);
@@ -87,7 +86,12 @@ function refreshPage(parentCommitHash,fn) {
 		parseDiff(diff,0,originalLines,modifiedLines);
 	}
 	generateContainer(3);
-	if(diffFile != "") {
+	var banner = document.getElementById("banner");
+
+	if(typeof(diffFile)=="undefined" || diffFile ==""){
+		banner.innerHTML = "<div class=\"alert alert-warning\" role=\"alert\" style=\"margin-left: 5%; width: 400px;\">Not a regular java file, no diff is processed.</div>";
+	}else{
+		banner.innerHTML = "";
 		for(var d = 0;d<descriptions.length;d++) {
 			drawBubble(descriptions[d],0);
 		}

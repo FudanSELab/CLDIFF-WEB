@@ -1,18 +1,34 @@
 package edu.fdu.se.web.astdiff;
 
 public class API {
-
-    public static final String SERVER_REMOTE = "http://10.141.221.83:8081";
-    // starts server in CLDIFF
-    public static final String SERVER_LOCAL = "http://localhost:8082";
+    /**
+     * CodeWisdom
+     * deploy_type = online
+     * repo_source = online
+     */
+    private static final String ONLINE_SERVER_REMOTE = "http://10.141.221.83:8081";
+    /**
+     * Debugging CodeWisdom local
+     * deploy_type = online
+     * repo_source = offline
+     */
+    private static final String ONLINE_SERVER_LOCAL = "http://localhost:8081";
+    /**
+     * CLDIFF alone, local repo
+     * deploy_type = offline
+     * repo_source = offline
+     */
+    private static final String OFFLINE_SERVER_LOCAL = "http://localhost:8082";
 
     static {
-        String value = ProjectProperties.getInstance().getValue("deploy_type");
-        String value2 = ProjectProperties.getInstance().getValue("offline");
-        if("online".equals(value) && "online".equals(value2)){
-            SERVER = SERVER_REMOTE;
+        String deployType = ProjectProperties.getInstance().getValue("deploy_type");
+        String repoSource = ProjectProperties.getInstance().getValue("repo_source");
+        if("online".equals(deployType) && "online".equals(repoSource)) {
+            SERVER = ONLINE_SERVER_REMOTE;
+        }else if("online".equals(deployType)&&"offline".equals(repoSource)){
+            SERVER = ONLINE_SERVER_LOCAL;
         }else{
-            SERVER = SERVER_LOCAL;
+            SERVER = OFFLINE_SERVER_LOCAL;
         }
     }
     public static String SERVER;

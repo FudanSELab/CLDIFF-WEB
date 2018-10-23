@@ -40,6 +40,7 @@ public class BCGetFileServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		 //author、commit_hash、parent_commit_hash、project_name、prev_file_path、curr_file_path
+		ProjectProperties.createInstance(this.getServletContext());
 		System.out.println("post");
         if (request.getParameter("author") != null) {
         	String file_name = request.getParameter("file_name");

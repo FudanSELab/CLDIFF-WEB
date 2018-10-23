@@ -18,24 +18,12 @@ public class ProjectProperties {
 		return System.getProperties().getProperty("os.name").toUpperCase().indexOf("WINDOWS") != -1;
 
 	}
-	private ProjectProperties(){
+	private ProjectProperties(ServletContext sc){
 		kvMap = new HashMap();
 		Properties prop = new Properties();     
         try{
-//        	String url = this.getClass().getResource("").getPath();
-			InputStream in = ServletContext.class.getResourceAsStream("/WEB-INF/classes/config.properties");
-//        	String path = url.substring(0, url.indexOf("WEB-INF")) + "WEB-INF/classes/config.properties";
-
-//			if(isWindows()){
-//				if(path.startsWith("/")){
-//					path = path.substring(1);
-//				}
-//			}
-//			System.out.println("Path: "+path);
-//        	path = path.substring(1);
-//        	InputStream in = this.getClass().getResourceAsStream(path);
-//            InputStream in = new BufferedInputStream (new FileInputStream(path));
-            prop.load(in);  
+			InputStream in = sc.getResourceAsStream("/WEB-INF/classes/config.properties");
+            prop.load(in);
             Iterator<String> it=prop.stringPropertyNames().iterator();
             while(it.hasNext()){
                 String key=it.next();
@@ -50,12 +38,19 @@ public class ProjectProperties {
 	private static ProjectProperties instance;
 	
 	
-	public static ProjectProperties getInstance(){
+	public static ProjectProperties createInstance(ServletContext sc){
 		if(instance==null){
-			instance = new ProjectProperties();
+			instance = new ProjectProperties(sc);
 		}
 		return instance;
 	}
+
+	public static ProjectProperties getInstance(){
+		return instance;
+	}
+
+
+
 	
 	public String getValue(String key){
 		if(!this.kvMap.containsKey(key)){
@@ -63,9 +58,6 @@ public class ProjectProperties {
 		}
 		return this.kvMap.get(key);
 	}
-	public static void main(String args[]){
-		ProjectProperties ins = ProjectProperties.getInstance();
-		System.out.println("a");
-	}
+
 
 }

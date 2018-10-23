@@ -56,8 +56,8 @@ public class FileServlet extends HttpServlet {
     // commitId:XXXX fileName:XXX.java SrcOrDstOrJson: link.json
 
     public void responseWithFile(HttpServletResponse response, String commitId, String fileName, String fileType) throws ServletException, IOException {
-//		ProjectProperties pp =  ProjectProperties.getInstance();
-//		String root = ProjectProperties.getInstance().getValue(PropertyKeys.RQ3);
+//		ProjectProperties pp =  ProjectProperties.createInstance();
+//		String root = ProjectProperties.createInstance().getValue(PropertyKeys.RQ3);
         String root = this.getServletContext().getRealPath("") + File.separator + "RQ3";
         File f = new File(root);
         File[] files = f.listFiles();

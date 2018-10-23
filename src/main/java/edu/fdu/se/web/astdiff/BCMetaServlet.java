@@ -17,12 +17,12 @@ public class BCMetaServlet extends HttpServlet { // Must be public and extend Ht
      * entrance when onclick
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        ProjectProperties.createInstance(this.getServletContext());
         if (request.getParameter("commit_url") != null) {
             String commitUrl = request.getParameter("commit_url");
             String postString = "url=" + commitUrl;
             System.out.println(postString);
-            System.out.println("MetaUrl:" +API.FETCH_META);
+            System.out.println("MetaUrl:" + API.FETCH_META);
             String result = HttpClient.doPost(API.FETCH_META, postString);
             System.out.println(result);
             PrintWriter out = response.getWriter();    //设定传参变量

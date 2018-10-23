@@ -1,5 +1,7 @@
 package edu.fdu.se.web.astdiff;
 
+import javax.servlet.ServletContext;
+
 public class API {
     /**
      * CodeWisdom
@@ -20,6 +22,7 @@ public class API {
      */
     private static final String OFFLINE_SERVER_LOCAL = "http://localhost:8082";
 
+
     static {
         String deployType = ProjectProperties.getInstance().getValue("deploy_type");
         String repoSource = ProjectProperties.getInstance().getValue("repo_source");
@@ -34,5 +37,6 @@ public class API {
     public static String SERVER;
     public static String FETCH_META = SERVER+"/fetchMeta";
     public static String FETCH_CONTENT = SERVER+"/fetchFile";
+    public static String CLEAR_COMMIT_RECORD = SERVER+"/clearCommitRecord";
 
 }

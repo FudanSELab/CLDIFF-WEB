@@ -28,7 +28,7 @@ public class API {
         String repoSource = ProjectProperties.getInstance().getValue("repo_source");
         if("online".equals(deployType) && "online".equals(repoSource)) {
             SERVER = ONLINE_SERVER_REMOTE;
-        }else if("online".equals(deployType)&&"offline".equals(repoSource)){
+        }else if("offline".equals(deployType)&&"online".equals(repoSource)){
             SERVER = ONLINE_SERVER_LOCAL;
         }else{
             SERVER = OFFLINE_SERVER_LOCAL;

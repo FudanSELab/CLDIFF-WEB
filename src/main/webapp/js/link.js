@@ -180,7 +180,6 @@ function linkTo(id,name,pc) {
 //		file = ceCoordinate[id].file;
 	}
 	else {
-		fileName = name;
 		parentCommitId = pc;
 //		fileNameKeys = [];
 //		fileNameKeys.push("1---ThreadPoolTaskExecutor.java");
@@ -199,6 +198,7 @@ function linkTo(id,name,pc) {
 			return;
 		}
 		console.log("FileName:"+ tmp);
+		fileName = tmp;
 		refreshPage(pc,tmp);
 		var listGroup = document.getElementById("toc");
 		var last = listGroup.children[1];

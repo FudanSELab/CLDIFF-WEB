@@ -11,16 +11,25 @@ import java.io.PrintWriter;
 @WebServlet("/BCMetaServlet") // This is the URL of the servlet.
 public class BCMetaServlet extends HttpServlet { // Must be public and extend HttpServlet.
     // ...
-
+	
+	
+	private String COMMIT_URL = "commit_url";
+	private String PROJECT_LOCAL_PATH = "project_path";
     /**
+     *
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
      * entrance when onclick
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ProjectProperties.createInstance(this.getServletContext());
-        if (request.getParameter("commit_url") != null) {
-            String commitUrl = request.getParameter("commit_url");
-            String postString = "url=" + commitUrl;
+        if (request.getParameter(COMMIT_URL) != null) {
+            String commitUrl = request.getParameter(COMMIT_URL);
+           
+            String postString = COMMIT_URL+"=" + commitUrl + ";";
+            if (request.getParameter(PROJECT_LOCAL_PATH)!=null) {
+            	String projUrl = request.getParameter(PROJECT_LOCAL_PATH);
+            	postString += PROJECT_LOCAL_PATH +"="+ projUrl+";";
+            }
             System.out.println(postString);
             System.out.println("MetaUrl:" + API.FETCH_META);
             String result = HttpClient.doPost(API.FETCH_META, postString);

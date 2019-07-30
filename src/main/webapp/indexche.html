@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CLDIFF</title>
+<link type="text/css" rel="styleSheet" href="css/bootstrap.min.css" />
+<!-- <link type="text/css" rel="styleSheet" href="bootstrap-3.3.7-dist/css/bootstrap.css" /> -->
+<link type="text/css" rel="styleSheet"
+	href="css/bootstrap-theme.min.css" />
+<!-- <link type="text/css" rel="styleSheet" href="style/base.css" />
+ -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="css/main.css" />
+<link type="text/css" rel="styleSheet" href="style/editor.css" />
+<link type="text/css" rel="styleSheet" href="style/color.css" />
+<link type="text/css" rel="styleSheet" href="style/addition.css" />
+<link type="text/css" rel="styleSheet" href="style/file_list.css" />
+<link type="text/css" rel="styleSheet"
+	href="http://bigcode.fudan.edu.cn/css/nav.css" />
+<script>
+	var _hmt = _hmt || [];
+	(function() {
+		var hm = document.createElement("script");
+		hm.src = "https://hm.baidu.com/hm.js?27e7bc7feb4fd4dcd226c97ea8ea137a";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hm, s);
+	})();
+</script>
+</head>
+<body id="top" style="background:#1e2331">
+
+	<!-- Header -->
+	<!--header id="header" style="padding: 3em 0 0 0 ;height: 4em;min-height: 0em;">
+		<div class="content">
+			<h1>
+				<a href="#">Code Differences Understanding</a>
+			</h1>
+		</div>
+	</header-->
+	<h1 style="background:#353e50;color:#ffffff;font-size:1.8em;padding:0.5em;text-align:center;font-family:monospace">Code Differences Understanding</h1>
+
+	<!-- One -->
+	<section id="one">
+		<div id="toc"
+			class="details-collapse table-of-contents js-details-container Details js-transitionable open Details--on panel panel-default"
+			style="margin-left: 5%; margin-right: 5%; margin-top: 0.5em; visibility: hidden;background:#f3f3f3">
+			<div class="toc-diff-stats">
+				<svg class="octicon octicon-diff" viewBox="0 0 13 16" version="1.1"
+					width="13" height="16" aria-hidden="true">
+					<path fill-rule="evenodd"
+						d="M6 7h2v1H6v2H5V8H3V7h2V5h1v2zm-3 6h5v-1H3v1zM7.5 2L11 5.5V15c0 .55-.45 1-1 1H1c-.55 0-1-.45-1-1V3c0-.55.45-1 1-1h6.5zM10 6L7 3H1v12h9V6zM8.5 0H3v1h5l4 4v8h1V4.5L8.5 0z"></path></svg>
+				Showing
+				<button type="button" class="btn-link js-details-target"
+					aria-expanded="true" data-initial-state="false">2 changed
+					files</button>
+				<!-- with <strong>19 additions</strong> and <strong>19 deletions</strong>.-->
+			</div>
+			<ol class="content collapse js-transitionable" style=""></ol>
+		</div>
+
+		<!--
+			<div class="alert alert-warning" role="alert" style="margin-left: 5%; width: 400px;">
+				Banner
+			</div>-->
+		<div id="banner"></div>
+
+
+		<!-- editor -->
+		<div id="diff-editor"
+			class="editor-frame container-fluid panel panel-default"
+			style="margin-left: 5%; margin-right: 5%; visibility: hidden;">
+
+			<div
+				class="monaco-diff-editor monaco-editor-background side-by-side vs row"
+				style="height: 100%">
+				<!--original-->
+				<div class="editor original col-md-4 nopadding"
+					data-keybinding-context="2" data-mode-id="javascript"
+					style="height: 100%;">
+					<div class="monaco-editor original-in-monaco-diff-editor vs"
+						data-uri="inmemory://model/2"
+						style="overflow-x: auto; overflow-y: hidden;"></div>
+				</div>
+				<!--modified-->
+				<div class="editor modified col-md-4 nopadding"
+					data-keybinding-context="3" data-mode-id="javascript"
+					style="height: 100%;">
+					<div class="monaco-editor modified-in-monaco-diff-editor vs"
+						data-uri="inmemory://model/3"
+						style="overflow-x: auto; overflow-y: hidden;"></div>
+				</div>
+				<div class="bubbleZone col-md-3 nopadding"
+					data-keybinding-context="3" data-mode-id="javascript"
+					style="height: 100%;">
+					<div id="info_panel" class="panel panel-default"
+						style="top: 0; visibility: hidden; width: 270px; height: 180px; margin-left: 90px;">
+						<div class="panel-heading">
+							<h3 class="panel-title">Legend</h3>
+						</div>
+						<div class="panel-body" style="padding-left: 24px;">
+							<ul>
+								<li style="height: 25px;">
+									<div style="background-color: rgba(0, 205, 0, 0.2);"
+										class="legend_icon"></div> <span>Insert</span>
+								</li>
+								<li style="height: 25px;">
+									<div style="background-color: rgba(255, 0, 0, 0.2);"
+										class="legend_icon"></div> <span>Delete</span>
+								</li>
+								<li style="height: 25px;">
+									<div style="background-color: rgba(0, 100, 255, 0.2);"
+										class="legend_icon"></div> <span>Change</span>
+								</li>
+								<li style="height: 25px;">
+									<div style="background-color: rgba(255, 140, 0, 0.2);"
+										class="legend_icon"></div> <span>Move</span>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<canvas id="myCanvas3" width="200" height="300"
+						style="will-change: transform; margin-top: -200px;"></canvas>
+				</div>
+			</div>
+		</div>
+
+	</section>
+
+
+	<!-- Scripts -->
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery.scrolly.min.js"></script>
+	<script src="js/skel.min.js"></script>
+	<script src="js/util.js"></script>
+	<script src="js/main.js"></script>
+	<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="js/file.js"></script>
+	<script type="text/javascript" src="js/webpage.js"></script>
+	<script type="text/javascript" src="js/bubble.js"></script>
+	<script type="text/javascript" src="js/link.js"></script>
+	<script type="text/javascript" src="js/color.js"></script>
+	<script type="text/javascript" src="js/editor.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script type="text/javascript"
+		src="http://bigcode.fudan.edu.cn/js/nav.js"></script>
+		
+	<script type="text/javascript">
+		function getUrlParam(name) {
+	        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+	        var r = window.location.search.substr(1).match(reg);
+	        if (r != null) return unescape(r[2]); return null;
+	    }
+		var commit1 = getUrlParam('commit1');
+		var commit2 = getUrlParam('commit2');
+		var project = getUrlParam('project');
+		getFileByCommitUrl({'commit_url':commit2, 'project_path':project});
+	</script>
+	
+</body>
+</html>

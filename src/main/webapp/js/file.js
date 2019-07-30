@@ -36,16 +36,26 @@ function setInputBar(flag) {
 }
 //entrance:click enter button
 function getFileByCommitUrl(flag) {
-	var commitUrl = document.getElementById("commitUrl").value.trim();
-	var isValid;
-	if(flag==1){
-		isValid = true;
-	} else {
-		isValid = isValidUrl(commitUrl);
+	if(typeof(flag)=='number'){
+		var commitUrl = document.getElementById("commitUrl").value.trim();
+		var isValid;
+		if(flag==1){
+			isValid = true;
+		} else {
+			isValid = isValidUrl(commitUrl);
+		}
+		if(isValid==false){
+			console.log("invalid url");
+			alert("invalid github url");
+			return;
+		}
 	}
-	if(isValid==false){
-		console.log("invalid url");
-		alert("invalid github url");
+	else if(typeof(flag)=='object' && flag['commit_url']!=undefined && flag['project_path']!=undefined){
+		var params = flag;
+	}
+	else{
+		console.log("invalid parameter");
+		alert("invalid parameter");
 		return;
 	}
 	init();
@@ -53,8 +63,21 @@ function getFileByCommitUrl(flag) {
 	listGroup.style.visibility = "visible";
 	var first = listGroup.children[0];
 	var last = listGroup.children[1];
-	console.log(commitUrl);
-	var json = getMetaFileFromServer("BCMetaServlet",commitUrl);
+	
+	var json;
+	if(params != flag){
+		console.log(commitUrl);
+		json = getMetaFileFromServer("BCMetaServlet",commitUrl);
+	}
+	else{
+		console.log('commit_url: ' + params['commit_url']);
+		console.log('project_path: ' + params['project_path']);
+		$.ajaxSettings.async = false;
+		$.post("BCMetaServlet",params, function(data) {
+			json = data;
+		});
+	}
+	
 	json = eval("("+json+")");
 	if(json==null){
 		alert("Response is null");

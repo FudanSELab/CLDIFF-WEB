@@ -1,10 +1,6 @@
 package edu.fdu.se.web.astdiff;
 
-import jdk.internal.util.xml.impl.Input;
-
 import javax.servlet.ServletContext;
-import java.io.BufferedInputStream;
-import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Iterator;

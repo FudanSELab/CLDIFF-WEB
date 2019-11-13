@@ -30,30 +30,6 @@ public class BCMetaServlet extends HttpServlet { // Must be public and extend Ht
         }
     }
 
-        //            //将result数据打包
-//            request.setAttribute("meta", result);
-//            //将result数据发送到.jap文件中
-//            request.getRequestDispatcher("index.jsp").forward(request, response);
-            /*JSONObject resultJson = JSONObject.fromObject(result);
-            if (resultJson.getBoolean("result")&&!resultJson.getString("errorMessage").isEmpty()) {
-                PrintWriter out = response.getWriter();
-                out.println("<script type=\"text/javascript\">");
-                String alert = new StringBuffer("alert('").append(resultJson.getString("errorMessage")).append("');").toString();
-                out.println(alert);
-                System.out.println(alert);
-                out.println("</script>");
-            }*/
-        /*   if (request.getParameter("submit") != null) {
-            int a = 1;
-        }
-        int b = 1;
-        String commitId = request.getParameter("commitId");
-        String repository = request.getParameter("repository");
-        String repositoryId = request.getParameter("repositoryId");
-        String postString = "commitId=" + commitId + "&repository=" + repository + "&repositoryId=" + repositoryId;
-        String result = HttpClient.doPost("http://10.141.221.83:12007/DiffMiner/main", postString);
-//		String result = HttpClient.doPost("http://127.0.0.1:12007/DiffMiner/main",postString);
-        System.out.println(result);*/
 
 
 }

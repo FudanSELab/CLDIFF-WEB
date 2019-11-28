@@ -21,7 +21,6 @@ public class BCClearCacheServlet extends HttpServlet {
      */
     public BCClearCacheServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
     /**

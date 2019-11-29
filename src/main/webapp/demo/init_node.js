@@ -9,7 +9,9 @@ function initNode(){
 }
 
 
+function initEdge(){
 
+}
 
 window.onload=function(){
     initNode();

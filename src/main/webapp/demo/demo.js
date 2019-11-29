@@ -135,6 +135,10 @@ function calljsplumb() {
 
         // connect a few up
         instance.connect({uuids: ["Window2BottomCenter", "Window3TopCenter"]});
+        instance.connect({uuids: ["Window2BottomCenter", "Window3TopCenter"]});
+        instance.connect({uuids: ["Window2BottomCenter", "Window3TopCenter"]});
+        instance.connect({uuids: ["Window2BottomCenter", "Window3TopCenter"]});
+        instance.connect({uuids: ["Window2BottomCenter", "Window3TopCenter"]});
         instance.connect({uuids: ["Window2LeftMiddle", "Window4LeftMiddle"]});
         instance.connect({uuids: ["Window4TopCenter", "Window4RightMiddle"]});
         instance.connect({uuids: ["Window3RightMiddle", "Window2RightMiddle"]});

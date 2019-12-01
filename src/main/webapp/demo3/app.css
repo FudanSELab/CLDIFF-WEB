@@ -1,0 +1,12 @@
+#layout {
+    margin-bottom:25px;
+}
+
+.description {
+    display:flex;
+}
+
+.config {
+    flex-basis: 45%;
+    margin-left: 25px;
+}

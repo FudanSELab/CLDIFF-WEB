@@ -1,0 +1,10 @@
+590
+ Various geometry functions written as part of jsPlumb and perhaps useful for others.
+795
+ Creates a Touch object.
+
+1462
+ drag/drop functionality for use with jsPlumb but with
+ no knowledge of jsPlumb. supports multiple scopes (separated by whitespace), dragging
+ multiple elements, constrain to parent, drop filters, drag start filters, custom
+ css classes.

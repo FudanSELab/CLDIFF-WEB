@@ -5878,6 +5878,7 @@
          * Throws: an error if a named anchor was not found.
          */
         this.makeAnchor = function () {
+            console.log("make anchor8")
             var pp, _a = function (t, p) {
                 if (root.jsPlumb.Anchors[t]) {
                     return new root.jsPlumb.Anchors[t](p);

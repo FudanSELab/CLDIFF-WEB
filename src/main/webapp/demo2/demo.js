@@ -60,6 +60,10 @@ jsPlumb.ready(function () {
                     anchors: [
                         [ "Continuous", { shape: shapes[i].getAttribute("data-shape"), rotation: shapes[i].getAttribute("data-rotation") }],
                         [ "Continuous", { shape: shapes[j].getAttribute("data-shape"), rotation: shapes[j].getAttribute("data-rotation") }]
+                    ],
+                    overlays:[
+                        "Arrow",
+                        [ "Label", { label:"foo", location:0.25, id:"myLabel" } ]
                     ]
                 });
             }

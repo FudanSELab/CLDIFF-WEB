@@ -69,6 +69,12 @@ jsPlumb.ready(function () {
             }
         }
     });
+    // jsPlumb.addGroup({
+    //     el:$("test1"),
+    //     id:"aGroup"
+    // });
+    //
+    // jsPlumb.addToGroup("aGroup", $("#test2"));
 
     jsPlumb.fire("jsPlumbDemoLoaded", instance);
 });

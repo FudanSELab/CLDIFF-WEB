@@ -1,3 +1,34 @@
+require.config({ paths: { 'vs': '../node_modules/monaco-editor/dev/vs' }});
+
+// monaco.js comment 89454-89497
+require(['vs/editor/editor.main'], function() {
+
+    var shapes = document.getElementsByClassName("shape");
+    var editors = new Array();
+    for(var i=0;i<shapes.length;i++){
+        item = shapes[i];
+        var editor = monaco.editor.create(shapes[i], {
+            value: [
+                'public class Test{',
+                '\tprivate String fieldaaasaasaaaaaaaaaaaaaaaaaaaaaazaazaaaaaaa;',
+                '}'
+            ].join('\n'),
+            language: 'java',
+            contextmenu: false,
+            hover:{
+                "enabled":false
+            },
+            minimap:{
+                "enabled":false
+            },
+            hideCursorInOverviewRuler:true
+        });
+        editors.push(editor);
+    }
+
+});
+
+
 jsPlumb.ready(function () {
 
     var instance = jsPlumb.getInstance({
@@ -18,6 +49,9 @@ jsPlumb.ready(function () {
         // loop through them and connect each one to each other one.
         for (var i = 0; i < shapes.length; i++) {
             for (var j = i + 1; j < shapes.length; j++) {
+                if(i==1 && j==2){
+                    continue;
+                }
                 instance.connect({
                     source: shapes[i],  // just pass in the current node in the selector for source
                     target: shapes[j],

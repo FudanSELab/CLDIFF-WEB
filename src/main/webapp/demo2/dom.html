@@ -31,33 +31,7 @@
         <!--<script src="../js/jsplumbtoolkit.js"></script>-->
 
 		<script src="demo.js"></script>
-        <script>
-            require.config({ paths: { 'vs': '../node_modules/monaco-editor/min/vs' }});
 
-            require(['vs/editor/editor.main'], function() {
-                var shapes = document.getElementsByClassName("shape");
-                for(var i=0;i<shapes.length;i++){
-                    item = shapes[i];
-                    var editor = monaco.editor.create(shapes[i], {
-                        value: [
-                            'function x() {',
-                            '\tconsole.log("Hello world!");',
-                            '}'
-                        ].join('\n'),
-                        language: 'javascript',
-                        contextmenu: false,
-                        hover:{
-                          "enabled":false
-                        },
-                        minimap:{
-                            "enabled":false
-                        },
-                        hideCursorInOverviewRuler:true
-                    });
-                }
-
-            });
-        </script>
 
     </body>
 </html>

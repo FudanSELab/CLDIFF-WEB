@@ -1,3 +1,4 @@
+
 require.config({ paths: { 'vs': '../node_modules/monaco-editor/dev/vs' }});
 
 // monaco.js comment 89454-89497
@@ -6,7 +7,7 @@ require(['vs/editor/editor.main'], function() {
     var shapes = document.getElementsByClassName("shape");
     var editors = new Array();
     for(var i=0;i<shapes.length;i++){
-        item = shapes[i];
+        var item = shapes[i];
         var editor = monaco.editor.create(shapes[i], {
             value: [
                 'public class Test{',
@@ -78,3 +79,35 @@ jsPlumb.ready(function () {
 
     jsPlumb.fire("jsPlumbDemoLoaded", instance);
 });
+
+function getAllFileFromServer(url,author,commitHash,parentCommitHash,projectName,fileName) {
+    var mData = {};
+    mData.author = author;
+    mData.commit_hash = commitHash;
+    mData.parent_commit_hash = parentCommitHash;
+    mData.project_name = projectName;
+    mData.file_name = fileName;
+    $.post(url,mData, function(data) {
+        console.log(data);
+    },"json");
+    return content;
+}
+
+function getMetaFileFromServer(url,commitURL) {
+    var mData = {};
+    mData.commit_url = commitURL;
+    $.post(url,mData, function(data) {
+        console.log(data)
+    },"json");
+}
+
+
+function startGraph(){
+    var commit = document.getElementById("commitUrl").value.trim();
+    console.log(commit);
+    if(commit==null || commit ==""){
+        return;
+    }
+    getMetaFileFromServer("BCMetaServlet",commit);
+    // var jsonDiff = getAllFileFromServer("BCGetFileServlet","a","b","c","d","e");
+}

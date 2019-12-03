@@ -6,11 +6,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Map;
 
 @WebServlet("/BCMetaServlet") // This is the URL of the servlet.
-public class BCMetaServlet extends HttpServlet { // Must be public and extend HttpServlet.
-    // ...
+public class BCMetaServlet extends HttpServlet {
 
     /**
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -18,16 +19,24 @@ public class BCMetaServlet extends HttpServlet { // Must be public and extend Ht
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ProjectProperties.createInstance(this.getServletContext());
-        if (request.getParameter("commit_url") != null) {
-            String commitUrl = request.getParameter("commit_url");
-            String postString = "url=" + commitUrl;
-            System.out.println(postString);
-            System.out.println("MetaUrl:" + API.FETCH_META);
-            String result = HttpClient.doPost(API.FETCH_META, postString);
-            System.out.println(result);
-            PrintWriter out = response.getWriter();    //设定传参变量
-            out.print(result);      //结果传到前端
+        System.out.println("post");
+        Map<String, String> params = new HashMap<>();
+        Enumeration ele =  request.getParameterNames();
+        while(ele.hasMoreElements()){
+            String key = (String)ele.nextElement();
+            String value = request.getParameter(key);
+            params.put(key,value);
         }
+        String result="ERROR";
+        if(params.size()!=0) {
+            try {
+                result = HttpClient.doPostMap(API.FETCH_META,params);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        System.out.println(result);
+        response.getWriter().print(result);
     }
 
 

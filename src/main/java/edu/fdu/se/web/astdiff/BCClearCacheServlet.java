@@ -32,7 +32,6 @@ public class BCClearCacheServlet extends HttpServlet {
         String result = HttpClient.doGet(API.CLEAR_COMMIT_RECORD);
         PrintWriter out = response.getWriter();
         out.print(result);
-//        response.getWriter().append("Served at: ").append(request.getContextPath());
     }
 
 

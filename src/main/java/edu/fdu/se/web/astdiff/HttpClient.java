@@ -8,6 +8,7 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Map;
 
 public class HttpClient {
     public static String doGet(String httpurl) {
@@ -68,6 +69,18 @@ public class HttpClient {
         }
 
         return result;
+    }
+
+    public static String doPostMap(String httpUrl, Map<String,String> params){
+        StringBuilder sb = new StringBuilder();
+        for(Map.Entry<String,String> e:params.entrySet()){
+            sb.append(e.getKey());
+            sb.append("=");
+            sb.append(e.getValue());
+            sb.append("&");
+        }
+        sb.deleteCharAt(sb.length()-1);
+        return doPost(httpUrl,sb.toString());
     }
 
     public static String doPost(String httpUrl, String param) {
@@ -148,4 +161,7 @@ public class HttpClient {
         }
         return result;
     }
+
+
+
 }

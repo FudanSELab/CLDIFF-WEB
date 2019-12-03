@@ -28,7 +28,6 @@
     height:70px;
     left:280px;
     top:505px;
-    /*background-image:url(rectangle.png);*/
 }
 
 [data-shape=Rec_Use] {
@@ -36,7 +35,6 @@
     height:70px;
     left:480px;
     top:305px;
-    /*background-image:url(rectangle.png);*/
 }
 
 [data-shape=Rec_Use2] {
@@ -47,19 +45,16 @@
     /*display:flex;*/
     /*align-items: center;*/
     /*justify-content: center;*/
-    /*background-image:url(circle.png);*/
 }
 
 [data-shape=Triangle] {
     width:150px;
     height:150px;
-    /*background-image:url(triangle.png);*/
 }
 
 ._90[data-shape=Triangle] {
     width:150px;
     height:150px;
-    /*background-image:url(triangle_90.png);*/
 }
 
 [data-shape=Diamond] {
@@ -67,5 +62,4 @@
     height:150px;
     left:550px;
     top:150px;
-    /*background-image:url(diamond.png);*/
 }

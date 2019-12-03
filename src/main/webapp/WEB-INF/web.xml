@@ -5,32 +5,6 @@
          id="WebApp_ID" version="3.0">
     <display-name>Archetype Created Web Application</display-name>
 
-    <servlet>
-        <servlet-name>ServletMain</servlet-name>
-        <servlet-class>edu.fdu.se.web.test.FileServlet</servlet-class>
-    </servlet>
-
-    <servlet>
-        <servlet-name>ProxyServlet</servlet-name>
-        <servlet-class>edu.fdu.se.web.test.ProxyServlet</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>ServletMain</servlet-name>
-        <url-pattern>/getfile</url-pattern>
-    </servlet-mapping>
-
-    <servlet-mapping>
-        <servlet-name>ProxyServlet</servlet-name>
-        <url-pattern>/getfiles</url-pattern>
-    </servlet-mapping>
-
-
-
-    <!--<servlet-mapping>-->
-    <!--<servlet-name>TestServlet</servlet-name>-->
-    <!--<url-pattern>/</url-pattern>-->
-    <!--</servlet-mapping>-->
 </web-app>
 
 

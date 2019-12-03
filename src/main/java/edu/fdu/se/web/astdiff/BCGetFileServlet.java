@@ -3,6 +3,8 @@ package edu.fdu.se.web.astdiff;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -40,22 +42,24 @@ public class BCGetFileServlet extends HttpServlet {
 		 //author、commit_hash、parent_commit_hash、project_name、prev_file_path、curr_file_path
 		ProjectProperties.createInstance(this.getServletContext());
 		System.out.println("post");
-        if (request.getParameter("author") != null) {
-        	String file_name = request.getParameter("file_name");
-        	System.out.println("POST: "+file_name);
-        	Enumeration e =  request.getParameterNames();
-        	StringBuilder sb = new StringBuilder();
-        	while(e.hasMoreElements()){
-        		String key = (String)e.nextElement();
-        		String value = request.getParameter(key);
-        		sb.append(key+"="+value+"&");
-        	}
-        	System.out.println(sb.toString());
-            String result = HttpClient.doPost(API.FETCH_CONTENT, sb.toString().substring(0, sb.toString().length()-1));
-            System.out.println(result);
-            PrintWriter out = response.getWriter();    //设定传参变量
-            out.print(result);      //结果传到前端
-        }
-    }	
+		Map<String, String> params = new HashMap<>();
+		Enumeration ele =  request.getParameterNames();
+		while(ele.hasMoreElements()){
+			String key = (String)ele.nextElement();
+			String value = request.getParameter(key);
+			params.put(key,value);
+		}
+		String result="ERROR";
+
+		if(params.size()!=0) {
+			try {
+				result = HttpClient.doPostMap(API.FETCH_CONTENT,params);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		System.out.println(result);
+		response.getWriter().print(result);
+	}
 
 }

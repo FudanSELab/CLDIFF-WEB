@@ -2,6 +2,7 @@ var fileNameList;
 var fileNameWithParent;
 var metaObject;
 var fileNameKeys;
+var SPLITTER = "__CLDIFF__"
 
 function getAllFileFromServer(url,author,commitHash,parentCommitHash,projectName,fileName) {
 	var content;
@@ -81,11 +82,11 @@ function getFileByCommitUrl(flag) {
 		fileObj["id"] = id;
 		fileObj["action"] = metaObject["actions"][id]; 
 		if(parent_commit in fileNameWithParent) {			
-			fileNameWithParent[parent_commit][id+"---"+file_name] = fileObj;
+			fileNameWithParent[parent_commit][id+SPLITTER+file_name] = fileObj;
 		}
 		else {
 			var parentCommitObj = new Object();
-			parentCommitObj[id+"---"+file_name] = fileObj;
+			parentCommitObj[id+SPLITTER+file_name] = fileObj;
 			fileNameWithParent[parent_commit] = parentCommitObj;
 		}		
 	}
@@ -219,7 +220,7 @@ function getFileName(path) {
 function parseLinkFile(links,fileCount) {
 	otherFilelink = new Object();
     inFilelink.splice(0,inFilelink.length);
-    var fileShortName = fileName.split("---")[1];
+    var fileShortName = fileName.split(SPLITTER)[1];
 	for(var i=0;i<links.length;i++) {
 		if(links[i]["link-type"] == "one-file-link" && links[i]["file-name"] == fileShortName && links[i]["parent-commit"] == parentCommitId) {
 			if(links[i].links.length > 0)

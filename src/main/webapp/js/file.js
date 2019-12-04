@@ -7,7 +7,7 @@ var SPLITTER = "__CLDIFF__"
 function getAllFileFromServer(url,author,commitHash,parentCommitHash,projectName,fileName) {
 	var content;
 	$.ajaxSettings.async = false;
-	$.post(url,{author:author,commit_hash:commitHash,parent_commit_hash:parentCommitHash,project_name:projectName,file_name:fileName}, function(data) {
+	$.post(url,{author:author,commit_name:commitHash,parent_commit_name:parentCommitHash,project_name:projectName,file_name:fileName}, function(data) {
 		content = data;
 	});
 	return content;
@@ -16,7 +16,7 @@ function getAllFileFromServer(url,author,commitHash,parentCommitHash,projectName
 function getMetaFileFromServer(url,commitURL) {
 	var content;
 	$.ajaxSettings.async = false;
-	$.post(url,{commit_url:commitURL}, function(data) {
+	$.post(url,{commit_url:commitURL,project_name:"undefined",commit_name:commitURL}, function(data) {
 		content = data;
 	});
 	return content;

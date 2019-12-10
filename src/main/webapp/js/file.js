@@ -1,4 +1,3 @@
-var fileNameList;
 var fileNameWithParent;
 var metaObject;
 var fileNameKeys;
@@ -73,7 +72,7 @@ function getFileByCommitUrl(flag) {
 	fileNameWithParent = new Object();
 	for(var i=0;i<files.length;i++) {
 		var id = files[i]["id"];
-		var file_name = files[i]["file_name"];
+		var file_name = files[i]["file_full_name"];
 		var parent_commit = files[i]["parent_commit"];
 		var fileObj = new Object();
 		fileObj["parent_commit"] = parent_commit;

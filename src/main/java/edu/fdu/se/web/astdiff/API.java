@@ -10,8 +10,8 @@ public class API {
     public static final String ONLINE_SERVER_REMOTE = "http://106.14.239.166:8081";
     /**
      * Debugging CodeWisdom local
-     * deploy_type = online
-     * repo_source = offline
+     * deploy_type = offline
+     * repo_source = online
      */
     public static final String ONLINE_SERVER_LOCAL = "http://localhost:8081";
     /**

@@ -1,4 +1,3 @@
-var fileNameList;
 var fileNameWithParent;
 var metaObject;
 var fileNameKeys;
@@ -7,7 +6,7 @@ var SPLITTER = "__CLDIFF__"
 function getAllFileFromServer(url,author,commitHash,parentCommitHash,projectName,fileName) {
 	var content;
 	$.ajaxSettings.async = false;
-	$.post(url,{author:author,commit_hash:commitHash,parent_commit_hash:parentCommitHash,project_name:projectName,file_name:fileName}, function(data) {
+	$.post(url,{author:author,commit_name:commitHash,parent_commit_name:parentCommitHash,project_name:projectName,file_name:fileName}, function(data) {
 		content = data;
 	});
 	return content;
@@ -16,7 +15,7 @@ function getAllFileFromServer(url,author,commitHash,parentCommitHash,projectName
 function getMetaFileFromServer(url,commitURL) {
 	var content;
 	$.ajaxSettings.async = false;
-	$.post(url,{commit_url:commitURL}, function(data) {
+	$.post(url,{commit_url:commitURL,project_name:"undefined",commit_name:commitURL}, function(data) {
 		content = data;
 	});
 	return content;
@@ -73,7 +72,7 @@ function getFileByCommitUrl(flag) {
 	fileNameWithParent = new Object();
 	for(var i=0;i<files.length;i++) {
 		var id = files[i]["id"];
-		var file_name = files[i]["file_name"];
+		var file_name = files[i]["file_full_name"];
 		var parent_commit = files[i]["parent_commit"];
 		var fileObj = new Object();
 		fileObj["parent_commit"] = parent_commit;

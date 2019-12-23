@@ -1,0 +1,83 @@
+svg {
+	/*	background-color:lightgrey;*/
+}
+
+body {
+	margin: 0;
+}
+
+#edgelabelType1,
+#edgelabelType57 {
+	fill: green;
+}
+
+#edgelabelType2,
+#edgelabelType56 {
+	fill: red;
+}
+
+.edgelabel {
+	font-size: 20px;
+	background-color: white;
+	font-weight: 500;
+	padding: 40px;
+	z-index: 1;
+}
+
+
+.links line {
+	stroke: #999;
+}
+
+.node {
+	border: 1px solid black;
+	border-radius: 25% 10%;
+	/*
+	stroke: black;
+	stroke-width: 1px;
+*/
+}
+
+.link {
+	stroke: #999;
+	stroke-width: 3px;
+	stroke-opacity: 1;
+	stroke-dasharray: 0, 4 5;
+}
+
+
+line.Type1,
+.Type57 {
+	stroke: green;
+}
+
+line.Type2,
+.Type56 {
+	stroke: red;
+}
+
+line.Type3 {
+	stroke: blue;
+}
+
+#Type1,
+#Type57 {
+	stroke: green;
+	fill: green;
+}
+
+#Type2,
+#Type56 {
+	stroke: red;
+	fill: red;
+}
+
+#Type3 {
+	stroke: blue;
+	fill: blue;
+}
+
+.label {
+	stroke: red;
+	stroke-width: 1.5px;
+}

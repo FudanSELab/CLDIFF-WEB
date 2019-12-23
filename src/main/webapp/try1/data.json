@@ -1,0 +1,120 @@
+{
+	"nodes": [
+		{
+			"id": "0",
+			"group": 4,
+			"nodeid": "node11"
+		},
+		{
+			"id": "1",
+			"group": 1,
+			"nodeid": "node1",
+			"code": "this.heartbeatThreadPoolQueue = new LinkedBlockingQueue<Runnable>\n(this.brokerConfig.getHeartbeatThreadPoolQueueCapacity());\n"
+		},
+		{
+			"id": "2",
+			"group": 1,
+			"nodeid": "node2"
+		},
+		{
+			"id": "3",
+			"group": 1,
+			"nodeid": "node3"
+		},
+		{
+			"id": "4",
+			"group": 1,
+			"nodeid": "node4"
+		},
+		{
+			"id": "5",
+			"group": 2,
+			"nodeid": "node5"
+		},
+		{
+			"id": "6",
+			"group": 2,
+			"nodeid": "node6"
+		},
+		{
+			"id": "7",
+			"group": 2,
+			"nodeid": "node7"
+		},
+		{
+			"id": "8",
+			"group": 1,
+			"nodeid": "node8"
+		},
+		{
+			"id": "9",
+			"group": 1,
+			"nodeid": "node9"
+		},
+		{
+			"id": "10",
+			"group": 4,
+			"nodeid": "node10"
+		}
+  ],
+	"links": [
+		{
+			"source": "2",
+			"target": "1",
+			"value": 1,
+			"type": "Type1",
+			"text": "Green Label"
+		},
+		{
+			"source": "3",
+			"target": "1",
+			"value": 8,
+			"type": "Type1"
+		},
+		{
+			"source": "0",
+			"target": "2",
+			"value": 8,
+			"type": "Type1"
+		},
+		{
+			"source": "4",
+			"target": "1",
+			"value": 10,
+			"type": "Type2"
+		},
+		{
+			"source": "6",
+			"target": "5",
+			"value": 1,
+			"type": "Type2"
+		},
+		{
+			"source": "6",
+			"target": "1",
+			"value": 5,
+			"type": "Type2"
+		},
+		{
+			"source": "8",
+			"target": "10",
+			"value": 1,
+			"type": "Type2"
+		},
+		{
+			"source": "7",
+			"target": "6",
+			"value": 1,
+			"type": "Type2",
+			"text": "Red Label"
+		},
+		
+		{
+			"source": "6",
+			"target": "10",
+			"value": 4,
+			"type": "Type3",
+			"text": "Blue Label"
+		}
+  ]
+}

@@ -22,6 +22,9 @@ public class API {
     public static final String OFFLINE_SERVER_LOCAL = "http://localhost:8082";
 
 
+    public static final String DIFF_GRAPH_SERVER = "http://10.141.221.85:12009";
+
+
     static {
         String deployType = ProjectProperties.getInstance().getValue("deploy_type");
         String repoSource = ProjectProperties.getInstance().getValue("repo_source");
@@ -32,10 +35,17 @@ public class API {
         }else{
             SERVER = OFFLINE_SERVER_LOCAL;
         }
+
+        String isGraphJson = ProjectProperties.getInstance().getValue("diffgraph");
+        if("true".equals(isGraphJson)){
+            SERVER = DIFF_GRAPH_SERVER;
+        }
     }
     public static String SERVER;
     public static String FETCH_META = SERVER+"/fetchMeta";
     public static String FETCH_CONTENT = SERVER+"/fetchFile";
     public static String CLEAR_COMMIT_RECORD = SERVER+"/clearCommitRecord";
+
+
 
 }

@@ -1,7 +1,45 @@
+/*
+.rect{
+	stroke: black;
+}
+*/
+
+h1{
+	text-align: center;
+	color: red;
+	font-variant-caps:petite-caps;
+	width: 71%;
+}
 svg {
 	/*	background-color:lightgrey;*/
+	float: left;
 }
 
+.nodetext{
+border: 2px solid black;
+	font-size: 15px;
+}
+p{
+	margin: auto;
+}
+#chart1{
+/*	float: right;*/
+	left: 1820px;
+	width: 651px;
+	height: 254px;
+	position: fixed;
+/*	border: 1px solid black;*/
+	float: inherit;
+}
+.svgtitle{
+	border: 1px solid black;
+/*	height: 20px;*/
+	text-align: center;
+	padding: 10px;
+}
+#graph{
+	font-size: 10px;
+}
 body {
 	margin: 0;
 }
@@ -17,7 +55,7 @@ body {
 }
 
 .edgelabel {
-	font-size: 20px;
+	font-size: 18px;
 	background-color: white;
 	font-weight: 500;
 	padding: 40px;
@@ -42,7 +80,7 @@ body {
 	stroke: #999;
 	stroke-width: 3px;
 	stroke-opacity: 1;
-	stroke-dasharray: 0, 4 5;
+	stroke-dasharray: 0, 0 10;
 }
 
 

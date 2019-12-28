@@ -3,7 +3,7 @@
 .CodeMirror {
 	/* Set height, width, borders, and global font properties here */
 	box-shadow: 2px 2px 19px #aaa;
-	border-radius: 0.5em;
+/*	border-radius: 0.5em;*/
 	font-family: monospace;
 	/*    cursor: pointer;*/
 	height: 106px;
@@ -11,9 +11,10 @@
 	color: black;
 	direction: ltr;
     z-index: 20;
-	border: 1px solid black;
+/*	border: 2px solid grey;*/
     position: absolute;
 	font-size: 18px;
+	border-top: 1px solid black;
 }
 
 .CodeMirror:hover {
@@ -50,9 +51,9 @@
 .CodeMirror-linenumbers {}
 
 .CodeMirror-linenumber {
-	padding: 0 3px 0 5px;
+	padding: 0 3px 0 8px;
 	min-width: 20px;
-	text-align: right;
+	text-align: middle;
 	color: #999;
 	white-space: nowrap;
 }
@@ -169,11 +170,15 @@
 }
 
 .cm-negative {
-	color: #d44;
+/*	color: #d44;*/
+	background-color: #ffeef0;
+/*	text-decoration: line-through;*/
+	text-decoration-color:currentColor;
 }
 
 .cm-positive {
-	color: #292;
+/*	color: #292;*/
+	background-color: #e6ffed;
 }
 
 .cm-header,

@@ -3,43 +3,68 @@
 	stroke: black;
 }
 */
+.dropdownDIV {
+		margin-left: 50px;
+	}
 
-h1{
+#dropdown {
+		background-color: dimgray;
+		color: #ffffff;
+		font-size: 20px;
+		padding: 5px;
+		border: dimgray 1px solid;
+	}
+
+h1 {
 	text-align: center;
 	color: red;
-	font-variant-caps:petite-caps;
+	font-variant-caps: petite-caps;
 	width: 71%;
 }
+
 svg {
-	/*	background-color:lightgrey;*/
+		background-color:lightgrey;
+	margin-left: 50px;
+	top: 100px;
 	float: left;
 }
 
-.nodetext{
-border: 2px solid black;
+.nodetext {
+	border: 2px solid black;
 	font-size: 15px;
 }
-p{
+
+p {
+	right: 1870px;
 	margin: auto;
 }
-#chart1{
-/*	float: right;*/
-	left: 1820px;
+
+#chart, #chart1 {
+	/*	float: right;*/
+	left: 1870px;
 	width: 651px;
 	height: 254px;
 	position: fixed;
-/*	border: 1px solid black;*/
+	/*	border: 1px solid black;*/
 	float: inherit;
 }
-.svgtitle{
+
+.svgtitle {
+	
+	margin-left: 1870px;
+	width: 630px;
 	border: 1px solid black;
-/*	height: 20px;*/
+	/*	height: 20px;*/
 	text-align: center;
 	padding: 10px;
+	position: relative;
+	float: inherit;
 }
-#graph{
+
+#graph1 {
 	font-size: 10px;
 }
+
 body {
 	margin: 0;
 }

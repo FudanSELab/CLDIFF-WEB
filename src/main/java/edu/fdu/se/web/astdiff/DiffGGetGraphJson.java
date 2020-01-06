@@ -25,10 +25,14 @@ public class DiffGGetGraphJson extends HttpServlet {
             String value = request.getParameter(key);
             params.put(key,value);
         }
+        response.setHeader("Content-Type", "application/json");
         String result="ERROR";
         if(params.size()!=0) {
             try {
                 result = HttpClient.doPostMap(API.SERVER+"/cldiffweb/getjson",params);
+                if(result.startsWith("Content-type: application/json")){
+                    result = result.replace("Content-type: application/json","");
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }

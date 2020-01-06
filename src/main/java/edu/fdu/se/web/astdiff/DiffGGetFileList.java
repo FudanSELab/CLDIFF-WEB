@@ -25,7 +25,11 @@ public class DiffGGetFileList extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ProjectProperties.createInstance(this.getServletContext());
-        String result = HttpClient.doGet(API.SERVER+"/cldiffweb/getjson");
+        response.setHeader("Content-Type", "application/json");
+        String result = HttpClient.doGet(API.SERVER+"/cldiffweb/getlist");
+        if(result.startsWith("Content-type: application/json")){
+            result = result.replace("Content-type: application/json","");
+        }
         PrintWriter out = response.getWriter();
         out.print(result);
     }

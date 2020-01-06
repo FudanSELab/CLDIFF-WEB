@@ -36,19 +36,8 @@
 	<script src="https://d3js.org/d3-selection-multi.v1.js"></script>
 
 	<script>
-		$.getJSON("localhost:8080/try1/getfilelist", function(data) {
-			console.log(data);
-		});
-
-		$.post("../getjson", {
-			file_name: "graph.json"
-		}, function(data) {
-			console.log(data);
-		});
-		
-		var jsonlist = ["graph.json", "graph1.json"];// = $getjson
-		var dataIndex = jsonlist[0]  // = $post file name[jsonlist[0]] from d3.json
-
+		var jsonlist = ["graph.json", "graph1.json"];
+		var dataIndex = jsonlist[0]
 		var colors = d3.scaleOrdinal(d3.schemeCategory10);
 		var svg = d3.select("svg")
 		var width = +svg.attr("width"),
@@ -76,7 +65,7 @@
 				dataIndex = this.value;
 				svg.selectAll("*").remove();
 				d3.select("#chart1").remove();
-
+				
 				update(dataIndex);
 			})
 
@@ -261,33 +250,33 @@
 						.distance([400]);
 				}
 
-				//				var div = document.createElement("div");
-				//				div.setAttribute('id', 'chart1');
-				//				document.getElementById("chart").appendChild('div');
-				//				
+//				var div = document.createElement("div");
+//				div.setAttribute('id', 'chart1');
+//				document.getElementById("chart").appendChild('div');
+//				
 				var div = document.createElement("div");
 				div.setAttribute('id', 'chart1');
 				document.getElementById("chart").appendChild(div);
-
+				
 				var div = document.createElement("textarea");
 				div.setAttribute('id', 'graph1');
 				document.getElementById("chart1").appendChild(div);
 
-				var myTextArea = document.getElementById("graph1");
-				var editor = CodeMirror.fromTextArea(myTextArea, {
-					height: "500px",
-					width: "200px",
-					lineNumbers: true,
-					//						mode: "text/x-java",
-					mode: "text/x-diff",
-					theme: 'default',
-					scrollbarStyle: "simple",
-					matchBrackets: true
-				})
-
-				//					.setValue("your code here");
-				editor.setSize(650, 200);
-				editor.getDoc().setValue("+ Hover over code to view it here!!!\n- You can also check for diff!!!");
+								var myTextArea = document.getElementById("graph1");
+								var editor = CodeMirror.fromTextArea(myTextArea, {
+									height: "500px",
+									width: "200px",
+									lineNumbers: true,
+									//						mode: "text/x-java",
+									mode: "text/x-diff",
+									theme: 'default',
+									scrollbarStyle: "simple",
+									matchBrackets: true
+								})
+				
+								//					.setValue("your code here");
+								editor.setSize(650, 200);
+								editor.getDoc().setValue("+ Hover over code to view it here!!!\n- You can also check for diff!!!");
 
 
 
@@ -404,7 +393,7 @@
 
 	</script>
 	<div id="chart">
-		<p class="svgtitle"><span style="color:red;font-weight:bold">CODE INFO</span></p>
+	<p class="svgtitle"><span style="color:red;font-weight:bold">CODE INFO</span></p>		
 	</div>
 </body>
 

@@ -132,7 +132,7 @@
 			"link_type_str": "def-use@field",
 			"source": 3,
 			"text": "def-use@field",
-			"type": "Type57",
+			"type": "57",
 			"value": 1,
 			"target": 6
         },
@@ -140,7 +140,7 @@
 			"link_type_str": "def-use@field",
 			"source": 4,
 			"text": "def-use@field",
-			"type": "Type58",
+			"type": "58",
 			"value": 1,
 			"target": 6
         },
@@ -148,7 +148,7 @@
 			"link_type_str": "def-use@field",
 			"source": 1,
 			"text": "def-use@field",
-			"type": "Type57",
+			"type": "57",
 			"value": 1,
 			"target": 7
         },
@@ -156,7 +156,7 @@
 			"link_type_str": "def-use@field",
 			"source": 1,
 			"text": "def-use@field",
-			"type": "Type57",
+			"type": "57",
 			"value": 1,
 			"target": 6
         },
@@ -164,7 +164,7 @@
 			"link_type_str": "def-use@field",
 			"source": 0,
 			"text": "def-use@field",
-			"type": "Type57",
+			"type": "57",
 			"value": 1,
 			"target": 7
         },
@@ -172,7 +172,7 @@
 			"link_type_str": "def-use@method",
 			"source": 8,
 			"text": "def-use@method",
-			"type": "Type56",
+			"type": "56",
 			"value": 1,
 			"target": 5
         },
@@ -180,7 +180,7 @@
 			"link_type_str": "def-use@method",
 			"source": 1,
 			"text": "def-use@method",
-			"type": "Type56",
+			"type": "56",
 			"value": 1,
 			"target": 12
         },
@@ -188,7 +188,7 @@
 			"link_type_str": "def-use@method",
 			"source": 0,
 			"text": "def-use@method",
-			"type": "Type56",
+			"type": "56",
 			"value": 1,
 			"target": 14
         },
@@ -196,7 +196,7 @@
 			"link_type_str": "def-use@method",
 			"source": 8,
 			"text": "def-use@method",
-			"type": "Type56",
+			"type": "56",
 			"value": 1,
 			"target": 10
         }

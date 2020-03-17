@@ -22,7 +22,7 @@ public class API {
     public static final String OFFLINE_SERVER_LOCAL = "http://localhost:8082";
 
 
-    public static final String DIFF_GRAPH_SERVER = "http://10.141.221.85:12009";
+    public static final String DIFF_GRAPH_SERVER = "http://47.103.220.13:12009";
 
 
     static {

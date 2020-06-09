@@ -1,15 +1,14 @@
 var myTextArea = document.getElementById("graph1");
 var editor1 = CodeMirror.fromTextArea(myTextArea, {
-	height: "820px",
-	width: "500px",
 	lineNumbers: true,
-	mode: "javascript",
-	mode: "text/x-diff",
+	mode: "java",
+	// mode: "text/x-diff",
+    mode: "text/x-java", //实现Java代码高亮
 	matchBrackets: true,
 	//			scrollbarStyle: "simple",
 })
 const width1 = document.getElementById('chart').scrollWidth;
-const height1 = document.getElementById('chart').scrollHeight || 1000;
+const height1 = document.getElementById('chart').scrollHeight || 1500;
 editor1.setSize(width1, height1)
 // editor1.setScrollbar()
 editor1.getDoc().setValue("+ Hover over code to view it here!!!\n- You can also check for diff!!!");
@@ -252,65 +251,11 @@ const data = {
 			]
 }
 
-
-
-//		const data = {
-//			"nodes": [{
-//					"id": "1",
-//					"content": "<div class='bikesh id='adh'></div>",
-//					"status": 'fail'
-//				},
-//				{
-//					"id": "2",
-//					"content": "<div id='adh' class='bikesh ></div>",
-//					"status": 'success'
-//				},
-//				{
-//					"id": "3",
-//					"content": "+ this.heartbeatThreadPoolQueue = new LinkedBlockingQueue<Runnable>\n- (this.brokerConfig.getHeartbeatThreadPoolQueueCapacity());\n- (this.brokerConfig.getHeartbeatThreadPoolQueueCapacity());\n(this.brokerConfig.getHeartbeatThreadPoolQueueCapacity());\n- (this.brokerConfig.getHeartbeatThreadPoolQueueCapacity());\n",
-//					"status": 'success'
-//				},
-//				{
-//					"id": "4",
-//					"content": "Node 4\n node 3\n bik\n adsf\n rrrr\n asdcc",
-//					"status": 'success'
-//				},
-//				{
-//					"id": "5",
-//					"content": "Node 5",
-////					"status": ''
-//				},
-//				{
-//					"id": "6",
-//					"content": "Node 6",
-////					"status": 'whatever'
-//				}
-//
-//
-//			],
-//			"edges": [{
-//					"source": "1",
-//					"target": "2",
-//					'label': {
-//						text: 'Node 1 to 2'
-//					}
-//				},
-//				{
-//					"source": "1",
-//					"target": "3",
-//				}
-//			]
-//		};
 const width = document.getElementById('mountNode').scrollWidth;
-const height = document.getElementById('mountNode').scrollHeight || 1000;
+const height = document.getElementById('mountNode').scrollHeight || 1500;
 const graph = new G6.Net({
-
 	id: 'mountNode',
-	//			height: window.outerHeight,
-	//			fitView: 'tc',
-	//			 animate: true,
-	//			 useAnchor: false,
-				 grid: null,
+	grid: null,
 	width: width, // 画布宽
 	height: height, // 画布高
 	plugins: [plugin],
@@ -327,55 +272,15 @@ graph.on('contextmenu', ev => { // 鼠标右键点击事件
 });
 
 
-//				graph.on('itemmouseenter', ev => { //子项鼠标悬浮
-//					const item = ev.item;
-//					console.log(item._attrs.model.code);
-//					editor.getDoc().setValue(item._attrs.model.code);
-////					graph.update(item, {
-////						color: 'red',
-////					});
-////					graph.refresh();
-//				});
-//		
-//		graph.on('itemmouseleave', ev => { //子项鼠标离开事件
-//			const item = ev.item;
-//			graph.update(item, {
-//				color: null
-//			});
-//			graph.refresh();
-//		});
-//		graph.on('itemmousedown', ev => { //子项鼠标按下
-//			const item = ev.item;
-//			graph.update(item, {
-//				color: '#9ef'
-//			});
-//		});
-//		graph.on('itemmouseup', ev => { //子项鼠标弹起
-//			const item = ev.item;
-//			graph.update(item, {
-//				color: 'null'
-//			});
-//		});
+
 //
-//				graph.on('dragmove', () => { //拖拽隐藏
-//					console.log("hi");
-//				});
-//
-graph.on('dblclick', ev => { //双击显示
+graph.on('click', ev => { //单击显示
 	const item = ev.item;
-	console.log(item._attrs.model.code);
 	editor1.getDoc().setValue(item._attrs.model.code);
-	//					var bikesh1 = ((bikesh.code));
-	//					console.log((bikesh1));
-	//					editor.getDoc().setValue(bikesh1);
-	//					const item = ev.item;
-	//					const shape = ev.shape;
-	//					if (hasClass(shape, 'label') && item && item.get('type') === 'node') { //节点的情况下
-	//						showInputLabel(item);
-	//					}
 });
 
 graph.removeBehaviour(['wheelZoom', 'resizeNode']);
+
 graph.source(data.nodes, data.edges);
 graph.node()
 	.shape('customNode')
@@ -386,7 +291,7 @@ graph.node()
 graph.edge()
 	.shape('arrow')
 	.style({
-		lineWidth: 1
+		lineWidth: 5
 	})
 	.color('rgb(97, 183, 207)');
 
@@ -410,7 +315,7 @@ for (var i = 0; foundtextareasarr[i]; ++i) {
 
 	codemirrorInstance[i] = CodeMirror.fromTextArea(foundtextareasarr[i], {
 		lineNumbers: true,
-		mode: "javascript",
+		mode: "java",
 		theme: 'default',
 		//			scrollbarStyle: "simple",
 	});

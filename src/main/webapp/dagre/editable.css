@@ -6,12 +6,6 @@
 	border-radius: 4px;
 }
 
-h1 {
-	font-size: 20px;
-	text-align: center;
-	color: red;
-	font-variant-caps: petite-caps;
-}
 
 .charttitle {
 	margin: auto;
@@ -20,26 +14,17 @@ h1 {
 	float: top;
 }
 
-#chart,
-#chart1 {
-	margin-top: auto;
-	border: 1px solid black;
-	float: inherit;
-}
 
 
 
 #mountNode {
-	/*			padding: 10px;*/
-	/*float: left;*/
-	/*			padding-left: 50px;*/
 	display: block;
 	border: 1px solid black;
 }
 
 .node-conatiner {
-	/*width: 260px;*/
-	height: 80px;
+	height: 180px;
+	width: 520px;
 	border: 1px solid #999;
 	border-radius: 6px;
 	overflow: hidden;
@@ -64,10 +49,10 @@ h1 {
 
 .node-conatiner .node-conatiner-title {
 	color: white;
-	line-height: 20px;
-	font-size: 10px;
+	line-height: 30px;
+	font-size: 20px;
 	text-align: center;
-	height: 20px;
+	height: 30px;
 }
 
 .node-conatiner .node-conatiner-0 {

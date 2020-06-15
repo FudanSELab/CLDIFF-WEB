@@ -1,7 +1,7 @@
 var myTextArea = document.getElementById("graph1");
 var editor1 = CodeMirror.fromTextArea(myTextArea, {
 	lineNumbers: true,
-	mode: "java",
+	// mode: "java",
 	// mode: "text/x-diff",
     mode: "text/x-java", //实现Java代码高亮
 	matchBrackets: true,
@@ -39,11 +39,8 @@ G6.registerNode('customNode', {
 		container.appendChild(title);
 		const list = Util.createDOM(`<textarea class="bikesh" id="bikesh">${model.code}</textarea>`);
 		container.appendChild(list);
-		// const botton = Util.createDOM(`<button class="node-delete">X</button>`);
-		// botton.addEventListener('click', function(){
-		//   graph.remove(graph.find(model.id));
-		// });
-		// container.appendChild(botton);
+		const containerCode = Util.createDOM(`<!--<div id="bikesh2"></div>-->`);
+		// container.appendChild(containerCode)
 		return container;
 	}
 }, 'html');
@@ -273,11 +270,7 @@ graph.on('contextmenu', ev => { // 鼠标右键点击事件
 
 
 
-//
-graph.on('click', ev => { //单击显示
-	const item = ev.item;
-	editor1.getDoc().setValue(item._attrs.model.code);
-});
+
 
 graph.removeBehaviour(['wheelZoom', 'resizeNode']);
 
@@ -321,3 +314,15 @@ for (var i = 0; foundtextareasarr[i]; ++i) {
 	});
 
 }
+
+
+// graph.on('node:mousedown', ev => { //单击显示
+//     const item = ev.item;
+//     editor1.getDoc().setValue(item._attrs.model.code);
+//     var d = item._attrs.model.file_name.split("__CLDIFF__");
+//
+//     document.getElementById('alert1').textContent = d[1];
+//
+// });
+
+// $("g6-html-node-container").unbind("resize");

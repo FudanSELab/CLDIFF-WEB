@@ -36,15 +36,13 @@
 	<script src="https://d3js.org/d3-selection-multi.v1.js"></script>
 
 	<script>
-		$.getJSON("../getfilelist", function(filelist) {
+		$.getJSON("http://127.0.0.1:12009/cldiffweb/getlist", function(filelist) {
 			var biktest = filelist;
 			console.log(biktest);
 
 			var jsonlist = biktest; // = $getjson
 //			var jsonlist = ["graph11.json", "graph22.json"]
 			var dataIndex = jsonlist[0] // = $post file name[jsonlist[0]] from d3.json
-
-
 
 			var colors = d3.scaleOrdinal(d3.schemeCategory10);
 			var svg = d3.select("svg")
@@ -92,7 +90,7 @@
 					.force('collide', d3.forceCollide(230).strength(1.5).iterations(3))
 					.force("center", d3.forceCenter(900, 920));
 
-				$.post("../getjson", {
+				$.post("http://127.0.0.1:12009/cldiffweb/getjson", {
 					file_name: dataIndex
 				}, function(graph) {
 					console.log(graph)

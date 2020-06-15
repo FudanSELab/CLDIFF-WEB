@@ -1,0 +1,97 @@
+.g6-tooltip {
+	padding: 10px 6px;
+	color: #444;
+	background-color: rgba(255, 255, 255, 0.9);
+	border: 1px solid #e2e2e2;
+	border-radius: 4px;
+}
+
+
+.charttitle {
+	margin: auto;
+	text-align: center;
+	position: relative;
+	float: top;
+}
+
+#container{
+	height: 1000px;
+	overflow:scroll;
+	overflow-y:scroll;
+	border: 1px solid black;
+}
+
+
+#mountNode {
+	display: block;
+	border: 1px solid black;
+}
+
+.node-conatiner {
+	height: 180px;
+	width: 520px;
+	border: 1px solid #999;
+	border-radius: 6px;
+	overflow: hidden;
+	position: relative;
+}
+
+.bikesh_node {
+	width: 520px;
+	height: 150px;
+}
+
+.node-conatiner-move {
+
+	animation: mymove 5s infinite;
+	border-radius: 50%;
+}
+
+@keyframes mymove {
+	0% {
+		transform: rotateY(0deg);
+	}
+
+	100% {
+		transform: rotateY(360deg);
+	}
+}
+
+.node-conatiner .node-conatiner-title {
+	color: white;
+	line-height: 30px;
+	font-size: 20px;
+	text-align: center;
+	height: 30px;
+}
+
+.node-conatiner .node-conatiner-0 {
+	background: #228ACC;
+}
+
+.node-conatiner .node-conatiner- {
+	background: yellow;
+}
+
+.node-conatiner .node-conatiner-2 {
+	background: green;
+}
+
+.node-conatiner .node-conatiner-1 {
+	background: #FF0030;
+}
+
+.node-conatiner .node-conatiner-list {
+	background: white;
+	/*			padding-left: 10px;*/
+	height: 40px;
+	line-height: 40px;
+}
+
+.node-conatiner .node-delete {
+	position: absolute;
+	top: 4px;
+	right: 4px;
+	z-index: 10;
+	/* 使得该元素z层级大于最上层canvas */
+}

@@ -7,7 +7,7 @@ public class API {
      * deploy_type = online
      * repo_source = online
      */
-    public static final String ONLINE_SERVER_REMOTE = "http://10.176.34.86:8081";
+    public static final String ONLINE_SERVER_REMOTE = "http://10.176.34.83:8081";
     // aliyun
 //    public static final String ONLINE_SERVER_REMOTE = "http://106.14.239.166:8081";
     /**
@@ -25,7 +25,7 @@ public class API {
 
 
 //    public static final String DIFF_GRAPH_SERVER = "http://47.103.220.13:12009";
-    public static final String DIFF_GRAPH_SERVER = "http://10.141.221.85:12009";
+    public static final String DIFF_GRAPH_SERVER = "http://10.176.34.85:12009";
 
 
     static {

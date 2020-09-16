@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.net.ConnectException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -131,6 +132,9 @@ public class HttpClient {
             }
         } catch (MalformedURLException e) {
             e.printStackTrace();
+        } catch (ConnectException e){
+//            e.printStackTrace();
+            result = "Connection refused - Check your ip address";
         } catch (IOException e) {
             e.printStackTrace();
         } finally {

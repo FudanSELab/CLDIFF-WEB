@@ -30,6 +30,7 @@ public class BCMetaServlet extends HttpServlet {
         String result="ERROR";
         if(params.size()!=0) {
             try {
+                System.out.println(API.FETCH_META);
                 result = HttpClient.doPostMap(API.FETCH_META,params);
             } catch (Exception e) {
                 e.printStackTrace();

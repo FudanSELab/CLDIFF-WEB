@@ -8,9 +8,9 @@ var Util = G6.Util;
 //
 const plugin = new G6.Plugins['layout.dagre']({
     align: 'DL',
-    rankdir: 'LR',
-    nodesep: 50,
-    ranksep: 150,
+     rankdir: 'LR',
+     nodesep: 50,
+     ranksep: 150,
 });
 const minimap = new G6.Plugins['tool.minimap']({});
 
@@ -19,23 +19,27 @@ G6.registerNode('customNode', {
     cssSize: true, // 不使用内部 size 作为节点尺寸
     getHtml: function(cfg) {
         const model = cfg.model;
-        const node_container = Util.createDOM('<div class="node-conatiner"></div>');
+        const node_container = Util.createDOM('<div class="node-conatiner "></div>');
         const title = Util.createDOM(`<div class="node-conatiner-title node-conatiner-${model.group}">${model.desc}</div>`);
         node_container.appendChild(title);
+       // node_container.appendChild(Util.createDOM(`<div >lllll</div>`))
         require(['vs/editor/editor.main'], function() {
             // const node_container = document.getElementById('container');
             var item_id = model.id;
             var item_code = model.code;
             const item_dom = Util.createDOM(`<div class="bikesh_node" id="node_` + item_id + `"></div>`);
             node_container.appendChild(item_dom);
-            var editor = monaco.editor.create(item_dom, {
+            monaco.editor.create(item_dom, {
                 value: item_code,
                 language: 'java',
             });
+
         });
+       // node_container.appendChild(Util.createDOM(`<div >dasdasd</div>`))
         return node_container;
 
-    }
+    },
+    //type: 'rect',
 }, 'html');
 //
 //
@@ -45,9 +49,10 @@ const height = document.getElementById('container').scrollHeight || 1500;
 const graph = new G6.Net({
     id: 'container',
     grid: null,
-    width: width, // 画布宽
-    height: height, // 画布高
+    //width: width, // 画布宽
+    height: window.innerHeight, // 画布高
     plugins: [plugin],
+    fitView:'tc',
     //	 mode: 'analysis',
 
 });
@@ -58,6 +63,24 @@ const graphContainer = graph.get('graphContainer'); //获取图表内部容器
 graph.on('contextmenu', ev => { // 鼠标右键点击事件
     console.log("type:", ev.itemType);
     console.log(ev);
+});
+
+graph.on('click',evt =>{
+    console.log(evt.item._attrs.id);
+    graph.refresh();
+
+    // require.config({ paths: { 'vs': '../node_modules/monaco-editor/dev/vs' }});
+    //
+    // require(['vs/editor/editor.main'], function() {
+    //     var editor = monaco.editor.create(document.getElementById('rightEditor'), {
+    //         value: [
+    //            evt.item._attrs.model.code
+    //         ].join('\n'),
+    //         language: 'javascript',
+    //     });
+    // });
+
+
 });
 // graph.on('node:mousedown', ev => { //单击显示
 

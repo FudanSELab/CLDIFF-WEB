@@ -29,7 +29,13 @@ function calljsplumb() {
                 }
             }]
         ],
-        Container: "canvas"
+        Container: "canvas",
+        layout:{
+            type:"Hierarchical",
+            parameters:{
+                padding:[ 50, 50 ]
+            }
+        }
     });
 
     var basicType = {
@@ -64,6 +70,7 @@ function calljsplumb() {
         // the definition of source endpoints (the small blue ones)
         sourceEndpoint = {
             endpoint: "Blank",
+            maxConnections: -1,
             paintStyle: {
                 stroke: "#7AB02C",
                 fill: "transparent",
@@ -114,6 +121,15 @@ function calljsplumb() {
         }
     };
 
+    var _addEndpoints2 = function (toId) {
+            instance.addEndpoint("flowchart" + toId, sourceEndpoint, {
+                anchor: "Continuous", uuid: toId
+            });
+
+
+    };
+
+
     // suspend drawing and initialise.
     instance.batch(function () {
 
@@ -121,6 +137,12 @@ function calljsplumb() {
         _addEndpoints("Window2", ["LeftMiddle", "BottomCenter"], ["TopCenter", "RightMiddle"]);
         _addEndpoints("Window3", ["RightMiddle", "BottomCenter"], ["LeftMiddle", "TopCenter"]);
         _addEndpoints("Window1", ["LeftMiddle", "RightMiddle"], ["TopCenter", "BottomCenter"]);
+        var win4 =_addEndpoints2("Window4");
+        var win3=_addEndpoints2("Window3");
+        var win2 =_addEndpoints2("Window2");
+        var win1 = _addEndpoints2("Window1");
+        //
+
 
         // listen for new connections; initialise them the same way we initialise the connections at startup.
         instance.bind("connection", function (connInfo, originalEvent) {
@@ -134,7 +156,7 @@ function calljsplumb() {
         //jsPlumb.draggable(document.querySelectorAll(".window"), { grid: [20, 20] });
 
         // connect a few up
-        instance.connect({uuids: ["Window2BottomCenter", "Window3TopCenter"]});
+        instance.connect({uuids: ["Window2LeftMiddle", "Window3LeftMiddle"]});
         instance.connect({uuids: ["Window2BottomCenter", "Window3TopCenter"]});
         instance.connect({uuids: ["Window2BottomCenter", "Window3TopCenter"]});
         instance.connect({uuids: ["Window2BottomCenter", "Window3TopCenter"]});
@@ -143,17 +165,30 @@ function calljsplumb() {
         instance.connect({uuids: ["Window4TopCenter", "Window4RightMiddle"]});
         instance.connect({uuids: ["Window3RightMiddle", "Window2RightMiddle"]});
         instance.connect({uuids: ["Window4BottomCenter", "Window1TopCenter"]});
-        instance.connect({uuids: ["Window3BottomCenter", "Window1BottomCenter"]});
-        //
+        instance.connect({uuids: ["Window3BottomCenter", "Window1BottomCenter"]})
 
-        //
+        //instance.connect({uuids:["Window1","Window2"]});
+        // instance.connect({uuids:["Window2","Window1"]})
+
+
         // listen for clicks on connections, and offer to delete connections on click.
         //
         instance.bind("click", function (conn, originalEvent) {
-            // if (confirm("Delete connection from " + conn.sourceId + " to " + conn.targetId + "?"))
-            //   instance.detach(conn);
+            if (confirm("Delete connection from " + conn.sourceId + " to " + conn.targetId + "?"))
+              instance.detach(conn);
             conn.toggleType("basic");
         });
+
+
+        $(".jtk-node").on("click",function (ev) {
+            // console.log($(this).context.innerText)
+            // console.log("aaaaa")
+            //$("#flowchartWindow2").html("")
+            console.log($(this).context.innerText)
+            $("#rightEditor").html($(this).html())
+        })
+
+
 
         instance.bind("connectionDrag", function (connection) {
             console.log("connection " + connection.id + " is being dragged. suspendedElement is ", connection.suspendedElement, " of type ", connection.suspendedElementType);
@@ -172,3 +207,41 @@ function calljsplumb() {
 
 // });
 };
+
+function createNodes(rootData, rootPosition) {
+
+    if (rootData == null) {
+        return ;
+    }
+
+    var can = $('#canvas');
+    var relData = rootData.rel;
+    var i=0, relLen = relLength(relData);;
+    var rootTop = rootPosition[0];
+    var rootLeft = rootPosition[1];
+
+    var nextRootData = {};
+    var nextRootPosition = [];
+    var divStr = createDiv(rootData);
+    //var nodeDivId = getNodeDivId(rootData);
+    can.append(divStr);
+
+
+
+    for (i=0; i < relLen; i++) {
+        nextRootData = relData[i];
+        nextRootPosition = getNextRoot(rootData, nextRootData, rootPosition);
+        createNodes(nextRootData, nextRootPosition);
+    }
+
+    function relLength(relData) {
+        if (isArray(relData)) {
+            return relData.length;
+        }
+        return 0;
+    }
+    function createDiv(){};
+
+    function getNextRoot(){};
+
+}

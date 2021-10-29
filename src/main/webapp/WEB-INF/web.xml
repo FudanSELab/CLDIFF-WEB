@@ -5,6 +5,36 @@
          id="WebApp_ID" version="3.0">
     <display-name>Archetype Created Web Application</display-name>
 
+    <!--<servlet>-->
+        <!--<servlet-name>BCMetaServlet</servlet-name>-->
+        <!--<servlet-class>edu.fdu.se.web.astdiff.BCMetaServlet</servlet-class>-->
+    <!--</servlet>-->
+
+    <!--<servlet-mapping>-->
+        <!--<servlet-name>BCMetaServlet</servlet-name>-->
+        <!--<url-pattern>/BCMetaServlet</url-pattern>-->
+    <!--</servlet-mapping>-->
+
+    <!--<servlet>-->
+        <!--<servlet-name>Chapter1 Servlet</servlet-name>-->
+        <!--<servlet-class>Ch1Servlet</servlet-class>-->
+    <!--</servlet>-->
+    <!--<servlet-mapping>-->
+        <!--<servlet-name>Chapter1 Servlet</servlet-name>-->
+        <!--<url-pattern>/Serv1</url-pattern>-->
+    <!--</servlet-mapping>-->
+
+    <servlet>
+        <servlet-name>TestServlet</servlet-name>
+        <servlet-class>edu.fdu.se.web.astdiff.TestServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TestServlet</servlet-name>
+        <url-pattern>/TestServlet</url-pattern>
+    </servlet-mapping>
+
+
+
 </web-app>
 
 

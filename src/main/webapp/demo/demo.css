@@ -1,24 +1,56 @@
+.node {
+    width: 420px;
+    height: 150px;
+    /*//90 vh ,45vw*/
+}
+
+
+.title{
+    width: 420px;
+    height: 30px;
+    text-align: center;
+    margin-bottom: unset;
+
+}
 .demo {
     /* for IE10+ touch devices */
     touch-action:none;
 }
-.flowchart-demo{
-    height: 1000px;
+#canvas{
+    position: relative;
+    width: 1000vw;
+    height:1000vh;
+    /*float: left;*/
+
+}
+
+#rightEditor {
+    border: 1px solid gray;
+}
+
+#rightEditor:hover {
+
+    box-shadow: 0 0 0 3px tomato;
+}
+
+
+.jtk-node{
+    position: absolute;
 }
 .flowchart-demo .window {
     border: 1px solid #346789;
-    box-shadow: 2px 2px 19px #aaa;
+    box-shadow: 2px 2px 19px ;
     -o-box-shadow: 2px 2px 19px #aaa;
     -webkit-box-shadow: 2px 2px 19px #aaa;
     -moz-box-shadow: 2px 2px 19px #aaa;
     -moz-border-radius: 0.5em;
     border-radius: 0.5em;
     opacity: 0.8;
-    width: 400px;
-    height:120px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    width: 425px;
+    height:185px;
+    /*display: flex;*/
+    /*justify-content: center;*/
+    /*align-items: center;*/
     cursor: pointer;
     /*text-align: center;*/
     z-index: 20;
@@ -26,7 +58,7 @@
     background-color: #eeeeef;
     color: black;
     font-family: helvetica, sans-serif;
-    padding: 0.5em;
+    /*padding: 0.5em;*/
     font-size: 0.9em;
     -webkit-transition: -webkit-box-shadow 0.15s ease-in;
     -moz-transition: -moz-box-shadow 0.15s ease-in;

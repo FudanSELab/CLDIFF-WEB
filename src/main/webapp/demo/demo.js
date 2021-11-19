@@ -1,6 +1,14 @@
-// jsPlumb.ready(function () {
+var links=[];
+var instance;
+
 function calljsplumb() {
-    var instance = window.jsp = jsPlumb.getInstance({
+    for(let edge of data.edges){
+    links.push({
+        from: edge.source.toString(),
+        to: edge.target.toString(),
+    })
+}
+    instance = window.jsp = jsPlumb.getInstance({
         // default drag options
         DragOptions: {cursor: 'pointer', zIndex: 2000},
         // the overlays to decorate each connection with.  note that the label overlay uses a function to generate the label text; in this
@@ -9,44 +17,69 @@ function calljsplumb() {
             ["Arrow", {
                 location: 1,
                 visible: true,
-                width: 11,
-                length: 11,
+                width: 5,
+                length: 5,
                 id: "ARROW",
-                events: {
-                    click: function () {
-                        alert("you clicked on the arrow overlay")
-                    }
-                }
             }],
             ["Label", {
                 location: 0.1,
                 id: "label",
                 cssClass: "aLabel",
-                events: {
-                    tap: function () {
-                        alert("hey");
-                    }
-                }
             }]
         ],
         Container: "canvas",
-        layout:{
-            type:"Hierarchical",
-            parameters:{
-                padding:[ 50, 50 ]
-            }
-        }
+        Anchors: [["Left","Right","Bottom","Top"], ["Top","Bottom","Left","Right"]],
+
     });
 
-    var basicType = {
-        connector: "StateMachine",
-        paintStyle: {stroke: "red", strokeWidth: 4},
-        hoverPaintStyle: {stroke: "blue"},
-        overlays: [
-            "Arrow"
-        ]
-    };
-    instance.registerConnectionType("basic", basicType);
+
+    _.each(links,function(link){
+        instance.connect({
+            source:link.from,
+            target:link.to,
+            connector: [ "Flowchart",
+                {
+                    cornerRadius: 3,
+                    stub:16
+                }
+            ],
+            //paintStyle: connectorPaintStyle,
+            endpoints:["Blank","Blank"],
+            //overlays:[["Arrow",{location:1,width:10, length:10}]],
+        });
+    });
+    var dg = new dagre.graphlib.Graph();
+    dg.setGraph({nodesep:200,ranksep:200,marginx:80,marginy:80});
+    dg.setDefaultEdgeLabel(function() { return {}; });
+    $("#canvas").find(".jtk-node").each(
+        function(idx, node) {
+            var $n = $(node);
+
+            var box = {
+                width  : Math.round($n.outerWidth()),
+                height : Math.round($n.outerHeight())
+            };
+            dg.setNode($n.attr('id'), box);
+
+        }
+    );
+    instance.getAllConnections()
+        .forEach(function(edge) {
+            dg.setEdge(edge.source.id,edge.target.id);});
+    dagre.layout(dg);
+    var graphInfo = dg.graph();
+
+    dg.nodes().forEach(
+        function(n) {
+            var node = dg.node(n);
+            // console.log(node)
+            var top = Math.round(node.y-node.height/2)+'px';
+            var left = Math.round(node.x-node.width/2)+'px';
+            $('#' + n).css({left:left,top:top});
+        });
+
+    instance.repaintEverything();
+
 
     // this is the paint style for the connecting lines..
     var connectorPaintStyle = {
@@ -106,6 +139,7 @@ function calljsplumb() {
         },
         init = function (connection) {
             connection.getOverlay("label").setLabel(connection.sourceId.substring(15) + "-" + connection.targetId.substring(15));
+            console.log(connection.sourceId)
         };
 
     var _addEndpoints = function (toId, sourceAnchors, targetAnchors) {
@@ -126,87 +160,46 @@ function calljsplumb() {
                 anchor: "Continuous", uuid: toId
             });
 
-
     };
 
+    $(".jtk-node").on("click",function (ev) {
+        // console.log($(this).context.innerText)
+        // console.log("aaaaa")
+        //$("#flowchartWindow2").html("")
+        let reg = /[0-9]+/g;
+        //console.log($(this).innerText.replace(reg,""));
+        console.log($(this).context.innerText.replace(reg,""));
+        console.log($(this).context.innerText.replace(/\r\n/g,""))
+        //console.log($(this).context.innerText)
+        $("#rightEditor").html($(this).html())
+    })
 
     // suspend drawing and initialise.
     instance.batch(function () {
 
-        _addEndpoints("Window4", ["TopCenter", "BottomCenter"], ["LeftMiddle", "RightMiddle"]);
-        _addEndpoints("Window2", ["LeftMiddle", "BottomCenter"], ["TopCenter", "RightMiddle"]);
-        _addEndpoints("Window3", ["RightMiddle", "BottomCenter"], ["LeftMiddle", "TopCenter"]);
-        _addEndpoints("Window1", ["LeftMiddle", "RightMiddle"], ["TopCenter", "BottomCenter"]);
-        var win4 =_addEndpoints2("Window4");
-        var win3=_addEndpoints2("Window3");
-        var win2 =_addEndpoints2("Window2");
-        var win1 = _addEndpoints2("Window1");
-        //
 
-
-        // listen for new connections; initialise them the same way we initialise the connections at startup.
-        instance.bind("connection", function (connInfo, originalEvent) {
+        console.log("hh")
+        instance.bind("connection", function (connInfo) {
+            console.log("dsdaaaa")
             init(connInfo.connection);
         });
 
         // make all the window divs draggable
-        instance.draggable(jsPlumb.getSelector(".flowchart-demo .window"), {grid: [20, 20]});
-        // THIS DEMO ONLY USES getSelector FOR CONVENIENCE. Use your library's appropriate selector
-        // method, or document.querySelectorAll:
-        //jsPlumb.draggable(document.querySelectorAll(".window"), { grid: [20, 20] });
+        instance.draggable(jsPlumb.getSelector(".flowchart-demo .window"), {
 
-        // connect a few up
-        instance.connect({uuids: ["Window2LeftMiddle", "Window3LeftMiddle"]});
-        instance.connect({uuids: ["Window2BottomCenter", "Window3TopCenter"]});
-        instance.connect({uuids: ["Window2BottomCenter", "Window3TopCenter"]});
-        instance.connect({uuids: ["Window2BottomCenter", "Window3TopCenter"]});
-        instance.connect({uuids: ["Window2BottomCenter", "Window3TopCenter"]});
-        instance.connect({uuids: ["Window2LeftMiddle", "Window4LeftMiddle"]});
-        instance.connect({uuids: ["Window4TopCenter", "Window4RightMiddle"]});
-        instance.connect({uuids: ["Window3RightMiddle", "Window2RightMiddle"]});
-        instance.connect({uuids: ["Window4BottomCenter", "Window1TopCenter"]});
-        instance.connect({uuids: ["Window3BottomCenter", "Window1BottomCenter"]})
-
-        //instance.connect({uuids:["Window1","Window2"]});
-        // instance.connect({uuids:["Window2","Window1"]})
-
-
-        // listen for clicks on connections, and offer to delete connections on click.
-        //
-        instance.bind("click", function (conn, originalEvent) {
-            if (confirm("Delete connection from " + conn.sourceId + " to " + conn.targetId + "?"))
-              instance.detach(conn);
-            conn.toggleType("basic");
+            containment: 'parent'
         });
 
 
-        $(".jtk-node").on("click",function (ev) {
-            // console.log($(this).context.innerText)
-            // console.log("aaaaa")
-            //$("#flowchartWindow2").html("")
-            console.log($(this).context.innerText)
-            $("#rightEditor").html($(this).html())
-        })
-
-
-
-        instance.bind("connectionDrag", function (connection) {
-            console.log("connection " + connection.id + " is being dragged. suspendedElement is ", connection.suspendedElement, " of type ", connection.suspendedElementType);
-        });
-
-        instance.bind("connectionDragStop", function (connection) {
-            console.log("connection " + connection.id + " was dragged");
-        });
-
-        instance.bind("connectionMoved", function (params) {
-            console.log("connection " + params.connection.id + " was moved");
-        });
     });
 
     jsPlumb.fire("jsPlumbDemoLoaded", instance);
 
+
 // });
 };
+
+
 
 function createNodes(rootData, rootPosition) {
 
@@ -216,7 +209,7 @@ function createNodes(rootData, rootPosition) {
 
     var can = $('#canvas');
     var relData = rootData.rel;
-    var i=0, relLen = relLength(relData);;
+    var i=0, relLen = relLength(relData);
     var rootTop = rootPosition[0];
     var rootLeft = rootPosition[1];
 
@@ -240,8 +233,6 @@ function createNodes(rootData, rootPosition) {
         }
         return 0;
     }
-    function createDiv(){};
 
-    function getNextRoot(){};
 
 }

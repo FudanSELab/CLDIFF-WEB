@@ -18,7 +18,7 @@ public class DiffGGetGraphJson extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ProjectProperties.createInstance(this.getServletContext());
         System.out.println("post");
-        Map<String, String> params = new HashMap<String,String>();
+        Map<String, String> params = new HashMap<>();
         Enumeration ele =  request.getParameterNames();
         while(ele.hasMoreElements()){
             String key = (String)ele.nextElement();

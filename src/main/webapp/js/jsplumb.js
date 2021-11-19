@@ -15202,6 +15202,7 @@
             }
         },
         setPosition: function (el, p) {
+            console.log("AAA")
             el.style.left = p.left + "px";
             el.style.top = p.top + "px";
         },

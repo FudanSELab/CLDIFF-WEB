@@ -42,7 +42,7 @@ public class BCGetFileServlet extends HttpServlet {
 		 //author、commit_hash、parent_commit_hash、project_name、prev_file_path、curr_file_path
 		ProjectProperties.createInstance(this.getServletContext());
 		System.out.println("post");
-		Map<String, String> params = new HashMap<String,String>();
+		Map<String, String> params = new HashMap<>();
 		Enumeration ele =  request.getParameterNames();
 		while(ele.hasMoreElements()){
 			String key = (String)ele.nextElement();

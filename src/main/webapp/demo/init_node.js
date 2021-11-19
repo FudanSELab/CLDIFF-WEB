@@ -1,27 +1,26 @@
 
-
-function initNode(){
-
-    $("#canvas").append("<div class=\"window jtk-node\" id=\"flowchartWindow1\"><strong>1</strong><br/><br/></div>")
-    $("#canvas").append("<div class=\"window jtk-node\" id=\"flowchartWindow2\"><strong>2</strong><br/><br/></div>")
-    $("#canvas").append("<div class=\"window jtk-node\" id=\"flowchartWindow3\"><strong>3</strong><br/><br/></div>")
-    $("#canvas").append("<div class=\"window jtk-node\" id=\"flowchartWindow4\"></div>")
-
-    // $("#canvas").append("<div class='container' ></div>")
-    //
-    // $("#sd").css(
-    //     {
-    //         "color":"white",
-    //         "background-color":"#98bf21",
-    //         "font-family":"Arial",
-    //         "font-size":"20px",
-    //         "padding":"5px",
-    //         "text-align": "center",
-    // "height": "30px",
-    //         "justify-content": "center",
-    //  "align-items": "center",
-    //  "cursor": "pointer",
-    //     })
+function initNode(ele,data,i){
+    var colors = ["#F44336","#FFCDD2","#64B5F6","#66BB6A","#FFD54F","#B0BEC5","#0097A7","#757575"];
+    var c = document.createElement(`div`);
+    document.getElementById(ele.id).appendChild(c);
+    c.setAttribute("class","title")
+    c.innerText = data.file_name.substring(data.file_name.lastIndexOf("/")+1);
+    c.style.backgroundColor = colors[i%8];
+    require.config({ paths: { 'vs': '../node_modules/monaco-editor/dev/vs' }});
+    require(['vs/editor/editor.main'], function() {
+        var d=document.createElement(`div`);
+        d.setAttribute("class","node");
+        document.getElementById(ele.id).appendChild(d);
+        var editor = monaco.editor.create(d, {
+            value: [
+                data.code
+            ].join('\n'),
+            language: 'java',
+            autoIndent:true,
+            contentLeft:0,
+            automaticLayout:true,
+        });
+    });
 
 }
 
@@ -29,15 +28,18 @@ function initNode(){
 
 function initEdge(){
 
-
 }
 
 function initRightEditor(){
 
+
     require.config({ paths: { 'vs': '../node_modules/monaco-editor/dev/vs' }});
 
     require(['vs/editor/editor.main'], function() {
-        var editor = monaco.editor.create(document.getElementById( "flowchartWindow4"), {
+        var d=document.createElement(`div`);
+        d.setAttribute("class","node");
+        document.getElementById("rightEditor").appendChild(d);
+        var editor = monaco.editor.create(d, {
             value: [
                 'function x() {',
                 '\tconsole.log("Hello world!");',
@@ -52,8 +54,10 @@ function initRightEditor(){
 }
 
 window.onload=function(){
-    initNode();
-    initEdge();
     initRightEditor();
+    test();
     calljsplumb();
+    document.getElementById('canvas').style.transform = "scale(0.15)";
+    document.getElementById('canvas').style.transformOrigin = "" +0+ "px" + " " + "" + 0+ "px";
+
 }

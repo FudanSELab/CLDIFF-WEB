@@ -3,31 +3,58 @@
     height: 150px;
     /*//90 vh ,45vw*/
 }
+.test{
 
+    height: 60vh;
+}
+.h2,h2{
+    margin-top: -40px;
+}
+
+.blank{
+    position: absolute;
+    height: 0;
+    width: 0;
+    visibility: hidden;
+}
 
 .title{
-    width: 420px;
-    height: 30px;
+    /*width: 420px;*/
+    /*height: 30px;*/
     text-align: center;
     margin-bottom: unset;
 
 }
+
+/*#canvas{*/
+/*    backface-visibility: hidden;*/
+/*    -webkit-filter: blur(0);*/
+/*    filter: blur(.0px);*/
+/*    transform: translateZ(0);*/
+/*    -webkit-font-smoothing: subpixel-antialiased;*/
+/*}*/
 .demo {
     /* for IE10+ touch devices */
     touch-action:none;
 }
 #canvas{
     position: relative;
-    width: 1000vw;
-    height:1000vh;
+    width: 500vw;
+    height:400vh;
     /*float: left;*/
 
 }
 
 #rightEditor {
     border: 1px solid gray;
+   /*float: right;*/
+    z-index: 200;
 }
 
+#panic-button{
+    position: fixed;
+    top:200px;
+}
 #rightEditor:hover {
 
     box-shadow: 0 0 0 3px tomato;
@@ -38,7 +65,7 @@
     position: absolute;
 }
 .flowchart-demo .window {
-    border: 1px solid #346789;
+    border: 2px solid #346789;
     box-shadow: 2px 2px 19px ;
     -o-box-shadow: 2px 2px 19px #aaa;
     -webkit-box-shadow: 2px 2px 19px #aaa;
@@ -46,8 +73,8 @@
     -moz-border-radius: 0.5em;
     border-radius: 0.5em;
     opacity: 0.8;
-    width: 425px;
-    height:185px;
+    width: 426px;
+    height:186px;
     /*display: flex;*/
     /*justify-content: center;*/
     /*align-items: center;*/
@@ -64,14 +91,23 @@
     -moz-transition: -moz-box-shadow 0.15s ease-in;
     -o-transition: -o-box-shadow 0.15s ease-in;
     transition: box-shadow 0.15s ease-in;
+    backface-visibility: hidden;
+    /*-webkit-filter: blur(0);*/
+    /*filter: blur(.0px);*/
+    transform: translateZ(0);
+    -webkit-font-smoothing: subpixel-antialiased;
 }
-
+svg {
+    backface-visibility: hidden;
+    -webkit-transform: translateZ(0) ;
+    transform: translateZ(0);
+}
 .flowchart-demo .window:hover {
     box-shadow: 2px 2px 19px #444;
     -o-box-shadow: 2px 2px 19px #444;
     -webkit-box-shadow: 2px 2px 19px #444;
     -moz-box-shadow: 2px 2px 19px #444;
-    opacity: 0.6;
+    /*opacity: 0.6;*/
 }
 
 .flowchart-demo .active {

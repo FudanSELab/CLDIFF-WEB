@@ -197,12 +197,51 @@ function test1(){
     for(let i=0;i<res.length;i++){
         for (let resData of res[i].data) {
             var center = document.createElement("div");
-            center.setAttribute("class", "window jtk-node");
+            center.setAttribute("class", "zoomTarget window jtk-node ");
             center.setAttribute("id",resData.id);
+            center.setAttribute("path",resData.file_name);
+            // center.setAttribute("data-closeclick",true);
             document.getElementById("canvas" ).appendChild(center);
-            initNode(center,resData);
+            initNode(center,resData,i);
         }
     }
+
+}
+
+function test2(){
+    rankNodes();
+    for(let i=0;i<res.length;i++){
+        for (let resData of res[i].data) {
+            var center = document.createElement("div");
+            var blank = document.createElement("div");
+            center.setAttribute("class", "zoomTarget window jtk-node ");
+            center.setAttribute("id",resData.id);
+            center.setAttribute("path",resData.file_name);
+            blank.setAttribute("id",resData.id+"d");
+            blank.setAttribute("class","blank");
+            // center.setAttribute("data-closeclick",true);
+            document.getElementById("canvas" ).appendChild(center);
+            document.getElementById("canvas" ).appendChild(blank);
+            initNode(center,resData,i);
+        }
+    }
+
+}
+function reset(){
+    instance = null;
+    links.length=0;
+    res.length=0;
+    row=0,col=0,rem=0;
+    $("#canvas").empty();
+    test1();
+    calljsplumb();
+    document.getElementById('canvas').style.transform = "scale("+0.3+")";
+    document.getElementById('canvas').style.transformOrigin = "" +0+ "px" + " " + "" + 0+ "px";
+    addZoom();
+    var matrix = $(".container").find(".panzoom").panzoom("getMatrix");
+    matrix[4] = 0;
+    matrix[5] = 0;
+    $(".container").find(".panzoom").panzoom("setMatrix",matrix);
 
 }
 

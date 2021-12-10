@@ -3,12 +3,18 @@ var instance;
 
 function calljsplumb() {
     for(let edge of data.edges){
-        links.push({
-            from: edge.source.toString(),
-            to: edge.target.toString(),
-        })
+
+            links.push({
+                from: edge.source.toString(),
+                to: edge.target.toString(),
+            })
 
 }
+    console.log(links)
+    //if want to remove duplicate entry restrictly,use function below
+    //links = unique(links);
+    links = unique2(links);
+    console.log(links)
     instance = window.jsp = jsPlumb.getInstance({
         // default drag options
         DragOptions: {cursor: 'pointer', zIndex: 2000},
@@ -261,6 +267,19 @@ function calljsplumb() {
 // });
 };
 
+function unique(arr) {
+    return arr.filter(function(item, index, arr) {
+            return arr.findIndex(item1 =>(item1.from === item.from && item1.to === item.to)) === index
+        }
+    );
+}
+
+function unique2(arr){
+    return arr.filter(function(item, index, arr) {
+        return arr.findIndex(item1 =>((item1.from === item.from && item1.to === item.to)||(item1.from === item.to && item1.to === item.from))) === index
+        }
+    );
+}
 
 
 function createNodes(rootData, rootPosition) {

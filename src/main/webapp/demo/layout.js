@@ -235,13 +235,14 @@ function reset(){
     $("#canvas").empty();
     test1();
     calljsplumb();
-    document.getElementById('canvas').style.transform = "scale("+0.3+")";
+    document.getElementById('canvas').style.transform = "scale("+0.6+")";
     document.getElementById('canvas').style.transformOrigin = "" +0+ "px" + " " + "" + 0+ "px";
     addZoom();
     var matrix = $(".container").find(".panzoom").panzoom("getMatrix");
     matrix[4] = 0;
     matrix[5] = 0;
     $(".container").find(".panzoom").panzoom("setMatrix",matrix);
+    $("#leftPanel").attr("style", "overflow:scroll");
 
 }
 

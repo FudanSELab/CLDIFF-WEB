@@ -103,37 +103,43 @@ _.defer(function(){
         .on("panzoomend",function(e,pz){
             $panzoom.css("cursor","");
         });
-    $panzoom.parent()
-        .on("mousedown touchstart",function(ev){
-            var matrix = $container.find(".panzoom").panzoom("getMatrix");
-            var offsetX = matrix[4];
-            var offsetY = matrix[5];
-            var dragstart = {x:ev.pageX,y:ev.pageY,dx:offsetX,dy:offsetY};
-            $(ev.target).css("cursor","move");
-            $(this).data('dragstart', dragstart);
-            // $("html").removeClass("zoomTarget");
-            // $("html").removeClass("selectedZoomTarget");
-            // $("body").removeClass("zoomTarget");
-            // $("body").removeClass("selectedZoomTarget");
-            // $("#plug").remove();
-            // console.log($("#plug"))
-        })
-        .on("mousemove touchmove", function(ev){
-            var dragstart = $(this).data('dragstart');
-            if(dragstart)
-            {
-                var deltaX = dragstart.x-ev.pageX;
-                var deltaY = dragstart.y-ev.pageY;
-                var matrix = $container.find(".panzoom").panzoom("getMatrix");
-                matrix[4] = parseInt(dragstart.dx)-deltaX;
-                matrix[5] = parseInt(dragstart.dy)-deltaY;
-                $container.find(".panzoom").panzoom("setMatrix",matrix);
+    // $panzoom.parent()
+    //     .on("onscroll",function (ev){
+    //         console.log(ev);
+    //         console.log("ASD");
+    //     });
+        // .on("mousedown touchstart",function(ev){
+        //     var matrix = $container.find(".panzoom").panzoom("getMatrix");
+        //     var offsetX = matrix[4];
+        //     var offsetY = matrix[5];
+        //     var dragstart = {x:ev.pageX,y:ev.pageY,dx:offsetX,dy:offsetY};
+        //     $(ev.target).css("cursor","move");
+        //     $(this).data('dragstart', dragstart);
+        //     // $("html").removeClass("zoomTarget");
+        //     // $("html").removeClass("selectedZoomTarget");
+        //     // $("body").removeClass("zoomTarget");
+        //     // $("body").removeClass("selectedZoomTarget");
+        //     // $("#plug").remove();
+        //     // console.log($("#plug"))
+        // })
+        // .on("mousemove touchmove", function(ev){
+        //     var dragstart = $(this).data('dragstart');
+        //     if(dragstart)
+        //     {
+        //         var deltaX = dragstart.x-ev.pageX;
+        //         var deltaY = dragstart.y-ev.pageY;
+        //         var matrix = $container.find(".panzoom").panzoom("getMatrix");
+        //         matrix[4] = parseInt(dragstart.dx)-deltaX;
+        //         matrix[5] = parseInt(dragstart.dy)-deltaY;
+        //         $container.find(".panzoom").panzoom("setMatrix",matrix);
+        //
+        //     }
+        // })
+        // .on("mouseup touchend touchcancel", function(ev){
+        //     $(this).data('dragstart',null);
+        //     $(ev.target).css("cursor","");
+        // })
 
-            }
-        })
-        .on("mouseup touchend touchcancel", function(ev){
-            $(this).data('dragstart',null);
-            $(ev.target).css("cursor","");
-        });
 });
+//
 

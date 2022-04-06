@@ -39,8 +39,8 @@
 }
 #canvas{
     position: relative;
-    width: 500vw;
-    height:400vh;
+    width: 400vw;
+    height:500vh;
     /*float: left;*/
 
 }
@@ -202,6 +202,7 @@ body{
     -webkit-box-shadow: 0 1px 4px rgb(0 0 0 / 30%), 0 0 5px rgb(0 0 0 / 10%) inset;
     box-shadow: 0 1px 4px rgb(0 0 0 / 30%), 0 0 5px rgb(0 0 0 / 10%) inset;
     margin-top:20px;
+    height:1000px;
 }
 
 #rightPanel{
@@ -216,6 +217,7 @@ body{
     box-shadow: 0 1px 4px rgb(0 0 0 / 30%), 0 0 5px rgb(0 0 0 / 10%) inset;
     margin-top:20px;
     margin-left:20px;
+    height:1000px;
 }
 
 #selectionHeader{
@@ -259,7 +261,13 @@ h2{
 
 h4{
     padding-left:15px;
+    color:#5e6e82;
 }
+#span{
+    padding-left:15px;
+    color:#5e6e82;
+}
+
 #muButton{
     color:#2c7be5;
     margin-top:15px;

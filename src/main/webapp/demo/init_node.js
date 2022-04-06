@@ -59,18 +59,27 @@ function initRightEditor(){
     });
 }
 var  clickTimeId;
-
+var isZoom = false;
 function addZoom(){
     $(".jtk-node").dblclick(function(evt) {
-        if (window.getComputedStyle(document.body).transform.charAt(7) === "1" || ((window.getComputedStyle(document.body).transformOrigin =="0px 0px"))) {
-            $(this).zoomTo({targetsize:0.2, duration:600,});
-
+        if(isZoom){
+            isZoom = false;
+            document.getElementById('canvas').style.transform = "scale("+0.6+")";
+            document.getElementById('canvas').style.transformOrigin = "" +0+ "px" + " " + "" + 0+ "px";
+        }else{
+            isZoom = true;
+            document.getElementById('canvas').style.transform = "scale("+0.8+")";
+            document.getElementById('canvas').style.transformOrigin = "" +0+ "px" + " " + "" + 0+ "px";
         }
-        else{
-            $("body").zoomTo({targetsize: 0.2, duration: 600});
-        }
-        clearTimeout(clickTimeId);
-        evt.stopPropagation();
+        // if (window.getComputedStyle(document.body).transform.charAt(7) === "1" || ((window.getComputedStyle(document.body).transformOrigin =="0px 0px"))) {
+        //     $(this).zoomTo({targetsize:0.2, duration:600});
+        //
+        // }
+        // else{
+        //     $("body").zoomTo({targetsize: 0.2, duration: 600});
+        // }
+        // clearTimeout(clickTimeId);
+        // evt.stopPropagation();
     });
 
     document.onkeydown = function(event) {        //在全局中绑定按下事件
@@ -83,9 +92,11 @@ function addZoom(){
 
             case 27:
 
-                if (window.getComputedStyle(document.body).transform.charAt(7) != "1")
-                    $("body").zoomTo({targetsize: 0.2, duration: 600})
-
+                // if (window.getComputedStyle(document.body).transform.charAt(7) != "1")
+                //     $("body").zoomTo({targetsize: 0.2, duration: 600})
+                document.getElementById('canvas').style.transform = "scale("+0.6+")";
+                document.getElementById('canvas').style.transformOrigin = "" +0+ "px" + " " + "" + 0+ "px";
+                isZoom = false;
                 break;
 
         }
@@ -98,8 +109,9 @@ window.onload=function(){
     test1();
     calljsplumb();
 
-    document.getElementById('canvas').style.transform = "scale("+0.3+")";
+    document.getElementById('canvas').style.transform = "scale("+0.6+")";
     document.getElementById('canvas').style.transformOrigin = "" +0+ "px" + " " + "" + 0+ "px";
+
     // $(".window").draggable({
     //     start: function(e){
     //         var pz = $container.find(".panzoom");
@@ -129,6 +141,6 @@ window.onload=function(){
 
       addZoom();
 
-
+      $("#leftPanel").attr("style", "overflow:scroll");
 
 }

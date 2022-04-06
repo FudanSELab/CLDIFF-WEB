@@ -45,11 +45,11 @@ function initRightEditor(){
         document.getElementById("rightEditor").appendChild(d);
         var editor = monaco.editor.create(d, {
             value: [
-                'function x() {',
-                '\tconsole.log("Hello world!");',
+                'public void method(){',
+                '\tSystem.out.println(\"demo\");',
                 '}'
             ].join('\n'),
-            language: 'javascript',
+            language: 'java',
             autoIndent:true,
             contentLeft:0,
             automaticLayout:true,

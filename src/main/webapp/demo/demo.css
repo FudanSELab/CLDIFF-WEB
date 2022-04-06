@@ -289,3 +289,24 @@ h4{
 .row{
     margin-left:120px;
 }
+
+.alert{
+    margin-bottom:2px;
+    margin-left:15px;
+    margin-right:15px;
+    padding:5px;
+}
+
+#leftPanel > span.glyphicon.glyphicon-minus {
+    margin-top: 25px;
+    float: right;
+    margin-right: 75px;
+    font-size: 24px;
+}
+
+#leftPanel > span.glyphicon.glyphicon-plus {
+    margin-top: 25px;
+    float: right;
+    margin-right: 20px;
+    font-size: 24px;
+}

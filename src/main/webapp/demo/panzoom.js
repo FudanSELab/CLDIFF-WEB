@@ -5,8 +5,6 @@ var offsetX = document.getElementById("canvas").offsetWidth;
 var offsetY = document.getElementById("canvas").offsetHeight;
 var win = document.getElementsByClassName("jtk-node");
 
-
-
 function onMouseWheel(ev) {/*当鼠标滚轮事件发生时，执行一些操作*/
     var ev = ev || window.event;
     var down = true; // 定义一个标志，当滚轮向下滚时，执行一些操作
@@ -54,12 +52,8 @@ function onMouseWheel(ev) {/*当鼠标滚轮事件发生时，执行一些操作
     const preScale = scal;
     if (down) {
         scal = (parseFloat(scal) + 0.05).toFixed(2)<maxScale?(parseFloat(scal) + 0.05).toFixed(2):maxScale;
-
     } else {
-
-            scal = (parseFloat(scal) - 0.05).toFixed(2)>minScale?(parseFloat(scal) - 0.05).toFixed(2):minScale;
-
-
+        scal = (parseFloat(scal) - 0.05).toFixed(2)>minScale?(parseFloat(scal) - 0.05).toFixed(2):minScale;
     }
     oDiv.style.transform = "scale(" + scal + ")";
     // const disx = (offsetX - ev.clientX) * (scal / preScale - 1);
@@ -70,7 +64,6 @@ function onMouseWheel(ev) {/*当鼠标滚轮事件发生时，执行一些操作
     // if (ev.preventDefault) {/*FF 和 Chrome*/
     //     ev.preventDefault();// 阻止默认事件
     // }
-
 
 }
 

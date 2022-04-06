@@ -1,15 +1,13 @@
-var links=[];
+var links = [];
 var instance;
 
 function calljsplumb() {
-    for(let edge of data.edges){
-
-            links.push({
-                from: edge.source.toString(),
-                to: edge.target.toString(),
-            })
-
-}
+    for (let edge of data.edges) {
+        links.push({
+            from: edge.source.toString(),
+            to: edge.target.toString(),
+        })
+    }
     console.log(links)
     //if want to remove duplicate entry restrictly,use function below
     //links = unique(links);
@@ -36,26 +34,26 @@ function calljsplumb() {
             }]
         ],
         Container: "canvas",
-        Anchors: [ "Continuous", "Continuous"],
+        Anchors: ["Continuous", "Continuous"],
         // ["Top", "Right", "Bottom", "Left", [0.25, 0, 0, -1], [0.75, 0, 0, -1], [0.25, 1, 0, 1], [0.75, 1, 0, 1]
         // , [0, 0.25, 0, -1], [0, 0.75, 0, -1], [1, 0.25, 0, 1], [1, 0.75, 0, 1]]
 
     });
 
-    var incre =5;
+    var incre = 5;
     var start = 10;
-    _.each(links,function(link){
+    _.each(links, function (link) {
         instance.connect({
-            source:link.from,
-            target:link.to,
-            connector: [ "Flowchart",
+            source: link.from,
+            target: link.to,
+            connector: ["Flowchart",
                 // {
                 //     cornerRadius: 3,
                 //     stub:160
                 // }
                 {
                     cornerRadius: 10,
-                    midpoint:start/100
+                    midpoint: start / 100
                 }
             ],
 
@@ -64,23 +62,33 @@ function calljsplumb() {
             // hoverPaintStyle:connectorHoverStyle,
             // paintStyle:connectorPaintStyle,
             //paintStyle: connectorPaintStyle,
-            endpoints:["Blank","Blank"],
-            overlays:[["Arrow",{location:1,width:20, length:20}]],
+            endpoints: ["Blank", "Blank"],
+            overlays: [["Arrow", {location: 1, width: 20, length: 20}]],
         });
-        start +=incre;
+        start += incre;
         start %= 100;
 
     });
     var dg = new dagre.graphlib.Graph();
-    dg.setGraph({nodesep:200,ranksep:200,marginx:80,marginy:80,align:"UL",edgesep:100,ranker:"longest-path"});
-    dg.setDefaultEdgeLabel(function() { return {}; });
+    dg.setGraph({
+        nodesep: 200,
+        ranksep: 200,
+        marginx: 80,
+        marginy: 80,
+        align: "UL",
+        edgesep: 100,
+        ranker: "longest-path"
+    });
+    dg.setDefaultEdgeLabel(function () {
+        return {};
+    });
     $("#canvas").find(".jtk-node").each(
-        function(idx, node) {
+        function (idx, node) {
             var $n = $(node);
 
             var box = {
-                width  : Math.round($n.outerWidth()),
-                height : Math.round($n.outerHeight())
+                width: Math.round($n.outerWidth()),
+                height: Math.round($n.outerHeight())
             };
             dg.setNode($n.attr('id'), box);
 
@@ -88,18 +96,19 @@ function calljsplumb() {
         }
     );
     instance.getAllConnections()
-        .forEach(function(edge) {
-            dg.setEdge(edge.source.id,edge.target.id);});
+        .forEach(function (edge) {
+            dg.setEdge(edge.source.id, edge.target.id);
+        });
     dagre.layout(dg);
     var graphInfo = dg.graph();
 
     dg.nodes().forEach(
-        function(n) {
+        function (n) {
             var node = dg.node(n);
             // console.log(node)
-            var top = Math.round(node.y-node.height/2)+'px';
-            var left = Math.round(node.x-node.width/2)+'px';
-            $('#' + n).css({left:left,top:top});
+            var top = Math.round(node.y - node.height / 2) + 'px';
+            var left = Math.round(node.x - node.width / 2) + 'px';
+            $('#' + n).css({left: left, top: top});
         });
 
     instance.repaintEverything();
@@ -179,43 +188,43 @@ function calljsplumb() {
     };
 
     var _addEndpoints2 = function (toId) {
-            instance.addEndpoint("flowchart" + toId, sourceEndpoint, {
-                anchor: "Continuous", uuid: toId
-            });
+        instance.addEndpoint("flowchart" + toId, sourceEndpoint, {
+            anchor: "Continuous", uuid: toId
+        });
 
     };
 
-    $(".jtk-node").on("click",function (ev) {
+    $(".jtk-node").on("click", function (ev) {
         let reg = /\d\n+/g;
-        var data = $(this).context.innerText.replace(reg,"");
-        var color =(getComputedStyle(this.firstElementChild,false)["background-color"])
+        var data = $(this).context.innerText.replace(reg, "");
+        var color = (getComputedStyle(this.firstElementChild, false)["background-color"])
         clearTimeout(clickTimeId);
-        var path =  $(this).attr("path").substring($(this).attr("path").indexOf("/src"));
+        var path = $(this).attr("path").substring($(this).attr("path").indexOf("/src"));
         // var path =  $(this).attr("path")
         console.log(path)
         //执行延时
-        clickTimeId = setTimeout( function () {
+        clickTimeId = setTimeout(function () {
             //此处为单击事件要执行的代码
-           $("#rightEditor").html("");
+            $("#rightEditor").html("");
             var c = document.createElement(`div`);
             document.getElementById("rightEditor").appendChild(c);
-            c.setAttribute("class","title")
-            c.innerText = data.substring(0,data.indexOf("\n"));
+            c.setAttribute("class", "title")
+            c.innerText = data.substring(0, data.indexOf("\n"));
             c.style.backgroundColor = color;
             console.log(data)
-            require(['vs/editor/editor.main'], function() {
-                var d=document.createElement(`div`);
-                d.setAttribute("class","test");
+            require(['vs/editor/editor.main'], function () {
+                var d = document.createElement(`div`);
+                d.setAttribute("class", "test");
                 document.getElementById("rightEditor").appendChild(d);
                 var editor = monaco.editor.create(d, {
                     value: [
-                        data.substring(data.indexOf("\n")+1)
+                        data.substring(data.indexOf("\n") + 1)
                     ].join('\n'),
                     language: 'java',
-                    autoIndent:true,
-                    contentLeft:0,
-                    automaticLayout:true,
-                    minimap:{enabled: false},
+                    autoIndent: true,
+                    contentLeft: 0,
+                    automaticLayout: true,
+                    minimap: {enabled: false},
                     overviewRulerBorder: false,
 
                     // wordWrap: "wordWrapColumn",
@@ -226,8 +235,8 @@ function calljsplumb() {
                     // scrollBeyondLastLine: false,
 
                     wordWrap: "on",
-                    wrappingIndent:"indent",
-                    wrappingStrategy:"advanced"
+                    wrappingIndent: "indent",
+                    wrappingStrategy: "advanced"
                     ,
                 });
             });
@@ -236,12 +245,10 @@ function calljsplumb() {
         }, 250);
 
 
-
     })
 
     // suspend drawing and initialise.
     instance.batch(function () {
-
 
 
         instance.bind("click", function (connInfo) {
@@ -254,7 +261,7 @@ function calljsplumb() {
         // make all the window divs draggable
         instance.draggable(jsPlumb.getSelector(".flowchart-demo .window"), {
 
-             containment: 'parent',
+            containment: 'parent',
 
         });
 
@@ -268,15 +275,15 @@ function calljsplumb() {
 };
 
 function unique(arr) {
-    return arr.filter(function(item, index, arr) {
-            return arr.findIndex(item1 =>(item1.from === item.from && item1.to === item.to)) === index
+    return arr.filter(function (item, index, arr) {
+            return arr.findIndex(item1 => (item1.from === item.from && item1.to === item.to)) === index
         }
     );
 }
 
-function unique2(arr){
-    return arr.filter(function(item, index, arr) {
-        return arr.findIndex(item1 =>((item1.from === item.from && item1.to === item.to)||(item1.from === item.to && item1.to === item.from))) === index
+function unique2(arr) {
+    return arr.filter(function (item, index, arr) {
+            return arr.findIndex(item1 => ((item1.from === item.from && item1.to === item.to) || (item1.from === item.to && item1.to === item.from))) === index
         }
     );
 }
@@ -285,12 +292,12 @@ function unique2(arr){
 function createNodes(rootData, rootPosition) {
 
     if (rootData == null) {
-        return ;
+        return;
     }
 
     var can = $('#canvas');
     var relData = rootData.rel;
-    var i=0, relLen = relLength(relData);
+    var i = 0, relLen = relLength(relData);
     var rootTop = rootPosition[0];
     var rootLeft = rootPosition[1];
 
@@ -301,8 +308,7 @@ function createNodes(rootData, rootPosition) {
     can.append(divStr);
 
 
-
-    for (i=0; i < relLen; i++) {
+    for (i = 0; i < relLen; i++) {
         nextRootData = relData[i];
         nextRootPosition = getNextRoot(rootData, nextRootData, rootPosition);
         createNodes(nextRootData, nextRootPosition);

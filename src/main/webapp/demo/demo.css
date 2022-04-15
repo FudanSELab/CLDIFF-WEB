@@ -221,7 +221,7 @@ body{
 }
 
 #selectionHeader{
-    border-width: 1px;
+    border-width: 1px;z
     /*border: solid #e1e1e8;*/
     background-color: #ffffff;
     border-bottom-right-radius: 8px;
@@ -296,17 +296,28 @@ h4{
     margin-right:15px;
     padding:5px;
 }
+#leftPanel{
+    transform: scale(1,1);
+    /*contain: content;*/
+
+}
+
 
 #leftPanel > span.glyphicon.glyphicon-minus {
     margin-top: 25px;
     float: right;
-    margin-right: 75px;
+    /*position: fixed;*/
+    position: sticky;
+    margin-right: 15px;
     font-size: 24px;
 }
 
 #leftPanel > span.glyphicon.glyphicon-plus {
-    margin-top: 25px;
+
     float: right;
-    margin-right: 20px;
+    position: sticky;
+    /*position: fixed;*/
+    margin-top: 25px;
+    margin-right: 15px;
     font-size: 24px;
 }

@@ -221,7 +221,7 @@ body{
 }
 
 #selectionHeader{
-    border-width: 1px;z
+    border-width: 1px;
     /*border: solid #e1e1e8;*/
     background-color: #ffffff;
     border-bottom-right-radius: 8px;
@@ -304,20 +304,27 @@ h4{
 
 
 #leftPanel > span.glyphicon.glyphicon-minus {
+    z-index: 2001;
     margin-top: 25px;
-    float: right;
+    margin-right: 15px;
+    /*float: right;*/
     /*position: fixed;*/
     position: sticky;
-    margin-right: 15px;
+    top: 20px;
+    left: 85%;
     font-size: 24px;
+    padding: 25px;
 }
 
 #leftPanel > span.glyphicon.glyphicon-plus {
-
-    float: right;
-    position: sticky;
-    /*position: fixed;*/
+    z-index: 2001;
+    /*float: right;*/
     margin-top: 25px;
     margin-right: 15px;
+    position: sticky;
+    /*position: fixed;*/
+    top: 20px;
+    left: 80%;
     font-size: 24px;
+    padding: 25px;
 }

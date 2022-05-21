@@ -67,9 +67,12 @@ function clipDiv(n,divId){
 }
 
 var res = [];
+
+
 function rankNodes(){
     var map = new Map();
     var map2 = new Map();
+    // 按文件做为key放到map
     for(let node of data.nodes){
         if (!map.has(node.file_name)) {
             map.set(node.file_name,[node]) ;
@@ -81,10 +84,13 @@ function rankNodes(){
     }
 
     let arr = [];
+    // a1 ,a2 ,a3
+    // arr = [a1, a1, a2, a2 ...]
     for(let edge of data.edges ){
         arr.push(edge.source);
         arr.push(edge.target);
     }
+    // node_id
     for(let id of arr){
         if(!map2.has(id)){
             map2.set(id,1);
@@ -126,7 +132,7 @@ function rankNodes(){
 }
 
 
-function test() {
+function layout_nodes() {
     let c =0;
     rankNodes();
     clipDiv(res.length, "canvas");
@@ -208,25 +214,25 @@ function rankNodeAndAddAttribute(){
 
 }
 
-function test2(){
-    rankNodes();
-    for(let i=0;i<res.length;i++){
-        for (let resData of res[i].data) {
-            var center = document.createElement("div");
-            var blank = document.createElement("div");
-            center.setAttribute("class", "zoomTarget window jtk-node ");
-            center.setAttribute("id",resData.id);
-            center.setAttribute("path",resData.file_name);
-            blank.setAttribute("id",resData.id+"d");
-            blank.setAttribute("class","blank");
-            // center.setAttribute("data-closeclick",true);
-            document.getElementById("canvas" ).appendChild(center);
-            document.getElementById("canvas" ).appendChild(blank);
-            initNode(center,resData,i);
-        }
-    }
-
-}
+// function test2(){
+//     rankNodes();
+//     for(let i=0;i<res.length;i++){
+//         for (let resData of res[i].data) {
+//             var center = document.createElement("div");
+//             var blank = document.createElement("div");
+//             center.setAttribute("class", "zoomTarget window jtk-node ");
+//             center.setAttribute("id",resData.id);
+//             center.setAttribute("path",resData.file_name);
+//             blank.setAttribute("id",resData.id+"d");
+//             blank.setAttribute("class","blank");
+//             // center.setAttribute("data-closeclick",true);
+//             document.getElementById("canvas" ).appendChild(center);
+//             document.getElementById("canvas" ).appendChild(blank);
+//             initNode(center,resData,i);
+//         }
+//     }
+//
+// }
 function reset(){
     instance = null;
     links.length=0;

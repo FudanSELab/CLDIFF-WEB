@@ -289,37 +289,21 @@ function unique2(arr) {
 }
 
 
-function createNodes(rootData, rootPosition) {
-
-    if (rootData == null) {
-        return;
-    }
-
-    var can = $('#canvas');
-    var relData = rootData.rel;
-    var i = 0, relLen = relLength(relData);
-    var rootTop = rootPosition[0];
-    var rootLeft = rootPosition[1];
-
-    var nextRootData = {};
-    var nextRootPosition = [];
-    var divStr = createDiv(rootData);
-    //var nodeDivId = getNodeDivId(rootData);
-    can.append(divStr);
 
 
-    for (i = 0; i < relLen; i++) {
-        nextRootData = relData[i];
-        nextRootPosition = getNextRoot(rootData, nextRootData, rootPosition);
-        createNodes(nextRootData, nextRootPosition);
-    }
 
-    function relLength(relData) {
-        if (isArray(relData)) {
-            return relData.length;
-        }
-        return 0;
-    }
+window.onload=function(){
+    // $("#canvas").empty();
+    initRightEditor();
+    rankNodeAndAddAttribute();
+    calljsplumb();
 
+    document.getElementById('canvas').style.transform = "scale("+scaleNum+")";
+    document.getElementById('canvas').style.transformOrigin = "" +0+ "px" + " " + "" + 0+ "px";
+
+
+    addZoom();
+
+    $("#leftPanel").attr("style", "overflow:scroll");
 
 }

@@ -192,7 +192,7 @@ function test() {
     }
 }
 
-function test1(){
+function rankNodeAndAddAttribute(){
     rankNodes();
     for(let i=0;i<res.length;i++){
         for (let resData of res[i].data) {
@@ -233,7 +233,7 @@ function reset(){
     res.length=0;
     row=0,col=0,rem=0;
     $("#canvas").empty();
-    test1();
+    rankNodeAndAddAttribute();
     calljsplumb();
     document.getElementById('canvas').style.transform = "scale("+0.6+")";
     document.getElementById('canvas').style.transformOrigin = "" +0+ "px" + " " + "" + 0+ "px";

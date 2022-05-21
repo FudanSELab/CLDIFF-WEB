@@ -37,7 +37,6 @@
                     Commit <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu" id="dropdown-menu">
-                    <li><a href="#">data1.json</a></li>
                     <li><a href="#">graph-rocketmq-37cf2a7cb706a0cfe5b217940467c4a9cb33626e.json</a></li>
                     <li><a href="#">graph-rocketmq-3292d039ae882f42168d5f98969df83130ca05fb.json</a></li>
                     <li><a href="#">graph-rocketmq-85467dfd34d8ff379d2ddfec0489d78dcba20c27.json</a></li>
@@ -49,6 +48,7 @@
                     <li><a href="#">graph-spring-framework-3c1adf7f6af0dff9bda74f40dabe8cf428a62003.json</a></li>
                     <li><a href="#">graph2.json</a></li>
                     <li><a href="#">data10.json</a></li>
+                    <li><a href="#">data1.json</a></li>
                 </ul>
                 <!--            <button type="button" class="btn btn-default" style="margin-left: 200vh" onclick="reset()">Reset</button>-->
             </div>
@@ -66,8 +66,8 @@
 
     <div id="leftPanel" class="container  col-md-8">
 
-        <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
-        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+        <span id="minus_canvas" class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+        <span id="plus_canvas" class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 
         <div class="panzoom ">
             <div class="jtk-demo-main zoomViewport " id="box">
@@ -82,9 +82,16 @@
     <div id="rightPanel" class="col-md-3">
         <div>
             <h4>changed files:</h4>
-            <div class="alert alert-success" role="alert">src/main/java/org/apache/rocketmq/broker/BrokerController.java</div>
-            <div class="alert alert-success" role="alert">src/main/java/org/apache/rocketmq/broker/BrokerController.java</div>
-            <div id="span" style="word-break: break-word"></div>
+            <div class="alert alert-success" role="alert"></div>
+            <h4>diff entry:</h4>
+        </div>
+        <div>
+            <h4>Link Types:</h4>
+            <div class="alert alert-success" role="alert">Def Use Link</div>
+            <div class="alert alert-success" role="alert">Abstract Method Link</div>
+            <div class="alert alert-success" role="alert">Override Method Link</div>
+            <div class="alert alert-success" role="alert">Implement Method Link</div>
+            <div class="alert alert-success" role="alert">Systematic Change Link</div>
             <h4>diff entry:</h4>
         </div>
         <div id="rightEditor" ></div>
@@ -107,6 +114,7 @@
 
 <script src="../node_modules/monaco-editor/dev/vs/loader.js"></script>
 <script src="./data1.js"></script>
+
 <script src="panzoom.js"></script>
 
 <script src="demo.js"></script>

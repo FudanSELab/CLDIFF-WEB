@@ -132,7 +132,7 @@ function rankNodes(){
 }
 
 
-function layout_nodes() {
+function test() {
     let c =0;
     rankNodes();
     clipDiv(res.length, "canvas");

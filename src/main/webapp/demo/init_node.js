@@ -30,16 +30,9 @@ function initNode(ele,data,i){
 }
 
 
-
-function initEdge(){
-
-}
-
 function initRightEditor(){
 
-
     require.config({ paths: { 'vs': '../node_modules/monaco-editor/dev/vs' }});
-
     require(['vs/editor/editor.main'], function() {
         var d=document.createElement(`div`);
         d.setAttribute("class","test");
@@ -61,7 +54,7 @@ function initRightEditor(){
 }
 var  clickTimeId;
 var isZoom = false;
-var scaleNum = 0.8;
+var scaleNum = scal;
 var step = 0.05
 function addZoom(){
     // $(".jtk-node").dblclick(function(evt) {

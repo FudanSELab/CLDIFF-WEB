@@ -8,9 +8,10 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"/>
     <!--        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<!--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"-->
+<!--          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">-->
     <!--        <link href="//fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">-->
+    <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/jsplumbtoolkit-defaults.css">
     <link rel="stylesheet" href="../css/main_jsplumb.css">
     <link rel="stylesheet" href="../css/jsplumbtoolkit-demo.css">
@@ -26,11 +27,11 @@
 
 <div id="headerBanner" class="row">
 
-    <div id="selectionHeader" class="col-md-8">
+    <div id="selectionHeader" class="col-md-9">
         <div class="col-md-3">
             <h2>Select your tasks:</h2>
         </div>
-        <div class="dropdown col-md-5">
+        <div class="dropdown col-md-6">
             <div class="btn-group">
                 <button id="muButton" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false">
@@ -64,7 +65,7 @@
 
 <div class="row">
 
-    <div id="leftPanel" class="container  col-md-8">
+    <div id="leftPanel" class="container  col-md-9">
 
         <span id="minus_canvas" class="glyphicon glyphicon-minus" aria-hidden="true"></span>
         <span id="plus_canvas" class="glyphicon glyphicon-plus" aria-hidden="true"></span>
@@ -102,14 +103,15 @@
 
 <script src="../js/jquery.min.js"></script>
 <script src="../js/jquery-ui.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"
-        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-        crossorigin="anonymous"></script>
+<!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"-->
+<!--        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"-->
+<!--        crossorigin="anonymous"></script>-->
+<script src="../js/bootstrap.js"></script>
 <script src="../js/lodash.min.js"></script>
 <script src="../js/jquery.zoomooz.min.js"></script>
 
 <script src="../js/dagre.min.js"></script>
-<script src="../js/jsPlumb.min.js"></script>
+<script src="../js/jsPlumb.js"></script>
 <script src="../js/jquery.panzoom.min.js"></script>
 
 <script src="../node_modules/monaco-editor/dev/vs/loader.js"></script>
@@ -124,3 +126,120 @@
 
 </body>
 </html>
+<!--<!doctype html>-->
+
+<!--<html lang="en">-->
+<!--<head>-->
+
+<!--    <title>Graph</title>-->
+<!--    <meta http-equiv="content-type" content="text/html;charset=utf-8"/>-->
+<!--    <meta name="viewport"-->
+<!--          content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"/>-->
+<!--    &lt;!&ndash;        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">&ndash;&gt;-->
+<!--    <link rel="stylesheet" href="../css/bootstrap.min.css">-->
+<!--    &lt;!&ndash;        <link href="//fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">&ndash;&gt;-->
+<!--    <link rel="stylesheet" href="../css/jsplumbtoolkit-defaults.css">-->
+<!--    <link rel="stylesheet" href="../css/main_jsplumb.css">-->
+<!--    <link rel="stylesheet" href="../css/jsplumbtoolkit-demo.css">-->
+<!--    <link rel="stylesheet" href="demo.css">-->
+
+<!--</head>-->
+<!--<body data-demo-id="flowchart">-->
+
+<!--<div class="page-header text-center">-->
+<!--    <h1>CLDiff Graph</h1>-->
+<!--</div>-->
+
+
+<!--<div id="headerBanner" class="row">-->
+
+<!--    <div id="selectionHeader" class="col-md-8">-->
+<!--        <div class="col-md-3">-->
+<!--            <h2>Select your tasks:</h2>-->
+<!--        </div>-->
+<!--        <div class="dropdown col-md-5">-->
+<!--            <div class="btn-group">-->
+<!--                <button id="muButton" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"-->
+<!--                        aria-expanded="false">-->
+<!--                    Commit <span class="caret"></span>-->
+<!--                </button>-->
+<!--                <ul class="dropdown-menu" id="dropdown-menu">-->
+<!--                    <li><a href="#">data1.json</a></li>-->
+<!--                    <li><a href="#">graph-rocketmq-37cf2a7cb706a0cfe5b217940467c4a9cb33626e.json</a></li>-->
+<!--                    <li><a href="#">graph-rocketmq-3292d039ae882f42168d5f98969df83130ca05fb.json</a></li>-->
+<!--                    <li><a href="#">graph-rocketmq-85467dfd34d8ff379d2ddfec0489d78dcba20c27.json</a></li>-->
+<!--                    <li><a href="#">graph-rocketmq-b1fcf1b83b659bd03bcebf651d9e88c294a89e07.json</a></li>-->
+<!--                    <li><a href="#">graph-rocketmq-b421d48c476e74a8c7bb8129979df1dc0cb5a5a5.json</a></li>-->
+<!--                    <li><a href="#">graph-rocketmq-c94fc4fa562ddc20332c3add01b95e291cd325a3.json</a></li>-->
+<!--                    <li><a href="#">graph-rocketmq-e9a0d62dbd8a1a6163870828d583300eb27e324a.json</a></li>-->
+<!--                    <li><a href="#">graph-rocketmq-f508f131f7dee2bcb86e66a6beb7bbdedbe31bc6.json</a></li>-->
+<!--                    <li><a href="#">graph-spring-framework-3c1adf7f6af0dff9bda74f40dabe8cf428a62003.json</a></li>-->
+<!--                    <li><a href="#">graph2.json</a></li>-->
+<!--                    <li><a href="#">data10.json</a></li>-->
+<!--                </ul>-->
+<!--                &lt;!&ndash;            <button type="button" class="btn btn-default" style="margin-left: 200vh" onclick="reset()">Reset</button>&ndash;&gt;-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <div class="col-md-3" id="rightTitleHeader">-->
+<!--        <h2>Code Change</h2>-->
+<!--    </div>-->
+
+
+<!--</div>-->
+
+<!--<div class="row">-->
+
+<!--    <div id="leftPanel" class="container  col-md-8">-->
+
+<!--        <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>-->
+<!--        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>-->
+
+<!--        <div class="panzoom ">-->
+<!--            <div class="jtk-demo-main zoomViewport " id="box">-->
+<!--                &lt;!&ndash; demo &ndash;&gt;-->
+<!--                <div class="canvas-wide flowchart-demo jtk-surface zoomContainer " id="canvas">-->
+<!--                </div>-->
+<!--                &lt;!&ndash; /demo &ndash;&gt;-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <div id="rightPanel" class="col-md-3">-->
+<!--        <div>-->
+<!--            <h4>changed files:</h4>-->
+<!--            <div class="alert alert-success" role="alert">src/main/java/org/apache/rocketmq/broker/BrokerController.java</div>-->
+<!--            <div class="alert alert-success" role="alert">src/main/java/org/apache/rocketmq/broker/BrokerController.java</div>-->
+<!--            <div id="span" style="word-break: break-word"></div>-->
+<!--            <h4>diff entry:</h4>-->
+<!--        </div>-->
+<!--        <div id="rightEditor" ></div>-->
+<!--    </div>-->
+
+<!--</div>-->
+
+
+<!--<script src="../js/jquery.min.js"></script>-->
+<!--<script src="../js/jquery-ui.min.js"></script>-->
+<!--<script src="../js/bootstrap.js"></script>-->
+<!--<script src="../js/lodash.min.js"></script>-->
+<!--<script src="../js/jquery.zoomooz.min.js"></script>-->
+
+<!--<script src="../js/dagre.min.js"></script>-->
+<!--<script src="../js/jsPlumb.js"></script>-->
+<!--<script src="../js/jquery.panzoom.min.js"></script>-->
+
+<!--<script src="../node_modules/monaco-editor/dev/vs/loader.js"></script>-->
+<!--<script src="./data1.js"></script>-->
+<!--<script src="mouseevent.js"></script>-->
+
+<!--<script src="main.js"></script>-->
+
+<!--<script src="layout.js"></script>-->
+<!--<script src="init_node.js"></script>-->
+<!--<script src="refresh.js"></script>-->
+
+
+<!--</body>-->
+<!--</html>-->

@@ -1,6 +1,6 @@
 var oDiv = document.getElementById('canvas');
 var box = document.getElementById('box');
-var scal = 0.15;
+var scal = 0.25;
 var offsetX = document.getElementById("canvas").offsetWidth;
 var offsetY = document.getElementById("canvas").offsetHeight;
 var win = document.getElementsByClassName("jtk-node");

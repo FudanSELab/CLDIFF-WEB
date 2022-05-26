@@ -1,4 +1,6 @@
 var row,col,rem;
+var node_div_map = new Map();
+var node_degree_set = new Set();
 function clipDiv(n,divId){
     if(n <=0 ){
         console.log("invalid input");
@@ -68,7 +70,6 @@ function clipDiv(n,divId){
 
 var res = [];
 
-
 function rankNodes(){
     var map = new Map();
     var map2 = new Map();
@@ -87,6 +88,8 @@ function rankNodes(){
     // a1 ,a2 ,a3
     // arr = [a1, a1, a2, a2 ...]
     for(let edge of data.edges ){
+        node_degree_set.add(edge.source);
+        node_degree_set.add(edge.target);
         arr.push(edge.source);
         arr.push(edge.target);
     }
@@ -132,7 +135,7 @@ function rankNodes(){
 }
 
 
-function test() {
+function layout() {
     let c =0;
     rankNodes();
     clipDiv(res.length, "canvas");
@@ -160,8 +163,11 @@ function test() {
         var center = document.createElement("div");
         center.setAttribute("class", "window jtk-node ");
         center.setAttribute("id",resData.id);
+        center.setAttribute("path",resData.file_name);
         document.getElementById("canvas" + "row" + m + "col" + n).appendChild(center);
         initNode(center,resData,0);
+        node_div_map.set(resData.id,"canvas" + "row" + m + "col" + n);
+
     }
 
     var step = 1;
@@ -186,8 +192,10 @@ function test() {
                 var d = document.createElement("div");
                 d.setAttribute("class", "window jtk-node " + resData.file_name.substring(resData.file_name.lastIndexOf("/")+1,resData.file_name.lastIndexOf(".")));
                 d.setAttribute("id", resData.id);
+                d.setAttribute("path",resData.file_name);
                 loc.appendChild(d);
                 initNode(d,resData,count+1);
+                node_div_map.set(resData.id,"canvas" + "row" + x + "col" + y);
 
             }
             count++;
@@ -198,50 +206,31 @@ function test() {
     }
 }
 
-function rankNodeAndAddAttribute(){
-    rankNodes();
-    for(let i=0;i<res.length;i++){
-        for (let resData of res[i].data) {
-            var center = document.createElement("div");
-            center.setAttribute("class", "zoomTarget window jtk-node ");
-            center.setAttribute("id",resData.id);
-            center.setAttribute("path",resData.file_name);
-            // center.setAttribute("data-closeclick",true);
-            document.getElementById("canvas" ).appendChild(center);
-            initNode(center,resData,i);
-        }
-    }
-
-}
-
-// function test2(){
+// function rankNodeAndAddAttribute(){
 //     rankNodes();
 //     for(let i=0;i<res.length;i++){
 //         for (let resData of res[i].data) {
 //             var center = document.createElement("div");
-//             var blank = document.createElement("div");
 //             center.setAttribute("class", "zoomTarget window jtk-node ");
 //             center.setAttribute("id",resData.id);
 //             center.setAttribute("path",resData.file_name);
-//             blank.setAttribute("id",resData.id+"d");
-//             blank.setAttribute("class","blank");
 //             // center.setAttribute("data-closeclick",true);
 //             document.getElementById("canvas" ).appendChild(center);
-//             document.getElementById("canvas" ).appendChild(blank);
 //             initNode(center,resData,i);
 //         }
 //     }
 //
 // }
+
 function reset(){
     instance = null;
     links.length=0;
     res.length=0;
     row=0,col=0,rem=0;
     $("#canvas").empty();
-    rankNodeAndAddAttribute();
+    layout();
     calljsplumb();
-    document.getElementById('canvas').style.transform = "scale("+0.6+")";
+    document.getElementById('canvas').style.transform = "scale("+scal+")";
     document.getElementById('canvas').style.transformOrigin = "" +0+ "px" + " " + "" + 0+ "px";
     addZoom();
     var matrix = $(".container").find(".panzoom").panzoom("getMatrix");

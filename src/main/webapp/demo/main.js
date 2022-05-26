@@ -8,25 +8,20 @@ function calljsplumb() {
             to: edge.target.toString(),
         })
     }
-    console.log(links)
     //if want to remove duplicate entry restrictly,use function below
     //links = unique(links);
     links = unique2(links);
-    console.log(links)
     instance = window.jsp = jsPlumb.getInstance({
-        // default drag options
         DragOptions: {cursor: 'pointer', zIndex: 2000},
-        // the overlays to decorate each connection with.  note that the label overlay uses a function to generate the label text; in this
-        // case it returns the 'labelText' member that we set on each connection in the 'init' method below.
-
+        HoverPaintStyle: {stroke: '#1E90FF'},
         ConnectionOverlays: [
-            // ["Arrow", {
-            //     location: 1,
-            //     visible: true,
-            //     width: 5,
-            //     length: 5,
-            //     id: "ARROW",
-            // }],
+            ["Arrow", {
+                location: 1,
+                visible: true,
+                width: 20,
+                length: 20,
+                id: "ARROW",
+            }],
             ["Label", {
                 location: 0.05,
                 id: "label",
@@ -56,143 +51,130 @@ function calljsplumb() {
                     midpoint: start / 100
                 }
             ],
-
-            // paintStyle:{ stroke:"blue" },
-            // hoverPaintStyle:{ stroke:"red" },
-            // hoverPaintStyle:connectorHoverStyle,
-            // paintStyle:connectorPaintStyle,
-            //paintStyle: connectorPaintStyle,
             endpoints: ["Blank", "Blank"],
-            overlays: [["Arrow", {location: 1, width: 20, length: 20}]],
-        });
+             });
         start += incre;
         start %= 100;
 
     });
-    var dg = new dagre.graphlib.Graph();
-    dg.setGraph({
-        nodesep: 200,
-        ranksep: 200,
-        marginx: 80,
-        marginy: 80,
-        align: "UL",
-        edgesep: 100,
-        ranker: "longest-path"
+
+    var connection = instance.getAllConnections()
+    connection.map(item => {
+        item.setPaintStyle({ stroke: 'yellow' ,strokeWidth: 5})
+        item.getOverlay("label").setLabel(item.source.id+"-"+item.target.id)
     });
-    dg.setDefaultEdgeLabel(function () {
-        return {};
-    });
+
+    let files_map = new Map();
     $("#canvas").find(".jtk-node").each(
         function (idx, node) {
             var $n = $(node);
+            if(!files_map.has($n.attr("path"))){
+                files_map.set($n.attr("path"),[$n]);
+            }
+            else{
+                let s = files_map.get($n.attr("path"));
+                s.push($n);
+                files_map.set($n.attr("path"),s);
+            }
 
-            var box = {
-                width: Math.round($n.outerWidth()),
-                height: Math.round($n.outerHeight())
-            };
-            dg.setNode($n.attr('id'), box);
 
-            // console.log($(node).className)
+
         }
     );
-    instance.getAllConnections()
-        .forEach(function (edge) {
-            dg.setEdge(edge.source.id, edge.target.id);
-        });
-    dagre.layout(dg);
-    var graphInfo = dg.graph();
-
-    dg.nodes().forEach(
-        function (n) {
-            var node = dg.node(n);
-            // console.log(node)
-            var top = Math.round(node.y - node.height / 2) + 'px';
-            var left = Math.round(node.x - node.width / 2) + 'px';
-            $('#' + n).css({left: left, top: top});
-        });
-
-    instance.repaintEverything();
-
-
-    // this is the paint style for the connecting lines..
-    var connectorPaintStyle = {
-            strokeWidth: 2,
-            stroke: "#61B7CF",
-            joinstyle: "round",
-            outlineStroke: "white",
-            outlineWidth: 2
-        },
-        // .. and this is the hover style.
-        connectorHoverStyle = {
-            strokeWidth: 3,
-            stroke: "#216477",
-            outlineWidth: 5,
-            outlineStroke: "white"
-        },
-        endpointHoverStyle = {
-            fill: "#216477",
-            stroke: "#216477"
-        },
-        // the definition of source endpoints (the small blue ones)
-        sourceEndpoint = {
-            endpoint: "Blank",
-            maxConnections: -1,
-            paintStyle: {
-                stroke: "#7AB02C",
-                fill: "transparent",
-                radius: 7,
-                strokeWidth: 1
-            },
-            isSource: true,
-            connector: ["Flowchart", {stub: [40, 60], gap: 10, cornerRadius: 5, alwaysRespectStubs: true}],
-            connectorStyle: connectorPaintStyle,
-            hoverPaintStyle: endpointHoverStyle,
-            connectorHoverStyle: connectorHoverStyle,
-            dragOptions: {},
-            overlays: [
-                ["Label", {
-                    location: [0.5, 1.5],
-                    label: "Drag",
-                    cssClass: "endpointSourceLabel",
-                    visible: false
-                }]
-            ]
-        },
-        // the definition of target endpoints (will appear when the user drags a connection)
-        targetEndpoint = {
-            endpoint: "Blank",
-            paintStyle: {fill: "#7AB02C", radius: 7},
-            hoverPaintStyle: endpointHoverStyle,
-            maxConnections: -1,
-            dropOptions: {hoverClass: "hover", activeClass: "active"},
-            isTarget: true,
-            overlays: [
-                ["Label", {location: [0.5, -0.5], label: "Drop", cssClass: "endpointTargetLabel", visible: false}]
-            ]
-        },
-        init = function (connection) {
-
-        };
-
-    var _addEndpoints = function (toId, sourceAnchors, targetAnchors) {
-        for (var i = 0; i < sourceAnchors.length; i++) {
-            var sourceUUID = toId + sourceAnchors[i];
-            instance.addEndpoint("flowchart" + toId, sourceEndpoint, {
-                anchor: sourceAnchors[i], uuid: sourceUUID
+    let div_size_map = new Map();
+    files_map.forEach(
+        function (value, key, map){
+            let empty_count = 0;
+            for (let node of value) {
+                var $n = node;
+                if (!node_degree_set.has(parseInt(node.attr("id")))) {
+                    empty_count++;
+                    $("#" + (node.attr("id"))).css({
+                        left: empty_count* 50,
+                        top: empty_count* 50
+                    })
+                }
+                else{
+                    continue;
+                }
+            }
+            let margin_x = 200+ empty_count*50;
+            let margin_y = 250+ empty_count*50;
+            var dg = new dagre.graphlib.Graph();
+            dg.setGraph({
+                nodesep: 150,
+                ranksep: 100,
+                marginx: margin_x,
+                marginy: margin_y,
+                align: "UL",
+                edgesep: 100,
+                //ranker: "longest-path"
             });
+            dg.setDefaultEdgeLabel(function () {
+                return {};
+            });
+            let set = new Set();
+            let div_id = node_div_map.get(parseInt(value[0].attr("id")));
+            for(let node of value){
+                var $n = node;
+                if(!node_degree_set.has(parseInt(node.attr("id")))){
+                    continue;
+                }
+                set.add(node.attr("id"));
+                var box = {
+                    width: Math.round($n.outerWidth()),
+                    height: Math.round($n.outerHeight())
+                };
+                dg.setNode($n.attr('id'), box);
+            }
+            instance.getAllConnections()
+                .forEach(function (edge) {
+                    if(set.has(edge.source.id) && set.has(edge.target.id)) {
+                        console.log("hhh")
+                        dg.setEdge(edge.source.id, edge.target.id);
+                    }
+                });
+            dagre.layout(dg);
+            let div_width = Object.values(dg)[3].width;
+            let div_height = Object.values(dg)[3].height;
+            console.log($("#"+div_id))
+            $("#"+div_id).css({width: div_width, height: div_height})
+            let row_num = div_id.substring(0,10);
+            if(!div_size_map.has(div_id.substring(0,10))){
+                div_size_map.set(div_id.substring(0,10),{width:div_width,height:div_height});
+            }
+            else{
+                let new_width = div_size_map.get(row_num).width + div_width;
+                let new_height = Math.max(div_size_map.get(row_num).height , div_height);
+                div_size_map.set(row_num,{width:new_width, height: new_height});
+            }
+            dg.nodes().forEach(
+                function (n) {
+                    var node = dg.node(n);
+                    //if(node.x <= $("#canvas").width()/2 - node.width){
+                        var top = Math.round(node.y - node.height / 2 )  + 'px';
+                        var left = Math.round(node.x - node.width / 2  )+ 'px';
+                        $('#' + n).css({left: left, top: top});
+                    // }
+                    // else{
+                    //     var top = Math.round(node.y - node.height / 2 + (node.height + 200) * level) + 'px';
+                    //     var left = Math.round(node.x - node.width / 2 - ((node.width + 140) * 5) * level) + 'px';
+                    //     $('#' + n).css({left: left, top: top});
+                    // }
+                });
         }
-        for (var j = 0; j < targetAnchors.length; j++) {
-            var targetUUID = toId + targetAnchors[j];
-            instance.addEndpoint("flowchart" + toId, targetEndpoint, {anchor: targetAnchors[j], uuid: targetUUID});
+    );
+    div_size_map.forEach(
+        function (value,key) {
+            console.log("qqqqqqqqqqqq")
+            $("#"+key).css({
+                width: value.width,
+                height: value.height
+            })
         }
-    };
-
-    var _addEndpoints2 = function (toId) {
-        instance.addEndpoint("flowchart" + toId, sourceEndpoint, {
-            anchor: "Continuous", uuid: toId
-        });
-
-    };
+    )
+    console.log(div_size_map)
+    instance.repaintEverything();
 
     $(".jtk-node").on("click", function (ev) {
         let reg = /\d\n+/g;
@@ -226,22 +208,13 @@ function calljsplumb() {
                     automaticLayout: true,
                     minimap: {enabled: false},
                     overviewRulerBorder: false,
-
-                    // wordWrap: "wordWrapColumn",
-                    // wordWrapColumn: 40,
-                    // wordWrapMinified: true,
-                    // wrappingIndent: "indent",
-                    // lineNumbers: "off",
-                    // scrollBeyondLastLine: false,
-
                     wordWrap: "on",
                     wrappingIndent: "indent",
                     wrappingStrategy: "advanced"
                     ,
                 });
             });
-
-            document.getElementById("span").innerText = path;
+            document.getElementById("rightEditor").innerText = path;
         }, 250);
 
 
@@ -250,22 +223,12 @@ function calljsplumb() {
     // suspend drawing and initialise.
     instance.batch(function () {
 
-
-        instance.bind("click", function (connInfo) {
-            console.log("dsdaaaa")
-            console.log(connInfo);
-            console.log($(this));
-            init(connInfo)
-        });
-
         // make all the window divs draggable
         instance.draggable(jsPlumb.getSelector(".flowchart-demo .window"), {
-
-            containment: 'parent',
-
+            //containment: 'parent',
         });
 
-
+        instance.setZoom(scal)
     });
 
     jsPlumb.fire("jsPlumbDemoLoaded", instance);
@@ -295,15 +258,41 @@ function unique2(arr) {
 window.onload=function(){
     // $("#canvas").empty();
     initRightEditor();
-    rankNodeAndAddAttribute();
+    layout();
     calljsplumb();
-
     document.getElementById('canvas').style.transform = "scale("+scaleNum+")";
     document.getElementById('canvas').style.transformOrigin = "" +0+ "px" + " " + "" + 0+ "px";
-
-
-    addZoom();
-
     $("#leftPanel").attr("style", "overflow:scroll");
+
+    $(".window").draggable({
+        containment:$("#canvas"),
+        start: function(e){
+            var pz = $container.find(".panzoom");
+            currentScale = pz.panzoom("getMatrix")[0];
+            $(this).css("cursor","move");
+            pz.panzoom("disable");
+        },
+        drag:function(e,ui){
+            ui.position.left = ui.position.left/scal;
+            ui.position.top = ui.position.top/scal;
+            $("#leftPanel").attr("style","overflow:hidden;position:relative")
+            if($(this).hasClass("jsplumb-connected"))
+            {
+                instance.repaint($(this).attr('id'),ui.position);
+
+                $(e.target).css("cursor","move");
+            }
+        },
+        stop: function(e,ui){
+            var nodeId = $(this).attr('id');
+            if($(this).hasClass("jsplumb-connected"))
+            {
+                instance.repaint(nodeId,ui.position);
+            }
+            $(this).css("cursor","");
+            $container.find(".panzoom").panzoom("enable");
+        }
+    });
+    addZoom();
 
 }

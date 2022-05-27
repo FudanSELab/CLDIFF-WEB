@@ -214,7 +214,6 @@ function calljsplumb() {
                     ,
                 });
             });
-            document.getElementById("rightEditor").innerText = path;
         }, 250);
 
 
@@ -228,7 +227,7 @@ function calljsplumb() {
             //containment: 'parent',
         });
 
-        instance.setZoom(scal)
+        instance.setZoom(scal);
     });
 
     jsPlumb.fire("jsPlumbDemoLoaded", instance);
@@ -260,9 +259,8 @@ window.onload=function(){
     initRightEditor();
     layout();
     calljsplumb();
-    document.getElementById('canvas').style.transform = "scale("+scaleNum+")";
+    document.getElementById('canvas').style.transform = "scale("+scal+")";
     document.getElementById('canvas').style.transformOrigin = "" +0+ "px" + " " + "" + 0+ "px";
-    $("#leftPanel").attr("style", "overflow:scroll");
 
     $(".window").draggable({
         containment:$("#canvas"),
@@ -275,7 +273,7 @@ window.onload=function(){
         drag:function(e,ui){
             ui.position.left = ui.position.left/scal;
             ui.position.top = ui.position.top/scal;
-            $("#leftPanel").attr("style","overflow:hidden;position:relative")
+            // $("#leftPanel").attr("style","overflow:hidden;position:relative")
             if($(this).hasClass("jsplumb-connected"))
             {
                 instance.repaint($(this).attr('id'),ui.position);
@@ -291,8 +289,9 @@ window.onload=function(){
             }
             $(this).css("cursor","");
             $container.find(".panzoom").panzoom("enable");
+            $("#leftPanel").attr("style","overflow:scroll;position:relative")
         }
     });
     addZoom();
-
+    $("#leftPanel").attr("style", "overflow:scroll");
 }

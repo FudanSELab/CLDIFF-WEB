@@ -54,7 +54,7 @@ function initRightEditor(){
 }
 var  clickTimeId;
 var isZoom = false;
-var scaleNum = scal;
+var scal = scal;
 var step = 0.05
 function addZoom(){
     // $(".jtk-node").dblclick(function(evt) {
@@ -101,8 +101,9 @@ function addZoom(){
 
     $("#minus_canvas").click(function (evt){
         console.log('click minus');
-        newScale = scaleNum - step;
-        scaleNum = newScale;
+        newScale = scal - step;
+        scal = newScale;
+        instance.setZoom(scal);
         document.getElementById('canvas').style.transform = "scale("+newScale+")";
 
         w = $("#canvas").width()
@@ -120,8 +121,9 @@ function addZoom(){
 
     $("#plus_canvas").click(function (evt){
         console.log('click plus')
-        newScale = scaleNum + step;
-        scaleNum = newScale;
+        newScale = scal + step;
+        scal = newScale;
+        instance.setZoom(scal);
         document.getElementById('canvas').style.transform = "scale("+newScale+")";
         w = $("#canvas").width()
         h = $("#canvas").height()
@@ -170,8 +172,4 @@ function createNodes(rootData, rootPosition) {
         }
         return 0;
     }
-
-
 }
-
-

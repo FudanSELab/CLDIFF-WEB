@@ -1,4 +1,8 @@
-
+.node {
+    width: 420px;
+    height: 150px;
+    /*//90 vh ,45vw*/
+}
 .test{
 
     height: 60vh;

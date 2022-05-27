@@ -214,7 +214,6 @@ function calljsplumb() {
                     ,
                 });
             });
-            document.getElementById("rightEditor").innerText = path;
         }, 250);
 
 

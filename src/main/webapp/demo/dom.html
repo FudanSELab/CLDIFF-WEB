@@ -8,8 +8,7 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"/>
     <!--        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
     <!--        <link href="//fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">-->
     <link rel="stylesheet" href="../css/jsplumbtoolkit-defaults.css">
     <link rel="stylesheet" href="../css/main_jsplumb.css">
@@ -65,9 +64,11 @@
 <div class="row">
 
     <div id="leftPanel" class="container  col-md-8">
+        <span id="opt">
+            <span id="minus_canvas" class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+            <span id="plus_canvas" class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 
-        <span id="minus_canvas" class="glyphicon glyphicon-minus" aria-hidden="true"></span>
-        <span id="plus_canvas" class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+        </span>
 
         <div class="panzoom ">
             <div class="jtk-demo-main zoomViewport " id="box">
@@ -102,14 +103,12 @@
 
 <script src="../js/jquery.min.js"></script>
 <script src="../js/jquery-ui.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"
-        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-        crossorigin="anonymous"></script>
+<script src="../js/bootstrap.min.js"></script>
 <script src="../js/lodash.min.js"></script>
 <script src="../js/jquery.zoomooz.min.js"></script>
 
 <script src="../js/dagre.min.js"></script>
-<script src="../js/jsPlumb.js"></script>
+<script src="../js/jsplumb.js"></script>
 <script src="../js/jquery.panzoom.min.js"></script>
 
 <script src="../node_modules/monaco-editor/dev/vs/loader.js"></script>

@@ -264,35 +264,42 @@ h4{
 #leftPanel{
     transform: scale(1,1);
     /*contain: content;*/
-
+    overflow: scroll;
 }
 
+/*#leftPanel > span.glyphicon.glyphicon-minus {*/
+/*    z-index: 2001;*/
 
-#leftPanel > span.glyphicon.glyphicon-minus {
-    z-index: 2001;
-    margin-top: 25px;
-    margin-right: 15px;
-    /*float: right;*/
-    /*position: fixed;*/
-    position: sticky;
-    top: 20px;
-    left: 85%;
-    font-size: 24px;
-    padding: 25px;
-}
+/*    !*float: right;*!*/
+/*    !*position: fixed;*!*/
+/*    position: sticky;*/
+/*    top: 20px;*/
+/*    left: 85%;*/
+/*    font-size: 24px;*/
 
-#leftPanel > span.glyphicon.glyphicon-plus {
+/*}*/
+#opt{
     z-index: 2001;
-    /*float: right;*/
-    margin-top: 25px;
-    margin-right: 15px;
     position: sticky;
     /*position: fixed;*/
     top: 20px;
-    left: 80%;
-    font-size: 24px;
-    padding: 25px;
+    left: 90%;
 }
+/*#leftPanel > span.glyphicon.glyphicon-plus {*/
+/*    z-index: 2001;*/
+/*    !*float: right;*!*/
+/*    position: sticky;*/
+/*    !*position: fixed;*!*/
+/*    top: 20px;*/
+/*    left: 80%;*/
+/*    font-size: 240px;*/
+
+
+/*}*/
+
+
+
+
 
 .flowchart-demo .aLabel {
     background-color: white;

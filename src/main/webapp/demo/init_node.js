@@ -170,9 +170,4 @@ function createNodes(rootData, rootPosition) {
         }
         return 0;
     }
-
-
 }
-
-
-z

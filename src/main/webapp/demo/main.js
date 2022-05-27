@@ -261,37 +261,36 @@ window.onload=function(){
     calljsplumb();
     document.getElementById('canvas').style.transform = "scale("+scaleNum+")";
     document.getElementById('canvas').style.transformOrigin = "" +0+ "px" + " " + "" + 0+ "px";
-    $("#leftPanel").attr("style", "overflow:scroll");
 
-    $(".window").draggable({
-        containment:$("#canvas"),
-        start: function(e){
-            var pz = $container.find(".panzoom");
-            currentScale = pz.panzoom("getMatrix")[0];
-            $(this).css("cursor","move");
-            pz.panzoom("disable");
-        },
-        drag:function(e,ui){
-            ui.position.left = ui.position.left/scal;
-            ui.position.top = ui.position.top/scal;
-            $("#leftPanel").attr("style","overflow:hidden;position:relative")
-            if($(this).hasClass("jsplumb-connected"))
-            {
-                instance.repaint($(this).attr('id'),ui.position);
-
-                $(e.target).css("cursor","move");
-            }
-        },
-        stop: function(e,ui){
-            var nodeId = $(this).attr('id');
-            if($(this).hasClass("jsplumb-connected"))
-            {
-                instance.repaint(nodeId,ui.position);
-            }
-            $(this).css("cursor","");
-            $container.find(".panzoom").panzoom("enable");
-        }
-    });
+    // $(".window").draggable({
+    //     containment:$("#canvas"),
+    //     start: function(e){
+    //         var pz = $container.find(".panzoom");
+    //         currentScale = pz.panzoom("getMatrix")[0];
+    //         $(this).css("cursor","move");
+    //         pz.panzoom("disable");
+    //     },
+    //     drag:function(e,ui){
+    //         ui.position.left = ui.position.left/scal;
+    //         ui.position.top = ui.position.top/scal;
+    //         // $("#leftPanel").attr("style","overflow:hidden;position:relative")
+    //         if($(this).hasClass("jsplumb-connected"))
+    //         {
+    //             instance.repaint($(this).attr('id'),ui.position);
+    //
+    //             $(e.target).css("cursor","move");
+    //         }
+    //     },
+    //     stop: function(e,ui){
+    //         var nodeId = $(this).attr('id');
+    //         if($(this).hasClass("jsplumb-connected"))
+    //         {
+    //             instance.repaint(nodeId,ui.position);
+    //         }
+    //         $(this).css("cursor","");
+    //         $container.find(".panzoom").panzoom("enable");
+    //     }
+    // });
     addZoom();
-
+    $("#leftPanel").attr("style", "overflow:scroll");
 }

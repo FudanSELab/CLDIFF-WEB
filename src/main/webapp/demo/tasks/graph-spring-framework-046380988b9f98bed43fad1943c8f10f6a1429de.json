@@ -1,0 +1,175 @@
+{
+    "nodes": [
+        {
+            "code": "\t\t\tif (expires != null) {\n",
+            "file_name": "773b2f06a10679979ee747ad2ee2182eaafcc8cd__CLDIFF__spring-test/src/main/java/org/springframework/mock/web/MockHttpServletResponse.java",
+            "id": 0,
+            "desc": "moveNullLiteral",
+            "group": 0
+        },
+        {
+            "code": "\t\t\tZonedDateTime expires = (cookie instanceof MockCookie ? ((MockCookie) cookie).getExpires() : null);\n",
+            "file_name": "773b2f06a10679979ee747ad2ee2182eaafcc8cd__CLDIFF__spring-test/src/main/java/org/springframework/mock/web/MockHttpServletResponse.java",
+            "id": 1,
+            "desc": "moveInstanceofExpression",
+            "group": 0
+        },
+        {
+            "code": "\t\t\tZonedDateTime expires = (cookie instanceof MockCookie ? ((MockCookie) cookie).getExpires() : null);\n",
+            "file_name": "773b2f06a10679979ee747ad2ee2182eaafcc8cd__CLDIFF__spring-test/src/main/java/org/springframework/mock/web/MockHttpServletResponse.java",
+            "id": 2,
+            "desc": "moveMethodInvocation",
+            "group": 0
+        },
+        {
+            "code": "\t\t\tZonedDateTime expires = (cookie instanceof MockCookie ? ((MockCookie) cookie).getExpires() : null);\n",
+            "file_name": "773b2f06a10679979ee747ad2ee2182eaafcc8cd__CLDIFF__spring-test/src/main/java/org/springframework/mock/web/MockHttpServletResponse.java",
+            "id": 3,
+            "desc": "addVariableDeclaration",
+            "group": 0
+        },
+        {
+            "code": "\t\t\tif (expires != null) {\n\t\t\t\tbuf.append(expires.format(DateTimeFormatter.RFC_1123_DATE_TIME));\n\t\t\t}\n\t\t\telse {\n\t\t\t\tHttpHeaders headers = new HttpHeaders();\n\t\t\t\theaders.setExpires(maxAge > 0 ? System.currentTimeMillis() + 1000L * maxAge : 0);\n\t\t\t\tbuf.append(headers.getFirst(HttpHeaders.EXPIRES));\n\t\t\t}\n",
+            "file_name": "773b2f06a10679979ee747ad2ee2182eaafcc8cd__CLDIFF__spring-test/src/main/java/org/springframework/mock/web/MockHttpServletResponse.java",
+            "id": 4,
+            "desc": "updateIf condition  by",
+            "group": 0
+        },
+        {
+            "code": "\t\t\t\tbuf.append(expires.format(DateTimeFormatter.RFC_1123_DATE_TIME));\n",
+            "file_name": "773b2f06a10679979ee747ad2ee2182eaafcc8cd__CLDIFF__spring-test/src/main/java/org/springframework/mock/web/MockHttpServletResponse.java",
+            "id": 5,
+            "desc": "updateExpressionStatement   by",
+            "group": 0
+        },
+        {
+            "code": "\t\tprivate final PartBodyStreamStorageFactory storageFactory = (maxInMemorySize > 0 ?\n\t\t\t\tnew DefaultPartBodyStreamStorageFactory(maxInMemorySize) :\n\t\t\t\tnew DefaultPartBodyStreamStorageFactory());\n",
+            "file_name": "773b2f06a10679979ee747ad2ee2182eaafcc8cd__CLDIFF__spring-web/src/main/java/org/springframework/http/codec/multipart/SynchronossPartHttpMessageReader.java",
+            "id": 6,
+            "desc": "moveConditionalExpression",
+            "group": 1
+        },
+        {
+            "code": "\t\t\tAssert.state(this.parser != null && this.listener != null, \"Not initialized yet\");\n",
+            "file_name": "773b2f06a10679979ee747ad2ee2182eaafcc8cd__CLDIFF__spring-web/src/main/java/org/springframework/http/codec/multipart/SynchronossPartHttpMessageReader.java",
+            "id": 7,
+            "desc": "addExpressionStatement",
+            "group": 1
+        },
+        {
+            "code": "\t\t\t\tif (this.parser != null) {\n\t\t\t\t\tthis.parser.close();\n\t\t\t\t}\n",
+            "file_name": "773b2f06a10679979ee747ad2ee2182eaafcc8cd__CLDIFF__spring-web/src/main/java/org/springframework/http/codec/multipart/SynchronossPartHttpMessageReader.java",
+            "id": 8,
+            "desc": "addIf",
+            "group": 1
+        },
+        {
+            "code": "\t\t\t\tif (this.listener != null) {\n\t\t\t\t\tint index = this.storageFactory.getCurrentPartIndex();\n\t\t\t\t\tthis.listener.onError(\"Failure while parsing part[\" + index + \"]\", ex);\n\t\t\t\t}\n",
+            "file_name": "773b2f06a10679979ee747ad2ee2182eaafcc8cd__CLDIFF__spring-web/src/main/java/org/springframework/http/codec/multipart/SynchronossPartHttpMessageReader.java",
+            "id": 9,
+            "desc": "addIf",
+            "group": 1
+        },
+        {
+            "code": "\t\t\t\tif (this.parser != null) {\n\t\t\t\t\tthis.parser.close();\n\t\t\t\t}\n",
+            "file_name": "773b2f06a10679979ee747ad2ee2182eaafcc8cd__CLDIFF__spring-web/src/main/java/org/springframework/http/codec/multipart/SynchronossPartHttpMessageReader.java",
+            "id": 10,
+            "desc": "addIf",
+            "group": 1
+        },
+        {
+            "code": "\t\t\t\tif (this.listener != null) {\n\t\t\t\t\tthis.listener.onError(\"Error while closing parser\", ex);\n\t\t\t\t}\n",
+            "file_name": "773b2f06a10679979ee747ad2ee2182eaafcc8cd__CLDIFF__spring-web/src/main/java/org/springframework/http/codec/multipart/SynchronossPartHttpMessageReader.java",
+            "id": 11,
+            "desc": "addIf",
+            "group": 1
+        },
+        {
+            "code": "\t\t@Nullable\n\t\tprivate NioMultipartParserListener listener;\n",
+            "file_name": "773b2f06a10679979ee747ad2ee2182eaafcc8cd__CLDIFF__spring-web/src/main/java/org/springframework/http/codec/multipart/SynchronossPartHttpMessageReader.java",
+            "id": 12,
+            "desc": "updateFieldDeclaration ",
+            "group": 1
+        },
+        {
+            "code": "\t\t@Nullable\n\t\tprivate NioMultipartParser parser;\n",
+            "file_name": "773b2f06a10679979ee747ad2ee2182eaafcc8cd__CLDIFF__spring-web/src/main/java/org/springframework/http/codec/multipart/SynchronossPartHttpMessageReader.java",
+            "id": 13,
+            "desc": "updateFieldDeclaration ",
+            "group": 1
+        },
+        {
+            "code": "\t\tprivate final PartBodyStreamStorageFactory storageFactory = (maxInMemorySize > 0 ?\n\t\t\t\tnew DefaultPartBodyStreamStorageFactory(maxInMemorySize) :\n\t\t\t\tnew DefaultPartBodyStreamStorageFactory());\n",
+            "file_name": "773b2f06a10679979ee747ad2ee2182eaafcc8cd__CLDIFF__spring-web/src/main/java/org/springframework/http/codec/multipart/SynchronossPartHttpMessageReader.java",
+            "id": 14,
+            "desc": "updateFieldDeclaration ",
+            "group": 1
+        }
+    ],
+    "links": [
+        {
+            "link_type_str": "systematic",
+            "source": 8,
+            "text": "systematic",
+            "type": 44,
+            "value": 1,
+            "target": 10
+        },
+        {
+            "link_type_str": "defUse",
+            "source": 3,
+            "text": "defUse",
+            "type": 5,
+            "value": 1,
+            "target": 5
+        },
+        {
+            "link_type_str": "defUseField",
+            "source": 12,
+            "text": "defUseField",
+            "type": 57,
+            "value": 1,
+            "target": 11
+        },
+        {
+            "link_type_str": "defUseField",
+            "source": 13,
+            "text": "defUseField",
+            "type": 57,
+            "value": 1,
+            "target": 10
+        },
+        {
+            "link_type_str": "defUseField",
+            "source": 12,
+            "text": "defUseField",
+            "type": 57,
+            "value": 1,
+            "target": 9
+        },
+        {
+            "link_type_str": "defUseField",
+            "source": 13,
+            "text": "defUseField",
+            "type": 57,
+            "value": 1,
+            "target": 8
+        },
+        {
+            "link_type_str": "defUseField",
+            "source": 12,
+            "text": "defUseField",
+            "type": 57,
+            "value": 1,
+            "target": 7
+        },
+        {
+            "link_type_str": "defUseField",
+            "source": 13,
+            "text": "defUseField",
+            "type": 57,
+            "value": 1,
+            "target": 7
+        }
+    ]
+}

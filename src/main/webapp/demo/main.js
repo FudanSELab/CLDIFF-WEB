@@ -217,7 +217,6 @@ function calljsplumb() {
     );
     div_size_map.forEach(
         function (value,key) {
-            console.log("qqqqqqqqqqqq")
             $("#"+key).css({
                 width: value.width,
                 height: value.height
@@ -300,7 +299,6 @@ function unique2(arr) {
         }
     );
 }
-
 
 
 

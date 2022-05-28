@@ -1,0 +1,182 @@
+{
+  "nodes": [
+    {
+      "code": "    public void setWaitTimeMillsInPullQueue(final long waitTimeMillsInPullQueue) {\n        this.waitTimeMillsInPullQueue = waitTimeMillsInPullQueue;\n    }\n",
+      "file_name": "cba30897c169c7182e3f8b53ead169e5a458f13e__CLDIFF__common/src/main/java/org/apache/rocketmq/common/BrokerConfig.java",
+      "id": 10,
+      "desc": "addMethodDeclaration",
+      "group": 0
+    },
+    {
+      "code": "    public long getWaitTimeMillsInPullQueue() {\n        return waitTimeMillsInPullQueue;\n    }\n",
+      "file_name": "cba30897c169c7182e3f8b53ead169e5a458f13e__CLDIFF__common/src/main/java/org/apache/rocketmq/common/BrokerConfig.java",
+      "id": 11,
+      "desc": "addMethodDeclaration",
+      "group": 0
+    },
+    {
+      "code": "    public void setBrokerFastFailureEnable(final boolean brokerFastFailureEnable) {\n        this.brokerFastFailureEnable = brokerFastFailureEnable;\n    }\n",
+      "file_name": "cba30897c169c7182e3f8b53ead169e5a458f13e__CLDIFF__common/src/main/java/org/apache/rocketmq/common/BrokerConfig.java",
+      "id": 12,
+      "desc": "addMethodDeclaration",
+      "group": 0
+    },
+    {
+      "code": "    public boolean isBrokerFastFailureEnable() {\n        return brokerFastFailureEnable;\n    }\n",
+      "file_name": "cba30897c169c7182e3f8b53ead169e5a458f13e__CLDIFF__common/src/main/java/org/apache/rocketmq/common/BrokerConfig.java",
+      "id": 13,
+      "desc": "addMethodDeclaration",
+      "group": 0
+    },
+    {
+      "code": "    private long waitTimeMillsInPullQueue = 5 * 1000;\n",
+      "file_name": "cba30897c169c7182e3f8b53ead169e5a458f13e__CLDIFF__common/src/main/java/org/apache/rocketmq/common/BrokerConfig.java",
+      "id": 14,
+      "desc": "addFieldDeclaration",
+      "group": 0
+    },
+    {
+      "code": "    private boolean brokerFastFailureEnable = true;\n",
+      "file_name": "cba30897c169c7182e3f8b53ead169e5a458f13e__CLDIFF__common/src/main/java/org/apache/rocketmq/common/BrokerConfig.java",
+      "id": 15,
+      "desc": "addFieldDeclaration",
+      "group": 0
+    },
+    {
+      "code": "        cleanExpiredRequestInQueue(this.brokerController.getSendThreadPoolQueue(),\n            this.brokerController.getBrokerConfig().getWaitTimeMillsInSendQueue());\n",
+      "file_name": "cba30897c169c7182e3f8b53ead169e5a458f13e__CLDIFF__broker/src/main/java/org/apache/rocketmq/broker/latency/BrokerFastFailure.java",
+      "id": 0,
+      "desc": "moveMethodInvocation",
+      "group": 1
+    },
+    {
+      "code": "            this.brokerController.getBrokerConfig().getWaitTimeMillsInSendQueue());\n",
+      "file_name": "cba30897c169c7182e3f8b53ead169e5a458f13e__CLDIFF__broker/src/main/java/org/apache/rocketmq/broker/latency/BrokerFastFailure.java",
+      "id": 1,
+      "desc": "moveMethodInvocation",
+      "group": 1
+    },
+    {
+      "code": "        cleanExpiredRequestInQueue(this.brokerController.getPullThreadPoolQueue(),\n",
+      "file_name": "cba30897c169c7182e3f8b53ead169e5a458f13e__CLDIFF__broker/src/main/java/org/apache/rocketmq/broker/latency/BrokerFastFailure.java",
+      "id": 2,
+      "desc": "moveMethodInvocation",
+      "group": 1
+    },
+    {
+      "code": "            this.brokerController.getBrokerConfig().getWaitTimeMillsInPullQueue());\n",
+      "file_name": "cba30897c169c7182e3f8b53ead169e5a458f13e__CLDIFF__broker/src/main/java/org/apache/rocketmq/broker/latency/BrokerFastFailure.java",
+      "id": 3,
+      "desc": "moveMethodInvocation",
+      "group": 1
+    },
+    {
+      "code": "        cleanExpiredRequestInQueue(this.brokerController.getSendThreadPoolQueue(),\n            this.brokerController.getBrokerConfig().getWaitTimeMillsInSendQueue());\n",
+      "file_name": "cba30897c169c7182e3f8b53ead169e5a458f13e__CLDIFF__broker/src/main/java/org/apache/rocketmq/broker/latency/BrokerFastFailure.java",
+      "id": 4,
+      "desc": "addExpressionStatement",
+      "group": 1
+    },
+    {
+      "code": "        cleanExpiredRequestInQueue(this.brokerController.getPullThreadPoolQueue(),\n            this.brokerController.getBrokerConfig().getWaitTimeMillsInPullQueue());\n",
+      "file_name": "cba30897c169c7182e3f8b53ead169e5a458f13e__CLDIFF__broker/src/main/java/org/apache/rocketmq/broker/latency/BrokerFastFailure.java",
+      "id": 5,
+      "desc": "addExpressionStatement",
+      "group": 1
+    },
+    {
+      "code": "                if (brokerController.getBrokerConfig().isBrokerFastFailureEnable()) {\n                    cleanExpiredRequest();\n                }\n",
+      "file_name": "cba30897c169c7182e3f8b53ead169e5a458f13e__CLDIFF__broker/src/main/java/org/apache/rocketmq/broker/latency/BrokerFastFailure.java",
+      "id": 6,
+      "desc": "addIf",
+      "group": 1
+    },
+    {
+      "code": "        while (true) {\n            try {\n                if (!this.brokerController.getSendThreadPoolQueue().isEmpty()) {\n                    final Runnable runnable = this.brokerController.getSendThreadPoolQueue().peek();\n                    if (null == runnable) {\n                        break;\n                    }\n                    final RequestTask rt = castRunnable(runnable);\n                    if (rt == null || rt.isStopRun()) {\n                        break;\n                    }\n\n                    final long behind = System.currentTimeMillis() - rt.getCreateTimestamp();\n                    if (behind >= this.brokerController.getBrokerConfig().getWaitTimeMillsInSendQueue()) {\n                        if (this.brokerController.getSendThreadPoolQueue().remove(runnable)) {\n                            rt.setStopRun(true);\n                            rt.returnResponse(RemotingSysResponseCode.SYSTEM_BUSY, String.format(\"[TIMEOUT_CLEAN_QUEUE]broker busy, start flow control for a while, period in queue: %sms, size of queue: %d\", behind, this.brokerController.getSendThreadPoolQueue().size()));\n                        }\n                    } else {\n                        break;\n                    }\n                } else {\n                    break;\n                }\n            } catch (Throwable ignored) {\n            }\n        }\n",
+      "file_name": "cba30897c169c7182e3f8b53ead169e5a458f13e__CLDIFF__broker/src/main/java/org/apache/rocketmq/broker/latency/BrokerFastFailure.java",
+      "id": 7,
+      "desc": "deleteWhile",
+      "group": 1
+    },
+    {
+      "code": "            try {\n                if (!this.brokerController.getSendThreadPoolQueue().isEmpty()) {\n                    final Runnable runnable = this.brokerController.getSendThreadPoolQueue().peek();\n                    if (null == runnable) {\n                        break;\n                    }\n                    final RequestTask rt = castRunnable(runnable);\n                    if (rt == null || rt.isStopRun()) {\n                        break;\n                    }\n\n                    final long behind = System.currentTimeMillis() - rt.getCreateTimestamp();\n                    if (behind >= this.brokerController.getBrokerConfig().getWaitTimeMillsInSendQueue()) {\n                        if (this.brokerController.getSendThreadPoolQueue().remove(runnable)) {\n                            rt.setStopRun(true);\n                            rt.returnResponse(RemotingSysResponseCode.SYSTEM_BUSY, String.format(\"[TIMEOUT_CLEAN_QUEUE]broker busy, start flow control for a while, period in queue: %sms, size of queue: %d\", behind, this.brokerController.getSendThreadPoolQueue().size()));\n                        }\n                    } else {\n                        break;\n                    }\n                } else {\n                    break;\n                }\n            } catch (Throwable ignored) {\n            }\n",
+      "file_name": "cba30897c169c7182e3f8b53ead169e5a458f13e__CLDIFF__broker/src/main/java/org/apache/rocketmq/broker/latency/BrokerFastFailure.java",
+      "id": 8,
+      "desc": "deleteTry",
+      "group": 1
+    },
+    {
+      "code": "    void cleanExpiredRequestInQueue(final BlockingQueue<Runnable> blockingQueue, final long maxWaitTimeMillsInQueue) {\n        while (true) {\n            try {\n                if (!blockingQueue.isEmpty()) {\n                    final Runnable runnable = blockingQueue.peek();\n                    if (null == runnable) {\n                        break;\n                    }\n                    final RequestTask rt = castRunnable(runnable);\n                    if (rt == null || rt.isStopRun()) {\n                        break;\n                    }\n\n                    final long behind = System.currentTimeMillis() - rt.getCreateTimestamp();\n                    if (behind >= maxWaitTimeMillsInQueue) {\n                        if (blockingQueue.remove(runnable)) {\n                            rt.setStopRun(true);\n                            rt.returnResponse(RemotingSysResponseCode.SYSTEM_BUSY, String.format(\"[TIMEOUT_CLEAN_QUEUE]broker busy, start flow control for a while, period in queue: %sms, size of queue: %d\", behind, blockingQueue.size()));\n                        }\n                    } else {\n                        break;\n                    }\n                } else {\n                    break;\n                }\n            } catch (Throwable ignored) {\n            }\n        }\n    }\n",
+      "file_name": "cba30897c169c7182e3f8b53ead169e5a458f13e__CLDIFF__broker/src/main/java/org/apache/rocketmq/broker/latency/BrokerFastFailure.java",
+      "id": 9,
+      "desc": "addMethodDeclaration",
+      "group": 1
+    }
+  ],
+  "edges": [
+    {
+      "link_type_str": "def-use@taicu",
+      "source": 15,
+      "text": "def-use@taicu",
+      "type": 51,
+      "value": 1,
+      "target": 13
+    },
+    {
+      "link_type_str": "def-use@taicu",
+      "source": 15,
+      "text": "def-use@taicu",
+      "type": 51,
+      "value": 1,
+      "target": 12
+    },
+    {
+      "link_type_str": "def-use@taicu",
+      "source": 14,
+      "text": "def-use@taicu",
+      "type": 51,
+      "value": 1,
+      "target": 11
+    },
+    {
+      "link_type_str": "def-use@taicu",
+      "source": 14,
+      "text": "def-use@taicu",
+      "type": 51,
+      "value": 1,
+      "target": 10
+    },
+    {
+      "link_type_str": "def-use@method",
+      "source": 4,
+      "text": "def-use@method",
+      "type": 56,
+      "value": 1,
+      "target": 9
+    },
+    {
+      "link_type_str": "def-use@method",
+      "source": 5,
+      "text": "def-use@method",
+      "type": 56,
+      "value": 1,
+      "target": 9
+    },
+    {
+      "link_type_str": "def-use@method",
+      "source": 8,
+      "text": "def-use@method",
+      "type": 56,
+      "value": 1,
+      "target": 11
+    },
+    {
+      "link_type_str": "def-use@method",
+      "source": 6,
+      "text": "def-use@method",
+      "type": 56,
+      "value": 1,
+      "target": 13
+    }
+  ]
+}

@@ -229,6 +229,8 @@ function reset(){
     row=0,col=0,rem=0;
     $("#canvas").empty();
     $("#changed_files").empty();
+    $("#rightEditor").empty();
+    initRightEditor();
     layout();
     calljsplumb();
     document.getElementById('canvas').style.transform = "scale("+scal+")";

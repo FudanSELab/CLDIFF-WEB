@@ -1,11 +1,20 @@
 var links = [];
 var instance;
+var edge_colors =
+{
+    "def-use": "peachpuff",
+    "override":"blue",
+    "abstract":"indianred",
+    "implement": "yellow",
+    "systematic": "aqua"
+};
 
 function calljsplumb() {
     for (let edge of data.edges) {
         links.push({
             from: edge.source.toString(),
             to: edge.target.toString(),
+            link_type_str: edge.link_type_str.toString()
         })
     }
     //if want to remove duplicate entry restrictly,use function below
@@ -28,6 +37,7 @@ function calljsplumb() {
                 cssClass: "aLabel",
             }]
         ],
+
         Container: "canvas",
         Anchors: ["Continuous", "Continuous"],
         // ["Top", "Right", "Bottom", "Left", [0.25, 0, 0, -1], [0.75, 0, 0, -1], [0.25, 1, 0, 1], [0.75, 1, 0, 1]
@@ -37,7 +47,25 @@ function calljsplumb() {
 
     var incre = 5;
     var start = 10;
+
     _.each(links, function (link) {
+        let link_type=link.link_type_str;
+        let color;
+        if(link_type.includes("def-use")){
+            color = edge_colors["def-use"];
+        }
+        else if(link_type.includes("systematic")){
+            color = edge_colors["systematic"];
+        }
+        else if(link_type.includes("implement")){
+            color = edge_colors["implement"];
+        }
+        else if(link_type.includes("override")){
+            color = edge_colors["override"];
+        }
+        else{
+            color = edge_colors["abstract"]
+        }
         instance.connect({
             source: link.from,
             target: link.to,
@@ -48,10 +76,16 @@ function calljsplumb() {
                 // }
                 {
                     cornerRadius: 10,
-                    midpoint: start / 100
+                    midpoint: start / 100,
+
                 }
             ],
             endpoints: ["Blank", "Blank"],
+            paintStyle: {
+                stroke: color,
+                strokeWidth: 5
+            },
+            // label:link.from+"-"+link.to
              });
         start += incre;
         start %= 100;
@@ -60,7 +94,7 @@ function calljsplumb() {
 
     var connection = instance.getAllConnections()
     connection.map(item => {
-        item.setPaintStyle({ stroke: 'yellow' ,strokeWidth: 5})
+        //item.setPaintStyle({ stroke: 'yellow' ,strokeWidth: 5})
         item.getOverlay("label").setLabel(item.source.id+"-"+item.target.id)
     });
 
@@ -77,16 +111,25 @@ function calljsplumb() {
                 files_map.set($n.attr("path"),s);
             }
 
-
-
         }
     );
+    //changed_files_color
+   for(let file_name of files_map.keys()){
+       let file_name_div = document.createElement("div");
+       let file_short_name = file_name.substring(file_name.lastIndexOf("/") + 1);
+       file_name_div.innerText = file_short_name;
+              file_name_div.setAttribute("class","alert alert-success");
+       file_name_div.style.backgroundColor = file_color_map[file_short_name];
+       document.getElementById("changed_files").appendChild(file_name_div);
+   }
+
     let div_size_map = new Map();
     files_map.forEach(
         function (value, key, map){
             let empty_count = 0;
             for (let node of value) {
                 var $n = node;
+                //layout for zero degree nodes
                 if (!node_degree_set.has(parseInt(node.attr("id")))) {
                     empty_count++;
                     $("#" + (node.attr("id"))).css({
@@ -98,6 +141,7 @@ function calljsplumb() {
                     continue;
                 }
             }
+            //space for zero degree nodes
             let margin_x = 200+ empty_count*50;
             let margin_y = 250+ empty_count*50;
             var dg = new dagre.graphlib.Graph();
@@ -135,9 +179,16 @@ function calljsplumb() {
                     }
                 });
             dagre.layout(dg);
-            let div_width = Object.values(dg)[3].width;
-            let div_height = Object.values(dg)[3].height;
+            console.log(JSON.stringify(dg))
+            //fix infinite number
+            let finite_width =  isFinite(Object.values(dg)[3].width);
+            let finite_height =  isFinite(Object.values(dg)[3].height);
+            // console.log(finite_width)
+            // console.log(finite_height)
+            let div_width = !finite_width?600:Object.values(dg)[3].width;
+            let div_height = !finite_height ?600:Object.values(dg)[3].height;
             console.log($("#"+div_id))
+            //self-adaptive size
             $("#"+div_id).css({width: div_width, height: div_height})
             let row_num = div_id.substring(0,10);
             if(!div_size_map.has(div_id.substring(0,10))){

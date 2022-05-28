@@ -1,14 +1,14 @@
-
+var file_color_map = {};
 function initNode(ele,data,i){
     // color bar
     var colors = ["#F44336","#64B5F6","#66BB6A","#FFD54F","#B0BEC5","#FFCDD2","#0097A7","#757575"];
     var c = document.createElement(`div`);
     document.getElementById(ele.id).appendChild(c);
-    c.setAttribute("class","title")
+    c.setAttribute("class","title");
     //c.innerText = data.file_name.substring(data.file_name.lastIndexOf("/")+1);
     c.innerText = data.desc;
-
     c.style.backgroundColor = colors[i%8];
+    file_color_map[data.file_name.substring(data.file_name.lastIndexOf("/") + 1)] = colors[i%8];
     require.config({ paths: { 'vs': '../node_modules/monaco-editor/dev/vs' }});
     require(['vs/editor/editor.main'], function() {
         var d=document.createElement(`div`);
@@ -28,7 +28,7 @@ function initNode(ele,data,i){
     });
 
 }
-
+console.log(file_color_map)
 
 function initRightEditor(){
 

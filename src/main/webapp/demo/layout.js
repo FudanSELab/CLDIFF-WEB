@@ -228,6 +228,7 @@ function reset(){
     res.length=0;
     row=0,col=0,rem=0;
     $("#canvas").empty();
+    $("#changed_files").empty();
     layout();
     calljsplumb();
     document.getElementById('canvas').style.transform = "scale("+scal+")";

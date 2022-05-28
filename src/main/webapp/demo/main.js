@@ -179,8 +179,14 @@ function calljsplumb() {
                     }
                 });
             dagre.layout(dg);
-            let div_width = Object.values(dg)[3].width;
-            let div_height = Object.values(dg)[3].height;
+            console.log(JSON.stringify(dg))
+            //fix infinite number
+            let finite_width =  isFinite(Object.values(dg)[3].width);
+            let finite_height =  isFinite(Object.values(dg)[3].height);
+            // console.log(finite_width)
+            // console.log(finite_height)
+            let div_width = !finite_width?600:Object.values(dg)[3].width;
+            let div_height = !finite_height ?600:Object.values(dg)[3].height;
             console.log($("#"+div_id))
             //self-adaptive size
             $("#"+div_id).css({width: div_width, height: div_height})

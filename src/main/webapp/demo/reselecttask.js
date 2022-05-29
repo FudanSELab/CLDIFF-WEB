@@ -5,7 +5,8 @@ var obj_lis = document.getElementById("dropdown-menu").getElementsByTagName("li"
 for(i=0;i<obj_lis.length;i++){
     obj_lis[i].onclick = function(){
         // alert(this.innerText);
-        href = obj_lis[0].children[0].getAttribute("value")
+        let href = this.children[0].attributes["value"].nodeValue;
+        console.log(href)
         $.getJSON(href,function (d){
             data =d;
             reset();

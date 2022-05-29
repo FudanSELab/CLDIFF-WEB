@@ -227,6 +227,9 @@ function reset(){
     links.length=0;
     res.length=0;
     row=0,col=0,rem=0;
+    node_div_map.clear();
+    node_degree_set.clear();
+    file_color_map = {};
     $("#canvas").empty();
     $("#changed_files").empty();
     $("#rightEditor").empty();

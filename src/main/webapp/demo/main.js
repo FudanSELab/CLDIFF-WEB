@@ -174,12 +174,11 @@ function calljsplumb() {
             instance.getAllConnections()
                 .forEach(function (edge) {
                     if(set.has(edge.source.id) && set.has(edge.target.id)) {
-                        console.log("hhh")
                         dg.setEdge(edge.source.id, edge.target.id);
                     }
                 });
             dagre.layout(dg);
-            console.log(JSON.stringify(dg))
+            // console.log(JSON.stringify(dg))
             //fix infinite number
             let finite_width =  isFinite(Object.values(dg)[3].width);
             let finite_height =  isFinite(Object.values(dg)[3].height);
@@ -187,7 +186,7 @@ function calljsplumb() {
             // console.log(finite_height)
             let div_width = !finite_width?600:Object.values(dg)[3].width;
             let div_height = !finite_height ?600:Object.values(dg)[3].height;
-            console.log($("#"+div_id))
+            // console.log($("#"+div_id))
             //self-adaptive size
             $("#"+div_id).css({width: div_width, height: div_height})
             let row_num = div_id.substring(0,10);

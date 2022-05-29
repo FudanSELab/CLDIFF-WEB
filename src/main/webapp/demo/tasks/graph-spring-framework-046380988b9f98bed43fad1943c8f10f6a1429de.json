@@ -106,7 +106,7 @@
             "group": 1
         }
     ],
-    "links": [
+    "edges": [
         {
             "link_type_str": "systematic",
             "source": 8,

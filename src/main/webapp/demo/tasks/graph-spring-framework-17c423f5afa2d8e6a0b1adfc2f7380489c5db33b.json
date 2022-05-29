@@ -1,0 +1,455 @@
+{
+    "nodes": [
+        {
+            "code": "\t\tfor (List<ResponseCookie> cookies : getCookies().values()) {\n\t\t\tfor (ResponseCookie cookie : cookies) {\n\t\t\t\tthis.response.addHeader(HttpHeaders.SET_COOKIE, cookie.toString());\n\t\t\t}\n\t\t}\n",
+            "file_name": "b1ed0511f7775c9edda3ea922cc8b7f6da3699dd__CLDIFF__spring-web/src/main/java/org/springframework/http/server/reactive/ServletServerHttpResponse.java",
+            "id": 23,
+            "desc": "moveEnhancedFor",
+            "group": 0
+        },
+        {
+            "code": "\t\t\t\tthis.response.addHeader(HttpHeaders.SET_COOKIE, cookie.toString());\n",
+            "file_name": "b1ed0511f7775c9edda3ea922cc8b7f6da3699dd__CLDIFF__spring-web/src/main/java/org/springframework/http/server/reactive/ServletServerHttpResponse.java",
+            "id": 24,
+            "desc": "moveExpressionStatement",
+            "group": 0
+        },
+        {
+            "code": "\t\tfor (List<ResponseCookie> cookies : getCookies().values()) {\n",
+            "file_name": "b1ed0511f7775c9edda3ea922cc8b7f6da3699dd__CLDIFF__spring-web/src/main/java/org/springframework/http/server/reactive/ServletServerHttpResponse.java",
+            "id": 25,
+            "desc": "moveMethodInvocation",
+            "group": 0
+        },
+        {
+            "code": "\t\t\tfor (ResponseCookie cookie : cookies) {\n",
+            "file_name": "b1ed0511f7775c9edda3ea922cc8b7f6da3699dd__CLDIFF__spring-web/src/main/java/org/springframework/http/server/reactive/ServletServerHttpResponse.java",
+            "id": 26,
+            "desc": "moveSingleVariableDeclaration",
+            "group": 0
+        },
+        {
+            "code": "\t\t\t\tthis.response.addHeader(HttpHeaders.SET_COOKIE, cookie.toString());\n",
+            "file_name": "b1ed0511f7775c9edda3ea922cc8b7f6da3699dd__CLDIFF__spring-web/src/main/java/org/springframework/http/server/reactive/ServletServerHttpResponse.java",
+            "id": 27,
+            "desc": "moveSimpleName",
+            "group": 0
+        },
+        {
+            "code": "\t\t\tfor (ResponseCookie cookie : cookies) {\n\t\t\t\tthis.response.addHeader(HttpHeaders.SET_COOKIE, cookie.toString());\n\t\t\t}\n",
+            "file_name": "b1ed0511f7775c9edda3ea922cc8b7f6da3699dd__CLDIFF__spring-web/src/main/java/org/springframework/http/server/reactive/ServletServerHttpResponse.java",
+            "id": 28,
+            "desc": "addEnhancedFor",
+            "group": 0
+        },
+        {
+            "code": "\t\tfor (String name : getCookies().keySet()) {\n\t\t\tfor (ResponseCookie httpCookie : getCookies().get(name)) {\n\t\t\t\tCookie cookie = new Cookie(name, httpCookie.getValue());\n\t\t\t\tif (!httpCookie.getMaxAge().isNegative()) {\n\t\t\t\t\tcookie.setMaxAge((int) httpCookie.getMaxAge().getSeconds());\n\t\t\t\t}\n\t\t\t\tif (httpCookie.getDomain() != null) {\n\t\t\t\t\tcookie.setDomain(httpCookie.getDomain());\n\t\t\t\t}\n\t\t\t\tif (httpCookie.getPath() != null) {\n\t\t\t\t\tcookie.setPath(httpCookie.getPath());\n\t\t\t\t}\n\t\t\t\tcookie.setSecure(httpCookie.isSecure());\n\t\t\t\tcookie.setHttpOnly(httpCookie.isHttpOnly());\n\t\t\t\tthis.response.addCookie(cookie);\n\t\t\t}\n\t\t}\n",
+            "file_name": "b1ed0511f7775c9edda3ea922cc8b7f6da3699dd__CLDIFF__spring-web/src/main/java/org/springframework/http/server/reactive/ServletServerHttpResponse.java",
+            "id": 29,
+            "desc": "deleteEnhancedFor",
+            "group": 0
+        },
+        {
+            "code": "\t\t\t\tCookie cookie = new Cookie(name, httpCookie.getValue());\n",
+            "file_name": "b1ed0511f7775c9edda3ea922cc8b7f6da3699dd__CLDIFF__spring-web/src/main/java/org/springframework/http/server/reactive/ServletServerHttpResponse.java",
+            "id": 30,
+            "desc": "deleteVariableDeclaration",
+            "group": 0
+        },
+        {
+            "code": "\t\t\t\tif (!httpCookie.getMaxAge().isNegative()) {\n\t\t\t\t\tcookie.setMaxAge((int) httpCookie.getMaxAge().getSeconds());\n\t\t\t\t}\n",
+            "file_name": "b1ed0511f7775c9edda3ea922cc8b7f6da3699dd__CLDIFF__spring-web/src/main/java/org/springframework/http/server/reactive/ServletServerHttpResponse.java",
+            "id": 31,
+            "desc": "deleteIf",
+            "group": 0
+        },
+        {
+            "code": "\t\t\t\tif (httpCookie.getDomain() != null) {\n\t\t\t\t\tcookie.setDomain(httpCookie.getDomain());\n\t\t\t\t}\n",
+            "file_name": "b1ed0511f7775c9edda3ea922cc8b7f6da3699dd__CLDIFF__spring-web/src/main/java/org/springframework/http/server/reactive/ServletServerHttpResponse.java",
+            "id": 32,
+            "desc": "deleteIf",
+            "group": 0
+        },
+        {
+            "code": "\t\t\t\tif (httpCookie.getPath() != null) {\n\t\t\t\t\tcookie.setPath(httpCookie.getPath());\n\t\t\t\t}\n",
+            "file_name": "b1ed0511f7775c9edda3ea922cc8b7f6da3699dd__CLDIFF__spring-web/src/main/java/org/springframework/http/server/reactive/ServletServerHttpResponse.java",
+            "id": 33,
+            "desc": "deleteIf",
+            "group": 0
+        },
+        {
+            "code": "\t\t\t\tcookie.setSecure(httpCookie.isSecure());\n",
+            "file_name": "b1ed0511f7775c9edda3ea922cc8b7f6da3699dd__CLDIFF__spring-web/src/main/java/org/springframework/http/server/reactive/ServletServerHttpResponse.java",
+            "id": 34,
+            "desc": "deleteExpressionStatement",
+            "group": 0
+        },
+        {
+            "code": "\t\t\t\tcookie.setHttpOnly(httpCookie.isHttpOnly());\n",
+            "file_name": "b1ed0511f7775c9edda3ea922cc8b7f6da3699dd__CLDIFF__spring-web/src/main/java/org/springframework/http/server/reactive/ServletServerHttpResponse.java",
+            "id": 35,
+            "desc": "deleteExpressionStatement",
+            "group": 0
+        },
+        {
+            "code": "\t\tfor (List<ResponseCookie> cookies : getCookies().values()) {\n\t\t\tfor (ResponseCookie cookie : cookies) {\n\t\t\t\tthis.response.addHeader(HttpHeaders.SET_COOKIE, cookie.toString());\n\t\t\t}\n\t\t}\n",
+            "file_name": "b1ed0511f7775c9edda3ea922cc8b7f6da3699dd__CLDIFF__spring-web/src/main/java/org/springframework/http/server/reactive/ServletServerHttpResponse.java",
+            "id": 36,
+            "desc": "updateEnhancedFor   by",
+            "group": 0
+        },
+        {
+            "code": "\t\t\t\tthis.response.addHeader(HttpHeaders.SET_COOKIE, cookie.toString());\n",
+            "file_name": "b1ed0511f7775c9edda3ea922cc8b7f6da3699dd__CLDIFF__spring-web/src/main/java/org/springframework/http/server/reactive/ServletServerHttpResponse.java",
+            "id": 37,
+            "desc": "updateExpressionStatement   by",
+            "group": 0
+        },
+        {
+            "code": "\t\t\t\tcookie.setSameSiteMode(httpCookie.getSameSite());\n",
+            "file_name": "b1ed0511f7775c9edda3ea922cc8b7f6da3699dd__CLDIFF__spring-web/src/main/java/org/springframework/http/server/reactive/UndertowServerHttpResponse.java",
+            "id": 38,
+            "desc": "addExpressionStatement",
+            "group": 1
+        },
+        {
+            "code": "\t\tRfc6265Utils.validateCookieName(name);\n",
+            "file_name": "b1ed0511f7775c9edda3ea922cc8b7f6da3699dd__CLDIFF__spring-web/src/main/java/org/springframework/http/ResponseCookie.java",
+            "id": 5,
+            "desc": "addExpressionStatement",
+            "group": 2
+        },
+        {
+            "code": "\t\tRfc6265Utils.validateCookieValue(value);\n",
+            "file_name": "b1ed0511f7775c9edda3ea922cc8b7f6da3699dd__CLDIFF__spring-web/src/main/java/org/springframework/http/ResponseCookie.java",
+            "id": 6,
+            "desc": "addExpressionStatement",
+            "group": 2
+        },
+        {
+            "code": "\t\tRfc6265Utils.validateDomain(domain);\n",
+            "file_name": "b1ed0511f7775c9edda3ea922cc8b7f6da3699dd__CLDIFF__spring-web/src/main/java/org/springframework/http/ResponseCookie.java",
+            "id": 7,
+            "desc": "addExpressionStatement",
+            "group": 2
+        },
+        {
+            "code": "\t\tRfc6265Utils.validatePath(path);\n",
+            "file_name": "b1ed0511f7775c9edda3ea922cc8b7f6da3699dd__CLDIFF__spring-web/src/main/java/org/springframework/http/ResponseCookie.java",
+            "id": 8,
+            "desc": "addExpressionStatement",
+            "group": 2
+        },
+        {
+            "code": "\tprivate static class Rfc6265Utils {\n\n\t\tprivate static final String SEPARATOR_CHARS = new String(new char[] {\n\t\t\t\t'(', ')', '<', '>', '@', ',', ';', ':', '\\\\', '\"', '/', '[', ']', '?', '=', '{', '}', ' '\n\t\t});\n\n\t\tprivate static final String DOMAIN_CHARS =\n\t\t\t\t\"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ.-\";\n\n\n\t\tpublic static void validateCookieName(String name) {\n\t\t\tfor (int i = 0; i < name.length(); i++) {\n\t\t\t\tchar c = name.charAt(i);\n\t\t\t\t// CTL = <US-ASCII control chars (octets 0 - 31) and DEL (127)>\n\t\t\t\tif (c <= 0x1F || c == 0x7F) {\n\t\t\t\t\tthrow new IllegalArgumentException(\n\t\t\t\t\t\t\tname + \": RFC2616 token cannot have control chars\");\n\t\t\t\t}\n\t\t\t\tif (SEPARATOR_CHARS.indexOf(c) >= 0) {\n\t\t\t\t\tthrow new IllegalArgumentException(\n\t\t\t\t\t\t\tname + \": RFC2616 token cannot have separator chars such as '\" + c + \"'\");\n\t\t\t\t}\n\t\t\t\tif (c >= 0x80) {\n\t\t\t\t\tthrow new IllegalArgumentException(\n\t\t\t\t\t\t\tname + \": RFC2616 token can only have US-ASCII: 0x\" + Integer.toHexString(c));\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\n\t\tpublic static void validateCookieValue(@Nullable String value) {\n\t\t\tif (value == null) {\n\t\t\t\treturn;\n\t\t\t}\n\t\t\tint start = 0;\n\t\t\tint end = value.length();\n\t\t\tif (end > 1 && value.charAt(0) == '\"' && value.charAt(end - 1) == '\"') {\n\t\t\t\tstart = 1;\n\t\t\t\tend--;\n\t\t\t}\n\t\t\tchar[] chars = value.toCharArray();\n\t\t\tfor (int i = start; i < end; i++) {\n\t\t\t\tchar c = chars[i];\n\t\t\t\tif (c < 0x21 || c == 0x22 || c == 0x2c || c == 0x3b || c == 0x5c || c == 0x7f) {\n\t\t\t\t\tthrow new IllegalArgumentException(\n\t\t\t\t\t\t\t\"RFC2616 cookie value cannot have '\" + c + \"'\");\n\t\t\t\t}\n\t\t\t\tif (c >= 0x80) {\n\t\t\t\t\tthrow new IllegalArgumentException(\n\t\t\t\t\t\t\t\"RFC2616 cookie value can only have US-ASCII chars: 0x\" + Integer.toHexString(c));\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\n\t\tpublic static void validateDomain(@Nullable String domain) {\n\t\t\tif (!StringUtils.hasLength(domain)) {\n\t\t\t\treturn;\n\t\t\t}\n\t\t\tint char1 = domain.charAt(0);\n\t\t\tint charN = domain.charAt(domain.length() - 1);\n\t\t\tif (char1 == '.' || char1 == '-' || charN == '.' || charN == '-') {\n\t\t\t\tthrow new IllegalArgumentException(\"Invalid first/last char in cookie domain: \" + domain);\n\t\t\t}\n\t\t\tfor (int i = 0, c = -1; i < domain.length(); i++) {\n\t\t\t\tint p = c;\n\t\t\t\tc = domain.charAt(i);\n\t\t\t\tif (DOMAIN_CHARS.indexOf(c) == -1 || (p == '.' && (c == '.' || c == '-')) || (p == '-' && c == '.')) {\n\t\t\t\t\tthrow new IllegalArgumentException(domain + \": invalid cookie domain char '\" + c + \"'\");\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\n\t\tpublic static void validatePath(@Nullable String path) {\n\t\t\tif (path == null) {\n\t\t\t\treturn;\n\t\t\t}\n\t\t\tfor (int i = 0; i < path.length(); i++) {\n\t\t\t\tchar c = path.charAt(i);\n\t\t\t\tif (c < 0x20 || c > 0x7E || c == ';') {\n\t\t\t\t\tthrow new IllegalArgumentException(path + \": Invalid cookie path char '\" + c + \"'\");\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n",
+            "file_name": "b1ed0511f7775c9edda3ea922cc8b7f6da3699dd__CLDIFF__spring-web/src/main/java/org/springframework/http/ResponseCookie.java",
+            "id": 9,
+            "desc": "addInnerClassDeclaration",
+            "group": 2
+        },
+        {
+            "code": "\t\t\t\tthis.response.addHeader(HttpHeaders.SET_COOKIE, cookie.toString());\n",
+            "file_name": "b1ed0511f7775c9edda3ea922cc8b7f6da3699dd__CLDIFF__spring-web/src/main/java/org/springframework/http/server/reactive/ReactorServerHttpResponse.java",
+            "id": 10,
+            "desc": "moveExpressionStatement",
+            "group": 3
+        },
+        {
+            "code": "\t\t\tfor (ResponseCookie cookie : cookies) {\n",
+            "file_name": "b1ed0511f7775c9edda3ea922cc8b7f6da3699dd__CLDIFF__spring-web/src/main/java/org/springframework/http/server/reactive/ReactorServerHttpResponse.java",
+            "id": 11,
+            "desc": "moveSingleVariableDeclaration",
+            "group": 3
+        },
+        {
+            "code": "\t\t\t\tthis.response.addHeader(HttpHeaders.SET_COOKIE, cookie.toString());\n",
+            "file_name": "b1ed0511f7775c9edda3ea922cc8b7f6da3699dd__CLDIFF__spring-web/src/main/java/org/springframework/http/server/reactive/ReactorServerHttpResponse.java",
+            "id": 12,
+            "desc": "moveSimpleName",
+            "group": 3
+        },
+        {
+            "code": "\t\t\tfor (ResponseCookie cookie : cookies) {\n\t\t\t\tthis.response.addHeader(HttpHeaders.SET_COOKIE, cookie.toString());\n\t\t\t}\n",
+            "file_name": "b1ed0511f7775c9edda3ea922cc8b7f6da3699dd__CLDIFF__spring-web/src/main/java/org/springframework/http/server/reactive/ReactorServerHttpResponse.java",
+            "id": 13,
+            "desc": "addEnhancedFor",
+            "group": 3
+        },
+        {
+            "code": "\t\t\tfor (ResponseCookie httpCookie : getCookies().get(name)) {\n\t\t\t\tCookie cookie = new DefaultCookie(name, httpCookie.getValue());\n\t\t\t\tif (!httpCookie.getMaxAge().isNegative()) {\n\t\t\t\t\tcookie.setMaxAge(httpCookie.getMaxAge().getSeconds());\n\t\t\t\t}\n\t\t\t\tif (httpCookie.getDomain() != null) {\n\t\t\t\t\tcookie.setDomain(httpCookie.getDomain());\n\t\t\t\t}\n\t\t\t\tif (httpCookie.getPath() != null) {\n\t\t\t\t\tcookie.setPath(httpCookie.getPath());\n\t\t\t\t}\n\t\t\t\tcookie.setSecure(httpCookie.isSecure());\n\t\t\t\tcookie.setHttpOnly(httpCookie.isHttpOnly());\n\t\t\t\tthis.response.addCookie(cookie);\n\t\t\t}\n",
+            "file_name": "b1ed0511f7775c9edda3ea922cc8b7f6da3699dd__CLDIFF__spring-web/src/main/java/org/springframework/http/server/reactive/ReactorServerHttpResponse.java",
+            "id": 14,
+            "desc": "deleteEnhancedFor",
+            "group": 3
+        },
+        {
+            "code": "\t\t\t\tCookie cookie = new DefaultCookie(name, httpCookie.getValue());\n",
+            "file_name": "b1ed0511f7775c9edda3ea922cc8b7f6da3699dd__CLDIFF__spring-web/src/main/java/org/springframework/http/server/reactive/ReactorServerHttpResponse.java",
+            "id": 15,
+            "desc": "deleteVariableDeclaration",
+            "group": 3
+        },
+        {
+            "code": "\t\t\t\tif (!httpCookie.getMaxAge().isNegative()) {\n\t\t\t\t\tcookie.setMaxAge(httpCookie.getMaxAge().getSeconds());\n\t\t\t\t}\n",
+            "file_name": "b1ed0511f7775c9edda3ea922cc8b7f6da3699dd__CLDIFF__spring-web/src/main/java/org/springframework/http/server/reactive/ReactorServerHttpResponse.java",
+            "id": 16,
+            "desc": "deleteIf",
+            "group": 3
+        },
+        {
+            "code": "\t\t\t\tif (httpCookie.getDomain() != null) {\n\t\t\t\t\tcookie.setDomain(httpCookie.getDomain());\n\t\t\t\t}\n",
+            "file_name": "b1ed0511f7775c9edda3ea922cc8b7f6da3699dd__CLDIFF__spring-web/src/main/java/org/springframework/http/server/reactive/ReactorServerHttpResponse.java",
+            "id": 17,
+            "desc": "deleteIf",
+            "group": 3
+        },
+        {
+            "code": "\t\t\t\tif (httpCookie.getPath() != null) {\n\t\t\t\t\tcookie.setPath(httpCookie.getPath());\n\t\t\t\t}\n",
+            "file_name": "b1ed0511f7775c9edda3ea922cc8b7f6da3699dd__CLDIFF__spring-web/src/main/java/org/springframework/http/server/reactive/ReactorServerHttpResponse.java",
+            "id": 18,
+            "desc": "deleteIf",
+            "group": 3
+        },
+        {
+            "code": "\t\t\t\tcookie.setSecure(httpCookie.isSecure());\n",
+            "file_name": "b1ed0511f7775c9edda3ea922cc8b7f6da3699dd__CLDIFF__spring-web/src/main/java/org/springframework/http/server/reactive/ReactorServerHttpResponse.java",
+            "id": 19,
+            "desc": "deleteExpressionStatement",
+            "group": 3
+        },
+        {
+            "code": "\t\t\t\tcookie.setHttpOnly(httpCookie.isHttpOnly());\n",
+            "file_name": "b1ed0511f7775c9edda3ea922cc8b7f6da3699dd__CLDIFF__spring-web/src/main/java/org/springframework/http/server/reactive/ReactorServerHttpResponse.java",
+            "id": 20,
+            "desc": "deleteExpressionStatement",
+            "group": 3
+        },
+        {
+            "code": "\t\tfor (List<ResponseCookie> cookies : getCookies().values()) {\n\t\t\tfor (ResponseCookie cookie : cookies) {\n\t\t\t\tthis.response.addHeader(HttpHeaders.SET_COOKIE, cookie.toString());\n\t\t\t}\n\t\t}\n",
+            "file_name": "b1ed0511f7775c9edda3ea922cc8b7f6da3699dd__CLDIFF__spring-web/src/main/java/org/springframework/http/server/reactive/ReactorServerHttpResponse.java",
+            "id": 21,
+            "desc": "updateEnhancedFor   by",
+            "group": 3
+        },
+        {
+            "code": "\t\t\t\tthis.response.addHeader(HttpHeaders.SET_COOKIE, cookie.toString());\n",
+            "file_name": "b1ed0511f7775c9edda3ea922cc8b7f6da3699dd__CLDIFF__spring-web/src/main/java/org/springframework/http/server/reactive/ReactorServerHttpResponse.java",
+            "id": 22,
+            "desc": "updateExpressionStatement   by",
+            "group": 3
+        },
+        {
+            "code": "\t\tfor (List<ResponseCookie> cookies : getCookies().values()) {\n",
+            "file_name": "b1ed0511f7775c9edda3ea922cc8b7f6da3699dd__CLDIFF__spring-test/src/main/java/org/springframework/mock/http/server/reactive/MockServerHttpResponse.java",
+            "id": 0,
+            "desc": "moveMethodInvocation",
+            "group": 4
+        },
+        {
+            "code": "\t\t\t\tgetHeaders().add(HttpHeaders.SET_COOKIE, cookie.toString());\n",
+            "file_name": "b1ed0511f7775c9edda3ea922cc8b7f6da3699dd__CLDIFF__spring-test/src/main/java/org/springframework/mock/http/server/reactive/MockServerHttpResponse.java",
+            "id": 1,
+            "desc": "moveMethodInvocation",
+            "group": 4
+        },
+        {
+            "code": "\t\tfor (List<ResponseCookie> cookies : getCookies().values()) {\n\t\t\tfor (ResponseCookie cookie : cookies) {\n\t\t\t\tgetHeaders().add(HttpHeaders.SET_COOKIE, cookie.toString());\n\t\t\t}\n\t\t}\n",
+            "file_name": "b1ed0511f7775c9edda3ea922cc8b7f6da3699dd__CLDIFF__spring-test/src/main/java/org/springframework/mock/http/server/reactive/MockServerHttpResponse.java",
+            "id": 2,
+            "desc": "addEnhancedFor",
+            "group": 4
+        },
+        {
+            "code": "\t\t\tfor (ResponseCookie cookie : cookies) {\n\t\t\t\tgetHeaders().add(HttpHeaders.SET_COOKIE, cookie.toString());\n\t\t\t}\n",
+            "file_name": "b1ed0511f7775c9edda3ea922cc8b7f6da3699dd__CLDIFF__spring-test/src/main/java/org/springframework/mock/http/server/reactive/MockServerHttpResponse.java",
+            "id": 3,
+            "desc": "addEnhancedFor",
+            "group": 4
+        },
+        {
+            "code": "\t\t\t\tgetHeaders().add(HttpHeaders.SET_COOKIE, cookie.toString());\n",
+            "file_name": "b1ed0511f7775c9edda3ea922cc8b7f6da3699dd__CLDIFF__spring-test/src/main/java/org/springframework/mock/http/server/reactive/MockServerHttpResponse.java",
+            "id": 4,
+            "desc": "updateExpressionStatement   by",
+            "group": 4
+        }
+    ],
+    "edges": [
+        {
+            "link_type_str": "systematic",
+            "source": 24,
+            "text": "systematic",
+            "type": 44,
+            "value": 1,
+            "target": 10
+        },
+        {
+            "link_type_str": "systematic",
+            "source": 27,
+            "text": "systematic",
+            "type": 44,
+            "value": 1,
+            "target": 12
+        },
+        {
+            "link_type_str": "systematic",
+            "source": 28,
+            "text": "systematic",
+            "type": 44,
+            "value": 1,
+            "target": 13
+        },
+        {
+            "link_type_str": "systematic",
+            "source": 32,
+            "text": "systematic",
+            "type": 44,
+            "value": 1,
+            "target": 17
+        },
+        {
+            "link_type_str": "systematic",
+            "source": 33,
+            "text": "systematic",
+            "type": 44,
+            "value": 1,
+            "target": 18
+        },
+        {
+            "link_type_str": "systematic",
+            "source": 34,
+            "text": "systematic",
+            "type": 44,
+            "value": 1,
+            "target": 19
+        },
+        {
+            "link_type_str": "systematic",
+            "source": 35,
+            "text": "systematic",
+            "type": 44,
+            "value": 1,
+            "target": 20
+        },
+        {
+            "link_type_str": "systematic",
+            "source": 37,
+            "text": "systematic",
+            "type": 44,
+            "value": 1,
+            "target": 22
+        },
+        {
+            "link_type_str": "defUse",
+            "source": 30,
+            "text": "defUse",
+            "type": 5,
+            "value": 1,
+            "target": 31
+        },
+        {
+            "link_type_str": "defUse",
+            "source": 30,
+            "text": "defUse",
+            "type": 5,
+            "value": 1,
+            "target": 32
+        },
+        {
+            "link_type_str": "defUse",
+            "source": 30,
+            "text": "defUse",
+            "type": 5,
+            "value": 1,
+            "target": 33
+        },
+        {
+            "link_type_str": "defUse",
+            "source": 30,
+            "text": "defUse",
+            "type": 5,
+            "value": 1,
+            "target": 34
+        },
+        {
+            "link_type_str": "defUse",
+            "source": 30,
+            "text": "defUse",
+            "type": 5,
+            "value": 1,
+            "target": 35
+        },
+        {
+            "link_type_str": "defUse",
+            "source": 30,
+            "text": "defUse",
+            "type": 5,
+            "value": 1,
+            "target": 24
+        },
+        {
+            "link_type_str": "defUse",
+            "source": 30,
+            "text": "defUse",
+            "type": 5,
+            "value": 1,
+            "target": 27
+        },
+        {
+            "link_type_str": "defUse",
+            "source": 15,
+            "text": "defUse",
+            "type": 5,
+            "value": 1,
+            "target": 16
+        },
+        {
+            "link_type_str": "defUse",
+            "source": 15,
+            "text": "defUse",
+            "type": 5,
+            "value": 1,
+            "target": 17
+        },
+        {
+            "link_type_str": "defUse",
+            "source": 15,
+            "text": "defUse",
+            "type": 5,
+            "value": 1,
+            "target": 18
+        },
+        {
+            "link_type_str": "defUse",
+            "source": 15,
+            "text": "defUse",
+            "type": 5,
+            "value": 1,
+            "target": 19
+        },
+        {
+            "link_type_str": "defUse",
+            "source": 15,
+            "text": "defUse",
+            "type": 5,
+            "value": 1,
+            "target": 20
+        },
+        {
+            "link_type_str": "defUse",
+            "source": 15,
+            "text": "defUse",
+            "type": 5,
+            "value": 1,
+            "target": 10
+        },
+        {
+            "link_type_str": "defUse",
+            "source": 15,
+            "text": "defUse",
+            "type": 5,
+            "value": 1,
+            "target": 12
+        }
+    ]
+}

@@ -225,7 +225,7 @@
             "group": 1
         }
     ],
-    "edges": [
+    "links": [
         {
             "link_type_str": "systematic",
             "source": 28,

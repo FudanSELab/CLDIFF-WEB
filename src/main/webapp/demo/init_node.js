@@ -135,8 +135,6 @@ function addZoom(){
         matrix[4] = (parseInt(matrix[4]) - parseInt(sw)).toString();
         matrix[5] = (parseInt(matrix[5]) - parseInt(sh)).toString();
         $container.find(".panzoom").panzoom("setMatrix",matrix);
-
-
     });
 
 }

@@ -1,0 +1,79 @@
+{
+    "nodes": [
+        {
+            "code": "\t\treturn new FileUrlResource(createRelativeURL(relativePath));\n",
+            "file_name": "957924ace217f27934428c31db3399fb413a9b31__CLDIFF__spring-core/src/main/java/org/springframework/core/io/FileUrlResource.java",
+            "id": 0,
+            "desc": "moveSimpleType",
+            "group": 0
+        },
+        {
+            "code": "\t\tif (relativePath.startsWith(\"/\")) {\n\t\t\trelativePath = relativePath.substring(1);\n\t\t}\n",
+            "file_name": "957924ace217f27934428c31db3399fb413a9b31__CLDIFF__spring-core/src/main/java/org/springframework/core/io/FileUrlResource.java",
+            "id": 1,
+            "desc": "deleteIf",
+            "group": 0
+        },
+        {
+            "code": "\t\treturn new FileUrlResource(createRelativeURL(relativePath));\n",
+            "file_name": "957924ace217f27934428c31db3399fb413a9b31__CLDIFF__spring-core/src/main/java/org/springframework/core/io/FileUrlResource.java",
+            "id": 2,
+            "desc": "updateReturn   by",
+            "group": 0
+        },
+        {
+            "code": "\t\treturn new UrlResource(createRelativeURL(relativePath));\n",
+            "file_name": "957924ace217f27934428c31db3399fb413a9b31__CLDIFF__spring-core/src/main/java/org/springframework/core/io/UrlResource.java",
+            "id": 3,
+            "desc": "moveSimpleType",
+            "group": 1
+        },
+        {
+            "code": "\t\tif (relativePath.startsWith(\"/\")) {\n\t\t\trelativePath = relativePath.substring(1);\n\t\t}\n",
+            "file_name": "957924ace217f27934428c31db3399fb413a9b31__CLDIFF__spring-core/src/main/java/org/springframework/core/io/UrlResource.java",
+            "id": 4,
+            "desc": "deleteIf",
+            "group": 1
+        },
+        {
+            "code": "\t\treturn new UrlResource(createRelativeURL(relativePath));\n",
+            "file_name": "957924ace217f27934428c31db3399fb413a9b31__CLDIFF__spring-core/src/main/java/org/springframework/core/io/UrlResource.java",
+            "id": 5,
+            "desc": "updateReturn   by",
+            "group": 1
+        },
+        {
+            "code": "\tprotected URL createRelativeURL(String relativePath) throws MalformedURLException {\n\t\tif (relativePath.startsWith(\"/\")) {\n\t\t\trelativePath = relativePath.substring(1);\n\t\t}\n\t\t// # can appear in filenames, java.net.URL should not treat it as a fragment\n\t\trelativePath = StringUtils.replace(relativePath, \"#\", \"%23\");\n\t\t// Use the URL constructor for applying the relative path as a URL spec\n\t\treturn new URL(this.url, relativePath);\n\t}\n",
+            "file_name": "957924ace217f27934428c31db3399fb413a9b31__CLDIFF__spring-core/src/main/java/org/springframework/core/io/UrlResource.java",
+            "id": 6,
+            "desc": "addMethodDeclaration",
+            "group": 1
+        }
+    ],
+    "edges": [
+        {
+            "link_type_str": "systematic",
+            "source": 1,
+            "text": "systematic",
+            "type": 44,
+            "value": 1,
+            "target": 4
+        },
+        {
+            "link_type_str": "defUseMethod",
+            "source": 6,
+            "text": "defUseMethod",
+            "type": 56,
+            "value": 1,
+            "target": 5
+        },
+        {
+            "link_type_str": "defUseMethod",
+            "source": 6,
+            "text": "defUseMethod",
+            "type": 56,
+            "value": 1,
+            "target": 2
+        }
+    ]
+}

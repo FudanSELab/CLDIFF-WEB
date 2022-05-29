@@ -1,0 +1,94 @@
+{
+    "nodes": [
+        {
+            "code": "\t\treturn getClass().getName() + \": \" + this.classFilter + \", \" + this.methodMatcher;\n",
+            "file_name": "17c423f5afa2d8e6a0b1adfc2f7380489c5db33b__CLDIFF__spring-aop/src/main/java/org/springframework/aop/support/ComposablePointcut.java",
+            "id": 0,
+            "desc": "updateReturn   by",
+            "group": 0
+        },
+        {
+            "code": "\tpublic DefaultIntroductionAdvisor(DynamicIntroductionAdvice advice, Class<?> ifc) {\n\t\tAssert.notNull(advice, \"Advice must not be null\");\n\t\tthis.advice = advice;\n\t\taddInterface(ifc);\n\t}\n",
+            "file_name": "17c423f5afa2d8e6a0b1adfc2f7380489c5db33b__CLDIFF__spring-aop/src/main/java/org/springframework/aop/support/DefaultIntroductionAdvisor.java",
+            "id": 1,
+            "desc": "updateMethodDeclaration declaration",
+            "group": 1
+        },
+        {
+            "code": "\tpublic void addInterface(Class<?> ifc) {\n\t\tAssert.notNull(ifc, \"Interface must not be null\");\n\t\tif (!ifc.isInterface()) {\n\t\t\tthrow new IllegalArgumentException(\"Specified class [\" + ifc.getName() + \"] must be an interface\");\n\t\t}\n\t\tthis.interfaces.add(ifc);\n\t}\n",
+            "file_name": "17c423f5afa2d8e6a0b1adfc2f7380489c5db33b__CLDIFF__spring-aop/src/main/java/org/springframework/aop/support/DefaultIntroductionAdvisor.java",
+            "id": 2,
+            "desc": "updateMethodDeclaration declaration",
+            "group": 1
+        },
+        {
+            "code": "\t\taddInterface(ifc);\n",
+            "file_name": "17c423f5afa2d8e6a0b1adfc2f7380489c5db33b__CLDIFF__spring-aop/src/main/java/org/springframework/aop/support/DefaultIntroductionAdvisor.java",
+            "id": 3,
+            "desc": "updateExpressionStatement   by",
+            "group": 1
+        },
+        {
+            "code": "\t\tAssert.notNull(ifc, \"Interface must not be null\");\n",
+            "file_name": "17c423f5afa2d8e6a0b1adfc2f7380489c5db33b__CLDIFF__spring-aop/src/main/java/org/springframework/aop/support/DefaultIntroductionAdvisor.java",
+            "id": 4,
+            "desc": "updateExpressionStatement   by",
+            "group": 1
+        },
+        {
+            "code": "\t\tthis.interfaces.add(ifc);\n",
+            "file_name": "17c423f5afa2d8e6a0b1adfc2f7380489c5db33b__CLDIFF__spring-aop/src/main/java/org/springframework/aop/support/DefaultIntroductionAdvisor.java",
+            "id": 5,
+            "desc": "updateExpressionStatement   by",
+            "group": 1
+        },
+        {
+            "code": "\t\tif (!ifc.isInterface()) {\n\t\t\tthrow new IllegalArgumentException(\"Specified class [\" + ifc.getName() + \"] must be an interface\");\n\t\t}\n",
+            "file_name": "17c423f5afa2d8e6a0b1adfc2f7380489c5db33b__CLDIFF__spring-aop/src/main/java/org/springframework/aop/support/DefaultIntroductionAdvisor.java",
+            "id": 6,
+            "desc": "updateIf condition  by",
+            "group": 1
+        },
+        {
+            "code": "\t\t\tthrow new IllegalArgumentException(\"Specified class [\" + ifc.getName() + \"] must be an interface\");\n",
+            "file_name": "17c423f5afa2d8e6a0b1adfc2f7380489c5db33b__CLDIFF__spring-aop/src/main/java/org/springframework/aop/support/DefaultIntroductionAdvisor.java",
+            "id": 7,
+            "desc": "updateThrow   by",
+            "group": 1
+        }
+    ],
+    "edges": [
+        {
+            "link_type_str": "systematic",
+            "source": 1,
+            "text": "systematic",
+            "type": 44,
+            "value": 1,
+            "target": 2
+        },
+        {
+            "link_type_str": "systematic",
+            "source": 3,
+            "text": "systematic",
+            "type": 44,
+            "value": 1,
+            "target": 4
+        },
+        {
+            "link_type_str": "systematic",
+            "source": 3,
+            "text": "systematic",
+            "type": 44,
+            "value": 1,
+            "target": 5
+        },
+        {
+            "link_type_str": "systematic",
+            "source": 4,
+            "text": "systematic",
+            "type": 44,
+            "value": 1,
+            "target": 5
+        }
+    ]
+}

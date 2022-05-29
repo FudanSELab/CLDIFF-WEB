@@ -1,1 +1,291 @@
-{"nodes": [{"code": "    private volatile ServiceState serviceState = ServiceState.CREATE_JUST;\n", "file_name": "c183e0d4026770a68bedce02507446431cdf6265__CLDIFF__client/src/main/java/org/apache/rocketmq/client/impl/consumer/DefaultMQPullConsumerImpl.java", "id": 27, "desc": "updateFieldDeclaration ", "group": 0}, {"code": "    public synchronized void shutdown() {\n        switch (this.serviceState) {\n            case CREATE_JUST:\n                break;\n            case RUNNING:\n                this.persistConsumerOffset();\n                this.mQClientFactory.unregisterConsumer(this.defaultMQPullConsumer.getConsumerGroup());\n                this.mQClientFactory.shutdown();\n                log.info(\"the consumer [{}] shutdown OK\", this.defaultMQPullConsumer.getConsumerGroup());\n                this.serviceState = ServiceState.SHUTDOWN_ALREADY;\n                break;\n            case SHUTDOWN_ALREADY:\n                break;\n            default:\n                break;\n        }\n    }\n", "file_name": "c183e0d4026770a68bedce02507446431cdf6265__CLDIFF__client/src/main/java/org/apache/rocketmq/client/impl/consumer/DefaultMQPullConsumerImpl.java", "id": 28, "desc": "updateMethodDeclaration declaration", "group": 0}, {"code": "    public synchronized void start() throws MQClientException {\n        switch (this.serviceState) {\n            case CREATE_JUST:\n                this.serviceState = ServiceState.START_FAILED;\n\n                this.checkConfig();\n\n                this.copySubscription();\n\n                if (this.defaultMQPullConsumer.getMessageModel() == MessageModel.CLUSTERING) {\n                    this.defaultMQPullConsumer.changeInstanceNameToPID();\n                }\n\n                this.mQClientFactory = MQClientManager.getInstance().getAndCreateMQClientInstance(this.defaultMQPullConsumer, this.rpcHook);\n\n                this.rebalanceImpl.setConsumerGroup(this.defaultMQPullConsumer.getConsumerGroup());\n                this.rebalanceImpl.setMessageModel(this.defaultMQPullConsumer.getMessageModel());\n                this.rebalanceImpl.setAllocateMessageQueueStrategy(this.defaultMQPullConsumer.getAllocateMessageQueueStrategy());\n                this.rebalanceImpl.setmQClientFactory(this.mQClientFactory);\n\n                this.pullAPIWrapper = new PullAPIWrapper(//\n                    mQClientFactory, //\n                    this.defaultMQPullConsumer.getConsumerGroup(), isUnitMode());\n                this.pullAPIWrapper.registerFilterMessageHook(filterMessageHookList);\n\n                if (this.defaultMQPullConsumer.getOffsetStore() != null) {\n                    this.offsetStore = this.defaultMQPullConsumer.getOffsetStore();\n                } else {\n                    switch (this.defaultMQPullConsumer.getMessageModel()) {\n                        case BROADCASTING:\n                            this.offsetStore = new LocalFileOffsetStore(this.mQClientFactory, this.defaultMQPullConsumer.getConsumerGroup());\n                            break;\n                        case CLUSTERING:\n                            this.offsetStore = new RemoteBrokerOffsetStore(this.mQClientFactory, this.defaultMQPullConsumer.getConsumerGroup());\n                            break;\n                        default:\n                            break;\n                    }\n                }\n\n                this.offsetStore.load();\n\n                boolean registerOK = mQClientFactory.registerConsumer(this.defaultMQPullConsumer.getConsumerGroup(), this);\n                if (!registerOK) {\n                    this.serviceState = ServiceState.CREATE_JUST;\n\n                    throw new MQClientException(\"The consumer group[\" + this.defaultMQPullConsumer.getConsumerGroup()\n                        + \"] has been created before, specify another name please.\" + FAQUrl.suggestTodo(FAQUrl.GROUP_NAME_DUPLICATE_URL),\n                        null);\n                }\n\n                mQClientFactory.start();\n                log.info(\"the consumer [{}] start OK\", this.defaultMQPullConsumer.getConsumerGroup());\n                this.serviceState = ServiceState.RUNNING;\n                break;\n            case RUNNING:\n            case START_FAILED:\n            case SHUTDOWN_ALREADY:\n                throw new MQClientException(\"The PullConsumer service state not OK, maybe started once, \"//\n                    + this.serviceState//\n                    + FAQUrl.suggestTodo(FAQUrl.CLIENT_SERVICE_NOT_OK),\n                    null);\n            default:\n                break;\n        }\n\n    }\n", "file_name": "c183e0d4026770a68bedce02507446431cdf6265__CLDIFF__client/src/main/java/org/apache/rocketmq/client/impl/consumer/DefaultMQPullConsumerImpl.java", "id": 29, "desc": "updateMethodDeclaration declaration", "group": 0}, {"code": "    @Deprecated\n    public void setServiceState(ServiceState serviceState) {\n        this.serviceState = serviceState;\n    }\n", "file_name": "c183e0d4026770a68bedce02507446431cdf6265__CLDIFF__client/src/main/java/org/apache/rocketmq/client/impl/consumer/DefaultMQPullConsumerImpl.java", "id": 30, "desc": "updateMethodDeclaration declaration", "group": 0}, {"code": "    private volatile ServiceState serviceState = ServiceState.CREATE_JUST;\n", "file_name": "c183e0d4026770a68bedce02507446431cdf6265__CLDIFF__client/src/main/java/org/apache/rocketmq/client/impl/consumer/DefaultMQPushConsumerImpl.java", "id": 31, "desc": "updateFieldDeclaration ", "group": 1}, {"code": "    public synchronized void shutdown() {\n        switch (this.serviceState) {\n            case CREATE_JUST:\n                break;\n            case RUNNING:\n                this.consumeMessageService.shutdown();\n                this.persistConsumerOffset();\n                this.mQClientFactory.unregisterConsumer(this.defaultMQPushConsumer.getConsumerGroup());\n                this.mQClientFactory.shutdown();\n                log.info(\"the consumer [{}] shutdown OK\", this.defaultMQPushConsumer.getConsumerGroup());\n                this.rebalanceImpl.destroy();\n                this.serviceState = ServiceState.SHUTDOWN_ALREADY;\n                break;\n            case SHUTDOWN_ALREADY:\n                break;\n            default:\n                break;\n        }\n    }\n", "file_name": "c183e0d4026770a68bedce02507446431cdf6265__CLDIFF__client/src/main/java/org/apache/rocketmq/client/impl/consumer/DefaultMQPushConsumerImpl.java", "id": 32, "desc": "updateMethodDeclaration declaration", "group": 1}, {"code": "    public synchronized void start() throws MQClientException {\n        switch (this.serviceState) {\n            case CREATE_JUST:\n                log.info(\"the consumer [{}] start beginning. messageModel={}, isUnitMode={}\", this.defaultMQPushConsumer.getConsumerGroup(),\n                    this.defaultMQPushConsumer.getMessageModel(), this.defaultMQPushConsumer.isUnitMode());\n                this.serviceState = ServiceState.START_FAILED;\n\n                this.checkConfig();\n\n                this.copySubscription();\n\n                if (this.defaultMQPushConsumer.getMessageModel() == MessageModel.CLUSTERING) {\n                    this.defaultMQPushConsumer.changeInstanceNameToPID();\n                }\n\n                this.mQClientFactory = MQClientManager.getInstance().getAndCreateMQClientInstance(this.defaultMQPushConsumer, this.rpcHook);\n\n                this.rebalanceImpl.setConsumerGroup(this.defaultMQPushConsumer.getConsumerGroup());\n                this.rebalanceImpl.setMessageModel(this.defaultMQPushConsumer.getMessageModel());\n                this.rebalanceImpl.setAllocateMessageQueueStrategy(this.defaultMQPushConsumer.getAllocateMessageQueueStrategy());\n                this.rebalanceImpl.setmQClientFactory(this.mQClientFactory);\n\n                this.pullAPIWrapper = new PullAPIWrapper(\n                    mQClientFactory,\n                    this.defaultMQPushConsumer.getConsumerGroup(), isUnitMode());\n                this.pullAPIWrapper.registerFilterMessageHook(filterMessageHookList);\n\n                if (this.defaultMQPushConsumer.getOffsetStore() != null) {\n                    this.offsetStore = this.defaultMQPushConsumer.getOffsetStore();\n                } else {\n                    switch (this.defaultMQPushConsumer.getMessageModel()) {\n                        case BROADCASTING:\n                            this.offsetStore = new LocalFileOffsetStore(this.mQClientFactory, this.defaultMQPushConsumer.getConsumerGroup());\n                            break;\n                        case CLUSTERING:\n                            this.offsetStore = new RemoteBrokerOffsetStore(this.mQClientFactory, this.defaultMQPushConsumer.getConsumerGroup());\n                            break;\n                        default:\n                            break;\n                    }\n                }\n                this.offsetStore.load();\n\n                if (this.getMessageListenerInner() instanceof MessageListenerOrderly) {\n                    this.consumeOrderly = true;\n                    this.consumeMessageService =\n                        new ConsumeMessageOrderlyService(this, (MessageListenerOrderly) this.getMessageListenerInner());\n                } else if (this.getMessageListenerInner() instanceof MessageListenerConcurrently) {\n                    this.consumeOrderly = false;\n                    this.consumeMessageService =\n                        new ConsumeMessageConcurrentlyService(this, (MessageListenerConcurrently) this.getMessageListenerInner());\n                }\n\n                this.consumeMessageService.start();\n\n                boolean registerOK = mQClientFactory.registerConsumer(this.defaultMQPushConsumer.getConsumerGroup(), this);\n                if (!registerOK) {\n                    this.serviceState = ServiceState.CREATE_JUST;\n                    this.consumeMessageService.shutdown();\n                    throw new MQClientException(\"The consumer group[\" + this.defaultMQPushConsumer.getConsumerGroup()\n                        + \"] has been created before, specify another name please.\" + FAQUrl.suggestTodo(FAQUrl.GROUP_NAME_DUPLICATE_URL),\n                        null);\n                }\n\n                mQClientFactory.start();\n                log.info(\"the consumer [{}] start OK.\", this.defaultMQPushConsumer.getConsumerGroup());\n                this.serviceState = ServiceState.RUNNING;\n                break;\n            case RUNNING:\n            case START_FAILED:\n            case SHUTDOWN_ALREADY:\n                throw new MQClientException(\"The PushConsumer service state not OK, maybe started once, \"//\n                    + this.serviceState//\n                    + FAQUrl.suggestTodo(FAQUrl.CLIENT_SERVICE_NOT_OK),\n                    null);\n            default:\n                break;\n        }\n\n        this.updateTopicSubscribeInfoWhenSubscriptionChanged();\n        this.mQClientFactory.sendHeartbeatToAllBrokerWithLock();\n        this.mQClientFactory.rebalanceImmediately();\n    }\n", "file_name": "c183e0d4026770a68bedce02507446431cdf6265__CLDIFF__client/src/main/java/org/apache/rocketmq/client/impl/consumer/DefaultMQPushConsumerImpl.java", "id": 33, "desc": "updateMethodDeclaration declaration", "group": 1}, {"code": "    @Deprecated\n    public synchronized void setServiceState(ServiceState serviceState) {\n        this.serviceState = serviceState;\n    }\n", "file_name": "c183e0d4026770a68bedce02507446431cdf6265__CLDIFF__client/src/main/java/org/apache/rocketmq/client/impl/consumer/DefaultMQPushConsumerImpl.java", "id": 34, "desc": "updateMethodDeclaration declaration", "group": 1}], "edges": []}
+{
+    "nodes": [
+        {
+            "code": "\t\t\t\tfor (Runnable remainingTask : this.executor.shutdownNow()) {\n",
+            "file_name": "9d63f805b3b3ad07f102f6df779b852b2d1f306c__CLDIFF__spring-context/src/main/java/org/springframework/scheduling/concurrent/ExecutorConfigurationSupport.java",
+            "id": 0,
+            "desc": "moveMethodInvocation",
+            "group": 0
+        },
+        {
+            "code": "\t\t\t\tfor (Runnable remainingTask : this.executor.shutdownNow()) {\n\t\t\t\t\tcancelRemainingTask(remainingTask);\n\t\t\t\t}\n",
+            "file_name": "9d63f805b3b3ad07f102f6df779b852b2d1f306c__CLDIFF__spring-context/src/main/java/org/springframework/scheduling/concurrent/ExecutorConfigurationSupport.java",
+            "id": 1,
+            "desc": "addEnhancedFor",
+            "group": 0
+        },
+        {
+            "code": "\t\t\t\t\tcancelRemainingTask(remainingTask);\n",
+            "file_name": "9d63f805b3b3ad07f102f6df779b852b2d1f306c__CLDIFF__spring-context/src/main/java/org/springframework/scheduling/concurrent/ExecutorConfigurationSupport.java",
+            "id": 2,
+            "desc": "addExpressionStatement",
+            "group": 0
+        },
+        {
+            "code": "\tprotected void cancelRemainingTask(Runnable task) {\n\t\tif (task instanceof RunnableFuture) {\n\t\t\t((RunnableFuture<?>) task).cancel(true);\n\t\t}\n\t}\n",
+            "file_name": "9d63f805b3b3ad07f102f6df779b852b2d1f306c__CLDIFF__spring-context/src/main/java/org/springframework/scheduling/concurrent/ExecutorConfigurationSupport.java",
+            "id": 3,
+            "desc": "addMethodDeclaration",
+            "group": 0
+        },
+        {
+            "code": "\t\t\t\t\tRunnable decorated = taskDecorator.decorate(command);\n",
+            "file_name": "9d63f805b3b3ad07f102f6df779b852b2d1f306c__CLDIFF__spring-context/src/main/java/org/springframework/scheduling/concurrent/ThreadPoolTaskExecutor.java",
+            "id": 4,
+            "desc": "moveMethodInvocation",
+            "group": 1
+        },
+        {
+            "code": "\t\t\t\t\tRunnable decorated = taskDecorator.decorate(command);\n",
+            "file_name": "9d63f805b3b3ad07f102f6df779b852b2d1f306c__CLDIFF__spring-context/src/main/java/org/springframework/scheduling/concurrent/ThreadPoolTaskExecutor.java",
+            "id": 5,
+            "desc": "addVariableDeclaration",
+            "group": 1
+        },
+        {
+            "code": "\t\t\t\t\tif (decorated != command) {\n\t\t\t\t\t\tdecoratedTaskMap.put(decorated, command);\n\t\t\t\t\t}\n",
+            "file_name": "9d63f805b3b3ad07f102f6df779b852b2d1f306c__CLDIFF__spring-context/src/main/java/org/springframework/scheduling/concurrent/ThreadPoolTaskExecutor.java",
+            "id": 6,
+            "desc": "addIf",
+            "group": 1
+        },
+        {
+            "code": "\t\t\t\t\tsuper.execute(decorated);\n",
+            "file_name": "9d63f805b3b3ad07f102f6df779b852b2d1f306c__CLDIFF__spring-context/src/main/java/org/springframework/scheduling/concurrent/ThreadPoolTaskExecutor.java",
+            "id": 7,
+            "desc": "updateExpressionStatement   by",
+            "group": 1
+        },
+        {
+            "code": "\t@Override\n\tprotected void cancelRemainingTask(Runnable task) {\n\t\tsuper.cancelRemainingTask(task);\n\t\t// Cancel associated user-level Future handle as well\n\t\tObject original = this.decoratedTaskMap.get(task);\n\t\tif (original instanceof Future) {\n\t\t\t((Future<?>) original).cancel(true);\n\t\t}\n\t}\n",
+            "file_name": "9d63f805b3b3ad07f102f6df779b852b2d1f306c__CLDIFF__spring-context/src/main/java/org/springframework/scheduling/concurrent/ThreadPoolTaskExecutor.java",
+            "id": 8,
+            "desc": "addMethodDeclaration",
+            "group": 1
+        },
+        {
+            "code": "\tprivate final Map<Runnable, Object> decoratedTaskMap =\n\t\t\tnew ConcurrentReferenceHashMap<>(16, ConcurrentReferenceHashMap.ReferenceType.WEAK);\n",
+            "file_name": "9d63f805b3b3ad07f102f6df779b852b2d1f306c__CLDIFF__spring-context/src/main/java/org/springframework/scheduling/concurrent/ThreadPoolTaskExecutor.java",
+            "id": 9,
+            "desc": "addFieldDeclaration",
+            "group": 1
+        },
+        {
+            "code": "\t\t\texecuteAndTrack(executor, listenableFuture);\n",
+            "file_name": "9d63f805b3b3ad07f102f6df779b852b2d1f306c__CLDIFF__spring-context/src/main/java/org/springframework/scheduling/concurrent/ThreadPoolTaskScheduler.java",
+            "id": 10,
+            "desc": "updateExpressionStatement   by",
+            "group": 2
+        },
+        {
+            "code": "\t\t\texecuteAndTrack(executor, listenableFuture);\n",
+            "file_name": "9d63f805b3b3ad07f102f6df779b852b2d1f306c__CLDIFF__spring-context/src/main/java/org/springframework/scheduling/concurrent/ThreadPoolTaskScheduler.java",
+            "id": 11,
+            "desc": "updateExpressionStatement   by",
+            "group": 2
+        },
+        {
+            "code": "\t\t\treturn listenableFuture;\n",
+            "file_name": "9d63f805b3b3ad07f102f6df779b852b2d1f306c__CLDIFF__spring-context/src/main/java/org/springframework/scheduling/concurrent/ThreadPoolTaskScheduler.java",
+            "id": 12,
+            "desc": "updateReturn   by",
+            "group": 2
+        },
+        {
+            "code": "\t\t\treturn listenableFuture;\n",
+            "file_name": "9d63f805b3b3ad07f102f6df779b852b2d1f306c__CLDIFF__spring-context/src/main/java/org/springframework/scheduling/concurrent/ThreadPoolTaskScheduler.java",
+            "id": 13,
+            "desc": "updateReturn   by",
+            "group": 2
+        },
+        {
+            "code": "\t\t\tListenableFutureTask<Object> listenableFuture = new ListenableFutureTask<>(task, null);\n",
+            "file_name": "9d63f805b3b3ad07f102f6df779b852b2d1f306c__CLDIFF__spring-context/src/main/java/org/springframework/scheduling/concurrent/ThreadPoolTaskScheduler.java",
+            "id": 14,
+            "desc": "updateVariableDeclaration   by",
+            "group": 2
+        },
+        {
+            "code": "\t\t\tListenableFutureTask<T> listenableFuture = new ListenableFutureTask<>(task);\n",
+            "file_name": "9d63f805b3b3ad07f102f6df779b852b2d1f306c__CLDIFF__spring-context/src/main/java/org/springframework/scheduling/concurrent/ThreadPoolTaskScheduler.java",
+            "id": 15,
+            "desc": "updateVariableDeclaration   by",
+            "group": 2
+        },
+        {
+            "code": "\t@Override\n\tprotected void cancelRemainingTask(Runnable task) {\n\t\tsuper.cancelRemainingTask(task);\n\t\t// Cancel associated user-level ListenableFuture handle as well\n\t\tListenableFuture<?> listenableFuture = this.listenableFutureMap.get(task);\n\t\tif (listenableFuture != null) {\n\t\t\tlistenableFuture.cancel(true);\n\t\t}\n\t}\n",
+            "file_name": "9d63f805b3b3ad07f102f6df779b852b2d1f306c__CLDIFF__spring-context/src/main/java/org/springframework/scheduling/concurrent/ThreadPoolTaskScheduler.java",
+            "id": 16,
+            "desc": "addMethodDeclaration",
+            "group": 2
+        },
+        {
+            "code": "\tprivate void executeAndTrack(ExecutorService executor, ListenableFutureTask<?> listenableFuture) {\n\t\tFuture<?> scheduledFuture = executor.submit(errorHandlingTask(listenableFuture, false));\n\t\tthis.listenableFutureMap.put(scheduledFuture, listenableFuture);\n\t\tlistenableFuture.addCallback(result -> listenableFutureMap.remove(scheduledFuture),\n\t\t\t\tex -> listenableFutureMap.remove(scheduledFuture));\n\t}\n",
+            "file_name": "9d63f805b3b3ad07f102f6df779b852b2d1f306c__CLDIFF__spring-context/src/main/java/org/springframework/scheduling/concurrent/ThreadPoolTaskScheduler.java",
+            "id": 17,
+            "desc": "addMethodDeclaration",
+            "group": 2
+        },
+        {
+            "code": "\tprivate final Map<Object, ListenableFuture<?>> listenableFutureMap =\n\t\t\tnew ConcurrentReferenceHashMap<>(16, ConcurrentReferenceHashMap.ReferenceType.WEAK);\n",
+            "file_name": "9d63f805b3b3ad07f102f6df779b852b2d1f306c__CLDIFF__spring-context/src/main/java/org/springframework/scheduling/concurrent/ThreadPoolTaskScheduler.java",
+            "id": 18,
+            "desc": "addFieldDeclaration",
+            "group": 2
+        }
+    ],
+    "edges": [
+        {
+            "link_type_str": "systematic",
+            "source": 10,
+            "text": "systematic",
+            "type": 44,
+            "value": 1,
+            "target": 11
+        },
+        {
+            "link_type_str": "systematic",
+            "source": 12,
+            "text": "systematic",
+            "type": 44,
+            "value": 1,
+            "target": 13
+        },
+        {
+            "link_type_str": "systematic",
+            "source": 14,
+            "text": "systematic",
+            "type": 44,
+            "value": 1,
+            "target": 15
+        },
+        {
+            "link_type_str": "defUseMethod",
+            "source": 3,
+            "text": "defUseMethod",
+            "type": 56,
+            "value": 1,
+            "target": 2
+        },
+        {
+            "link_type_str": "defUseField",
+            "source": 9,
+            "text": "defUseField",
+            "type": 57,
+            "value": 1,
+            "target": 6
+        },
+        {
+            "link_type_str": "defUse",
+            "source": 5,
+            "text": "defUse",
+            "type": 5,
+            "value": 1,
+            "target": 6
+        },
+        {
+            "link_type_str": "defUseMethod",
+            "source": 17,
+            "text": "defUseMethod",
+            "type": 56,
+            "value": 1,
+            "target": 10
+        },
+        {
+            "link_type_str": "defUseMethod",
+            "source": 17,
+            "text": "defUseMethod",
+            "type": 56,
+            "value": 1,
+            "target": 11
+        },
+        {
+            "link_type_str": "defUse",
+            "source": 14,
+            "text": "defUse",
+            "type": 5,
+            "value": 1,
+            "target": 10
+        },
+        {
+            "link_type_str": "defUse",
+            "source": 14,
+            "text": "defUse",
+            "type": 5,
+            "value": 1,
+            "target": 12
+        },
+        {
+            "link_type_str": "defUse",
+            "source": 15,
+            "text": "defUse",
+            "type": 5,
+            "value": 1,
+            "target": 11
+        },
+        {
+            "link_type_str": "defUse",
+            "source": 15,
+            "text": "defUse",
+            "type": 5,
+            "value": 1,
+            "target": 13
+        },
+        {
+            "link_type_str": "defUseMethod",
+            "source": 8,
+            "text": "defUseMethod",
+            "type": 56,
+            "value": 1,
+            "target": 2
+        },
+        {
+            "link_type_str": "defUseTaicu",
+            "source": 3,
+            "text": "defUseTaicu",
+            "type": 51,
+            "value": 1,
+            "target": 8
+        },
+        {
+            "link_type_str": "overrideMethod",
+            "source": 8,
+            "text": "overrideMethod",
+            "type": 42,
+            "value": 1,
+            "target": 3
+        },
+        {
+            "link_type_str": "defUseMethod",
+            "source": 16,
+            "text": "defUseMethod",
+            "type": 56,
+            "value": 1,
+            "target": 2
+        },
+        {
+            "link_type_str": "defUseTaicu",
+            "source": 3,
+            "text": "defUseTaicu",
+            "type": 51,
+            "value": 1,
+            "target": 16
+        },
+        {
+            "link_type_str": "overrideMethod",
+            "source": 16,
+            "text": "overrideMethod",
+            "type": 42,
+            "value": 1,
+            "target": 3
+        },
+        {
+            "link_type_str": "overrideMethod",
+            "source": 8,
+            "text": "overrideMethod",
+            "type": 42,
+            "value": 1,
+            "target": 16
+        }
+    ]
+}

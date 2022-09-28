@@ -1,3 +1,4 @@
+
 var file_color_map = {};
 function initNode(ele,data,i){
     // color bar
@@ -33,7 +34,7 @@ console.log(file_color_map)
 function initRightEditor(){
 
     require.config({ paths: { 'vs': '../node_modules/monaco-editor/dev/vs' }});
-    require(['vs/editor/editor.main'], function() {
+    require(['../node_modules/monaco-editor/dev/vs/editor/editor.main'], function() {
         var d=document.createElement(`div`);
         d.setAttribute("class","test");
         document.getElementById("rightEditor").appendChild(d);
@@ -164,10 +165,12 @@ function createNodes(rootData, rootPosition) {
         createNodes(nextRootData, nextRootPosition);
     }
 
-    function relLength(relData) {
-        if (isArray(relData)) {
-            return relData.length;
-        }
-        return 0;
+
+}
+
+function relLength(relData) {
+    if (isArray(relData)) {
+        return relData.length;
     }
+    return 0;
 }

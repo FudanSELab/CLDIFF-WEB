@@ -1,13 +1,51 @@
 var links = [];
 var instance;
 var edge_colors =
-{
-    "def-use": "peachpuff",
-    "override":"blue",
-    "abstract":"indianred",
-    "implement": "yellow",
-    "systematic": "aqua"
+    {
+        "def-use": "peachpuff",
+        "override":"blue",
+        "abstract":"indianred",
+        "implement": "yellow",
+        "systematic": "aqua"
+    };
+
+
+let settings = {
+    // node initial width
+    nodeWidth:  420,
+    // node initial height
+    nodeHeight : 150,
+    // stores node belongs to which div , the div is described by col and row
+    nodeDivMap : node_div_map,
+    //stores node degree(includes in-degree and out-degree)
+    nodeDegreeSet : node_degree_set,
+    //stores links
+    links: links
 };
+
+let raw_nodes = [];
+
+function wrapNodes(){
+    $("#canvas").find(".jtk-node").each(
+        function (idx, node) {
+            let $n = $(node);
+            let id = $n.attr("id");
+            let row = settings.nodeDivMap.get(parseInt(id)).charAt(9);
+            let col = settings.nodeDivMap.get(parseInt(id)).charAt(13);
+            raw_nodes.push(new RawNode(id,row,col));
+        }
+    );
+}
+
+/**
+ * Computes the specified coordinate for each node in an array.
+ * @Param raw_nodes, A array consists of RawNode, which has attribute x, y and id
+ * @Param settings, Stores graph meta info */
+function computeCoordinates(raw_nodes,settings){
+
+    //TODO Update node's coordinate in raw_nodes array
+}
+
 
 function calljsplumb() {
     for (let edge of data.edges) {
@@ -86,7 +124,7 @@ function calljsplumb() {
                 strokeWidth: 5
             },
             // label:link.from+"-"+link.to
-             });
+        });
         start += incre;
         start %= 100;
 
@@ -113,15 +151,16 @@ function calljsplumb() {
 
         }
     );
+    console.log(files_map);
     //changed_files_color
-   for(let file_name of files_map.keys()){
-       let file_name_div = document.createElement("div");
-       let file_short_name = file_name.substring(file_name.lastIndexOf("/") + 1);
-       file_name_div.innerText = file_short_name;
-              file_name_div.setAttribute("class","alert alert-success");
-       file_name_div.style.backgroundColor = file_color_map[file_short_name];
-       document.getElementById("changed_files").appendChild(file_name_div);
-   }
+    for(let file_name of files_map.keys()){
+        let file_name_div = document.createElement("div");
+        let file_short_name = file_name.substring(file_name.lastIndexOf("/") + 1);
+        file_name_div.innerText = file_short_name;
+        file_name_div.setAttribute("class","alert alert-success");
+        file_name_div.style.backgroundColor = file_color_map[file_short_name];
+        document.getElementById("changed_files").appendChild(file_name_div);
+    }
 
     let div_size_map = new Map();
     files_map.forEach(
@@ -202,9 +241,9 @@ function calljsplumb() {
                 function (n) {
                     var node = dg.node(n);
                     //if(node.x <= $("#canvas").width()/2 - node.width){
-                        var top = Math.round(node.y - node.height / 2 )  + 'px';
-                        var left = Math.round(node.x - node.width / 2  )+ 'px';
-                        $('#' + n).css({left: left, top: top});
+                    var top = Math.round(node.y - node.height / 2 )  + 'px';
+                    var left = Math.round(node.x - node.width / 2  )+ 'px';
+                    $('#' + n).css({left: left, top: top});
                     // }
                     // else{
                     //     var top = Math.round(node.y - node.height / 2 + (node.height + 200) * level) + 'px';
@@ -214,6 +253,7 @@ function calljsplumb() {
                 });
         }
     );
+
     div_size_map.forEach(
         function (value,key) {
             $("#"+key).css({
@@ -222,7 +262,17 @@ function calljsplumb() {
             })
         }
     )
-    console.log(div_size_map)
+    console.log(div_size_map);
+    //Rearrange layout,
+    //when finish the computeCoordinates function,remove comments below
+
+    // raw_nodes.forEach(
+    //     function (value) {
+    //         let node = value;
+    //          $('#' + node.id).css({left: node.x, top: node.y});
+    //     }
+    // )
+
     instance.repaintEverything();
 
     $(".jtk-node").on("click", function (ev) {
@@ -306,40 +356,12 @@ window.onload=function(){
     // $("#canvas").empty();
     initRightEditor();
     layout();
+    wrapNodes();
     calljsplumb();
+    console.log(raw_nodes)
     document.getElementById('canvas').style.transform = "scale("+scal+")";
     document.getElementById('canvas').style.transformOrigin = "" +0+ "px" + " " + "" + 0+ "px";
-
-    $(".window").draggable({
-        containment:$("#canvas"),
-        start: function(e){
-            var pz = $container.find(".panzoom");
-            currentScale = pz.panzoom("getMatrix")[0];
-            $(this).css("cursor","move");
-            pz.panzoom("disable");
-        },
-        drag:function(e,ui){
-            ui.position.left = ui.position.left/scal;
-            ui.position.top = ui.position.top/scal;
-            // $("#leftPanel").attr("style","overflow:hidden;position:relative")
-            if($(this).hasClass("jsplumb-connected"))
-            {
-                instance.repaint($(this).attr('id'),ui.position);
-
-                $(e.target).css("cursor","move");
-            }
-        },
-        stop: function(e,ui){
-            var nodeId = $(this).attr('id');
-            if($(this).hasClass("jsplumb-connected"))
-            {
-                instance.repaint(nodeId,ui.position);
-            }
-            $(this).css("cursor","");
-            $container.find(".panzoom").panzoom("enable");
-            $("#leftPanel").attr("style","overflow:scroll;position:relative")
-        }
-    });
+    windowDraggable();
     addZoom();
     $("#leftPanel").attr("style", "overflow:scroll");
 }

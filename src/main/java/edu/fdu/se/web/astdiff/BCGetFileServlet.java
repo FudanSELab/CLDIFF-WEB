@@ -50,7 +50,7 @@ public class BCGetFileServlet extends HttpServlet {
 			params.put(key,value);
 		}
 		String result="ERROR";
-
+		
 		if(params.size()!=0) {
 			try {
 				result = HttpClient.doPostMap(API.FETCH_CONTENT,params);

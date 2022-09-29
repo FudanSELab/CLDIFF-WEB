@@ -42,7 +42,7 @@ function wrapNodes(){
  * @Param raw_nodes, A array consists of RawNode, which has attribute x, y and id
  * @Param settings, Stores graph meta info */
 function computeCoordinates(raw_nodes,settings){
-
+    //
     //TODO Update node's coordinate in raw_nodes array
 }
 
@@ -265,7 +265,7 @@ function calljsplumb() {
     console.log(div_size_map);
     //Rearrange layout,
     //when finish the computeCoordinates function,remove comments below
-
+    computeCoordinates(raw_nodes,settings);
     // raw_nodes.forEach(
     //     function (value) {
     //         let node = value;

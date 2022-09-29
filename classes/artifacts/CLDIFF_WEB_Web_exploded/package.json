@@ -1,0 +1,22 @@
+{
+  "name": "webapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "@antv/g6": "^3.5.4",
+    "bootstrap": "^4.4.1",
+    "jquery": "^3.4.1",
+    "monaco-editor": "^0.18.1",
+    "popper.js": "^1.16.0",
+    "simpleserver": "^1.0.0",
+    "yaserver": "^0.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "simpleserver": "yaserver --root ./ --port 10888"
+  },
+  "author": "",
+  "license": "ISC"
+}

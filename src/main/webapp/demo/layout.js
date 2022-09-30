@@ -290,11 +290,13 @@ function reset(){
     node_div_map.clear();
     node_degree_set.clear();
     file_color_map = {};
+    raw_nodes = [];
     $("#canvas").empty();
     $("#changed_files").empty();
     $("#rightEditor").empty();
     initRightEditor();
     layout();
+    wrapNodes();
     calljsplumb();
     document.getElementById('canvas').style.transform = "scale("+scal+")";
     document.getElementById('canvas').style.transformOrigin = "" +0+ "px" + " " + "" + 0+ "px";

@@ -11,16 +11,64 @@ var edge_colors =
 
 
 let settings = {
-    // node initial width
-    nodeWidth:  420,
-    // node initial height
-    nodeHeight : 150,
-    // stores node belongs to which div , the div is described by col and row
+    /** canvas initial width */
+    canvasWidth: 9600,
+
+    /** canvas initial height */
+    canvasHeight: 7600,
+
+    /** node initial width */
+    nodeWidth: 426,
+
+    /** node initial height */
+    nodeHeight: 186,
+
+    /**A map stores node belongs to which div , the div is described by col and row,
+    eg:{
+        {
+            "key": 0,
+            "value": "canvasrow1col0"
+        },
+        {
+            "key": 1,
+            "value": "canvasrow1col0"
+         },
+      }
+     */
     nodeDivMap : node_div_map,
-    //stores node degree(includes in-degree and out-degree)
-    nodeDegreeSet : node_degree_set,
-    //stores links
-    links: links
+
+
+    /** A array stores files in each block and its degree(includes in-degree and out-degree)
+    eg:{
+    "id": "76233ed8b77c293e669f42daec855cabf74b9f3a__CLDIFF__broker/src/main/java/org/apache/rocketmq/broker/BrokerController.java",
+    "data": [
+        {
+            "code": "+ this.heartbeatThreadPoolQueue = new LinkedBlockingQueue<Runnable>\n- (this.brokerConfig.getHeartbeatThreadPoolQueueCapacity());\n- (this.brokerConfig.getHeartbeatThreadPoolQueueCapacity());\n",
+            "file_name": "76233ed8b77c293e669f42daec855cabf74b9f3a__CLDIFF__broker/src/main/java/org/apache/rocketmq/broker/BrokerController.java",
+            "id": 0,
+            "desc": "addExpressionStatement",
+            "group": 0
+        },
+        {
+            "code": "- this.heartbeatExecutor = new BrokerFixedThreadPoolExecutor(\n+ this.brokerConfig.getHeartbeatThreadPoolNums(),\n                this.brokerConfig.getHeartbeatThreadPoolNums(),\n                1000 * 60,\n                TimeUnit.MILLISECONDS,\n                this.heartbeatThreadPoolQueue,\n                new ThreadFactoryImpl(\"HeartbeatThread_\",true));\n",
+            "file_name": "76233ed8b77c293e669f42daec855cabf74b9f3a__CLDIFF__broker/src/main/java/org/apache/rocketmq/broker/BrokerController.java",
+            "id": 1,
+            "desc": "testtest",
+            "group": 0
+        },
+        .....
+    ],
+    "rank": 3
+    }
+     */
+    sortedFileBlock : res,
+
+
+    /** A array stores links */
+    links: links,
+
+    /** A array stores links between different file block */
+    outerLink : outer_link
 };
 
 let raw_nodes = [];
@@ -254,24 +302,27 @@ function calljsplumb() {
         }
     );
 
-    div_size_map.forEach(
-        function (value,key) {
-            $("#"+key).css({
-                width: value.width,
-                height: value.height
-            })
-        }
-    )
-    console.log(div_size_map);
+    //Comment below to fix div size
+    // div_size_map.forEach(
+    //     function (value,key) {
+    //         $("#"+key).css({
+    //             width: value.width,
+    //             height: value.height
+    //         })
+    //     }
+    // )
+    // console.log(div_size_map);
+
+
     //Rearrange layout,
     //when finish the computeCoordinates function,remove comments below
     computeCoordinates(raw_nodes,settings);
-    // raw_nodes.forEach(
-    //     function (value) {
-    //         let node = value;
-    //          $('#' + node.id).css({left: node.x, top: node.y});
-    //     }
-    // )
+    raw_nodes.forEach(
+        function (value) {
+            let node = value;
+             $('#' + node.id).css({left: node.x, top: node.y});
+        }
+    )
 
     instance.repaintEverything();
 

@@ -47,6 +47,7 @@ public class API {
     public static String SERVER;
     public static String FETCH_META = SERVER+"/fetchMeta";
     public static String FETCH_CONTENT = SERVER+"/fetchFile";
+//    public static String FETCH_CONTENT = "10.176.34.86:9999"+"/fetchFile";
     public static String CLEAR_COMMIT_RECORD = SERVER+"/clearCommitRecord";
 
 

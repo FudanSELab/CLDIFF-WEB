@@ -1,0 +1,153 @@
+/* ------------------------------------------------------------------------------------------- */
+/* --- DIALOGS --------------------------------------------------------------------------------*/
+/* ------------------------------------------------------------------------------------------- */
+
+/*
+    This is the element that acts as the dialog underlay - the modal "mask". Note the high z-index default
+    set here (and note also the overlay style below has a z-index with a value higher by one).
+*/
+.jtk-dialog-underlay {
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    position: fixed;
+    z-index: 100000;
+    opacity: 0.8;
+    background-color: #CCC;
+    display: none;
+}
+
+/*
+    This is the element that acts as the parent for dialog content.
+*/
+.jtk-dialog-overlay {
+    position: fixed;
+    z-index: 100001;
+    display: none;
+    background-color: white;
+    font-family: "Open Sans", sans-serif;
+    padding: 9px;
+    box-shadow: 0 0 5px grey;
+    overflow: hidden;
+    border-radius: 3px;
+}
+
+.jtk-dialog-overlay-x {
+    max-height:0;
+    transition: max-height 0.5s ease-in;
+    -moz-transition: max-height 0.5s ease-in;
+    -ms-transition: max-height 0.5s ease-in;
+    -o-transition: max-height 0.5s ease-in;
+    -webkit-transition: max-height 0.5s ease-in;
+}
+
+.jtk-dialog-overlay-y {
+    max-width:0;
+    transition: max-width 0.5s ease-in;
+    -moz-transition: max-width 0.5s ease-in;
+    -ms-transition: max-width 0.5s ease-in;
+    -o-transition: max-width 0.5s ease-in;
+    -webkit-transition: max-width 0.5s ease-in;
+}
+
+.jtk-dialog-overlay-top {
+    top:20px;
+}
+
+.jtk-dialog-overlay-bottom {
+    bottom:20px;
+}
+
+.jtk-dialog-overlay-left {
+    left:20px;
+}
+
+.jtk-dialog-overlay-right {
+    right:20px;
+}
+
+.jtk-dialog-overlay-x.jtk-dialog-overlay-visible {
+    max-height:1000px;
+}
+
+.jtk-dialog-overlay-y.jtk-dialog-overlay-visible {
+    max-width:1000px;
+}
+
+/*
+    The element containing buttons in a dialog.
+*/
+.jtk-dialog-buttons {
+    text-align: right;
+    margin-top: 7px;
+}
+
+/*
+    An individual button in a dialog.
+*/
+.jtk-dialog-button {
+    cursor: pointer;
+    margin-right: 5px;
+    min-width: 56px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    padding: 4px;
+    outline: none;
+}
+
+/*
+    Hover style for an individual button in a dialog.
+*/
+.jtk-dialog-button:hover {
+    color: white;
+    background-color: #5184a0;
+    border-color:white;
+}
+
+/*
+    The titlebar of a dialog.
+*/
+.jtk-dialog-title {
+    text-align: left;
+    font-size: 14px;
+    margin-bottom: 9px;
+}
+
+.jtk-dialog-content {
+    font-size:12px;
+    text-align:left;
+    min-width:250px;
+    margin: 0 14px;
+}
+
+.jtk-dialog-content ul {
+    width:100%;
+    padding-left:0;
+}
+
+.jtk-dialog-content label {
+    cursor: pointer;
+    font-weight: inherit;
+}
+
+.jtk-dialog-overlay input, .jtk-dialog-overlay textarea {
+    background-color: #FFF;
+    border: 1px solid #CCC;
+    color: #333;
+    font-size: 14px;
+    font-style: normal;
+    outline: none;
+    padding: 6px 4px;
+    margin-right: 6px;
+}
+
+.jtk-dialog-overlay input:focus, .jtk-dialog-overlay textarea:focus {
+    background-color: #f1f5fb;
+    border: 1px solid #5184a0;
+    color: #333;
+    font-size: 14px;
+    font-style: normal;
+    outline: none;
+}

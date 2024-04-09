@@ -1,0 +1,34 @@
+{
+  "name": "jsplumbtoolkit-demonstrations",
+  "version": "6.19.0",
+  "description": "Starter applications and feature demonstrations for use with JsPlumb.",
+  "main": "index.js",
+  "scripts": {
+    "clean": "node ./scripts/clean.js",
+    "clean:angular": "node ./scripts/clean angular",
+    "clean:svelte": "node ./scripts/clean svelte",
+    "clean:react": "node ./scripts/clean react",
+    "clean:vue2": "node ./scripts/clean vue2",
+    "clean:vue3": "node ./scripts/clean vue3",
+    "clean:vanilla": "node ./scripts/clean vanilla",
+    "install": "node ./scripts/install",
+    "install:angular": "node ./scripts/install angular",
+    "install:svelte": "node ./scripts/install svelte",
+    "install:react": "node ./scripts/install react",
+    "install:vue2": "node ./scripts/install vue2",
+    "install:vue3": "node ./scripts/install vue3",
+    "install:vanilla": "node ./scripts/install vanilla",
+    "build:vanilla": "node ./scripts/build vanilla",
+    "build:angular": "node ./scripts/build angular",
+    "build:react": "node ./scripts/build react",
+    "build:vue2": "node ./scripts/build vue2",
+    "build:vue3": "node ./scripts/build vue3",
+    "build:svelte": "node ./scripts/build svelte",
+    "update-versions": "node ./scripts/update-versions.js"
+  },
+  "author": "JsPlumb <hello@jsplumbtoolkit.com> (https://jsplumbtoolkit.com/)",
+  "license": "MIT",
+  "dependencies": {
+    "@jsplumbtoolkit/browser-ui-react": "^6.20.0"
+  }
+}

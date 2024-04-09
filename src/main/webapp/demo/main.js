@@ -1,80 +1,3 @@
-var links = [];
-var instance;
-var edge_colors = {
-    "def-use": "peachpuff",
-    "override": "blue",
-    "abstract": "indianred",
-    "implement": "yellow",
-    "systematic": "aqua"
-};
-
-
-let settings = {
-    /** canvas initial width */
-    canvasWidth: 9600,
-    /** canvas initial height */
-    canvasHeight: 7600,
-    /** node initial width */
-    nodeWidth: 426,
-    /** node initial height */
-    nodeHeight: 186,
-    /**A map stores node belongs to which div , the div is described by col and row,
-    eg:{
-        {
-            "key": 0,
-            "value": "canvasrow1col0"
-        },
-        {
-            "key": 1,
-            "value": "canvasrow1col0"
-         },
-      }
-     */
-    nodeDivMap: node_div_map,
-    /** A array stores files in each block and its degree(includes in-degree and out-degree)
-    eg:{
-    "id": "76233ed8b77c293e669f42daec855cabf74b9f3a__CLDIFF__broker/src/main/java/org/apache/rocketmq/broker/BrokerController.java",
-    "data": [
-        {
-            "code": "+ this.heartbeatThreadPoolQueue = new LinkedBlockingQueue<Runnable>\n- (this.brokerConfig.getHeartbeatThreadPoolQueueCapacity());\n- (this.brokerConfig.getHeartbeatThreadPoolQueueCapacity());\n",
-            "file_name": "76233ed8b77c293e669f42daec855cabf74b9f3a__CLDIFF__broker/src/main/java/org/apache/rocketmq/broker/BrokerController.java",
-            "id": 0,
-            "desc": "addExpressionStatement",
-            "group": 0
-        },
-        {
-            "code": "- this.heartbeatExecutor = new BrokerFixedThreadPoolExecutor(\n+ this.brokerConfig.getHeartbeatThreadPoolNums(),\n                this.brokerConfig.getHeartbeatThreadPoolNums(),\n                1000 * 60,\n                TimeUnit.MILLISECONDS,\n                this.heartbeatThreadPoolQueue,\n                new ThreadFactoryImpl(\"HeartbeatThread_\",true));\n",
-            "file_name": "76233ed8b77c293e669f42daec855cabf74b9f3a__CLDIFF__broker/src/main/java/org/apache/rocketmq/broker/BrokerController.java",
-            "id": 1,
-            "desc": "testtest",
-            "group": 0
-        },
-        .....
-    ],
-    "rank": 3
-    }
-     */
-    sortedFileBlock: res,
-    /** A array stores links */
-    links: links,
-    /** A array stores links between different file block */
-    outerLink: outer_link
-};
-
-let raw_nodes = [];
-
-function wrapNodes() {
-    $("#canvas").find(".jtk-node").each(
-        function(idx, node) {
-            let $n = $(node);
-            let id = $n.attr("id");
-            let row = settings.nodeDivMap.get(parseInt(id)).charAt(9);
-            let col = settings.nodeDivMap.get(parseInt(id)).charAt(13);
-            raw_nodes.push(new RawNode(id, row, col));
-        }
-    );
-}
-
 /**
  * Computes the specified coordinate for each node in an array.
  * @Param raw_nodes, A array consists of RawNode, which has attribute x, y and id
@@ -86,16 +9,17 @@ function computeCoordinates(raw_nodes, settings) {
 
 
 function calljsplumb() {
-    for (let edge of data.edges) {
-        links.push({
+
+    for (let edge of diffJson.edges) {
+        diffEdges.push({
             from: edge.source.toString(),
             to: edge.target.toString(),
             link_type_str: edge.link_type_str.toString()
         })
     }
-    //if want to remove duplicate entry restrictly,use function below
-    //links = unique(links);
-    links = unique2(links);
+    //if want to remove duplicate entry restrictly, use function below
+    diffEdges = unique2(diffEdges);
+    // js plumb config
     instance = window.jsp = jsPlumb.getInstance({
         DragOptions: { cursor: 'pointer', zIndex: 2000 },
         HoverPaintStyle: { stroke: '#1E90FF' },
@@ -113,7 +37,6 @@ function calljsplumb() {
                 cssClass: "aLabel",
             }]
         ],
-
         Container: "canvas",
         Anchors: ["Continuous", "Continuous"],
         // ["Top", "Right", "Bottom", "Left", [0.25, 0, 0, -1], [0.75, 0, 0, -1], [0.25, 1, 0, 1], [0.75, 1, 0, 1]
@@ -121,11 +44,9 @@ function calljsplumb() {
 
     });
 
-    var incre = 5;
-    var start = 10;
 
-    _.each(links, function(link) {
-        let link_type = link.link_type_str;
+    _.each(diffEdges, function(diffEdge) {
+        let link_type = diffEdge.link_type_str;
         let color;
         if (link_type.includes("def-use")) {
             color = edge_colors["def-use"];
@@ -139,17 +60,13 @@ function calljsplumb() {
             color = edge_colors["abstract"]
         }
         instance.connect({
-            source: link.from,
-            target: link.to,
+            source: diffEdge.from,
+            target: diffEdge.to,
             connector: ["Flowchart",
-                // {
-                //     cornerRadius: 3,
-                //     stub:160
-                // }
                 {
                     cornerRadius: 10,
                     midpoint: start / 100,
-
+                    //     stub:160
                 }
             ],
             endpoints: ["Blank", "Blank"],
@@ -159,12 +76,9 @@ function calljsplumb() {
             },
             // label:link.from+"-"+link.to
         });
-        start += incre;
-        start %= 100;
-
     });
 
-    var connection = instance.getAllConnections()
+    var connection = instance.getAllConnections();
     connection.map(item => {
         //item.setPaintStyle({ stroke: 'yellow' ,strokeWidth: 5})
         item.getOverlay("label").setLabel(item.source.id + "-" + item.target.id)
@@ -297,15 +211,15 @@ function calljsplumb() {
     // console.log(div_size_map);
 
 
-    //Rearrange layout,
-    //when finish the computeCoordinates function,remove comments below
-    computeCoordinates(raw_nodes, settings);
-    raw_nodes.forEach(
-        function(value) {
-            let node = value;
-            $('#' + node.id).css({ left: node.x, top: node.y });
-        }
-    )
+    // //Rearrange layout,
+    // //when finish the computeCoordinates function,remove comments below
+    // computeCoordinates(raw_nodes, settings);
+    // raw_nodes.forEach(
+    //     function(value) {
+    //         let node = value;
+    //         $('#' + node.id).css({ left: node.x, top: node.y });
+    //     }
+    // )
 
     instance.repaintEverything();
 
@@ -368,11 +282,11 @@ function calljsplumb() {
     // });
 };
 
-function unique(arr) {
-    return arr.filter(function(item, index, arr) {
-        return arr.findIndex(item1 => (item1.from === item.from && item1.to === item.to)) === index
-    });
-}
+// function unique(arr) {
+//     return arr.filter(function(item, index, arr) {
+//         return arr.findIndex(item1 => (item1.from === item.from && item1.to === item.to)) === index
+//     });
+// }
 
 function unique2(arr) {
     return arr.filter(function(item, index, arr) {
@@ -382,14 +296,17 @@ function unique2(arr) {
 
 
 window.onload = function() {
-    // $("#canvas").empty();
-    //init right
-    // initRightEditor();
     // init top
-    // reselect();
-    layoutMain();
-    // wrapNodes();
-    // calljsplumb();
+    initTop();
+    // init canvas
+    layoutMain('./tasks/graph2.json');
+
+    // initRightEditor();
+    // $("#canvas").empty();
+
+
+
+
     // mouse move canvas
     // mouseMoveCanvas();
 
@@ -399,4 +316,6 @@ window.onload = function() {
     // windowDraggable();
     // addZoom();
     // $("#leftPanel").attr("style", "overflow:scroll");
+
+
 }

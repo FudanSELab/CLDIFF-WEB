@@ -1,0 +1,51 @@
+/* ------------------------------ classes for generated grid backgrounds plugin ----------------------------- */
+
+/**
+    Assigned to the `rect` element that draws the generated grid's border, if requested.
+ */
+.jtk-background-border {
+    stroke:black;
+    stroke-width:5;
+}
+
+/**
+    Assigned to both the major grid lines and the minor grid lines.
+ */
+.jtk-background-grid {
+    fill:none;
+    stroke:gray;
+}
+
+/**
+    Assigned to the lines marking grid tick marks (when using GridTypes.lines)
+ */
+.jtk-background-grid-minor {
+    fill:none;
+    stroke:gray;
+    stroke-width:0.5;
+}
+
+/**
+    Assigned to the major grid lines (when using GridTypes.lines)
+ */
+.jtk-background-grid-major {
+    fill:none;
+    stroke:gray;
+    stroke-width:1.5;
+}
+
+/**
+    Assigned to the dots marking grid positions (when using GridTypes.dotted)
+ */
+.jtk-background-grid-dotted-major {
+    fill:gray;
+    stroke:none;
+}
+
+/**
+    Assigned to the dots marking grid tick marks (when using GridTypes.dotted)
+ */
+.jtk-background-grid-dotted-minor {
+    fill:#CCC;
+    stroke:none;
+}

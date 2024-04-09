@@ -1,0 +1,115 @@
+{
+  "nodes": [
+    {
+      "code": "            content = MixAll.file2String(this.namesrvController.getNamesrvConfig().getKvConfigPath());\n",
+      "file_name": "f115b528668736544f5a8632670655f875145f72__CLDIFF__namesrv/src/main/java/org/apache/rocketmq/namesrv/kvconfig/KVConfigManager.java",
+      "id": 58,
+      "desc": "moveMethodInvocation",
+      "group": 0
+    },
+    {
+      "code": "        try {\n            content = MixAll.file2String(this.namesrvController.getNamesrvConfig().getKvConfigPath());\n        } catch (IOException e) {\n            log.warn(\"Load KV config table exception\", e);\n        }\n",
+      "file_name": "f115b528668736544f5a8632670655f875145f72__CLDIFF__namesrv/src/main/java/org/apache/rocketmq/namesrv/kvconfig/KVConfigManager.java",
+      "id": 59,
+      "desc": "addTry",
+      "group": 0
+    },
+    {
+      "code": "        String content = null;\n",
+      "file_name": "f115b528668736544f5a8632670655f875145f72__CLDIFF__namesrv/src/main/java/org/apache/rocketmq/namesrv/kvconfig/KVConfigManager.java",
+      "id": 60,
+      "desc": "updateVariableDeclaration   by",
+      "group": 0
+    },
+    {
+      "code": "            content = MixAll.file2String(this.storePath);\n",
+      "file_name": "f115b528668736544f5a8632670655f875145f72__CLDIFF__client/src/main/java/org/apache/rocketmq/client/consumer/store/LocalFileOffsetStore.java",
+      "id": 50,
+      "desc": "moveMethodInvocation",
+      "group": 1
+    },
+    {
+      "code": "            content = MixAll.file2String(this.storePath + \".bak\");\n",
+      "file_name": "f115b528668736544f5a8632670655f875145f72__CLDIFF__client/src/main/java/org/apache/rocketmq/client/consumer/store/LocalFileOffsetStore.java",
+      "id": 51,
+      "desc": "moveMethodInvocation",
+      "group": 1
+    },
+    {
+      "code": "        try {\n            content = MixAll.file2String(this.storePath);\n        } catch (IOException e) {\n            log.warn(\"Load local offset store file exception\", e);\n        }\n",
+      "file_name": "f115b528668736544f5a8632670655f875145f72__CLDIFF__client/src/main/java/org/apache/rocketmq/client/consumer/store/LocalFileOffsetStore.java",
+      "id": 52,
+      "desc": "addTry",
+      "group": 1
+    },
+    {
+      "code": "        try {\n            content = MixAll.file2String(this.storePath + \".bak\");\n        } catch (IOException e) {\n            log.warn(\"Load local offset store bak file exception\", e);\n        }\n",
+      "file_name": "f115b528668736544f5a8632670655f875145f72__CLDIFF__client/src/main/java/org/apache/rocketmq/client/consumer/store/LocalFileOffsetStore.java",
+      "id": 53,
+      "desc": "addTry",
+      "group": 1
+    },
+    {
+      "code": "        String content = null;\n",
+      "file_name": "f115b528668736544f5a8632670655f875145f72__CLDIFF__client/src/main/java/org/apache/rocketmq/client/consumer/store/LocalFileOffsetStore.java",
+      "id": 54,
+      "desc": "updateVariableDeclaration   by",
+      "group": 1
+    },
+    {
+      "code": "        String content = null;\n",
+      "file_name": "f115b528668736544f5a8632670655f875145f72__CLDIFF__client/src/main/java/org/apache/rocketmq/client/consumer/store/LocalFileOffsetStore.java",
+      "id": 55,
+      "desc": "updateVariableDeclaration   by",
+      "group": 1
+    },
+    {
+      "code": "    public static void main(String[] args) throws InterruptedException, MQClientException, IOException {\n        DefaultMQPushConsumer consumer = new DefaultMQPushConsumer(\"ConsumerGroupNamecc4\");\n\n        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();\n        File classFile = new File(classLoader.getResource(\"MessageFilterImpl.java\").getFile());\n\n        String filterCode = MixAll.file2String(classFile);\n        consumer.subscribe(\"TopicTest\", \"org.apache.rocketmq.example.filter.MessageFilterImpl\",\n            filterCode);\n\n        consumer.registerMessageListener(new MessageListenerConcurrently() {\n\n            @Override\n            public ConsumeConcurrentlyStatus consumeMessage(List<MessageExt> msgs,\n                ConsumeConcurrentlyContext context) {\n                System.out.printf(Thread.currentThread().getName() + \" Receive New Messages: \" + msgs + \"%n\");\n                return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;\n            }\n        });\n\n        consumer.start();\n\n        System.out.printf(\"Consumer Started.%n\");\n    }\n",
+      "file_name": "f115b528668736544f5a8632670655f875145f72__CLDIFF__example/src/main/java/org/apache/rocketmq/example/filter/Consumer.java",
+      "id": 57,
+      "desc": "updateMethodDeclaration declaration",
+      "group": 2
+    },
+    {
+      "code": "    public static void main(String[] args) throws MQClientException, IOException {\n        Options options = ServerUtil.buildCommandlineOptions(new Options());\n        CommandLine commandLine = ServerUtil.parseCmdLine(\"benchmarkConsumer\", args, buildCommandlineOptions(options), new PosixParser());\n        if (null == commandLine) {\n            System.exit(-1);\n        }\n\n        final String topic = commandLine.hasOption('t') ? commandLine.getOptionValue('t').trim() : \"BenchmarkTest\";\n        final String groupPrefix = commandLine.hasOption('g') ? commandLine.getOptionValue('g').trim() : \"benchmark_consumer\";\n        final String isPrefixEnable = commandLine.hasOption('p') ? commandLine.getOptionValue('p').trim() : \"true\";\n        final String filterType = commandLine.hasOption('f') ? commandLine.getOptionValue('f').trim() : null;\n        final String expression = commandLine.hasOption('e') ? commandLine.getOptionValue('e').trim() : null;\n        String group = groupPrefix;\n        if (Boolean.parseBoolean(isPrefixEnable)) {\n            group = groupPrefix + \"_\" + Long.toString(System.currentTimeMillis() % 100);\n        }\n\n        System.out.printf(\"topic: %s, group: %s, prefix: %s, filterType: %s, expression: %s%n\", topic, group, isPrefixEnable, filterType, expression);\n\n        final StatsBenchmarkConsumer statsBenchmarkConsumer = new StatsBenchmarkConsumer();\n\n        final Timer timer = new Timer(\"BenchmarkTimerThread\", true);\n\n        final LinkedList<Long[]> snapshotList = new LinkedList<Long[]>();\n\n        timer.scheduleAtFixedRate(new TimerTask() {\n            @Override\n            public void run() {\n                snapshotList.addLast(statsBenchmarkConsumer.createSnapshot());\n                if (snapshotList.size() > 10) {\n                    snapshotList.removeFirst();\n                }\n            }\n        }, 1000, 1000);\n\n        timer.scheduleAtFixedRate(new TimerTask() {\n            private void printStats() {\n                if (snapshotList.size() >= 10) {\n                    Long[] begin = snapshotList.getFirst();\n                    Long[] end = snapshotList.getLast();\n\n                    final long consumeTps =\n                        (long) (((end[1] - begin[1]) / (double) (end[0] - begin[0])) * 1000L);\n                    final double averageB2CRT = (end[2] - begin[2]) / (double) (end[1] - begin[1]);\n                    final double averageS2CRT = (end[3] - begin[3]) / (double) (end[1] - begin[1]);\n\n                    System.out.printf(\"Consume TPS: %d Average(B2C) RT: %7.3f Average(S2C) RT: %7.3f MAX(B2C) RT: %d MAX(S2C) RT: %d%n\",\n                        consumeTps, averageB2CRT, averageS2CRT, end[4], end[5]\n                    );\n                }\n            }\n\n            @Override\n            public void run() {\n                try {\n                    this.printStats();\n                } catch (Exception e) {\n                    e.printStackTrace();\n                }\n            }\n        }, 10000, 10000);\n\n        DefaultMQPushConsumer consumer = new DefaultMQPushConsumer(group);\n        consumer.setInstanceName(Long.toString(System.currentTimeMillis()));\n\n        if (filterType == null || expression == null) {\n            consumer.subscribe(topic, \"*\");\n        } else {\n            if (ExpressionType.TAG.equals(filterType)) {\n                String expr = MixAll.file2String(expression);\n                System.out.printf(\"Expression: %s%n\", expr);\n                consumer.subscribe(topic, MessageSelector.byTag(expr));\n            } else if (ExpressionType.SQL92.equals(filterType)) {\n                String expr = MixAll.file2String(expression);\n                System.out.printf(\"Expression: %s%n\", expr);\n                consumer.subscribe(topic, MessageSelector.bySql(expr));\n            } else {\n                throw new IllegalArgumentException(\"Not support filter type! \" + filterType);\n            }\n        }\n\n        consumer.registerMessageListener(new MessageListenerConcurrently() {\n            @Override\n            public ConsumeConcurrentlyStatus consumeMessage(List<MessageExt> msgs,\n                ConsumeConcurrentlyContext context) {\n                MessageExt msg = msgs.get(0);\n                long now = System.currentTimeMillis();\n\n                statsBenchmarkConsumer.getReceiveMessageTotalCount().incrementAndGet();\n\n                long born2ConsumerRT = now - msg.getBornTimestamp();\n                statsBenchmarkConsumer.getBorn2ConsumerTotalRT().addAndGet(born2ConsumerRT);\n\n                long store2ConsumerRT = now - msg.getStoreTimestamp();\n                statsBenchmarkConsumer.getStore2ConsumerTotalRT().addAndGet(store2ConsumerRT);\n\n                compareAndSetMax(statsBenchmarkConsumer.getBorn2ConsumerMaxRT(), born2ConsumerRT);\n\n                compareAndSetMax(statsBenchmarkConsumer.getStore2ConsumerMaxRT(), store2ConsumerRT);\n\n                return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;\n            }\n        });\n\n        consumer.start();\n\n        System.out.printf(\"Consumer Started.%n\");\n    }\n",
+      "file_name": "f115b528668736544f5a8632670655f875145f72__CLDIFF__example/src/main/java/org/apache/rocketmq/example/benchmark/Consumer.java",
+      "id": 56,
+      "desc": "updateMethodDeclaration declaration",
+      "group": 3
+    }
+  ],
+  "edges": [
+    {
+      "link_type_str": "def-use",
+      "source": 60,
+      "text": "def-use",
+      "type": 5,
+      "value": 1,
+      "target": 59
+    },
+    {
+      "link_type_str": "def-use",
+      "source": 54,
+      "text": "def-use",
+      "type": 5,
+      "value": 1,
+      "target": 52
+    },
+    {
+      "link_type_str": "def-use",
+      "source": 55,
+      "text": "def-use",
+      "type": 5,
+      "value": 1,
+      "target": 53
+    },
+    {
+      "link_type_str": "systematic",
+      "source": 52,
+      "text": "systematic",
+      "type": 44,
+      "value": 1,
+      "target": 53
+    }
+  ]
+}

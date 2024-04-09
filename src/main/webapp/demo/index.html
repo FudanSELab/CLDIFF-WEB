@@ -1,0 +1,136 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+
+    <title>Graph</title>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
+    <!--        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">-->
+    <link href="https://cdn.jsdelivr.net/npm/jquery.fancytree@2.38.3/dist/skin-win8/ui.fancytree.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <!--        <link href="//fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">-->
+    <link rel="stylesheet" href="../css/jsplumbtoolkit-defaults.css">
+    <link rel="stylesheet" href="../css/main_jsplumb.css">
+    <link rel="stylesheet" href="../css/jsplumbtoolkit-demo.css">
+    <link rel="stylesheet" href="demo.css">
+
+</head>
+
+<body data-demo-id="flowchart">
+
+    <div class="page-header text-center">
+        <h1>CLDiff Graph</h1>
+    </div>
+
+
+    <div id="headerBanner" class="row">
+
+        <div id="selectionHeader" class="col-md-8">
+            <div class="col-md-3">
+                <h2>Select your tasks:</h2>
+            </div>
+            <div class="dropdown col-md-5">
+                <div class="btn-group">
+                    <button id="muButton" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Commit <span class="caret"></span>
+                </button>
+                    <!--                graph-(.*)\.json-->
+                    <!--                <li><a href="#" value="./tasks/graph-$1.json">$1</a></li>-->
+                    <ul class="dropdown-menu" id="dropdown-menu">
+                        <li><a href="#" value="./tasks/graph-rocketmq-85467dfd34d8ff379d2ddfec0489d78dcba20c27.json">rocketmq-85467dfd34d8ff379d2ddfec0489d78dcba20c27</a></li>
+                        <li><a href="#" value="./tasks/graph-rocketmq-b1fcf1b83b659bd03bcebf651d9e88c294a89e07.json">rocketmq-b1fcf1b83b659bd03bcebf651d9e88c294a89e07</a></li>
+                        <li><a href="#" value="./tasks/graph-rocketmq-e9a0d62dbd8a1a6163870828d583300eb27e324a.json">rocketmq-e9a0d62dbd8a1a6163870828d583300eb27e324a</a></li>
+                        <li><a href="#" value="./tasks/graph-rocketmq-b421d48c476e74a8c7bb8129979df1dc0cb5a5a5.json">rocketmq-b421d48c476e74a8c7bb8129979df1dc0cb5a5a5</a></li>
+                        <li><a href="#" value="./tasks/graph-rocketmq-3292d039ae882f42168d5f98969df83130ca05fb.json">rocketmq-3292d039ae882f42168d5f98969df83130ca05fb</a></li>
+                        <li><a href="#" value="./tasks/graph-spring-framework-046380988b9f98bed43fad1943c8f10f6a1429de.json">spring-framework-046380988b9f98bed43fad1943c8f10f6a1429de</a></li>
+                        <li><a href="#" value="./tasks/graph-spring-framework-4882dfcc0d6d0bde167c722cb82d899414fb1209.json">spring-framework-4882dfcc0d6d0bde167c722cb82d899414fb1209</a></li>
+                        <li><a href="#" value="./tasks/graph-spring-framework-773b2f06a10679979ee747ad2ee2182eaafcc8cd.json">spring-framework-773b2f06a10679979ee747ad2ee2182eaafcc8cd</a></li>
+                        <li><a href="#" value="./tasks/graph-rocketmq-d8c446e854e6cce1b54c0d9d97f3189832b88001.json">rocketmq-d8c446e854e6cce1b54c0d9d97f3189832b88001</a></li>
+                        <li><a href="#" value="./tasks/graph-spring-framework-3c1adf7f6af0dff9bda74f40dabe8cf428a62003.json">spring-framework-3c1adf7f6af0dff9bda74f40dabe8cf428a62003</a></li>
+                        <li><a href="#" value="./tasks/graph-spring-framework-357beb24bce72b20aed3a774b4eddc42e3f098f2.json">spring-framework-357beb24bce72b20aed3a774b4eddc42e3f098f2</a></li>
+                        <!--                    <li><a href="#" value="./tasks/graph-spring-framework-5d785390eb4fae08922d2d98f61a31e617cd0115.json">spring-framework-5d785390eb4fae08922d2d98f61a31e617cd0115</a></li>-->
+                        <!--                    aa-->
+
+                        <!--                    <li><a href="#" value="./tasks/graph-spring-framework-17c423f5afa2d8e6a0b1adfc2f7380489c5db33b.json">spring-framework-17c423f5afa2d8e6a0b1adfc2f7380489c5db33b</a></li>-->
+                    </ul>
+                    <!--            <button type="button" class="btn btn-default" style="margin-left: 200vh" onclick="reset()">Reset</button>-->
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3" id="rightTitleHeader">
+            <h2>Code Change</h2>
+        </div>
+
+
+    </div>
+
+    <div class="row">
+
+        <div id="leftPanel" class="container  col-md-8">
+            <span id="opt">
+            <span id="minus_canvas" class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+            <span id="plus_canvas" class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            </span>
+
+            <div class="panzoom ">
+                <div class="jtk-demo-main zoomViewport " id="box">
+                    <!-- demo -->
+                    <div class="canvas-wide flowchart-demo jtk-surface zoomContainer " id="canvas">
+                    </div>
+                    <!-- /demo -->
+                </div>
+            </div>
+        </div>
+
+        <div id="rightPanel" class="col-md-3">
+
+            <h4>Changed files:</h4>
+            <div id="changedFiles">
+                <!--            <div class="alert alert-success" role="alert"></div>-->
+            </div>
+            <div>
+                <h4>Link types:</h4>
+                <div class="alert alert-success" role="alert" id="defuse">Def Use Link</div>
+                <div class="alert alert-success" role="alert" id="abstract">Abstract Method Link</div>
+                <div class="alert alert-success" role="alert" id="override">Override Method Link</div>
+                <div class="alert alert-success" role="alert" id="implement">Implement Method Link</div>
+                <div class="alert alert-success" role="alert" id="systematic">Systematic Change Link</div>
+                <h4>Diff entry:</h4>
+            </div>
+            <div id="tree"></div>
+            <div id="rightEditor"></div>
+        </div>
+
+    </div>
+
+
+
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/jquery-ui.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery.fancytree@2.38.3/dist/jquery.fancytree-all.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/lodash.min.js"></script>
+    <script src="../js/jquery.zoomooz.min.js"></script>
+
+    <script src="../js/dagre.min.js"></script>
+    <script src="../js/jsplumb.js"></script>
+    <script src="../js/jquery.panzoom.min.js"></script>
+    <!--<script src=" ../node_modules/monaco-editor/dev/vs/editor/editor.main.js"></script>-->
+    <script src="../node_modules/monaco-editor/dev/vs/loader.js"></script>
+
+
+    <script src="constants.js"></script>
+    <script src="topbar.js"></script>
+    <script src="righteditor.js"></script>
+    <script src="canvas_mouse_move.js"></script>
+    <script src="canvas_layout.js"></script>
+    <script src="canvas.js"></script>
+
+    <script src="main.js"></script>
+
+</body>
+
+</html>

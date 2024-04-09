@@ -1,0 +1,26 @@
+.jtk-edge-type-picker {
+    display:flex;
+    flex-direction:column;
+    flex-grow:1;
+}
+
+.jtk-edge-type-picker > div {
+    margin:5px 0;
+    height:1.5rem;
+    width:100%;
+    position:relative;
+}
+
+.jtk-edge-type-picker > div > div {
+    top:5px;
+    bottom:5px;
+    position:absolute;
+}
+
+.jtk-edge-type-picker > svg {
+    z-index:1;
+}
+
+.jtk-edge-type-picker-selected {
+    background-color:white;
+}

@@ -1,0 +1,101 @@
+:root {
+    --jtk-controls-text-color:#FFFFFF;
+    --jtk-controls-background-color:#5184a0;
+    --jtk-controls-hover-background-color:#f68570;
+    --jtk-controls-active-background-color:#1d9ea0;
+    --jtk-controls-undo-redo-disabled:#A9A9A9;
+    --jtk-controls-undo-redo-enabled: #3E7E9C;
+    --jtk-controls-button-border:1px solid !important;
+    --jtk-controls-selected-mode-background-color: var(--jtk-controls-hover-background-color);
+}
+
+.jtk-controls {
+    color: var(--jtk-controls-text-color);
+    display:flex;
+    font-size:14px;
+}
+
+.jtk-controls i {
+    background-color: var(--jtk-controls-background-color);
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 4px;
+    border: var(--jtk-controls-button-border);
+    font-size: 22px;
+    font-style: normal;
+    width: 24px;
+    height: 24px;
+}
+
+.jtk-controls i.jtk-selected-mode {
+    background-color: var(--jtk-controls-selected-mode-background-color);
+}
+
+.jtk-controls i:not(.jtk-selected-mode):hover {
+    background-color: var(--jtk-controls-hover-background-color);
+    color:var(--jtk-controls-background-color);
+    border: var(--jtk-controls-button-border);
+}
+
+.jtk-controls i:not(.jtk-selected-mode):active {
+    color: var(--jtk-controls-background-color);
+    background-color:var(--jtk-controls-active-background-color);
+    border: var(--jtk-controls-button-border);
+}
+
+.jtk-controls [data-undo], .jtk-controls [data-redo] {
+    background-color:var(--jtk-controls-undo-redo-disabled) !important;
+}
+
+.jtk-controls [data-undo]:hover, .jtk-controls [data-redo]:hover {
+    background-color:var(--jtk-controls-undo-redo-disabled) !important;
+    color:var(--jtk-controls-background-color) !important;
+    border: var(--jtk-controls-button-border);
+}
+
+.jtk-controls[can-undo='true'] [data-undo], .jtk-controls[can-redo='true'] [data-redo] {
+    background-color: var(--jtk-controls-undo-redo-enabled)  !important;
+}
+
+.jtk-controls[can-undo='true'] [data-undo]:hover, .jtk-controls[can-redo='true'] [data-redo]:hover {
+    background-color: var(--jtk-controls-background-color) !important;
+    color:var(--jtk-controls-background-color) !important;
+    border: var(--jtk-controls-button-border);
+}
+
+.jtk-controls i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-style: normal;
+}
+
+.jtk-controls .jtk-add-vertex:after {
+    content:"+";
+    margin-bottom: 0.2rem;
+}
+
+.jtk-controls .jtk-zoom-to-fit:after {
+    content:"⌂";
+    margin-bottom: 0.4rem;
+}
+
+.jtk-controls .jtk-select-mode:after {
+    content:"✎";
+}
+
+.jtk-controls .jtk-pan-mode:after {
+    content:"✥";
+}
+
+.jtk-controls .jtk-undo:after {
+    content:"↺";
+}
+
+.jtk-controls .jtk-redo:after {
+    content:"↻";
+}
+
+.jtk-controls .jtk-clear-dataset:after {
+    content:"x";
+}

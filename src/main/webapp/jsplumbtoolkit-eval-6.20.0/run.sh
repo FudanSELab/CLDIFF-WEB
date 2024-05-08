@@ -1,0 +1,1 @@
+cd apps && npm run serve

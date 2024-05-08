@@ -1,0 +1,60 @@
+"use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ImageInspector = void 0;
+var browser_ui_1 = require("@jsplumbtoolkit/browser-ui");
+var inputs_1 = require("./model/inputs");
+var filters_1 = require("./model/filters");
+var transforms_1 = require("./model/transforms");
+var basic_1 = require("./model/basic");
+var handlers = {
+    input: inputs_1.INPUT_INSPECTORS,
+    filter: filters_1.FILTER_INSPECTORS,
+    transform: transforms_1.TRANSFORM_INSPECTORS,
+    basic: basic_1.BASIC_INSPECTORS
+};
+var ImageInspector = /** @class */ (function (_super) {
+    __extends(ImageInspector, _super);
+    function ImageInspector(container, surface, model) {
+        var _this = _super.call(this, {
+            container: container,
+            surface: surface,
+            templateResolver: function (obj) {
+                if ((0, browser_ui_1.isNode)(obj)) {
+                    return _this._renderNodeTemplate(obj);
+                }
+                return '';
+            },
+            cacheTemplates: false,
+            renderEmptyContainer: function () { return "<h1>SELECT SOMETHING INNIT</h1>"; },
+            refresh: function (obj, cb) { return null; }
+        }) || this;
+        _this.model = model;
+        return _this;
+    }
+    ImageInspector.prototype._renderNodeTemplate = function (obj) {
+        var _a = obj.type.split("."), set = _a[0], type = _a[1];
+        try {
+            return handlers[set][type].template(obj);
+        }
+        catch (e) {
+            return "<div/>";
+        }
+    };
+    return ImageInspector;
+}(browser_ui_1.VanillaInspector));
+exports.ImageInspector = ImageInspector;

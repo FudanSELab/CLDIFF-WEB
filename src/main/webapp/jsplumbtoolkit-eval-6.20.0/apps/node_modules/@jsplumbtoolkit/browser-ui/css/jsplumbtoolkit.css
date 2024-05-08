@@ -1,0 +1,660 @@
+/* 
+    Default styles for jsPlumb Toolkit
+
+    Copyright 2023 https://jsplumbtoolkit.com
+*/
+
+:root {
+    --jtk-lasso-border:rgb(49, 119, 184);
+    --jtk-lasso-background:WhiteSmoke;
+    --jtk-lasso-mask:#07234E;
+
+    --jtk-surface-selected-element-border:2px dotted #c7726c;
+
+    --jtk-miniview-background:white;
+    --jtk-miniview-border:2px solid #d4d8dc;
+    --jtk-miniview-panner-border:5px dotted WhiteSmoke;
+    --jtk-miniview-panner-background:rgb(79, 111, 126);
+    --jtk-miniview-element-background:rgb(96, 122, 134);
+    --jtk-miniview-group-element-border:3px solid black;
+    --jtk-miniview-collapse-color:whiteSmoke;
+    --jtk-miniview-collapsed-background:#449ea6;
+    --jtk-miniview-collapsed-hover:#E4F013;
+
+    --jtk-surface-pan-background:Azure;
+    --jtk-surface-pan-hover-background:rgb(49, 119, 184);
+    --jtk-surface-pan-hover-foreground:white;
+    --jtk-surface-pan-active-background:#f76258;
+
+    --jtk-draw-handle-background:yellowgreen;
+
+    --jtk-color-snapline:yellowgreen;
+    --jtk-color-snapline-exact:red;
+    --jtk-snapline-size:2px;
+    --jtk-color-snapline-active:yellowgreen;
+}
+
+/* --------------------------------------------------------------------------------------------- */
+/* --- SURFACE WIDGET -------------------------------------------------------------------------- */
+/* --------------------------------------------------------------------------------------------- */
+
+/*
+    Assigned to SVG elements for edges. This style allows overlays to paint outside the bounds, and
+    for arbitrary stroke widths for connectors.
+ */
+.jtk-connector {
+    overflow:visible;
+}
+
+/*
+    Assigned to every Node managed by an instance of the Toolkit. They are required to be positioned absolute, to
+    enable dragging to work properly.
+*/
+.jtk-node {
+    position: absolute;
+}
+
+/*
+    Assigned to every Group managed by an instance of the Toolkit. They are required to be positioned absolute, to
+    enable dragging to work properly. We set overflow:visible on Group elements too, as a drag outside of the bounds
+    is automatically reverted anyway, and without overflow:visible you cannot drag a node to some other element. You can
+    also drag a node out of the element's viewport and if you drop it you can never get it back.
+*/
+.jtk-group {
+    position: absolute;
+    overflow: visible;
+}
+
+/**
+    From 6.7.0 onwards we can use SVG elements as groups and group content containers.  So we also set overflow:visible for these.
+ */
+.jtk-group svg {
+    overflow:visible;
+}
+
+/*
+    Default behaviour for children of a collapsed group - hide them.
+ */
+[data-jtk-group].jtk-group-collapsed [data-jtk-managed] {
+    display:none;
+}
+
+.jtk-surface-elastic-group-resize {
+    position:absolute;
+    outline:2px solid forestgreen;
+    background-color: #4ea75866;
+    box-sizing:border-box;
+}
+
+/*
+
+    This is the attribute used to mark which part of a Group DOM element should contain the child Nodes. We mark it
+    as having `position:relative` so that the absolute positioned Nodes are drawn correctly.
+*/
+[data-jtk-group-content] {
+    position:relative;
+}
+
+/**
+    Assigned to shapes drawn by a shape library. This rule allows us to be agnostic of the stroke width.
+ */
+.jtk-shape {
+    overflow:visible;
+}
+
+/*
+    This style was created in response to this Chrome bug:
+    http://stackoverflow.com/questions/13758215/artifacts-when-css-scaled-in-chrome
+
+    Basically it's about how sometimes there can be artefacts left on screen when the user drags an element. It seems
+    the issue has been fixed in more recent versions of Chrome, but the style is left here in case you come across
+    the problem.
+*/
+.jtk-node.jtk-drag {
+    /*-webkit-backface-visibility: hidden;*/
+}
+
+/*
+    Suppresses the pointer events on an element that was created by Katavorio in response to a drag in which the element
+    should first be cloned. Having this clone ignore pointer events means there is less chance that any other
+    mouse activity (such as click) on the original element will not be consumed by katavorio.
+ */
+.katavorio-clone-drag {
+    pointer-events:none;
+}
+
+/*
+    Assigned to an element that is the `Container` in a `render` call.
+    Elements that are acting as Surface widgets should have overflow:hidden set to prevent libs from
+    scrolling them during drag (we don't want scrollbars; we have an infinite canvas). Position is set to
+    `relative` as this is the parent for nodes, which are positioned absolute (and for absolute positioning
+    to work, you need to ensure the parent node has `position:relative`). This style also sets some default
+    values for the cursor - using a `grab` cursor where supported.
+*/
+.jtk-surface {
+    overflow: hidden !important;
+    position: relative;
+    cursor: move;
+    cursor: -moz-grab;
+    cursor: -webkit-grab;
+
+    /*
+        For IE10+. As discussed on this page:
+
+        https://msdn.microsoft.com/en-us/library/ie/jj583807(v=vs.85).aspx
+
+        Microsoft have very helpfully implemented default behaviours for a bunch of touch events and
+        then consumed the events so you don't have to be bothered by them. They've "done a lot of research"
+        about this stuff and put together a really great default experience for everyone in the entire world.
+    */
+    touch-action:none;
+
+    /*
+        Another Chrome issue that appears to have been fixed in later versions
+        http://stackoverflow.com/questions/15464055/css-transition-effect-makes-image-blurry-moves-image-1px-in-chrome
+    */
+    /*
+    -webkit-backface-visibility: hidden;
+    -webkit-transform: translateZ(0) scale(1.0, 1.0);
+    */
+}
+
+/**
+* Assigned to a Surface element when direct rendering is switched on - no pan or zoom, the underlying canvas scaled to fit its contents at zoom:1.
+ */
+.jtk-surface-direct-render {
+    overflow:hidden !important;
+}
+
+/*
+    Assigned to the surface when it is being panned. The default is to change the cursor (in browsers that support
+    a `grabbing` cursor), and to disable text selection.
+*/
+.jtk-surface-panning {
+    cursor: -moz-grabbing;
+    cursor: -webkit-grabbing;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/*
+    The work area in a surface renderer.
+*/
+.jtk-surface-canvas {
+    overflow: visible !important;
+}
+
+/*
+    Assigned to a Surface widget when panning is disabled (and therefore the app is relying on scrollbars when the content overflows).
+*/
+.jtk-surface-nopan {
+    overflow: scroll !important;
+    cursor:default;
+}
+
+/*
+Assigned to tile images in a tiled background
+*/
+.jtk-surface-tile {
+    border:none;
+    outline:none;
+    margin:0;
+    -webkit-transition: opacity .3s ease .15s;
+    -moz-transition: opacity .3s ease .15s;
+    -o-transition: opacity .3s ease .15s;
+    -ms-transition: opacity .3s ease .15s;
+    transition: opacity .3s ease .15s;
+}
+
+/*
+    Assigned to the element used for node select with the mouse ("lasso").
+*/
+.jtk-lasso {
+    border: 2px solid var(--jtk-lasso-border);
+    background-color: var(--jtk-lasso-background);
+    opacity: 0.5;
+    display: none;
+    z-index: 20000;
+    position: absolute;
+}
+
+/*
+    This class is added to the document body on lasso drag start and removed at the end of lasso dragging. Its purpose
+    is to switch off text selection on all elements while the user is dragging the lasso.
+*/
+.jtk-lasso-select-defeat * {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/**
+    Added to the lasso mask when it is operating in 'inverted' mode, ie. the excluded parts of the UI are covered, rather
+    than the normal mode in which the selected parts of the UI are covered.
+*/
+.jtk-lasso-mask {
+    position:fixed;
+    z-index:20000;
+    display:none;
+    opacity:0.5;
+    background-color: var(--jtk-lasso-mask);
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+}
+
+/*
+    Assigned to some element that has been selected (either via lasso or programmatically).
+*/
+.jtk-surface-selected-element {
+    border: var(--jtk-surface-selected-element-border);
+}
+
+/*
+    Assigned to all pan buttons in a surface widget.
+*/
+.jtk-surface-pan {
+    background-color: var(--jtk-surface-pan-background);
+    opacity: 0.4;
+    text-align: center;
+    cursor: pointer;
+    z-index: 2;
+    -webkit-transition: background-color 0.15s ease-in;
+    -moz-transition: background-color 0.15s ease-in;
+    -o-transition: background-color 0.15s ease-in;
+    transition: background-color 0.15s ease-in;
+}
+
+/*
+    Specific styles for the top and bottom pan buttons.
+    Top/bottom are 100% width and 20px high by default
+*/
+.jtk-surface-pan-top, .jtk-surface-pan-bottom {
+    width: 100%;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+/*
+    Hover styles for all pan buttons.
+    On hover, change color, background color, font weight and opacity.
+*/
+.jtk-surface-pan-top:hover, .jtk-surface-pan-bottom:hover, .jtk-surface-pan-left:hover, .jtk-surface-pan-right:hover {
+    opacity: 0.6;
+    background-color: var(--jtk-surface-pan-hover-background);
+    color: var(--jtk-surface-pan-hover-foreground);
+    font-weight: bold;
+}
+
+/*
+    Specific styles for the left and right pan buttons.
+    Left/right pan buttons are 100% height and 20px wide
+*/
+.jtk-surface-pan-left, .jtk-surface-pan-right {
+    width: 20px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+
+/*
+    Assigned to a pan button when the user is pressing it.
+*/
+.jtk-surface-pan-active, .jtk-surface-pan-active:hover {
+    background-color: var(--jtk-surface-pan-active-background);
+}
+
+/* --------------------------------------------------------------------------------------------- */
+/* --- OVERLAYS -------------------------------------------------------------------------------- */
+/* --------------------------------------------------------------------------------------------- */
+
+/**
+    When label overlays have a blank label we set visibility to hidden
+    rather than toggling `display`, because we want the dimensions of the element still to be considered.
+ */
+.jtk-label-overlay:empty {
+    visibility: hidden;
+}
+
+/* --------------------------------------------------------------------------------------------- */
+/* --- MINIVIEW WIDGET ------------------------------------------------------------------------- */
+/* --------------------------------------------------------------------------------------------- */
+
+/*
+    Assigned to an element that is acting as a Miniview.
+    As with Surface, Miniview elements should have overflow:hidden set to prevent
+    libs from scrolling them during drag. This style also provides a default width/height for a miniview,
+    which you may wish to override.
+*/
+.jtk-miniview {
+    overflow: hidden !important;
+    width: 125px;
+    height: 125px;
+    position: relative;
+    background-color: var(--jtk-miniview-background);
+    border: var(--jtk-miniview-border);
+    border-radius: 4px;
+    opacity: 0.8;
+}
+
+/*
+    Assigned to the element that shows the size of the related viewport in a Miniview widget, and which can be dragged to
+    move the surface.
+*/
+.jtk-miniview-panner {
+    border: var(--jtk-miniview-panner-border);
+    opacity: 0.4;
+    background-color: var(--jtk-miniview-panner-background);
+    cursor: move;
+    cursor: -moz-grab;
+    cursor: -webkit-grab;
+}
+
+/*
+    Assigned to the miniview's panner when it is being dragged.
+*/
+.jtk-miniview-panning {
+    cursor: -moz-grabbing;
+    cursor: -webkit-grabbing;
+}
+
+/*
+    Added to all elements displayed in a miniview.
+*/
+.jtk-miniview-element {
+    background-color: var(--jtk-miniview-element-background);
+    position: absolute;
+}
+
+/*
+    Added to Group elements displayed in a miniview
+*/
+.jtk-miniview-group-element {
+    background: transparent;
+    border: var(--jtk-miniview-group-element-border);
+}
+
+/*
+    Assigned to the collapse/expand miniview button
+*/
+.jtk-miniview-collapse {
+    color: var(--jtk-miniview-collapse-color);
+    position: absolute;
+    font-size: 18px;
+    top: -1px;
+    right: 3px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/*
+    The '-' symbol when the miniview is expanded
+*/
+.jtk-miniview-collapse:before {
+    content: "\2012";
+}
+
+/*
+    Assigned to the miniview element when it is collapsed.
+*/
+.jtk-miniview-collapsed {
+    background-color: var(--jtk-miniview-collapsed-background);
+    border-radius: 4px;
+    height: 22px;
+    margin-right: 0;
+    padding: 4px;
+    width: 21px;
+}
+
+/*
+    Hide all children of the miniview (except the expand button) when it is collapsed so you don't see anything
+    poking through under the + icon.
+*/
+.jtk-miniview-collapsed .jtk-miniview-element, .jtk-miniview-collapsed .jtk-miniview-panner {
+    visibility: hidden;
+}
+
+/*
+    The '+' symbol when the miniview is collapsed.
+*/
+.jtk-miniview-collapsed .jtk-miniview-collapse:before {
+    content: "+";
+}
+
+/*
+    Hover state for the collapse/expand icon.
+*/
+.jtk-miniview-collapse:hover {
+    color: var(--jtk-miniview-collapsed-hover);
+}
+
+/**
+When clickToCenter is true on the miniview, set a pointer cursor on miniview elements to indicate they can be clicked.
+ */
+.jtk-miniview-click-to-center .jtk-miniview-element {
+    cursor:pointer;
+}
+
+/* -------------------------------------------------------------------------------------------- */
+/* --- DRAWING TOOLS -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------------------------- */
+
+/*
+    Assigned to the element that is drawn around some other element when a drawing operation is taking place.
+*/
+.jtk-draw-skeleton {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    outline: 2px dotted var(--jtk-draw-handle-background);
+    opacity: 0.8;
+}
+
+/*
+    Assigned to every handle (top left, top right, bottom left, bottom right, center) in a draw skeleton.
+*/
+.jtk-draw-handle {
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    background-color: var(--jtk-draw-handle-background);
+}
+
+/*
+    Assigned to the top left handle in a draw skeleton
+*/
+.jtk-draw-handle-tl {
+    left: 0;
+    top: 0;
+    cursor: nw-resize;
+}
+
+/*
+    Assigned to the top right handle in a draw skeleton
+*/
+.jtk-draw-handle-tr {
+    right: 0;
+    top: 0;
+    cursor: ne-resize;
+}
+
+/*
+    Assigned to the bottom left handle in a draw skeleton
+*/
+.jtk-draw-handle-bl {
+    left: 0;
+    bottom: 0;
+    cursor: sw-resize;
+}
+
+/*
+    Assigned to the bottom right handle in a draw skeleton
+*/
+.jtk-draw-handle-br {
+    bottom: 0;
+    right: 0;
+    cursor: se-resize;
+}
+
+/*
+    Assigned to the center handle in a draw skeleton (the handle by which the element may be dragged). This is
+    not visible by default; enable if you need it.
+*/
+.jtk-draw-drag {
+    display:none;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -10px;
+    margin-top: -10px;
+    width: 20px;
+    height: 20px;
+    background-color: var(--jtk-draw-handle-background);
+    cursor: move;
+}
+
+/*
+    This class is added to the document body on drag resize start and removed at the end of resizing. Its purpose
+    is to switch off text selection on all elements while the user is resizing an element.
+*/
+.jtk-drag-select-defeat * {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+
+/* ------------------------------------------------------------------------ */
+/* --------------- SVG/PNG/JPEG export ------------------------------------ */
+/* ------------------------------------------------------------------------ */
+
+.jtk-export-underlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    opacity: 0.9;
+    background-color: darkgray;
+}
+
+.jtk-export-overlay {
+    z-index: 1001;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 80%;
+    position: absolute;
+    width: 80%;
+    max-height:65vh;
+    top: 1rem;
+    left: 50%;
+    margin-left: -40%;
+    background-color: white;
+    padding: 1rem;
+    border-radius: 5px;
+    box-shadow: 0 0 10px #847a6a;
+}
+
+.jtk-export-overlay > svg {
+    max-width:100%;
+}
+
+.jtk-export-cancel {
+    position:absolute;
+    top:25px;
+    right:25px;
+    cursor:pointer;
+}
+
+.jtk-export-cancel:after {
+    content:"X";
+}
+
+.jtk-export-cancel:hover {
+    color:orangered;
+}
+
+.jtk-export-download-tools {
+    display:flex;
+    align-items:center;
+}
+
+.jtk-export-download-tools * {
+    margin:0.25rem;
+    padding:0.25rem;
+}
+
+/* ---------------------------------------------------------------------------  */
+/* --------------- SHAPE LIBRARY PALETTE ------------------------------------- */
+/* --------------------------------------------------------------------------- */
+
+/**
+    Assigned to shapes drawn by a shape library palette. We don't impose anything in terms of fill or stroke, but we do
+    set overflow:visible, to allow for variable stroke-width.
+ */
+.jtk-shape-library-palette-shape svg {
+    overflow: visible;
+}
+
+.jtk-shape-library-palette-filter {
+    width: 90%;
+    padding: 3px;
+    margin: 0 0 1rem 0;
+}
+
+.jtk-shape-library-palette-set {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 0 1rem 0;
+}
+
+.jtk-shape-library-palette-set-title {
+    margin: 0.5rem 0;
+    background-color: #DDD;
+    padding: 0.25rem;
+    width: 90%;
+}
+
+/* --------------------- SNAPLINES PLUGIN ----------------------------- */
+
+.jtk-snapline {
+    position: absolute;
+    z-index: 1000;
+    background-color: var(--jtk-color-snapline);
+}
+
+.jtk-snapline-exact {
+    background: var(--jtk-color-snapline-exact);
+}
+
+.jtk-snapline-vertical {
+    top: 0;
+    bottom: 0;
+    width: var(--jtk-snapline-size);
+    transform: translateX(-50%);
+}
+
+.jtk-snapline-horizontal {
+    left: 0;
+    right: 0;
+    height:var(--jtk-snapline-size);
+    transform: translateY(-50%);
+}
+
+.jtk-snapline-active {
+    outline:1px var(--jtk-color-snapline-active);
+}

@@ -1,0 +1,235 @@
+/* ----------------------------------------------------------------------------------------------- */
+/* -------------------------  styles for connector paths when editing ---------------------------- */
+/* ----------------------------------------------------------------------------------------------- */
+
+:root {
+    --jtk-edge-handle-bg:#f7f6f6;
+    --jtk-edge-handle-size:20px;
+    --jtk-edge-handle-font-size:13px;
+    --jtk-edge-handle-fg:#000000;
+    --jtk-edge-delete-handle-bg:#f9a89c;
+    --jtk-edge-handle-shadow:0 0 5px;
+    --jtk-edge-handle-hover-bg:#FFFFFF;
+    --jtk-edge-move-icon:url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNy4xLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB2aWV3Qm94PSIwIDAgOTYgOTYiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDk2IDk2IiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxnPg0KCTxwYXRoIGQ9Ik03Myw0OC40bC0xMC40LTkuNnY0LjhINTIuNFYzMy40aDQuOEw0Ny42LDIzbC04LjksMTAuNGg0Ljh2MTAuMkgzMy40di00LjhMMjMsNDguNGwxMC40LDguOXYtNC44aDEwLjJ2MTAuMmgtNC44TDQ3LjYsNzMNCgkJbDkuNi0xMC40aC00LjhWNTIuNGgxMC4ydjQuOEw3Myw0OC40eiIvPg0KPC9nPg0KPC9zdmc+DQo=);
+    --jtk-edge-handle-z-index:10;
+    --jtk-edge-split-icon:url(data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjMDAwMDAwIiB2ZXJzaW9uPSIxLjEiIGlkPSJDYXBhXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIA0KCSB2aWV3Qm94PSIwIDAgMzgwLjYyMSAzODAuNjIiDQoJIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPGc+DQoJPGc+DQoJCTxwYXRoIGQ9Ik0zODAuNjIxLDEwNi45NTVsLTkuNzE2LTAuNjA3YzAsMC03Ny4wNjgsMjQuNDE3LTEzNC4xOTMsNDIuODMyYy00LjI4NSwxMi43OTItOC4xODYsMjQuMzQ3LTExLjMwMywzMy40MzINCgkJCUwzODAuNjIxLDEwNi45NTV6Ii8+DQoJCTxwYXRoIGQ9Ik0xNzYuNjA0LDE2OS4wODljLTQ3LjgzLDE1LjI0NS05NS4zNS01LjgzOC05OC43NDItNy4zOTJjLTE0LjE1OS04Ljg2My0zMy41MTktOS4zNjUtNTAuMTQyLTAuNTI1DQoJCQljLTExLjUzNyw2LjExOS0yMC4zLDE1Ljg2OS0yNC43MTQsMjcuNDNjLTQuNTMxLDExLjg5OS0zLjkyNCwyNC4zLDEuNzEsMzQuODkxYzEuODE2LDMuNDIyLDQuMTEsNi41NTEsNi44MjUsOS4zMTgNCgkJCWMxNC4xNDcsMTQuMzYzLDM3Ljg4LDE3LjA0OSw1Ny42OTcsNi41MTZjMC4wNy0wLjAzNCwwLjE0LTAuMDkzLDAuMjI4LTAuMTRjLTAuMDk5LDAuMTg3LTAuMTQ2LDAuMjgtMC4xNDYsMC4yOGwxMjMuMjQ2LTYwLjIwNw0KCQkJbDAuMDcsMC4wMjlsLTQuNjcxLTE0LjIxN0MxODEuNjI1LDE2Ny4xOTcsMTc3LjUzOCwxNjguNjM0LDE3Ni42MDQsMTY5LjA4OXogTTYyLjUxOSwyMjYuNjY5DQoJCQljLTE0LjI1Miw3LjU5LTMxLjAzMiw1Ljk3OS00MC43NjUtMy45MjRjLTEuNzMzLTEuNzYzLTMuMjE3LTMuNzcxLTQuMzczLTUuOTc5Yy0zLjY3Mi02Ljg5LTQuMDA1LTE1LjA4Ny0wLjk2OS0yMy4wNzQNCgkJCWMzLjE3LTguMzIsOS41NjMtMTUuMzczLDE4LjAyOS0xOS44NjljMTQuMjctNy41NzMsMzEuMDIxLTUuOTY3LDQwLjc1MywzLjkxN2MxLjc0NiwxLjc3NSwzLjIxNywzLjc4NCw0LjM4NSw1Ljk3OQ0KCQkJYzMuNjYxLDYuOTAxLDQuMDExLDE1LjA4NiwwLjk4MSwyMy4wNzRDNzcuMzk1LDIxNS4xMDgsNzAuOTg0LDIyMi4xNjIsNjIuNTE5LDIyNi42Njl6Ii8+DQoJCTxwYXRoIGQ9Ik0yMTUuNDI0LDM1My4zNDJjOS41NC0xNi44MDMsOS4zNDItMzYuNjMxLDAuMjU3LTUxLjEzNGMtMi4xNDgtNS4yMi0yMC4yNDItNTEuNTc3LTQuMDUyLTk3LjkxMw0KCQkJYzMuNjA4LTcuMDA2LDY1LjE4Mi0xOTQuMzAxLDY1LjE4Mi0xOTQuMzAxbC0wLjc0OC05LjIzbC04Mi4yNjUsMTYyLjY2OGw4LjA4MSwyNC42MzNsLTYyLjA0NiwxMTkuMzQNCgkJCWMtMC40NjcsMC43Ni0wLjk2OSwxLjQ5NC0xLjQwNywyLjI1NGMtMTEuMjA0LDE5Ljc0Ni05LjA0NCw0My42ODQsNS4yNjEsNTguMjFsMCwwYzIuNTkyLDIuNjQsNS41NDcsNC45MDUsOC43NjQsNi43MjYNCgkJCWMxMC40MzksNS45MzMsMjIuOCw2Ljg3OSwzNC44MzMsMi42ODdDMTk4Ljk4OSwzNzMuMjE3LDIwOC45NzksMzY0LjcxNiwyMTUuNDI0LDM1My4zNDJ6IE0yMDQuNzYzLDE3MS4yMTQNCgkJCWMtMi45MzEtMi45NzgtMi44ODQtNy43NDgsMC4wODItMTAuNjljMi45NzgtMi45MjUsNy43NjUtMi44OSwxMC42OTYsMC4wODdjMi45MzEsMi45NzgsMi44OTYsNy43Ni0wLjA4MiwxMC42OQ0KCQkJQzIxMi40ODIsMTc0LjIyNywyMDcuNjk0LDE3NC4xOTIsMjA0Ljc2MywxNzEuMjE0eiBNMTgyLjU4MywzNjMuNzU4Yy04LjA2OSwyLjgwMy0xNi4yNDksMi4yNDItMjMuMDQ1LTEuNjExDQoJCQljLTIuMDU1LTEuMTgtMy45NTMtMi42MzktNS42MTYtNC4zMmMtOS44MzMtOS45OTYtMTEuMDc2LTI2Ljg4MS0zLjAxMy00MS4wOTJjNC43MzQtOC4zMjYsMTEuOTU3LTE0LjUzOCwyMC4zNzYtMTcuNDY5DQoJCQljOC4wNTgtMi44MTQsMTYuMjM3LTIuMjU0LDIzLjAyNywxLjYyM2MyLjA2NywxLjE4LDMuOTcxLDIuNjE1LDUuNjM0LDQuMzA5YzkuODI3LDkuOTg0LDExLjA3NiwyNi44ODEsMy4wMTMsNDEuMDkyDQoJCQlDMTk4LjIxMiwzNTQuNjE1LDE5MC45NzgsMzYwLjgxNSwxODIuNTgzLDM2My43NTh6Ii8+DQoJPC9nPg0KPC9nPg0KPC9zdmc+);
+    --jtk-edge-delete-icon:url(data:image/svg+xml;base64,PHN2ZyB4bWxuczpzdmc9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgLTI1NiAxNzkyIDE3OTIiIHZlcnNpb249IjEuMSI+CiAgICA8ZyB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwtMSwxOTcuNDIzNzMsMTI1NS4wNTA4KSI+CiAgICAgICAgPHBhdGggc3Ryb2tlPSJjdXJyZW50Q29sb3IiIGQ9Ik0gNTEyLDgwMCBWIDIyNCBxIDAsLTE0IC05LC0yMyAtOSwtOSAtMjMsLTkgaCAtNjQgcSAtMTQsMCAtMjMsOSAtOSw5IC05LDIzIHYgNTc2IHEgMCwxNCA5LDIzIDksOSAyMyw5IGggNjQgcSAxNCwwIDIzLC05IDksLTkgOSwtMjMgeiBtIDI1NiwwIFYgMjI0IHEgMCwtMTQgLTksLTIzIC05LC05IC0yMywtOSBoIC02NCBxIC0xNCwwIC0yMyw5IC05LDkgLTksMjMgdiA1NzYgcSAwLDE0IDksMjMgOSw5IDIzLDkgaCA2NCBxIDE0LDAgMjMsLTkgOSwtOSA5LC0yMyB6IG0gMjU2LDAgViAyMjQgcSAwLC0xNCAtOSwtMjMgLTksLTkgLTIzLC05IGggLTY0IHEgLTE0LDAgLTIzLDkgLTksOSAtOSwyMyB2IDU3NiBxIDAsMTQgOSwyMyA5LDkgMjMsOSBoIDY0IHEgMTQsMCAyMywtOSA5LC05IDksLTIzIHogTSAxMTUyLDc2IHYgOTQ4IEggMjU2IFYgNzYgUSAyNTYsNTQgMjYzLDM1LjUgMjcwLDE3IDI3Ny41LDguNSAyODUsMCAyODgsMCBoIDgzMiBxIDMsMCAxMC41LDguNSA3LjUsOC41IDE0LjUsMjcgNywxOC41IDcsNDAuNSB6IE0gNDgwLDExNTIgaCA0NDggbCAtNDgsMTE3IHEgLTcsOSAtMTcsMTEgSCA1NDYgcSAtMTAsLTIgLTE3LC0xMSB6IG0gOTI4LC0zMiB2IC02NCBxIDAsLTE0IC05LC0yMyAtOSwtOSAtMjMsLTkgaCAtOTYgViA3NiBxIDAsLTgzIC00NywtMTQzLjUgLTQ3LC02MC41IC0xMTMsLTYwLjUgSCAyODggcSAtNjYsMCAtMTEzLDU4LjUgUSAxMjgsLTExIDEyOCw3MiB2IDk1MiBIIDMyIHEgLTE0LDAgLTIzLDkgLTksOSAtOSwyMyB2IDY0IHEgMCwxNCA5LDIzIDksOSAyMyw5IGggMzA5IGwgNzAsMTY3IHEgMTUsMzcgNTQsNjMgMzksMjYgNzksMjYgaCAzMjAgcSA0MCwwIDc5LC0yNiAzOSwtMjYgNTQsLTYzIGwgNzAsLTE2NyBoIDMwOSBxIDE0LDAgMjMsLTkgOSwtOSA5LC0yMyB6Ii8+CiAgICA8L2c+Cjwvc3ZnPgo=);
+}
+/*
+    `jtk-connection-edit` is a class set on an edge that is being edited. As of 6.2.0 we don't set a default for this.
+    Note that the class is set on the parent SVG element, not the path element.
+*/
+.jtk-connection-edit path {
+
+}
+
+/* -------------------------------------------------------------------------------------------- */
+/* ------------------------- Common handle style ---------------------------------------------- */
+/* -------------------------------------------------------------------------------------------- */
+
+.jtk-edge-handle {
+    position:absolute;
+    background-color:var(--jtk-edge-handle-bg);
+    border-radius:50%;
+    width:var(--jtk-edge-handle-size);
+    height:var(--jtk-edge-handle-size);
+    line-height: var(--jtk-edge-handle-size);
+    text-align: center;
+    font-size:var(--jtk-edge-handle-font-size);
+    z-index:var(--jtk-edge-handle-z-index);
+    color:var(--jtk-edge-handle-fg);
+    box-shadow: var(--jtk-edge-handle-shadow);
+    /*transform: translate(0, -50%);*/
+
+    background-size: 75%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.jtk-edge-guideline {
+    position:absolute;
+    fill:none;
+    stroke:green;
+    stroke-dasharray: 2;
+}
+
+/* ----------------------------------------------------------------------------------------------- */
+/* --------------------    Styles for Orthogonal editor ------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------- */
+
+.jtk-orthogonal-handle {
+    cursor:move;
+}
+
+.jtk-orthogonal-segment-drag {
+    cursor:move;
+    cursor:grab;
+}
+
+.jtk-orthogonal-segment-drag-ns:before {
+    content:"\2195";
+}
+
+.jtk-orthogonal-segment-drag-ew:before {
+    content:"\2194";
+}
+
+.jtk-orthogonal-segment-drag:hover {
+    background-color: var(--jtk-edge-handle-hover-bg);
+}
+
+/* ----------------------------------------------------------------------------------------------- */
+/* --------------------    Styles for Cubic/Quadratic Bezier editor ------------------------------ */
+/* ----------------------------------------------------------------------------------------------- */
+
+/*#
+    Identifies a handle used to drag a control point. From 7.0.0 there are no specific styles for this - see .jtk-edge-handle.
+*/
+.jtk-bezier-handle {
+
+}
+
+/**
+    Common class applied to all control points
+ */
+.jtk-bezier-handle-control-point { }
+
+/*
+    The drag handle corresponding to the first control point. For StateMachine connectors only this handle is shown.
+ */
+.jtk-bezier-handle-control-point-1:before {
+    content:"1";
+}
+
+/*
+    The drag handle corresponding to the second control point. For StateMachine connectors only this handle is shown.
+ */
+.jtk-bezier-handle-control-point-2:before {
+    content:"2";
+}
+
+.jtk-bezier-handle-control-point-3:before {
+    content:"3";
+}
+
+.jtk-bezier-handle-control-point-4:before {
+    content:"4";
+}
+
+.jtk-bezier-handle-secondary {
+    cursor:default;
+    background-color:lightgreen;
+}
+
+.jtk-bezier-handle-secondary-source {
+    background-color: lavenderblush;
+}
+
+/**
+Added to the guidelines by the bezier editor. No specific styles here. See .jtk-edge-guideline
+ */
+.jtk-bezier-guideline { }
+
+
+/* ----------------------------------------------------------------------------------------------- */
+/* ----------------------------- Styles for segmented connector editor --------------------------- */
+/* ----------------------------------------------------------------------------------------------- */
+
+.jtk-segmented-segment-drag {
+    background: var(--jtk-edge-handle-bg) var(--jtk-edge-move-icon);
+}
+
+.jtk-segmented-segment-split {
+    width: 15px;
+    height: 15px;
+    background-color: var(--jtk-edge-handle-bg);
+    background-image:var(--jtk-edge-split-icon);
+    cursor:pointer;
+
+}
+
+.jtk-segmented-segment-delete {
+    width: 15px;
+    height: 15px;
+    background-color: var(--jtk-edge-delete-handle-bg);
+    background-image:var(--jtk-edge-delete-icon);
+    cursor:pointer;
+}
+
+/**
+    No specific styles for this - see .jtk-edge-guideline
+ */
+.jtk-segmented-editor-guideline {
+
+}
+
+/* ----------------------------------------------------------------------------------------------- */
+/* -----------------------------   Styles for anchor placeholders -------------------------------- */
+/* ----------------------------------------------------------------------------------------------- */
+
+/*
+    Added to the element placed at the location of an anchor for a connection that is being edited. This applies
+    to both dynamic and continuous anchors. Fixed anchors cannot be relocated.
+*/
+.jtk-anchor-placeholder {
+    width: 20px;
+    height: 20px;
+    cursor: move;
+    cursor:grab;
+    border-radius: 50%;
+    background-color:#f7f6f6;
+    box-shadow: 0 0 4px;
+}
+
+/*
+    Added to the elements drawn to show where a certain anchor may be relocated to (for dynamic anchors)
+*/
+.jtk-anchor-candidate {
+    background-color:mediumseagreen;
+    width: 20px;
+    height: 20px;
+}
+
+/*
+    `jtk-anchor-face` is an attribute written onto an element (source or target) when the connection that is being edited
+    has `Continuous` anchors, and the user is dragging an anchor point to relocate it. The value of the attribute is the
+    candidate face on the element.
+ */
+[jtk-anchor-face='left'] {
+    border-left:4px solid gold !important;
+}
+
+[jtk-anchor-face='top'] {
+    border-top:4px solid gold !important;
+}
+
+[jtk-anchor-face='right'] {
+    border-right:4px solid gold !important;
+}
+
+[jtk-anchor-face='bottom'] {
+    border-bottom:4px solid gold !important;
+}
+
+
+/* --------------------------------------------------------------------------------------------------------------------- */
+/* --------------------------- edge delete button ---------------------------------------------------------------------- */
+/* --------------------------------------------------------------------------------------------------------------------- */
+
+.jtk-edge-delete {
+    width:15px;
+    height:15px;
+    line-height: 15px;
+    text-align: center;
+    background-color:orangered;
+    color:white;
+    border-radius:50%;
+    font-size:8px;
+    cursor:pointer;
+    font-family:sans-serif;
+    visibility: visible !important;
+}
+
+.jtk-edge-delete:before {
+    content:"X";
+}

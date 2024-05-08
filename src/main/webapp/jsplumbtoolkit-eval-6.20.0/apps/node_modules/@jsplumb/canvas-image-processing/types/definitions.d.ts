@@ -1,0 +1,11 @@
+export declare const TAG_CANVAS = "canvas";
+export declare const ATTRIBUTE_CROSS_ORIGIN = "crossorigin";
+export declare const VALUE_ANONYMOUS = "anonymous";
+export declare const TWO_D = "2d";
+export declare const EVENT_LOAD = "load";
+export declare const GLOBAL_COMPOSITE_MULTIPLY: GlobalCompositeOperation;
+export declare const GLOBAL_COMPOSITE_SOURCE_IN: GlobalCompositeOperation;
+export declare const GLOBAL_COMPOSITE_DESTINATION_IN: GlobalCompositeOperation;
+export declare const AXIS_X = "x";
+export declare const AXIS_Y = "y";
+export declare const AXIS_X_AND_Y = "x_y";

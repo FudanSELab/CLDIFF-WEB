@@ -263,6 +263,7 @@ function processSet(set, uiDefinitions, processors, nodeTypes, inject) {
         nodeTypes[key] = type;
         var h = header.replace(/\$type/g, type.id).replace(/\$set/g, setId);
         var inputPorts = "<div class=\"jtk-imp-inputs\">";
+        console.log(type.inputs);
         type.inputs.forEach(function (tin) {
             inputPorts += "<div class=\"jtk-in\">\n                    <div class=\"jtk-imp-ep\" data-jtk-target=\"true\" data-jtk-port=\"in:".concat(tin.id, "\" data-jtk-port-type=\"target\" data-jtk-scope=\"").concat(tin.type, "\"/>\n                    <span>").concat(tin.label, "</span>\n                    </div>");
         });
@@ -650,28 +651,23 @@ var filters = {
             id: "invert",
             name: "Invert",
             inputs: [
-                { id: "image", label: "Image", type: "image" },
-                { id: "amount", label: "Amount", type: "number", defaultValue: 100 }
+                { id: "image", label: "Image", type: "image" }
+                // { id:"amount", label:"Amount", type:"number"}
             ],
             outputs: [{ id: "image", label: "Image", type: "image" }],
             compute: function (node) {
                 return __awaiter(this, void 0, void 0, function () {
-                    var data, _a, _b;
-                    return __generator(this, function (_c) {
-                        switch (_c.label) {
-                            case 0:
-                                data = node.data;
-                                if (!(data["in:image"] == null)) return [3 /*break*/, 1];
-                                data["out:image"] = null;
-                                return [2 /*return*/, false];
-                            case 1:
-                                _a = data;
-                                _b = "out:image";
-                                return [4 /*yield*/, (0, canvas_image_processing_1.filterInvert)(data["in:image"], data["in:amount"] || data["amount"])];
-                            case 2:
-                                _a[_b] = _c.sent();
-                                return [2 /*return*/, true];
-                        }
+                    var data;
+                    return __generator(this, function (_a) {
+                        data = node.data;
+                        // if (data["in:image"] == null) {
+                        //     data["out:image"] = null
+                        return [2 /*return*/, false
+                            // } else {
+                            //     data["out:image"] = await filterInvert(data["in:image"], data["in:amount"] || data["amount"])
+                            //     return true
+                            // }
+                        ];
                     });
                 });
             }
@@ -893,7 +889,7 @@ var filters = {
 };
 exports.FILTER_INSPECTORS = {};
 filters.types.forEach(function (type) {
-    var dataField = type.inputs[1], inputType = dataField.type === "color" ? "color" : "text";
+    var dataField = type.inputs[0], inputType = dataField.type === "color" ? "color" : "text";
     exports.FILTER_INSPECTORS[type.id] = {
         template: function (n) { return "<label>Label:<input type=\"text\" jtk-att=\"label\"  placeholder=\"enter label\" jtk-focus/></label>\n            <label>".concat(dataField.label, ":<input type=\"").concat(inputType, "\" jtk-att=\"").concat(dataField.id, "\" placeholder=\"enter ").concat(dataField.id, "\"/></label>"); }
     };
@@ -989,9 +985,11 @@ exports.INPUT_TYPES = {
         {
             id: "number",
             name: "Number",
-            inputs: [],
+            inputs: [
+                { id: "image", label: "Image", type: "image" }
+            ],
             outputs: [
-                { id: "value", label: "Number", type: "number" }
+                { id: "image", label: "Image", type: "image" }
             ],
             compute: verifyValue
         }
@@ -1392,10 +1390,10 @@ exports.default = {
             id: exports.TRANSFORM_OVERLAY,
             name: "Overlay",
             inputs: [
-                { id: "image", label: "Image", type: "image" },
-                { id: "overlay", label: "Overlay", type: "image" },
-                { id: "x", label: "X", type: "number", defaultValue: 0 },
-                { id: "y", label: "Y", type: "number", defaultValue: 0 }
+                { id: "image", label: "Image", type: "image" }
+                // { id:"overlay", label:"Overlay", type:"image" }
+                // { id:"x", label:"X", type:"number", defaultValue:0 },
+                // { id:"y", label:"Y", type:"number", defaultValue:0 }
             ],
             outputs: [
                 { id: "image", label: "Image", type: "image" }

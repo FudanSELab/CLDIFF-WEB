@@ -62,19 +62,19 @@ const filters = {
             id:"invert",
             name:"Invert",
             inputs:[
-                { id:"image", label:"Image", type:"image" },
-                { id:"amount", label:"Amount", type:"number", defaultValue:100 }
+                { id:"image", label:"Image", type:"image" }
+                // { id:"amount", label:"Amount", type:"number"}
             ],
             outputs:[ { id:"image", label:"Image", type:"image" }],
             compute: async function(node:Node) {
                 const data = node.data
-                if (data["in:image"] == null) {
-                    data["out:image"] = null
-                    return false
-                } else {
-                    data["out:image"] = await filterInvert(data["in:image"], data["in:amount"] || data["amount"])
-                    return true
-                }
+                // if (data["in:image"] == null) {
+                //     data["out:image"] = null
+                return false
+                // } else {
+                //     data["out:image"] = await filterInvert(data["in:image"], data["in:amount"] || data["amount"])
+                //     return true
+                // }
             }
         },
         {
@@ -218,8 +218,9 @@ const filters = {
 
 export const FILTER_INSPECTORS:Record<string, any> = { }
 
+
 filters.types.forEach(type => {
-    const dataField = type.inputs[1], inputType = dataField.type === "color" ? "color" : "text"
+    const dataField = type.inputs[0], inputType = dataField.type === "color" ? "color" : "text"
     FILTER_INSPECTORS[type.id] = {
         template:(n:Node) => `<label>Label:<input type="text" jtk-att="label"  placeholder="enter label" jtk-focus/></label>
             <label>${dataField.label}:<input type="${inputType}" jtk-att="${dataField.id}" placeholder="enter ${dataField.id}"/></label>`

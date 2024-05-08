@@ -69,7 +69,7 @@
             "target": "6.in:image"
         },
         {
-            "source": "5.out:value",
+            "source": "5.out:image",
             "target": "6.in:image"
         },
         {

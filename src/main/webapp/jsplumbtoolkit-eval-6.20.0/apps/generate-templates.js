@@ -20,6 +20,7 @@ function processSet(set, uiDefinitions, processors, nodeTypes, inject) {
         nodeTypes[key] = type;
         var h = header.replace(/\$type/g, type.id).replace(/\$set/g, setId);
         var inputPorts = "<div class=\"jtk-imp-inputs\">";
+        console.log(type.inputs);
         type.inputs.forEach(function (tin) {
             inputPorts += "<div class=\"jtk-in\">\n                    <div class=\"jtk-imp-ep\" data-jtk-target=\"true\" data-jtk-port=\"in:".concat(tin.id, "\" data-jtk-port-type=\"target\" data-jtk-scope=\"").concat(tin.type, "\"/>\n                    <span>").concat(tin.label, "</span>\n                    </div>");
         });

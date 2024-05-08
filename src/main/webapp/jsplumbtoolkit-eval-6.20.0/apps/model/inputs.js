@@ -86,9 +86,11 @@ exports.INPUT_TYPES = {
         {
             id: "number",
             name: "Number",
-            inputs: [],
+            inputs: [
+                { id: "image", label: "Image", type: "image" }
+            ],
             outputs: [
-                { id: "value", label: "Number", type: "number" }
+                { id: "image", label: "Image", type: "image" }
             ],
             compute: verifyValue
         }

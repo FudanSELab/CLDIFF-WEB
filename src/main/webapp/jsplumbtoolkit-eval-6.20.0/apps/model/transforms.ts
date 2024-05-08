@@ -153,10 +153,10 @@ export default {
             id:TRANSFORM_OVERLAY,
             name:"Overlay",
             inputs:[
-                { id:"image", label:"Image", type:"image" },
-                { id:"overlay", label:"Overlay", type:"image" },
-                { id:"x", label:"X", type:"number", defaultValue:0 },
-                { id:"y", label:"Y", type:"number", defaultValue:0 }
+                { id:"image", label:"Image", type:"image" }
+                // { id:"overlay", label:"Overlay", type:"image" }
+                // { id:"x", label:"X", type:"number", defaultValue:0 },
+                // { id:"y", label:"Y", type:"number", defaultValue:0 }
             ],
             outputs:[
                 { id:"image", label:"Image", type:"image" }

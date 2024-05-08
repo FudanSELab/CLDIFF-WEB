@@ -26,6 +26,7 @@ function processSet(set:OperationSet, uiDefinitions:Record<string, UINodeDefinit
 
         const h = header.replace(/\$type/g, type.id).replace(/\$set/g, setId)
         let inputPorts = `<div class="jtk-imp-inputs">`
+        // console.log(type.inputs)
         type.inputs.forEach(tin => {
             inputPorts += `<div class="jtk-in">
                     <div class="jtk-imp-ep" data-jtk-target="true" data-jtk-port="in:${tin.id}" data-jtk-port-type="target" data-jtk-scope="${tin.type}"/>

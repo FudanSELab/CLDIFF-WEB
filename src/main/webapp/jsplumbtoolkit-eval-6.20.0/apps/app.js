@@ -97,12 +97,12 @@ var native_drop_handler_1 = require("./native-drop-handler");
         ports: {
             source: {
                 isSource: true,
-                maxConnections: -1,
+                maxConnections: 1000,
                 anchor: browser_ui_1.AnchorLocations.Right
             },
             target: {
                 isTarget: true,
-                maxConnections: 1,
+                maxConnections: 1000,
                 anchor: browser_ui_1.AnchorLocations.Left
             }
         },
@@ -253,8 +253,6 @@ var native_drop_handler_1 = require("./native-drop-handler");
             if (target.tagName.toLowerCase() === 'a') {
                 var value = target.getAttribute('value');
                 var task = target.textContent;
-                console.log(value);
-                console.log(task);
                 toolkit.clear();
                 toolkit.load({
                     url: value,

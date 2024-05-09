@@ -1,6 +1,10 @@
 {
-    "nodes": [{
-            "id": 0,
+    "nodes": [
+        {
+            "code": "        this.heartbeatThreadPoolQueue = new LinkedBlockingQueue<Runnable>(this.brokerConfig.getHeartbeatThreadPoolQueueCapacity());\n",
+            "file_name": "76233ed8b77c293e669f42daec855cabf74b9f3a__CLDIFF__broker/src/main/java/org/apache/rocketmq/broker/BrokerController.java",
+            "id": "0",
+            "group": 0,
             "label": "addExpressionStatement",
             "left": 200,
             "top": 200,
@@ -8,7 +12,10 @@
             "type": "basic.source"
         },
         {
-            "id": 1,
+            "code": "            this.heartbeatExecutor = new BrokerFixedThreadPoolExecutor(\n                this.brokerConfig.getHeartbeatThreadPoolNums(),\n                this.brokerConfig.getHeartbeatThreadPoolNums(),\n                1000 * 60,\n                TimeUnit.MILLISECONDS,\n                this.heartbeatThreadPoolQueue,\n                new ThreadFactoryImpl(\"HeartbeatThread_\",true));\n",
+            "file_name": "76233ed8b77c293e669f42daec855cabf74b9f3a__CLDIFF__broker/src/main/java/org/apache/rocketmq/broker/BrokerController.java",
+            "id": "1",
+            "group": 0,
             "label": "addExpressionStatement",
             "left": 200,
             "top": 200,
@@ -16,7 +23,10 @@
             "type": "basic.source"
         },
         {
-            "id": 2,
+            "code": "        if (this.transactionalMessageCheckService != null) {\n            this.transactionalMessageCheckService.shutdown(false);\n        }\n",
+            "file_name": "76233ed8b77c293e669f42daec855cabf74b9f3a__CLDIFF__broker/src/main/java/org/apache/rocketmq/broker/BrokerController.java",
+            "id": "2",
+            "group": 0,
             "label": "deleteIf",
             "left": 200,
             "top": 200,
@@ -24,7 +34,10 @@
             "type": "basic.source"
         },
         {
-            "id": 3,
+            "code": "        this.remotingServer.registerProcessor(RequestCode.HEART_BEAT, clientProcessor, this.heartbeatExecutor);\n",
+            "file_name": "76233ed8b77c293e669f42daec855cabf74b9f3a__CLDIFF__broker/src/main/java/org/apache/rocketmq/broker/BrokerController.java",
+            "id": "3",
+            "group": 0,
             "label": "updateExpressionStatement   by",
             "left": 200,
             "top": 200,
@@ -32,7 +45,10 @@
             "type": "basic.source"
         },
         {
-            "id": 4,
+            "code": "        this.fastRemotingServer.registerProcessor(RequestCode.HEART_BEAT, clientProcessor, this.heartbeatExecutor);\n",
+            "file_name": "76233ed8b77c293e669f42daec855cabf74b9f3a__CLDIFF__broker/src/main/java/org/apache/rocketmq/broker/BrokerController.java",
+            "id": "4",
+            "group": 0,
             "label": "updateExpressionStatement   by",
             "left": 200,
             "top": 200,
@@ -40,7 +56,10 @@
             "type": "basic.source"
         },
         {
-            "id": 5,
+            "code": "    public BlockingQueue<Runnable> getHeartbeatThreadPoolQueue() {\n        return heartbeatThreadPoolQueue;\n    }\n",
+            "file_name": "76233ed8b77c293e669f42daec855cabf74b9f3a__CLDIFF__broker/src/main/java/org/apache/rocketmq/broker/BrokerController.java",
+            "id": "5",
+            "group": 0,
             "label": "addMethodDeclaration",
             "left": 200,
             "top": 200,
@@ -48,7 +67,10 @@
             "type": "basic.source"
         },
         {
-            "id": 6,
+            "code": "    private ExecutorService heartbeatExecutor;\n",
+            "file_name": "76233ed8b77c293e669f42daec855cabf74b9f3a__CLDIFF__broker/src/main/java/org/apache/rocketmq/broker/BrokerController.java",
+            "id": "6",
+            "group": 0,
             "label": "addFieldDeclaration",
             "left": 200,
             "top": 200,
@@ -56,7 +78,10 @@
             "type": "basic.source"
         },
         {
-            "id": 7,
+            "code": "    private final BlockingQueue<Runnable> heartbeatThreadPoolQueue;\n",
+            "file_name": "76233ed8b77c293e669f42daec855cabf74b9f3a__CLDIFF__broker/src/main/java/org/apache/rocketmq/broker/BrokerController.java",
+            "id": "7",
+            "group": 0,
             "label": "addFieldDeclaration",
             "left": 200,
             "top": 200,
@@ -64,7 +89,10 @@
             "type": "basic.source"
         },
         {
-            "id": 8,
+            "code": "        cleanExpiredRequestInQueue(this.brokerController.getHeartbeatThreadPoolQueue(),\n            this.brokerController.getBrokerConfig().getWaitTimeMillsInHeartbeatQueue());\n",
+            "file_name": "76233ed8b77c293e669f42daec855cabf74b9f3a__CLDIFF__broker/src/main/java/org/apache/rocketmq/broker/latency/BrokerFastFailure.java",
+            "id": "8",
+            "group": 1,
             "label": "addExpressionStatement",
             "left": 200,
             "top": 200,
@@ -72,122 +100,195 @@
             "type": "transform.overlay"
         },
         {
-            "id": 9,
+            "code": "    public void setWaitTimeMillsInHeartbeatQueue(long waitTimeMillsInHeartbeatQueue) {\n        this.waitTimeMillsInHeartbeatQueue = waitTimeMillsInHeartbeatQueue;\n    }\n",
+            "file_name": "76233ed8b77c293e669f42daec855cabf74b9f3a__CLDIFF__common/src/main/java/org/apache/rocketmq/common/BrokerConfig.java",
+            "id": "9",
+            "group": 2,
             "label": "addMethodDeclaration",
             "left": 200,
             "top": 200,
             "url": "url",
-            "type": "input.number",
-            "value": 80
+            "type": "input.number"
         },
         {
-            "id": 10,
+            "code": "    public long getWaitTimeMillsInHeartbeatQueue() {\n        return waitTimeMillsInHeartbeatQueue;\n    }\n",
+            "file_name": "76233ed8b77c293e669f42daec855cabf74b9f3a__CLDIFF__common/src/main/java/org/apache/rocketmq/common/BrokerConfig.java",
+            "id": "10",
+            "group": 2,
             "label": "addMethodDeclaration",
             "left": 200,
             "top": 200,
             "url": "url",
-            "type": "input.number",
-            "value": 80
+            "type": "input.number"
         },
         {
-            "id": 11,
+            "code": "    public void setHeartbeatThreadPoolNums(int heartbeatThreadPoolNums) {\n        this.heartbeatThreadPoolNums = heartbeatThreadPoolNums;\n    }\n",
+            "file_name": "76233ed8b77c293e669f42daec855cabf74b9f3a__CLDIFF__common/src/main/java/org/apache/rocketmq/common/BrokerConfig.java",
+            "id": "11",
+            "group": 2,
             "label": "addMethodDeclaration",
             "left": 200,
             "top": 200,
             "url": "url",
-            "type": "input.number",
-            "value": 80
+            "type": "input.number"
         },
         {
-            "id": 12,
+            "code": "    public int getHeartbeatThreadPoolNums() {\n        return heartbeatThreadPoolNums;\n    }\n",
+            "file_name": "76233ed8b77c293e669f42daec855cabf74b9f3a__CLDIFF__common/src/main/java/org/apache/rocketmq/common/BrokerConfig.java",
+            "id": "12",
+            "group": 2,
             "label": "addMethodDeclaration",
             "left": 200,
             "top": 200,
             "url": "url",
-            "type": "input.number",
-            "value": 80
+            "type": "input.number"
         },
         {
-            "id": 13,
+            "code": "    public void setHeartbeatThreadPoolQueueCapacity(int heartbeatThreadPoolQueueCapacity) {\n        this.heartbeatThreadPoolQueueCapacity = heartbeatThreadPoolQueueCapacity;\n    }\n",
+            "file_name": "76233ed8b77c293e669f42daec855cabf74b9f3a__CLDIFF__common/src/main/java/org/apache/rocketmq/common/BrokerConfig.java",
+            "id": "13",
+            "group": 2,
             "label": "addMethodDeclaration",
             "left": 200,
             "top": 200,
             "url": "url",
-            "type": "input.number",
-            "value": 80
+            "type": "input.number"
         },
         {
-            "id": 14,
+            "code": "    public int getHeartbeatThreadPoolQueueCapacity() {\n        return heartbeatThreadPoolQueueCapacity;\n    }\n",
+            "file_name": "76233ed8b77c293e669f42daec855cabf74b9f3a__CLDIFF__common/src/main/java/org/apache/rocketmq/common/BrokerConfig.java",
+            "id": "14",
+            "group": 2,
             "label": "addMethodDeclaration",
             "left": 200,
             "top": 200,
             "url": "url",
-            "type": "input.number",
-            "value": 80
+            "type": "input.number"
         },
         {
-            "id": 15,
+            "code": "    private long waitTimeMillsInHeartbeatQueue = 31 * 1000;\n",
+            "file_name": "76233ed8b77c293e669f42daec855cabf74b9f3a__CLDIFF__common/src/main/java/org/apache/rocketmq/common/BrokerConfig.java",
+            "id": "15",
+            "group": 2,
             "label": "addFieldDeclaration",
             "left": 200,
             "top": 200,
             "url": "url",
-            "type": "input.number",
-            "value": 80
+            "type": "input.number"
         },
         {
-            "id": 16,
+            "code": "    private int heartbeatThreadPoolQueueCapacity = 50000;\n",
+            "file_name": "76233ed8b77c293e669f42daec855cabf74b9f3a__CLDIFF__common/src/main/java/org/apache/rocketmq/common/BrokerConfig.java",
+            "id": "16",
+            "group": 2,
             "label": "addFieldDeclaration",
             "left": 200,
             "top": 200,
             "url": "url",
-            "type": "input.number",
-            "value": 80
+            "type": "input.number"
         },
         {
-            "id": 17,
+            "code": "    private int heartbeatThreadPoolNums = Math.min(32,Runtime.getRuntime().availableProcessors());\n",
+            "file_name": "76233ed8b77c293e669f42daec855cabf74b9f3a__CLDIFF__common/src/main/java/org/apache/rocketmq/common/BrokerConfig.java",
+            "id": "17",
+            "group": 2,
             "label": "addFieldDeclaration",
             "left": 200,
             "top": 200,
             "url": "url",
-            "type": "input.number",
-            "value": 80
+            "type": "input.number"
         }
     ],
-    "edges": [{
+    "edges": [
+        {
+            "link_type_str": "def-use@field",
             "source": "3.out:conr",
-            "target": "6.in:conl"
+            "text": "def-use@field",
+            "type": 57,
+            "value": 1,
+            "target": "6.in:conl",
+            "source2": 3,
+            "target2": 6
         },
         {
-            "source": "4.in:conl",
-            "target": "6.out:conr"
+            "link_type_str": "def-use@field",
+            "source": "4.out:conr",
+            "text": "def-use@field",
+            "type": 57,
+            "value": 1,
+            "target": "6.in:conl",
+            "source2": 4,
+            "target2": 6
         },
         {
-            "source": "1.in:conl",
-            "target": "7.out:conr"
+            "link_type_str": "def-use@field",
+            "source": "1.out:conr",
+            "text": "def-use@field",
+            "type": 57,
+            "value": 1,
+            "target": "7.in:conl",
+            "source2": 1,
+            "target2": 7
         },
         {
-            "source": "1.in:conl",
-            "target": "6.out:conr"
+            "link_type_str": "def-use@field",
+            "source": "1.out:conr",
+            "text": "def-use@field",
+            "type": 57,
+            "value": 1,
+            "target": "6.in:conl",
+            "source2": 1,
+            "target2": 6
         },
         {
+            "link_type_str": "def-use@field",
             "source": "0.out:conr",
-            "target": "7.in:conl"
+            "text": "def-use@field",
+            "type": 57,
+            "value": 1,
+            "target": "7.in:conl",
+            "source2": 0,
+            "target2": 7
         },
         {
-            "source": "8.in:conl",
-            "target": "5.out:conr"
+            "link_type_str": "def-use@method",
+            "source": "8.out:conr",
+            "text": "def-use@method",
+            "type": 56,
+            "value": 1,
+            "target": "5.in:conl",
+            "source2": 8,
+            "target2": 5
         },
         {
-            "source": "1.in:conl",
-            "target": "12.out:conr"
+            "link_type_str": "def-use@method",
+            "source": "1.out:conr",
+            "text": "def-use@method",
+            "type": 56,
+            "value": 1,
+            "target": "12.in:conl",
+            "source2": 1,
+            "target2": 12
         },
         {
-            "source": "0.in:conl",
-            "target": "14.out:conr"
+            "link_type_str": "def-use@method",
+            "source": "0.out:conr",
+            "text": "def-use@method",
+            "type": 56,
+            "value": 1,
+            "target": "14.in:conl",
+            "source2": 0,
+            "target2": 14
         },
         {
-            "source": "8.in:conl",
-            "target": "10.out:conr"
+            "link_type_str": "def-use@method",
+            "source": "8.out:conr",
+            "text": "def-use@method",
+            "type": 56,
+            "value": 1,
+            "target": "10.in:conl",
+            "source2": 8,
+            "target2": 10
         }
     ]
 }

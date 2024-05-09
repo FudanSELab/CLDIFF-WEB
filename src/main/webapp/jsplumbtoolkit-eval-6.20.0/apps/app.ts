@@ -123,12 +123,12 @@ ready(() => {
         ports:{
             source:{
                 isSource:true,
-                maxConnections:-1,
+                maxConnections:1000,
                 anchor:AnchorLocations.Right
             },
             target:{
                 isTarget:true,
-                maxConnections:1,
+                maxConnections:1000,
                 anchor:AnchorLocations.Left
             }
         },
@@ -289,8 +289,6 @@ ready(() => {
             if (target.tagName.toLowerCase() === 'a') {
                 const value = target.getAttribute('value');
                 const task = target.textContent;
-                console.log(value);
-                console.log(task);
                 toolkit.clear();
                 toolkit.load({
                     url:value,

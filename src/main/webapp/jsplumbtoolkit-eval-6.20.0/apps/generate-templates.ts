@@ -109,6 +109,13 @@ export function initialize(toolkit:JsPlumbToolkit) {
         }
     }
     // overlay
+    // console.log('node types')
+    // console.log(nodeTypes)
+    // console.log('processors')
+    // console.log(processors)
+    // console.log('uiDefinitions')
+    // console.log(uiDefinitions)
+
     processSet(transforms, uiDefinitions, processors, nodeTypes,(set, type) => {
         return `<div class="editor" style="width:${CANVAS_SIZE.w}px;height:${CANVAS_SIZE.h}px"></div>`
     })

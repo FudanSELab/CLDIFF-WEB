@@ -67,8 +67,14 @@ function processSet(set, uiDefinitions, processors, nodeTypes, inject) {
         processors[key] = type.compute || (function () { return {}; });
     });
 }
-var downloadIcon = "<svg:svg width=\"24\" height=\"24\" viewBox=\"0 0 48 48\">\n    <svg:path d=\"M38 18h-8v-12h-12v12h-8l14 14 14-14zm-28 18v4h28v-4h-28z\"/>\n    <svg:path d=\"M0 0h48v48h-48z\" fill=\"none\"/>\n</svg:svg>";
-var uploadIcon = "<svg:svg viewBox=\"0 0 24 24\" width=\"24\" height=\"24\">\n    <svg:path d=\"M18.9,18.5H4.8c-0.6,0-1.1-0.5-1.1-1.1V8.5h5.6c3.1,0,6.3,0,9.4,0c0.1,0,0.5,0,0.9,0.4c0.2,0.2,0.4,0.5,0.4,0.9v7.6C20.1,18,19.6,18.5,18.9,18.5z\" fill=\"none\" stroke=\"black\" stroke-miterlimit=\"10\" stroke-width=\"1.5\"/>\n    <svg:path d=\"M12.9,8.5c-3.1,0-6.2,0.1-9.3,0.1v-3c0-0.6,0.5-1,1-1l4.4,0C10.3,5.9,11.6,7.2,12.9,8.5z\" fill=\"none\" stroke=\"black\"  stroke-miterlimit=\"10\" stroke-width=\"1.5\"/>\n</svg:svg>";
+// const downloadIcon = `<svg:svg width="24" height="24" viewBox="0 0 48 48">
+//     <svg:path d="M38 18h-8v-12h-12v12h-8l14 14 14-14zm-28 18v4h28v-4h-28z"/>
+//     <svg:path d="M0 0h48v48h-48z" fill="none"/>
+// </svg:svg>`
+// const uploadIcon = `<svg:svg viewBox="0 0 24 24" width="24" height="24">
+//     <svg:path d="M18.9,18.5H4.8c-0.6,0-1.1-0.5-1.1-1.1V8.5h5.6c3.1,0,6.3,0,9.4,0c0.1,0,0.5,0,0.9,0.4c0.2,0.2,0.4,0.5,0.4,0.9v7.6C20.1,18,19.6,18.5,18.9,18.5z" fill="none" stroke="black" stroke-miterlimit="10" stroke-width="1.5"/>
+//     <svg:path d="M12.9,8.5c-3.1,0-6.2,0.1-9.3,0.1v-3c0-0.6,0.5-1,1-1l4.4,0C10.3,5.9,11.6,7.2,12.9,8.5z" fill="none" stroke="black"  stroke-miterlimit="10" stroke-width="1.5"/>
+// </svg:svg>`
 function initialize(toolkit) {
     var _a, _b;
     var nodeTypes = {};
@@ -81,6 +87,12 @@ function initialize(toolkit) {
         },
         _a);
     // overlay
+    // console.log('node types')
+    // console.log(nodeTypes)
+    // console.log('processors')
+    // console.log(processors)
+    // console.log('uiDefinitions')
+    // console.log(uiDefinitions)
     processSet(transforms_1.default, uiDefinitions, processors, nodeTypes, function (set, type) {
         return "<div class=\"editor\" style=\"width:".concat(definitions_1.CANVAS_SIZE.w, "px;height:").concat(definitions_1.CANVAS_SIZE.h, "px\"></div>");
     });

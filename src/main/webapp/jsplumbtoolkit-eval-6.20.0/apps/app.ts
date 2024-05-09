@@ -21,6 +21,13 @@ import {CANVAS_SIZE, ImageProcessorInput, ImageProcessorNode, ImageProcessorOutp
 import {ImageInspector} from "./inspector"
 import {NativeImageDropHandler} from "./native-drop-handler"
 
+// const editor  = require('./node_modules/monaco-editor')
+// import {editor} from "."
+// import {editor} from './node_modules/monaco-editor/dev/vs/editor/editor.main'
+// require.config({ paths: { 'vs': '../node_modules/monaco-editor/dev/vs' } });
+// import {editor} from './node_modules/monaco-editor'
+
+
 ready(() => {
 
     let model:any
@@ -47,8 +54,45 @@ ready(() => {
     // Get the DOM element to render into
     const container = document.getElementById("container")
     const miniview = document.getElementById("miniview")
+    
 
     const processor = new Processor(toolkit, model, () => {
+        toolkit.eachNode((idx,dn) => {
+            // const el = surface.getRenderedElement(dn)
+            // var canvas = el.querySelector("canvas")
+            // console.log("canvas", canvas)
+            // var monacoDiv = document.createElement(`div`);
+            // monacoDiv.setAttribute("class", "node");
+            // canvas.appendChild(monacoDiv);
+
+            // const value = `function hello() {
+            //     alert('Hello world!');
+            // }`;
+            
+            // const myEditor = editor.create(monacoDiv, {
+            //     value,
+            //     language: "javascript",
+            //     automaticLayout: true,
+            // });
+                        
+            // require.config({ paths: { 'vs': '../node_modules/monaco-editor/dev/vs' } });
+            // require(['vs/editor/editor.main'], function() {
+            //     var monacoDiv = document.createElement(`div`);
+            //     monacoDiv.setAttribute("class", "node");
+            //     canvas.appendChild(monacoDiv);
+            //     var editor = monaco.editor.create(monacoDiv, {
+            //         value: [
+            //         'System.out.println("sss");'
+            //     ].join('\n'),
+            //     language: 'java',
+            //     autoIndent: true,
+            //     contentLeft: 0,
+            //     automaticLayout: true,
+            //     minimap: { enabled: false },
+            //     overviewRulerBorder: false,
+            //     });
+            // });
+        })
         // toolkit.filter(o => o.type === "basic.display").eachNode((idx,dn) => {
         //     const el = surface.getRenderedElement(dn),
         //         canvas = el.querySelector("canvas"),
@@ -235,24 +279,41 @@ ready(() => {
 
     // new Palette(surface, model)
 
-    debugger
+    // debugger
 
+    const selectionHeader = document.getElementById("selectionHeader")
+    const liElements = selectionHeader.querySelectorAll('li');
+    liElements.forEach((element) => {
+        element.addEventListener("click", (event) => {
+            const target = event.target as HTMLElement;
+            if (target.tagName.toLowerCase() === 'a') {
+                const value = target.getAttribute('value');
+                const task = target.textContent;
+                console.log(value);
+                console.log(task);
+                toolkit.clear();
+                toolkit.load({
+                    url:value,
+                    onload:() => {
+                        toolkit.eachNode((idx,dn) => {
+                            console.log(dn)
+                           
+                        })
+                    }
+                })
+
+            }
+        });
+    });
+    
+    
     toolkit.load({
         url:'./dataset.json',
         onload:() => {
-            toolkit.filter(o => o.type === "basic.source").eachNode((idx,dn) => {
-                // if (dn.data.url != null) {
-
-                //     const img = new Image()
-                //     img.onload = function() {
-                //         toolkit.update(dn, {
-                //             image:img,
-                //             width:img.naturalWidth,
-                //             height:img.naturalHeight
-                //         })
-                //     }
-                //     img.src = dn.data.url
-                // }
+            // toolkit.filter(o => o.type === "basic.source").eachNode((idx,dn) => {
+            toolkit.eachNode((idx,dn) => {
+                console.log(dn)
+                 
             })
         }
     })

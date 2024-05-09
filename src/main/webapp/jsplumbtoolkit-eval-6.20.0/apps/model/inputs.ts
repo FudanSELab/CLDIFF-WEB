@@ -46,10 +46,10 @@ export const INPUT_TYPES:OperationSet = {
             id:"number",
             name:"Number",
             inputs:[
-                { id:"image", label:"Image", type:"image" }
+                { id:"conl", label:"l", type:"string" }
             ],
             outputs:[
-                { id:"image", label:"Image", type:"image" }
+                { id:"conr", label:"r", type:"string" }
             ],
             compute: verifyValue
         }

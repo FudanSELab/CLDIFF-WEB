@@ -60,11 +60,10 @@ exports.default = {
             id: "add",
             name: "Add",
             inputs: [
-                { id: "a", label: "A", type: "number" },
-                { id: "b", label: "B", type: "number" },
+                { id: "conl", label: "l", type: "string" }
             ],
             outputs: [
-                { id: "result", label: "Result", type: "number" }
+                { id: "conr", label: "r", type: "string" }
             ],
             compute: function (node) {
                 return __awaiter(this, void 0, void 0, function () {

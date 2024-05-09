@@ -111,10 +111,10 @@ var filters = {
             id: "invert",
             name: "Invert",
             inputs: [
-                { id: "image", label: "Image", type: "image" }
+                { id: "conl", label: "l", type: "string" }
                 // { id:"amount", label:"Amount", type:"number"}
             ],
-            outputs: [{ id: "image", label: "Image", type: "image" }],
+            outputs: [{ id: "conr", label: "r", type: "string" }],
             compute: function (node) {
                 return __awaiter(this, void 0, void 0, function () {
                     var data;

@@ -7,6 +7,11 @@ var process_1 = require("./process");
 var canvas_image_processing_1 = require("@jsplumb/canvas-image-processing");
 var inspector_1 = require("./inspector");
 var native_drop_handler_1 = require("./native-drop-handler");
+// const editor  = require('./node_modules/monaco-editor')
+// import {editor} from "."
+// import {editor} from './node_modules/monaco-editor/dev/vs/editor/editor.main'
+// require.config({ paths: { 'vs': '../node_modules/monaco-editor/dev/vs' } });
+// import {editor} from './node_modules/monaco-editor'
 (0, browser_ui_1.ready)(function () {
     var _a, _b, _c, _d;
     var model;
@@ -32,6 +37,39 @@ var native_drop_handler_1 = require("./native-drop-handler");
     var container = document.getElementById("container");
     var miniview = document.getElementById("miniview");
     var processor = new process_1.Processor(toolkit, model, function () {
+        toolkit.eachNode(function (idx, dn) {
+            // const el = surface.getRenderedElement(dn)
+            // var canvas = el.querySelector("canvas")
+            // console.log("canvas", canvas)
+            // var monacoDiv = document.createElement(`div`);
+            // monacoDiv.setAttribute("class", "node");
+            // canvas.appendChild(monacoDiv);
+            // const value = `function hello() {
+            //     alert('Hello world!');
+            // }`;
+            // const myEditor = editor.create(monacoDiv, {
+            //     value,
+            //     language: "javascript",
+            //     automaticLayout: true,
+            // });
+            // require.config({ paths: { 'vs': '../node_modules/monaco-editor/dev/vs' } });
+            // require(['vs/editor/editor.main'], function() {
+            //     var monacoDiv = document.createElement(`div`);
+            //     monacoDiv.setAttribute("class", "node");
+            //     canvas.appendChild(monacoDiv);
+            //     var editor = monaco.editor.create(monacoDiv, {
+            //         value: [
+            //         'System.out.println("sss");'
+            //     ].join('\n'),
+            //     language: 'java',
+            //     autoIndent: true,
+            //     contentLeft: 0,
+            //     automaticLayout: true,
+            //     minimap: { enabled: false },
+            //     overviewRulerBorder: false,
+            //     });
+            // });
+        });
         // toolkit.filter(o => o.type === "basic.display").eachNode((idx,dn) => {
         //     const el = surface.getRenderedElement(dn),
         //         canvas = el.querySelector("canvas"),
@@ -206,22 +244,35 @@ var native_drop_handler_1 = require("./native-drop-handler");
     new inspector_1.ImageInspector(document.getElementById("inspector"), surface, model);
     new browser_ui_1.ControlsComponent(document.getElementById("controls"), surface);
     // new Palette(surface, model)
-    debugger;
+    // debugger
+    var selectionHeader = document.getElementById("selectionHeader");
+    var liElements = selectionHeader.querySelectorAll('li');
+    liElements.forEach(function (element) {
+        element.addEventListener("click", function (event) {
+            var target = event.target;
+            if (target.tagName.toLowerCase() === 'a') {
+                var value = target.getAttribute('value');
+                var task = target.textContent;
+                console.log(value);
+                console.log(task);
+                toolkit.clear();
+                toolkit.load({
+                    url: value,
+                    onload: function () {
+                        toolkit.eachNode(function (idx, dn) {
+                            console.log(dn);
+                        });
+                    }
+                });
+            }
+        });
+    });
     toolkit.load({
         url: './dataset.json',
         onload: function () {
-            toolkit.filter(function (o) { return o.type === "basic.source"; }).eachNode(function (idx, dn) {
-                // if (dn.data.url != null) {
-                //     const img = new Image()
-                //     img.onload = function() {
-                //         toolkit.update(dn, {
-                //             image:img,
-                //             width:img.naturalWidth,
-                //             height:img.naturalHeight
-                //         })
-                //     }
-                //     img.src = dn.data.url
-                // }
+            // toolkit.filter(o => o.type === "basic.source").eachNode((idx,dn) => {
+            toolkit.eachNode(function (idx, dn) {
+                console.log(dn);
             });
         }
     });

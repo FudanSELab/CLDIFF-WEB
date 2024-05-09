@@ -1,0 +1,58 @@
+{
+  "name": "esmify",
+  "version": "2.1.1",
+  "description": "parse and handle import/export for browserify",
+  "main": "./esmify.js",
+  "license": "MIT",
+  "author": {
+    "name": "Matt DesLauriers",
+    "email": "dave.des@gmail.com",
+    "url": "https://github.com/mattdesl"
+  },
+  "dependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/plugin-syntax-async-generators": "^7.2.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/plugin-syntax-object-rest-spread": "^7.2.0",
+    "@babel/plugin-transform-modules-commonjs": "^7.2.0",
+    "babel-plugin-import-to-require": "^1.0.0",
+    "cached-path-relative": "^1.0.2",
+    "concat-stream": "^1.6.2",
+    "duplexer2": "^0.1.4",
+    "through2": "^2.0.5"
+  },
+  "devDependencies": {
+    "brfs": "^2.0.1",
+    "browserify": "^16.2.3",
+    "budo": "^11.6.0",
+    "esm": "^3.1.4",
+    "glslify": "^6.4.1",
+    "loud-rejection": "^1.6.0",
+    "tape": "^4.9.2",
+    "wcag-contrast": "1.2.0"
+  },
+  "scripts": {
+    "test": "tape test/test-*.js"
+  },
+  "keywords": [
+    "browserify",
+    "es",
+    "esm",
+    "es6",
+    "import",
+    "export",
+    "require",
+    "commonjs",
+    "umd",
+    "cjs",
+    "es2015"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mattdesl/esmify.git"
+  },
+  "homepage": "https://github.com/mattdesl/esmify",
+  "bugs": {
+    "url": "https://github.com/mattdesl/esmify/issues"
+  }
+}

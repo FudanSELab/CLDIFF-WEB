@@ -62,10 +62,10 @@ const filters = {
             id:"invert",
             name:"Invert",
             inputs:[
-                { id:"image", label:"Image", type:"image" }
+                { id:"conl", label:"l", type:"string" }
                 // { id:"amount", label:"Amount", type:"number"}
             ],
-            outputs:[ { id:"image", label:"Image", type:"image" }],
+            outputs:[ { id:"conr", label:"r", type:"string" }],
             compute: async function(node:Node) {
                 const data = node.data
                 // if (data["in:image"] == null) {

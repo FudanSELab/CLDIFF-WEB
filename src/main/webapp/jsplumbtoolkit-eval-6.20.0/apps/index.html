@@ -20,23 +20,25 @@
                 <div class="dropdown col-md-5">
                     <div class="btn-group">
                         <ul class="dropdown-menu" id="dropdown-menu">
-                            <li><a href="#" value="./tasks/graph-rocketmq-85467dfd34d8ff379d2ddfec0489d78dcba20c27.json">Task 1</a></li>
-                            <li><a href="#" value="./tasks/graph-rocketmq-b1fcf1b83b659bd03bcebf651d9e88c294a89e07.json">Task 2</a></li>
-                            <li><a href="#" value="./tasks/graph-rocketmq-e9a0d62dbd8a1a6163870828d583300eb27e324a.json">Task 3</a></li>
-                            <li><a href="#" value="./tasks/graph-rocketmq-b421d48c476e74a8c7bb8129979df1dc0cb5a5a5.json">Task 4</a></li>
-                            <li><a href="#" value="./tasks/graph-rocketmq-3292d039ae882f42168d5f98969df83130ca05fb.json">Task 5</a></li>
-                            <li><a href="#" value="./tasks/graph-spring-framework-046380988b9f98bed43fad1943c8f10f6a1429de.json">Task 6</a></li>
-                            <li><a href="#" value="./tasks/graph-spring-framework-4882dfcc0d6d0bde167c722cb82d899414fb1209.json">Task 7</a></li>
-                            <li><a href="#" value="./tasks/graph-spring-framework-773b2f06a10679979ee747ad2ee2182eaafcc8cd.json">Task 8</a></li>
-                            <li><a href="#" value="./tasks/graph-rocketmq-d8c446e854e6cce1b54c0d9d97f3189832b88001.json">Task 9</a></li>
-                            <li><a href="#" value="./tasks/graph-spring-framework-3c1adf7f6af0dff9bda74f40dabe8cf428a62003.json">Task 10</a></li>
-                            <li><a href="#" value="./tasks/graph-spring-framework-357beb24bce72b20aed3a774b4eddc42e3f098f2.json">Task 11</a></li>
+                            <li><a href="#" value="./transformed_data/graph2.json">Task 0</a></li>
+                            <li><a href="#" value="./transformed_data/graph-rocketmq-85467dfd34d8ff379d2ddfec0489d78dcba20c27.json">Task 1</a></li>
+                            <li><a href="#" value="./transformed_data/graph-rocketmq-b1fcf1b83b659bd03bcebf651d9e88c294a89e07.json">Task 2</a></li>
+                            <li><a href="#" value="./transformed_data/graph-rocketmq-e9a0d62dbd8a1a6163870828d583300eb27e324a.json">Task 3</a></li>
+                            <li><a href="#" value="./transformed_data/graph-rocketmq-b421d48c476e74a8c7bb8129979df1dc0cb5a5a5.json">Task 4</a></li>
+                            <li><a href="#" value="./transformed_data/graph-rocketmq-3292d039ae882f42168d5f98969df83130ca05fb.json">Task 5</a></li>
+                            <li><a href="#" value="./transformed_data/graph-spring-framework-046380988b9f98bed43fad1943c8f10f6a1429de.json">Task 6</a></li>
+                            <li><a href="#" value="./transformed_data/graph-spring-framework-4882dfcc0d6d0bde167c722cb82d899414fb1209.json">Task 7</a></li>
+                            <li><a href="#" value="./transformed_data/graph-spring-framework-773b2f06a10679979ee747ad2ee2182eaafcc8cd.json">Task 8</a></li>
+                            <li><a href="#" value="./transformed_data/graph-rocketmq-d8c446e854e6cce1b54c0d9d97f3189832b88001.json">Task 9</a></li>
+                            <li><a href="#" value="./transformed_data/graph-spring-framework-3c1adf7f6af0dff9bda74f40dabe8cf428a62003.json">Task 10</a></li>
+                            <li><a href="#" value="./transformed_data/graph-spring-framework-357beb24bce72b20aed3a774b4eddc42e3f098f2.json">Task 11</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
             <div class="col-md-3" id="rightTitleHeader">
                 <h2>Code Change</h2>
+                <button id="mybutton">AAA</button>
             </div>
         </div>
 
@@ -53,22 +55,61 @@
     <script>
         var exports = {};
     </script>
-    <!-- <script src="node_modules/@jsplumbtoolkit/browser-ui/js/jsplumbtoolkit.browser-ui.umd.js"></script>
-    <script src="node_modules/@jsplumb/canvas-image-processing/js/jsplumb.canvas-image-processing.iife.js"></script>
-    <script src="./model/basic.js"></script>
-    <script src="./model/filters.js"></script>
-    <script src="./model/inputs.js"></script>
-    <script src="./model/math.js"></script>
-    <script src="./model/transforms.js"></script>
-    <script src="generate-templates.js"></script>
-    <script src="palette.js"></script>
-    <script src="inspector.js"></script>
-    <script src="process.js"></script>
-    <script src="definitions.js"></script>
-    <script src="native-drop-handler.js"></script> -->
-    <!-- <div id="palette"> -->
-    <!-- <script src="app.js"></script> -->
+
+    <!-- <script src="https://cdn.bootcss.com/monaco-editor/0.48.0/min/vs/loader.js"></script> -->
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.7.1.min.js"></script>
     <script src="./out.js"></script>
+    <!-- <script src="../node_modules/monaco-editor/min/vs/loader.js"></script> -->
+
+
+    <script>
+        // function loadJson(file_name) {
+        //     fetch(file_name)
+        //         .then((response) => response.json())
+        //         .then((json) => loadJson2(json));
+        // }
+
+        // function loadJson2(data) {
+        //     diffJson = data;
+        //     console.log(data);
+        //     require.config({
+        //         paths: {
+        //             vs: '../node_modules/monaco-editor/min/vs'
+        //         }
+        //     });
+        //     console.log("bbb")
+        //     containers2 = $('.editor');
+        //     console.log("aaa");
+        //     require(['vs/editor/editor.main'], function() {
+        //         console.log("Monaco Editor loaded successfully!");
+        //         for (var i = 0; i < containers2.length; i++) {
+        //             var editor = monaco.editor.create(containers2[i], {
+        //                 value: ['public static void main() {', '\tSystem.out.println("Hello world!");', '}'].join('\n'),
+        //                 language: 'java',
+        //                 autoIndent: true,
+        //                 contentLeft: 0,
+        //                 automaticLayout: true,
+        //                 minimap: {
+        //                     enabled: false
+        //                 },
+        //                 overviewRulerBorder: false,
+        //             });
+        //         }
+
+        //     });
+        // }
+
+        // $("#mybutton").click(function() {
+        //     console.log("bbb")
+        //     loadJson('xxxx.json')
+
+        // });
+        // $('#mybutton').on('click', 'button', function() {
+
+        // });
+    </script>
+
+
 
 </body>
 

@@ -23,11 +23,10 @@ export default {
             id:"add",
             name:"Add",
             inputs:[
-                { id:"a", label:"A", type:"number"},
-                { id:"b", label:"B", type:"number"},
+                { id:"conl", label:"l", type:"string"}
             ],
             outputs:[
-                { id:"result", label:"Result", type:"number"}
+                { id:"conr", label:"r", type:"string"}
             ],
             compute: async function(node:Node) {
                 const data = node.data

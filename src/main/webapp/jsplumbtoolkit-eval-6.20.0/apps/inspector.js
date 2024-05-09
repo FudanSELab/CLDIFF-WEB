@@ -47,6 +47,9 @@ var ImageInspector = /** @class */ (function (_super) {
         return _this;
     }
     ImageInspector.prototype._renderNodeTemplate = function (obj) {
+        console.log('render node template');
+        // entrance for right bar
+        console.log(obj);
         var _a = obj.type.split("."), set = _a[0], type = _a[1];
         try {
             return handlers[set][type].template(obj);

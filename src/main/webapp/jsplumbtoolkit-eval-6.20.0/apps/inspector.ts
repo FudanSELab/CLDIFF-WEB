@@ -38,6 +38,9 @@ export class ImageInspector extends VanillaInspector {
     }
 
     _renderNodeTemplate(obj:Node):string {
+        console.log('render node template')
+        // entrance for right bar
+        console.log(obj)
         const [set, type] = obj.type.split(".")
         try {
             return handlers[set][type].template(obj)

@@ -46,10 +46,10 @@ exports.default = {
             id: "source",
             name: "Source",
             inputs: [
-                { id: "url", label: "Url", type: "string" }
+                { id: "conl", label: "l", type: "string" }
             ],
             outputs: [
-                { id: "image", label: "Image", type: "image" }
+                { id: "conr", label: "r", type: "string" }
             ],
             compute: function (node) {
                 return __awaiter(this, void 0, void 0, function () {
@@ -91,10 +91,10 @@ exports.default = {
             id: "display",
             name: "Display",
             inputs: [
-                { id: "image", label: "Image", type: "image" }
+                { id: "conl", label: "l", type: "string" }
             ],
             outputs: [
-                { id: "image", label: "Image", type: "image" }
+                { id: "conr", label: "r", type: "string" }
             ],
             compute: function (node) {
                 return __awaiter(this, void 0, void 0, function () {

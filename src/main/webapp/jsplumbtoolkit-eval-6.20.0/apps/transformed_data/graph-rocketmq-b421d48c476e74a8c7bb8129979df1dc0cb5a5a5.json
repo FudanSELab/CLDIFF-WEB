@@ -1,0 +1,469 @@
+{
+    "nodes": [
+        {
+            "code": "/**\n * Exclusive lock implementation to put message\n */\npublic class PutMessageReentrantLock implements PutMessageLock {\n    private ReentrantLock putMessageNormalLock = new ReentrantLock(); // NonfairSync\n\n    @Override\n    public void lock() {\n        putMessageNormalLock.lock();\n    }\n\n    @Override\n    public void unlock() {\n        putMessageNormalLock.unlock();\n    }\n}\n",
+            "file_name": "0adad6f0025483647e760c1145f7736462c0ec79__CLDIFF__store/src/main/java/org/apache/rocketmq/store/PutMessageReentrantLock.java",
+            "id": 46,
+            "group": 0,
+            "label": "addClassDeclaration",
+            "left": 200,
+            "top": 200,
+            "url": "url",
+            "type": "basic.source"
+        },
+        {
+            "code": "/**\n * Spin lock Implementation to put message, suggest using this witb low race conditions\n *\n */\npublic class PutMessageSpinLock implements PutMessageLock {\n    //true: Can lock, false : in lock.\n    private AtomicBoolean putMessageSpinLock = new AtomicBoolean(true);\n\n    @Override\n    public void lock() {\n        boolean flag;\n        do {\n            flag = this.putMessageSpinLock.compareAndSet(true, false);\n        }\n        while (!flag);\n    }\n\n    @Override\n    public void unlock() {\n        this.putMessageSpinLock.compareAndSet(false, true);\n    }\n}\n",
+            "file_name": "0adad6f0025483647e760c1145f7736462c0ec79__CLDIFF__store/src/main/java/org/apache/rocketmq/store/PutMessageSpinLock.java",
+            "id": 47,
+            "group": 1,
+            "label": "addClassDeclaration",
+            "left": 200,
+            "top": 200,
+            "url": "url",
+            "type": "transform.overlay"
+        },
+        {
+            "code": "        this.putMessageLock =  defaultMessageStore.getMessageStoreConfig().isUseReentrantLockWhenPutMessage() ? new PutMessageReentrantLock() : new PutMessageSpinLock();\n",
+            "file_name": "0adad6f0025483647e760c1145f7736462c0ec79__CLDIFF__store/src/main/java/org/apache/rocketmq/store/CommitLog.java",
+            "id": 35,
+            "group": 3,
+            "label": "addExpressionStatement",
+            "left": 200,
+            "top": 200,
+            "url": "url",
+            "type": "filter.invert"
+        },
+        {
+            "code": "        putMessageLock.lock(); //spin or ReentrantLock ,depending on store config\n",
+            "file_name": "0adad6f0025483647e760c1145f7736462c0ec79__CLDIFF__store/src/main/java/org/apache/rocketmq/store/CommitLog.java",
+            "id": 36,
+            "group": 3,
+            "label": "updateExpressionStatement   by",
+            "left": 200,
+            "top": 200,
+            "url": "url",
+            "type": "filter.invert"
+        },
+        {
+            "code": "        putMessageLock.lock();\n",
+            "file_name": "0adad6f0025483647e760c1145f7736462c0ec79__CLDIFF__store/src/main/java/org/apache/rocketmq/store/CommitLog.java",
+            "id": 37,
+            "group": 3,
+            "label": "updateExpressionStatement   by",
+            "left": 200,
+            "top": 200,
+            "url": "url",
+            "type": "filter.invert"
+        },
+        {
+            "code": "            putMessageLock.unlock();\n",
+            "file_name": "0adad6f0025483647e760c1145f7736462c0ec79__CLDIFF__store/src/main/java/org/apache/rocketmq/store/CommitLog.java",
+            "id": 38,
+            "group": 3,
+            "label": "updateExpressionStatement   by",
+            "left": 200,
+            "top": 200,
+            "url": "url",
+            "type": "filter.invert"
+        },
+        {
+            "code": "            putMessageLock.unlock();\n",
+            "file_name": "0adad6f0025483647e760c1145f7736462c0ec79__CLDIFF__store/src/main/java/org/apache/rocketmq/store/CommitLog.java",
+            "id": 39,
+            "group": 3,
+            "label": "updateExpressionStatement   by",
+            "left": 200,
+            "top": 200,
+            "url": "url",
+            "type": "filter.invert"
+        },
+        {
+            "code": "    private final PutMessageLock putMessageLock;\n",
+            "file_name": "0adad6f0025483647e760c1145f7736462c0ec79__CLDIFF__store/src/main/java/org/apache/rocketmq/store/CommitLog.java",
+            "id": 40,
+            "group": 3,
+            "label": "addFieldDeclaration",
+            "left": 200,
+            "top": 200,
+            "url": "url",
+            "type": "filter.invert"
+        },
+        {
+            "code": "    private AtomicBoolean putMessageSpinLock = new AtomicBoolean(true);\n",
+            "file_name": "0adad6f0025483647e760c1145f7736462c0ec79__CLDIFF__store/src/main/java/org/apache/rocketmq/store/CommitLog.java",
+            "id": 41,
+            "group": 3,
+            "label": "deleteFieldDeclaration",
+            "left": 200,
+            "top": 200,
+            "url": "url",
+            "type": "filter.invert"
+        },
+        {
+            "code": "    private ReentrantLock putMessageNormalLock = new ReentrantLock(); // NonfairSync\n",
+            "file_name": "0adad6f0025483647e760c1145f7736462c0ec79__CLDIFF__store/src/main/java/org/apache/rocketmq/store/CommitLog.java",
+            "id": 42,
+            "group": 3,
+            "label": "deleteFieldDeclaration",
+            "left": 200,
+            "top": 200,
+            "url": "url",
+            "type": "filter.invert"
+        },
+        {
+            "code": "    private void lockForPutMessage() {\n        if (this.defaultMessageStore.getMessageStoreConfig().isUseReentrantLockWhenPutMessage()) {\n            putMessageNormalLock.lock();\n        } else {\n            boolean flag;\n            do {\n                flag = this.putMessageSpinLock.compareAndSet(true, false);\n            }\n            while (!flag);\n        }\n    }\n\n",
+            "file_name": "0adad6f0025483647e760c1145f7736462c0ec79__CLDIFF__store/src/main/java/org/apache/rocketmq/store/CommitLog.java",
+            "id": 43,
+            "group": 3,
+            "label": "deleteMethodDeclaration",
+            "left": 200,
+            "top": 200,
+            "url": "url",
+            "type": "filter.invert"
+        },
+        {
+            "code": "    private void releasePutMessageLock() {\n        if (this.defaultMessageStore.getMessageStoreConfig().isUseReentrantLockWhenPutMessage()) {\n            putMessageNormalLock.unlock();\n        } else {\n            this.putMessageSpinLock.compareAndSet(false, true);\n        }\n    }\n",
+            "file_name": "0adad6f0025483647e760c1145f7736462c0ec79__CLDIFF__store/src/main/java/org/apache/rocketmq/store/CommitLog.java",
+            "id": 44,
+            "group": 3,
+            "label": "deleteMethodDeclaration",
+            "left": 200,
+            "top": 200,
+            "url": "url",
+            "type": "filter.invert"
+        },
+        {
+            "code": "/**\n * Used when trying to put message\n */\npublic interface PutMessageLock {\n    void lock();\n    void unlock();\n}\n",
+            "file_name": "0adad6f0025483647e760c1145f7736462c0ec79__CLDIFF__store/src/main/java/org/apache/rocketmq/store/PutMessageLock.java",
+            "id": 45,
+            "group": 4,
+            "label": "addInterface",
+            "left": 200,
+            "top": 200,
+            "url": "url",
+            "type": "basic.source"
+        }
+    ],
+    "edges": [
+        {
+            "link_type_str": "def-use@field",
+            "source": "37.in:conl",
+            "text": "def-use@field",
+            "type": 57,
+            "value": 1,
+            "target": "40.out:conr",
+            "source2": 37,
+            "target2": 40
+        },
+        {
+            "link_type_str": "def-use@field",
+            "source": "39.in:conl",
+            "text": "def-use@field",
+            "type": 57,
+            "value": 1,
+            "target": "40.out:conr",
+            "source2": 39,
+            "target2": 40
+        },
+        {
+            "link_type_str": "def-use@field",
+            "source": "36.in:conl",
+            "text": "def-use@field",
+            "type": 57,
+            "value": 1,
+            "target": "40.out:conr",
+            "source2": 36,
+            "target2": 40
+        },
+        {
+            "link_type_str": "def-use@field",
+            "source": "38.in:conl",
+            "text": "def-use@field",
+            "type": 57,
+            "value": 1,
+            "target": "40.out:conr",
+            "source2": 38,
+            "target2": 40
+        },
+        {
+            "link_type_str": "def-use@field",
+            "source": "35.in:conl",
+            "text": "def-use@field",
+            "type": 57,
+            "value": 1,
+            "target": "40.out:conr",
+            "source2": 35,
+            "target2": 40
+        },
+        {
+            "link_type_str": "def-use@class",
+            "source": "37.in:conl",
+            "text": "def-use@class",
+            "type": 55,
+            "value": 1,
+            "target": "46.out:conr",
+            "source2": 37,
+            "target2": 46
+        },
+        {
+            "link_type_str": "def-use@class",
+            "source": "39.in:conl",
+            "text": "def-use@class",
+            "type": 55,
+            "value": 1,
+            "target": "46.out:conr",
+            "source2": 39,
+            "target2": 46
+        },
+        {
+            "link_type_str": "def-use@class",
+            "source": "36.in:conl",
+            "text": "def-use@class",
+            "type": 55,
+            "value": 1,
+            "target": "46.out:conr",
+            "source2": 36,
+            "target2": 46
+        },
+        {
+            "link_type_str": "def-use@class",
+            "source": "38.in:conl",
+            "text": "def-use@class",
+            "type": 55,
+            "value": 1,
+            "target": "46.out:conr",
+            "source2": 38,
+            "target2": 46
+        },
+        {
+            "link_type_str": "def-use@class",
+            "source": "35.in:conl",
+            "text": "def-use@class",
+            "type": 55,
+            "value": 1,
+            "target": "46.out:conr",
+            "source2": 35,
+            "target2": 46
+        },
+        {
+            "link_type_str": "def-use@taicu",
+            "source": "46.in:conl",
+            "text": "def-use@taicu",
+            "type": 51,
+            "value": 1,
+            "target": "43.out:conr",
+            "source2": 46,
+            "target2": 43
+        },
+        {
+            "link_type_str": "def-use@taicu",
+            "source": "46.in:conl",
+            "text": "def-use@taicu",
+            "type": 51,
+            "value": 1,
+            "target": "44.out:conr",
+            "source2": 46,
+            "target2": 44
+        },
+        {
+            "link_type_str": "def-use@class",
+            "source": "37.in:conl",
+            "text": "def-use@class",
+            "type": 55,
+            "value": 1,
+            "target": "47.out:conr",
+            "source2": 37,
+            "target2": 47
+        },
+        {
+            "link_type_str": "def-use@class",
+            "source": "39.in:conl",
+            "text": "def-use@class",
+            "type": 55,
+            "value": 1,
+            "target": "47.out:conr",
+            "source2": 39,
+            "target2": 47
+        },
+        {
+            "link_type_str": "def-use@class",
+            "source": "36.in:conl",
+            "text": "def-use@class",
+            "type": 55,
+            "value": 1,
+            "target": "47.out:conr",
+            "source2": 36,
+            "target2": 47
+        },
+        {
+            "link_type_str": "def-use@class",
+            "source": "38.in:conl",
+            "text": "def-use@class",
+            "type": 55,
+            "value": 1,
+            "target": "47.out:conr",
+            "source2": 38,
+            "target2": 47
+        },
+        {
+            "link_type_str": "def-use@class",
+            "source": "35.in:conl",
+            "text": "def-use@class",
+            "type": 55,
+            "value": 1,
+            "target": "47.out:conr",
+            "source2": 35,
+            "target2": 47
+        },
+        {
+            "link_type_str": "def-use@taicu",
+            "source": "47.in:conl",
+            "text": "def-use@taicu",
+            "type": 51,
+            "value": 1,
+            "target": "43.out:conr",
+            "source2": 47,
+            "target2": 43
+        },
+        {
+            "link_type_str": "def-use@taicu",
+            "source": "47.in:conl",
+            "text": "def-use@taicu",
+            "type": 51,
+            "value": 1,
+            "target": "43.out:conr",
+            "source2": 47,
+            "target2": 43
+        },
+        {
+            "link_type_str": "def-use@taicu",
+            "source": "47.in:conl",
+            "text": "def-use@taicu",
+            "type": 51,
+            "value": 1,
+            "target": "44.out:conr",
+            "source2": 47,
+            "target2": 44
+        },
+        {
+            "link_type_str": "def-use@class",
+            "source": "37.in:conl",
+            "text": "def-use@class",
+            "type": 55,
+            "value": 1,
+            "target": "45.out:conr",
+            "source2": 37,
+            "target2": 45
+        },
+        {
+            "link_type_str": "def-use@class",
+            "source": "39.in:conl",
+            "text": "def-use@class",
+            "type": 55,
+            "value": 1,
+            "target": "45.out:conr",
+            "source2": 39,
+            "target2": 45
+        },
+        {
+            "link_type_str": "def-use@class",
+            "source": "36.in:conl",
+            "text": "def-use@class",
+            "type": 55,
+            "value": 1,
+            "target": "45.out:conr",
+            "source2": 36,
+            "target2": 45
+        },
+        {
+            "link_type_str": "def-use@class",
+            "source": "38.in:conl",
+            "text": "def-use@class",
+            "type": 55,
+            "value": 1,
+            "target": "45.out:conr",
+            "source2": 38,
+            "target2": 45
+        },
+        {
+            "link_type_str": "def-use@taicu",
+            "source": "45.in:conl",
+            "text": "def-use@taicu",
+            "type": 51,
+            "value": 1,
+            "target": "43.out:conr",
+            "source2": 45,
+            "target2": 43
+        },
+        {
+            "link_type_str": "def-use@taicu",
+            "source": "45.in:conl",
+            "text": "def-use@taicu",
+            "type": 51,
+            "value": 1,
+            "target": "44.out:conr",
+            "source2": 45,
+            "target2": 44
+        },
+        {
+            "link_type_str": "systematic",
+            "source": "36.in:conl",
+            "text": "systematic",
+            "type": 44,
+            "value": 1,
+            "target": "37.out:conr",
+            "source2": 36,
+            "target2": 37
+        },
+        {
+            "link_type_str": "systematic",
+            "source": "36.in:conl",
+            "text": "systematic",
+            "type": 44,
+            "value": 1,
+            "target": "38.out:conr",
+            "source2": 36,
+            "target2": 38
+        },
+        {
+            "link_type_str": "systematic",
+            "source": "36.in:conl",
+            "text": "systematic",
+            "type": 44,
+            "value": 1,
+            "target": "39.out:conr",
+            "source2": 36,
+            "target2": 39
+        },
+        {
+            "link_type_str": "systematic",
+            "source": "37.in:conl",
+            "text": "systematic",
+            "type": 44,
+            "value": 1,
+            "target": "38.out:conr",
+            "source2": 37,
+            "target2": 38
+        },
+        {
+            "link_type_str": "systematic",
+            "source": "37.in:conl",
+            "text": "systematic",
+            "type": 44,
+            "value": 1,
+            "target": "39.out:conr",
+            "source2": 37,
+            "target2": 39
+        },
+        {
+            "link_type_str": "systematic",
+            "source": "38.in:conl",
+            "text": "systematic",
+            "type": 44,
+            "value": 1,
+            "target": "39.out:conr",
+            "source2": 38,
+            "target2": 39
+        }
+    ]
+}

@@ -1,10 +1,7 @@
 {
     "nodes": [
         {
-            "code": "                consumeMessageContext.getProps().put(MixAll.CONSUME_CONTEXT_TYPE, returnType.name());\n",
-            "file_name": "9d76ea923159ff36d462b1809104164e270fce96__CLDIFF__client/src/main/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessageConcurrentlyService.java",
             "id": "23",
-            "group": 0,
             "label": "moveExpressionStatement",
             "left": 200,
             "top": 200,
@@ -12,10 +9,7 @@
             "type": "basic.source"
         },
         {
-            "code": "            if (ConsumeMessageConcurrentlyService.this.defaultMQPushConsumerImpl.hasHook()) {\n                consumeMessageContext.getProps().put(MixAll.CONSUME_CONTEXT_TYPE, returnType.name());\n            }\n",
-            "file_name": "9d76ea923159ff36d462b1809104164e270fce96__CLDIFF__client/src/main/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessageConcurrentlyService.java",
             "id": "24",
-            "group": 0,
             "label": "addIf",
             "left": 200,
             "top": 200,
@@ -23,10 +17,7 @@
             "type": "basic.source"
         },
         {
-            "code": "                                consumeMessageContext.getProps().put(MixAll.CONSUME_CONTEXT_TYPE, returnType.name());\n",
-            "file_name": "9d76ea923159ff36d462b1809104164e270fce96__CLDIFF__client/src/main/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessageOrderlyService.java",
             "id": "25",
-            "group": 1,
             "label": "moveExpressionStatement",
             "left": 200,
             "top": 200,
@@ -34,10 +25,7 @@
             "type": "transform.overlay"
         },
         {
-            "code": "                            if (ConsumeMessageOrderlyService.this.defaultMQPushConsumerImpl.hasHook()) {\n                                consumeMessageContext.getProps().put(MixAll.CONSUME_CONTEXT_TYPE, returnType.name());\n                            }\n",
-            "file_name": "9d76ea923159ff36d462b1809104164e270fce96__CLDIFF__client/src/main/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessageOrderlyService.java",
             "id": "26",
-            "group": 1,
             "label": "addIf",
             "left": 200,
             "top": 200,
@@ -47,24 +35,12 @@
     ],
     "edges": [
         {
-            "link_type_str": "systematic",
             "source": "23.out:conr",
-            "text": "systematic",
-            "type": 44,
-            "value": 1,
-            "target": "25.in:conl",
-            "source2": 23,
-            "target2": 25
+            "target": "25.in:conl"
         },
         {
-            "link_type_str": "systematic",
             "source": "24.out:conr",
-            "text": "systematic",
-            "type": 44,
-            "value": 1,
-            "target": "26.in:conl",
-            "source2": 24,
-            "target2": 26
+            "target": "26.in:conl"
         }
     ]
 }

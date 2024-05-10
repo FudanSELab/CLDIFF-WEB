@@ -1,0 +1,81 @@
+function doMath(data, fn) {
+    if (data["in:a"] == null || data["in:b"] == null) {
+        data["out:result"] = null;
+        return false;
+    }
+    else {
+        try {
+            data["out:result"] = fn(parseFloat(data["in:a"]), parseFloat(data["in:b"]));
+            return true;
+        }
+        catch (e) {
+            data["out:result"] = null;
+            return false;
+        }
+    }
+}
+export default {
+    set: "math",
+    name: "Math",
+    types: [
+        {
+            id: "add",
+            name: "Add",
+            inputs: [
+                { id: "conl", label: "l", type: "string" }
+            ],
+            outputs: [
+                { id: "conr", label: "r", type: "string" }
+            ],
+            compute: async function (node) {
+                const data = node.data;
+                return doMath(data, (a, b) => a + b);
+            }
+        },
+        {
+            id: "subtract",
+            name: "Subtract",
+            inputs: [
+                { id: "a", label: "A", type: "number" },
+                { id: "b", label: "B", type: "number" },
+            ],
+            outputs: [
+                { id: "result", label: "Result", type: "number" }
+            ],
+            compute: async function (node) {
+                const data = node.data;
+                return doMath(data, (a, b) => a - b);
+            }
+        },
+        {
+            id: "multiply",
+            name: "Multiply",
+            inputs: [
+                { id: "a", label: "A", type: "number" },
+                { id: "b", label: "B", type: "number" },
+            ],
+            outputs: [
+                { id: "result", label: "Result", type: "number" }
+            ],
+            compute: async function (node) {
+                const data = node.data;
+                return doMath(data, (a, b) => a * b);
+            }
+        },
+        {
+            id: "divide",
+            name: "Divide",
+            inputs: [
+                { id: "a", label: "A", type: "number" },
+                { id: "b", label: "B", type: "number" },
+            ],
+            outputs: [
+                { id: "result", label: "Result", type: "number" }
+            ],
+            compute: async function (node) {
+                const data = node.data;
+                return doMath(data, (a, b) => a / b);
+            }
+        }
+    ]
+};

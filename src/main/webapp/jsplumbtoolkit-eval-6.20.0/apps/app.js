@@ -12,6 +12,10 @@ var native_drop_handler_1 = require("./native-drop-handler");
 // import {editor} from './node_modules/monaco-editor/dev/vs/editor/editor.main'
 // require.config({ paths: { 'vs': '../node_modules/monaco-editor/dev/vs' } });
 // import {editor} from './node_modules/monaco-editor'
+// import * as helloworld from './editor';
+var monaco = require("monaco-editor");
+// declare function editorFun(value:string,task:string): string;
+///////// <ressssssference path="./node_modules/monaco-editor/monaco.d.ts" />
 (0, browser_ui_1.ready)(function () {
     var _a, _b, _c, _d;
     var model;
@@ -251,20 +255,53 @@ var native_drop_handler_1 = require("./native-drop-handler");
         element.addEventListener("click", function (event) {
             var target = event.target;
             if (target.tagName.toLowerCase() === 'a') {
-                var value = target.getAttribute('value');
+                var value_1 = target.getAttribute('value');
                 var task = target.textContent;
                 toolkit.clear();
                 toolkit.load({
-                    url: value,
+                    url: value_1,
                     onload: function () {
-                        toolkit.eachNode(function (idx, dn) {
-                            console.log(dn);
+                        var containers2 = document.querySelectorAll('.jtk-node');
+                        var filePath = value_1.replace('transformed_data', 'transformed_data2');
+                        fetch(filePath).then(function (response) { return response.json(); }).then(function (json) {
+                            console.log(json);
+                            window.map = new Map();
+                            json.nodes.forEach(function (node) {
+                                window.map.set(node.id, node);
+                            });
+                            // json.edges.forEach((edge) => {
+                            // 这里你可以按需处理边的信息，比如将边的 ID 作为键
+                            // });
+                            // console.log('window map');
+                            // console.log(window.map);
+                            containers2.forEach(function (container) {
+                                var dataJtkVertex = container.getAttribute('data-jtk-vertex');
+                                // console.log(dataJtkVertex)
+                                var code = window.map.get(dataJtkVertex).code;
+                                // console.log(code)
+                                var editorsEles = container.querySelectorAll('.editor');
+                                var editorEle = editorsEles[0];
+                                var editor2 = monaco.editor.create(editorEle, {
+                                    value: code,
+                                    language: 'java',
+                                    autoIndent: 'advanced',
+                                    scrollBeyondLastLine: false,
+                                    minimap: { enabled: false },
+                                    overviewRulerBorder: false
+                                });
+                            });
                         });
+                        // editorFun(value, task);
+                        // 
+                        // toolkit.eachNode((idx,dn) => {
+                        //     console.log(dn)
+                        // })
                     }
                 });
             }
         });
     });
+    // toolkit.addEdge();
     toolkit.load({
         url: './dataset.json',
         onload: function () {

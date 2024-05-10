@@ -6,6 +6,7 @@
 # tsc xxx.ts
 ./node_modules/.bin/esbuild app.js --bundle --outfile=out.js
 browserify app.js -o out.js
+npm run build
 
 
 

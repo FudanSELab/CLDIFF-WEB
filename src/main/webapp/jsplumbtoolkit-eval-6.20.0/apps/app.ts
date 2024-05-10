@@ -1,3 +1,4 @@
+
 import {
     ready,
     newInstance,
@@ -26,8 +27,51 @@ import {NativeImageDropHandler} from "./native-drop-handler"
 // import {editor} from './node_modules/monaco-editor/dev/vs/editor/editor.main'
 // require.config({ paths: { 'vs': '../node_modules/monaco-editor/dev/vs' } });
 // import {editor} from './node_modules/monaco-editor'
+// import * as helloworld from './editor';
+import * as monaco from 'monaco-editor';
+
+interface Noode {
+    code: string;
+    file_name: string;
+    id: string;
+    desc: string;
+    group: number;
+    label: string;
+    left: number;
+    top: number;
+    url: string;
+    type: string;
+}
+
+interface Eddge {
+    link_type_str: string;
+    source: string;
+    text: string;
+    type: number;
+    value: number;
+    target: string;
+    source2: number;
+    target2: number;
+}
+
+interface JsonData {
+    nodes: Noode[];
+    edges: Eddge[];
+}
+
+// 在全局作用域下定义一个全局对象，例如 window.map
+declare global {
+    interface Window {
+        map: Map<string, Noode>;
+    }
+}
 
 
+
+
+
+// declare function editorFun(value:string,task:string): string;
+///////// <ressssssference path="./node_modules/monaco-editor/monaco.d.ts" />
 ready(() => {
 
     let model:any
@@ -293,17 +337,63 @@ ready(() => {
                 toolkit.load({
                     url:value,
                     onload:() => {
-                        toolkit.eachNode((idx,dn) => {
-                            console.log(dn)
+                        const containers2 = document.querySelectorAll('.jtk-node');
+                        const filePath = value.replace('transformed_data','transformed_data2')
+                        
+                        fetch(filePath).then((response) => response.json()).then((json: JsonData) => {
+                            console.log(json);
+                            window.map = new Map<string, Noode>();
+                            json.nodes.forEach((node) => {
+                                window.map.set(node.id, node);
+                            });
+
+                            // json.edges.forEach((edge) => {
+                                // 这里你可以按需处理边的信息，比如将边的 ID 作为键
+                            // });
+                            // console.log('window map');
+                            // console.log(window.map);
+
+                            containers2.forEach((container) => {
+                                const dataJtkVertex = container.getAttribute('data-jtk-vertex');
+                                // console.log(dataJtkVertex)
+                                const code = window.map.get(dataJtkVertex).code;
+                                // console.log(code)
+                                const editorsEles = container.querySelectorAll('.editor')
+                                const editorEle = editorsEles[0] as HTMLElement
+                                const editor2 = monaco.editor.create(editorEle as HTMLElement, {
+                                    value: code,
+                                    language: 'java',
+                                    autoIndent: 'advanced',
+                                    scrollBeyondLastLine: false,
+                                    minimap: { enabled: false },
+                                    overviewRulerBorder: false
+                                });
+    
+    
+                            });
+                        });
+                        
+
+
+                        
+                        
+                        // editorFun(value, task);
+                        // 
+                        // toolkit.eachNode((idx,dn) => {
+                        //     console.log(dn)
                            
-                        })
+                        // })
                     }
                 })
 
             }
         });
     });
+
     
+    
+
+    // toolkit.addEdge();
     
     toolkit.load({
         url:'./dataset.json',
@@ -311,7 +401,6 @@ ready(() => {
             // toolkit.filter(o => o.type === "basic.source").eachNode((idx,dn) => {
             toolkit.eachNode((idx,dn) => {
                 console.log(dn)
-                 
             })
         }
     })

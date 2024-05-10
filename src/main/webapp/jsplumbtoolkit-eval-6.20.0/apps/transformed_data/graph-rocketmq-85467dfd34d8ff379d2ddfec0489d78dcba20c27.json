@@ -1,10 +1,7 @@
 {
     "nodes": [
         {
-            "code": "        this.remotingServer.registerProcessor(RequestCode.QUERY_MESSAGE, queryProcessor, this.queryMessageExecutor);\n",
-            "file_name": "5a2e71098793be75cc5b2c8984e99ad3651eba40__CLDIFF__broker/src/main/java/org/apache/rocketmq/broker/BrokerController.java",
             "id": "61",
-            "group": 0,
             "label": "moveFieldAccess",
             "left": 200,
             "top": 200,
@@ -12,10 +9,7 @@
             "type": "basic.source"
         },
         {
-            "code": "        this.remotingServer.registerProcessor(RequestCode.VIEW_MESSAGE_BY_ID, queryProcessor, this.queryMessageExecutor);\n",
-            "file_name": "5a2e71098793be75cc5b2c8984e99ad3651eba40__CLDIFF__broker/src/main/java/org/apache/rocketmq/broker/BrokerController.java",
             "id": "62",
-            "group": 0,
             "label": "moveFieldAccess",
             "left": 200,
             "top": 200,
@@ -23,10 +17,7 @@
             "type": "basic.source"
         },
         {
-            "code": "        this.fastRemotingServer.registerProcessor(RequestCode.QUERY_MESSAGE, queryProcessor, this.queryMessageExecutor);\n",
-            "file_name": "5a2e71098793be75cc5b2c8984e99ad3651eba40__CLDIFF__broker/src/main/java/org/apache/rocketmq/broker/BrokerController.java",
             "id": "63",
-            "group": 0,
             "label": "moveFieldAccess",
             "left": 200,
             "top": 200,
@@ -34,10 +25,7 @@
             "type": "basic.source"
         },
         {
-            "code": "        this.fastRemotingServer.registerProcessor(RequestCode.VIEW_MESSAGE_BY_ID, queryProcessor, this.queryMessageExecutor);\n",
-            "file_name": "5a2e71098793be75cc5b2c8984e99ad3651eba40__CLDIFF__broker/src/main/java/org/apache/rocketmq/broker/BrokerController.java",
             "id": "64",
-            "group": 0,
             "label": "moveFieldAccess",
             "left": 200,
             "top": 200,
@@ -45,10 +33,7 @@
             "type": "basic.source"
         },
         {
-            "code": "        this.queryThreadPoolQueue = new LinkedBlockingQueue<Runnable>(this.brokerConfig.getQueryThreadPoolQueueCapacity());\n",
-            "file_name": "5a2e71098793be75cc5b2c8984e99ad3651eba40__CLDIFF__broker/src/main/java/org/apache/rocketmq/broker/BrokerController.java",
             "id": "65",
-            "group": 0,
             "label": "addExpressionStatement",
             "left": 200,
             "top": 200,
@@ -56,10 +41,7 @@
             "type": "basic.source"
         },
         {
-            "code": "        LOG_WATER_MARK.info(\"[WATERMARK] Query Queue Size: {} SlowTimeMills: {}\", this.queryThreadPoolQueue.size(), headSlowTimeMills4QueryThreadPoolQueue());\n",
-            "file_name": "5a2e71098793be75cc5b2c8984e99ad3651eba40__CLDIFF__broker/src/main/java/org/apache/rocketmq/broker/BrokerController.java",
             "id": "66",
-            "group": 0,
             "label": "addExpressionStatement",
             "left": 200,
             "top": 200,
@@ -67,10 +49,7 @@
             "type": "basic.source"
         },
         {
-            "code": "            this.queryMessageExecutor = new BrokerFixedThreadPoolExecutor(\n                this.brokerConfig.getQueryMessageThreadPoolNums(),\n                this.brokerConfig.getQueryMessageThreadPoolNums(),\n                1000 * 60,\n                TimeUnit.MILLISECONDS,\n                this.queryThreadPoolQueue,\n                new ThreadFactoryImpl(\"QueryMessageThread_\"));\n",
-            "file_name": "5a2e71098793be75cc5b2c8984e99ad3651eba40__CLDIFF__broker/src/main/java/org/apache/rocketmq/broker/BrokerController.java",
             "id": "67",
-            "group": 0,
             "label": "addExpressionStatement",
             "left": 200,
             "top": 200,
@@ -78,10 +57,7 @@
             "type": "basic.source"
         },
         {
-            "code": "        this.remotingServer.registerProcessor(RequestCode.QUERY_MESSAGE, queryProcessor, this.queryMessageExecutor);\n",
-            "file_name": "5a2e71098793be75cc5b2c8984e99ad3651eba40__CLDIFF__broker/src/main/java/org/apache/rocketmq/broker/BrokerController.java",
             "id": "68",
-            "group": 0,
             "label": "updateExpressionStatement   by",
             "left": 200,
             "top": 200,
@@ -89,10 +65,7 @@
             "type": "basic.source"
         },
         {
-            "code": "        this.remotingServer.registerProcessor(RequestCode.VIEW_MESSAGE_BY_ID, queryProcessor, this.queryMessageExecutor);\n",
-            "file_name": "5a2e71098793be75cc5b2c8984e99ad3651eba40__CLDIFF__broker/src/main/java/org/apache/rocketmq/broker/BrokerController.java",
             "id": "69",
-            "group": 0,
             "label": "updateExpressionStatement   by",
             "left": 200,
             "top": 200,
@@ -100,10 +73,7 @@
             "type": "basic.source"
         },
         {
-            "code": "        this.fastRemotingServer.registerProcessor(RequestCode.QUERY_MESSAGE, queryProcessor, this.queryMessageExecutor);\n",
-            "file_name": "5a2e71098793be75cc5b2c8984e99ad3651eba40__CLDIFF__broker/src/main/java/org/apache/rocketmq/broker/BrokerController.java",
             "id": "70",
-            "group": 0,
             "label": "updateExpressionStatement   by",
             "left": 200,
             "top": 200,
@@ -111,10 +81,7 @@
             "type": "basic.source"
         },
         {
-            "code": "        this.fastRemotingServer.registerProcessor(RequestCode.VIEW_MESSAGE_BY_ID, queryProcessor, this.queryMessageExecutor);\n",
-            "file_name": "5a2e71098793be75cc5b2c8984e99ad3651eba40__CLDIFF__broker/src/main/java/org/apache/rocketmq/broker/BrokerController.java",
             "id": "71",
-            "group": 0,
             "label": "updateExpressionStatement   by",
             "left": 200,
             "top": 200,
@@ -122,10 +89,7 @@
             "type": "basic.source"
         },
         {
-            "code": "    public long headSlowTimeMills4QueryThreadPoolQueue() {\n        return this.headSlowTimeMills(this.queryThreadPoolQueue);\n    }\n",
-            "file_name": "5a2e71098793be75cc5b2c8984e99ad3651eba40__CLDIFF__broker/src/main/java/org/apache/rocketmq/broker/BrokerController.java",
             "id": "72",
-            "group": 0,
             "label": "addMethodDeclaration",
             "left": 200,
             "top": 200,
@@ -133,10 +97,7 @@
             "type": "basic.source"
         },
         {
-            "code": "    public BlockingQueue<Runnable> getQueryThreadPoolQueue() {\n        return queryThreadPoolQueue;\n    }\n",
-            "file_name": "5a2e71098793be75cc5b2c8984e99ad3651eba40__CLDIFF__broker/src/main/java/org/apache/rocketmq/broker/BrokerController.java",
             "id": "73",
-            "group": 0,
             "label": "addMethodDeclaration",
             "left": 200,
             "top": 200,
@@ -144,10 +105,7 @@
             "type": "basic.source"
         },
         {
-            "code": "    private ExecutorService queryMessageExecutor;\n",
-            "file_name": "5a2e71098793be75cc5b2c8984e99ad3651eba40__CLDIFF__broker/src/main/java/org/apache/rocketmq/broker/BrokerController.java",
             "id": "74",
-            "group": 0,
             "label": "addFieldDeclaration",
             "left": 200,
             "top": 200,
@@ -155,10 +113,7 @@
             "type": "basic.source"
         },
         {
-            "code": "    private final BlockingQueue<Runnable> queryThreadPoolQueue;\n",
-            "file_name": "5a2e71098793be75cc5b2c8984e99ad3651eba40__CLDIFF__broker/src/main/java/org/apache/rocketmq/broker/BrokerController.java",
             "id": "75",
-            "group": 0,
             "label": "addFieldDeclaration",
             "left": 200,
             "top": 200,
@@ -166,10 +121,7 @@
             "type": "basic.source"
         },
         {
-            "code": "    public void setQueryThreadPoolQueueCapacity(final int queryThreadPoolQueueCapacity) {\n        this.queryThreadPoolQueueCapacity = queryThreadPoolQueueCapacity;\n    }\n",
-            "file_name": "5a2e71098793be75cc5b2c8984e99ad3651eba40__CLDIFF__common/src/main/java/org/apache/rocketmq/common/BrokerConfig.java",
             "id": "79",
-            "group": 1,
             "label": "addMethodDeclaration",
             "left": 200,
             "top": 200,
@@ -177,10 +129,7 @@
             "type": "transform.overlay"
         },
         {
-            "code": "    public int getQueryThreadPoolQueueCapacity() {\n        return queryThreadPoolQueueCapacity;\n    }\n",
-            "file_name": "5a2e71098793be75cc5b2c8984e99ad3651eba40__CLDIFF__common/src/main/java/org/apache/rocketmq/common/BrokerConfig.java",
             "id": "80",
-            "group": 1,
             "label": "addMethodDeclaration",
             "left": 200,
             "top": 200,
@@ -188,10 +137,7 @@
             "type": "transform.overlay"
         },
         {
-            "code": "    public void setQueryMessageThreadPoolNums(final int queryMessageThreadPoolNums) {\n        this.queryMessageThreadPoolNums = queryMessageThreadPoolNums;\n    }\n",
-            "file_name": "5a2e71098793be75cc5b2c8984e99ad3651eba40__CLDIFF__common/src/main/java/org/apache/rocketmq/common/BrokerConfig.java",
             "id": "81",
-            "group": 1,
             "label": "addMethodDeclaration",
             "left": 200,
             "top": 200,
@@ -199,10 +145,7 @@
             "type": "transform.overlay"
         },
         {
-            "code": "    public int getQueryMessageThreadPoolNums() {\n        return queryMessageThreadPoolNums;\n    }\n",
-            "file_name": "5a2e71098793be75cc5b2c8984e99ad3651eba40__CLDIFF__common/src/main/java/org/apache/rocketmq/common/BrokerConfig.java",
             "id": "82",
-            "group": 1,
             "label": "addMethodDeclaration",
             "left": 200,
             "top": 200,
@@ -210,10 +153,7 @@
             "type": "transform.overlay"
         },
         {
-            "code": "    private int queryThreadPoolQueueCapacity = 20000;\n",
-            "file_name": "5a2e71098793be75cc5b2c8984e99ad3651eba40__CLDIFF__common/src/main/java/org/apache/rocketmq/common/BrokerConfig.java",
             "id": "83",
-            "group": 1,
             "label": "addFieldDeclaration",
             "left": 200,
             "top": 200,
@@ -221,10 +161,7 @@
             "type": "transform.overlay"
         },
         {
-            "code": "    private int queryMessageThreadPoolNums = 8 + Runtime.getRuntime().availableProcessors();\n",
-            "file_name": "5a2e71098793be75cc5b2c8984e99ad3651eba40__CLDIFF__common/src/main/java/org/apache/rocketmq/common/BrokerConfig.java",
             "id": "84",
-            "group": 1,
             "label": "addFieldDeclaration",
             "left": 200,
             "top": 200,
@@ -232,10 +169,7 @@
             "type": "transform.overlay"
         },
         {
-            "code": "        runtimeInfo.put(\"queryThreadPoolQueueSize\", String.valueOf(this.brokerController.getQueryThreadPoolQueue().size()));\n",
-            "file_name": "5a2e71098793be75cc5b2c8984e99ad3651eba40__CLDIFF__broker/src/main/java/org/apache/rocketmq/broker/processor/AdminBrokerProcessor.java",
             "id": "76",
-            "group": 2,
             "label": "addExpressionStatement",
             "left": 200,
             "top": 200,
@@ -243,10 +177,7 @@
             "type": "input.number"
         },
         {
-            "code": "        runtimeInfo.put(\"queryThreadPoolQueueCapacity\",\n            String.valueOf(this.brokerController.getBrokerConfig().getQueryThreadPoolQueueCapacity()));\n",
-            "file_name": "5a2e71098793be75cc5b2c8984e99ad3651eba40__CLDIFF__broker/src/main/java/org/apache/rocketmq/broker/processor/AdminBrokerProcessor.java",
             "id": "77",
-            "group": 2,
             "label": "addExpressionStatement",
             "left": 200,
             "top": 200,
@@ -254,10 +185,7 @@
             "type": "input.number"
         },
         {
-            "code": "        runtimeInfo.put(\"queryThreadPoolQueueHeadWaitTimeMills\", String.valueOf(this.brokerController.headSlowTimeMills4QueryThreadPoolQueue()));\n",
-            "file_name": "5a2e71098793be75cc5b2c8984e99ad3651eba40__CLDIFF__broker/src/main/java/org/apache/rocketmq/broker/processor/AdminBrokerProcessor.java",
             "id": "78",
-            "group": 2,
             "label": "addExpressionStatement",
             "left": 200,
             "top": 200,
@@ -267,234 +195,96 @@
     ],
     "edges": [
         {
-            "link_type_str": "def-use@field",
             "source": "65.out:conr",
-            "text": "def-use@field",
-            "type": 57,
-            "value": 1,
-            "target": "75.in:conl",
-            "source2": 65,
-            "target2": 75
+            "target": "75.in:conl"
         },
         {
-            "link_type_str": "def-use@field",
             "source": "67.out:conr",
-            "text": "def-use@field",
-            "type": 57,
-            "value": 1,
-            "target": "75.in:conl",
-            "source2": 67,
-            "target2": 75
+            "target": "75.in:conl"
         },
         {
-            "link_type_str": "def-use@field",
             "source": "67.out:conr",
-            "text": "def-use@field",
-            "type": 57,
-            "value": 1,
-            "target": "74.in:conl",
-            "source2": 67,
-            "target2": 74
+            "target": "74.in:conl"
         },
         {
-            "link_type_str": "def-use@taicu",
             "source": "75.out:conr",
-            "text": "def-use@taicu",
-            "type": 51,
-            "value": 1,
-            "target": "73.in:conl",
-            "source2": 75,
-            "target2": 73
+            "target": "73.in:conl"
         },
         {
-            "link_type_str": "def-use@taicu",
             "source": "75.out:conr",
-            "text": "def-use@taicu",
-            "type": 51,
-            "value": 1,
-            "target": "72.in:conl",
-            "source2": 75,
-            "target2": 72
+            "target": "72.in:conl"
         },
         {
-            "link_type_str": "def-use@field",
             "source": "68.out:conr",
-            "text": "def-use@field",
-            "type": 57,
-            "value": 1,
-            "target": "74.in:conl",
-            "source2": 68,
-            "target2": 74
+            "target": "74.in:conl"
         },
         {
-            "link_type_str": "def-use@field",
             "source": "69.out:conr",
-            "text": "def-use@field",
-            "type": 57,
-            "value": 1,
-            "target": "74.in:conl",
-            "source2": 69,
-            "target2": 74
+            "target": "74.in:conl"
         },
         {
-            "link_type_str": "def-use@field",
             "source": "70.out:conr",
-            "text": "def-use@field",
-            "type": 57,
-            "value": 1,
-            "target": "74.in:conl",
-            "source2": 70,
-            "target2": 74
+            "target": "74.in:conl"
         },
         {
-            "link_type_str": "def-use@field",
             "source": "71.out:conr",
-            "text": "def-use@field",
-            "type": 57,
-            "value": 1,
-            "target": "74.in:conl",
-            "source2": 71,
-            "target2": 74
+            "target": "74.in:conl"
         },
         {
-            "link_type_str": "def-use@field",
             "source": "66.out:conr",
-            "text": "def-use@field",
-            "type": 57,
-            "value": 1,
-            "target": "75.in:conl",
-            "source2": 66,
-            "target2": 75
+            "target": "75.in:conl"
         },
         {
-            "link_type_str": "def-use@method",
             "source": "66.out:conr",
-            "text": "def-use@method",
-            "type": 56,
-            "value": 1,
-            "target": "72.in:conl",
-            "source2": 66,
-            "target2": 72
+            "target": "72.in:conl"
         },
         {
-            "link_type_str": "def-use@taicu",
             "source": "84.out:conr",
-            "text": "def-use@taicu",
-            "type": 51,
-            "value": 1,
-            "target": "82.in:conl",
-            "source2": 84,
-            "target2": 82
+            "target": "82.in:conl"
         },
         {
-            "link_type_str": "def-use@taicu",
             "source": "84.out:conr",
-            "text": "def-use@taicu",
-            "type": 51,
-            "value": 1,
-            "target": "81.in:conl",
-            "source2": 84,
-            "target2": 81
+            "target": "81.in:conl"
         },
         {
-            "link_type_str": "def-use@taicu",
             "source": "83.out:conr",
-            "text": "def-use@taicu",
-            "type": 51,
-            "value": 1,
-            "target": "80.in:conl",
-            "source2": 83,
-            "target2": 80
+            "target": "80.in:conl"
         },
         {
-            "link_type_str": "def-use@taicu",
             "source": "83.out:conr",
-            "text": "def-use@taicu",
-            "type": 51,
-            "value": 1,
-            "target": "79.in:conl",
-            "source2": 83,
-            "target2": 79
+            "target": "79.in:conl"
         },
         {
-            "link_type_str": "def-use@method",
             "source": "77.out:conr",
-            "text": "def-use@method",
-            "type": 56,
-            "value": 1,
-            "target": "80.in:conl",
-            "source2": 77,
-            "target2": 80
+            "target": "80.in:conl"
         },
         {
-            "link_type_str": "systematic",
             "source": "68.out:conr",
-            "text": "systematic",
-            "type": 44,
-            "value": 1,
-            "target": "69.in:conl",
-            "source2": 68,
-            "target2": 69
+            "target": "69.in:conl"
         },
         {
-            "link_type_str": "systematic",
             "source": "68.out:conr",
-            "text": "systematic",
-            "type": 44,
-            "value": 1,
-            "target": "70.in:conl",
-            "source2": 68,
-            "target2": 70
+            "target": "70.in:conl"
         },
         {
-            "link_type_str": "systematic",
             "source": "68.out:conr",
-            "text": "systematic",
-            "type": 44,
-            "value": 1,
-            "target": "71.in:conl",
-            "source2": 68,
-            "target2": 71
+            "target": "71.in:conl"
         },
         {
-            "link_type_str": "systematic",
             "source": "69.out:conr",
-            "text": "systematic",
-            "type": 44,
-            "value": 1,
-            "target": "70.in:conl",
-            "source2": 69,
-            "target2": 70
+            "target": "70.in:conl"
         },
         {
-            "link_type_str": "systematic",
             "source": "69.out:conr",
-            "text": "systematic",
-            "type": 44,
-            "value": 1,
-            "target": "71.in:conl",
-            "source2": 69,
-            "target2": 71
+            "target": "71.in:conl"
         },
         {
-            "link_type_str": "systematic",
             "source": "70.out:conr",
-            "text": "systematic",
-            "type": 44,
-            "value": 1,
-            "target": "71.in:conl",
-            "source2": 70,
-            "target2": 71
+            "target": "71.in:conl"
         },
         {
-            "link_type_str": "systematic",
             "source": "76.out:conr",
-            "text": "systematic",
-            "type": 44,
-            "value": 1,
-            "target": "77.in:conl",
-            "source2": 76,
-            "target2": 77
+            "target": "77.in:conl"
         }
     ]
 }

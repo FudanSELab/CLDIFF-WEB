@@ -3,9 +3,11 @@
 
 <head>
     <script src="node_modules/@jsplumbtoolkit/browser-ui/js/jsplumbtoolkit.browser-ui.umd.js"></script>
+
     <meta charset="utf-8" />
     <link rel="stylesheet" href="node_modules/@jsplumbtoolkit/browser-ui/css/jsplumbtoolkit.css">
     <link rel="stylesheet" href="node_modules/@jsplumbtoolkit/browser-ui/css/jsplumbtoolkit-controls.css">
+    <!-- <link rel="stylesheet" href="node_modules/monaco-editor/dev/vs/editor/editor.main.css"> -->
     <link rel="stylesheet" href="app.css">
 </head>
 
@@ -36,10 +38,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3" id="rightTitleHeader">
-                <h2>Code Change</h2>
-                <button id="mybutton">AAA</button>
-            </div>
+
         </div>
 
 
@@ -58,56 +57,12 @@
 
     <!-- <script src="https://cdn.bootcss.com/monaco-editor/0.48.0/min/vs/loader.js"></script> -->
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.7.1.min.js"></script>
-    <script src="./out.js"></script>
-    <!-- <script src="../node_modules/monaco-editor/min/vs/loader.js"></script> -->
+    <!-- <script src="node_modules/monaco-editor/min/vs/loader.js"></script> -->
+    <!-- <script src="./editor.js"></script> -->
+    <!-- <script src="node_modules/monaco-editor/dev/vs/editor/editor.main.js"></script> -->
+    <script src="./_build/bundle.js"></script>
 
 
-    <script>
-        // function loadJson(file_name) {
-        //     fetch(file_name)
-        //         .then((response) => response.json())
-        //         .then((json) => loadJson2(json));
-        // }
-
-        // function loadJson2(data) {
-        //     diffJson = data;
-        //     console.log(data);
-        //     require.config({
-        //         paths: {
-        //             vs: '../node_modules/monaco-editor/min/vs'
-        //         }
-        //     });
-        //     console.log("bbb")
-        //     containers2 = $('.editor');
-        //     console.log("aaa");
-        //     require(['vs/editor/editor.main'], function() {
-        //         console.log("Monaco Editor loaded successfully!");
-        //         for (var i = 0; i < containers2.length; i++) {
-        //             var editor = monaco.editor.create(containers2[i], {
-        //                 value: ['public static void main() {', '\tSystem.out.println("Hello world!");', '}'].join('\n'),
-        //                 language: 'java',
-        //                 autoIndent: true,
-        //                 contentLeft: 0,
-        //                 automaticLayout: true,
-        //                 minimap: {
-        //                     enabled: false
-        //                 },
-        //                 overviewRulerBorder: false,
-        //             });
-        //         }
-
-        //     });
-        // }
-
-        // $("#mybutton").click(function() {
-        //     console.log("bbb")
-        //     loadJson('xxxx.json')
-
-        // });
-        // $('#mybutton').on('click', 'button', function() {
-
-        // });
-    </script>
 
 
 

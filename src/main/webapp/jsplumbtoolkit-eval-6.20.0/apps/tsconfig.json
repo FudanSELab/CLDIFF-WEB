@@ -4,17 +4,19 @@
     "module": "esnext",
     "outDir": "_build",
     "moduleResolution": "node",
-    "sourceMap": false,
+    "sourceMap": true,
     "declaration":true,
     "emitDecoratorMetadata": false,
     "experimentalDecorators": false,
     "lib": [ "esnext", "dom" ],
     "noImplicitAny": true,
-    "allowJs":false,
+    "baseUrl": "./node_modules",
+    "allowJs":true,
     "rootDir": ".",
     "resolveJsonModule": true,
     "esModuleInterop": true
   },
   "include": ["./app.ts"],
-  "exclude":["node_modules", "**/*.d.ts"]
+  "exclude": ["node_modules"]
+  
 }

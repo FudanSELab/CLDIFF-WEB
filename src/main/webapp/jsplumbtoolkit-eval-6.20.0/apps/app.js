@@ -5,14 +5,12 @@ var generate_templates_1 = require("./generate-templates");
 var process_1 = require("./process");
 // import {Palette } from './palette'
 var canvas_image_processing_1 = require("@jsplumb/canvas-image-processing");
-var inspector_1 = require("./inspector");
 var native_drop_handler_1 = require("./native-drop-handler");
 // const editor  = require('./node_modules/monaco-editor')
 // import {editor} from "."
 // import {editor} from './node_modules/monaco-editor/dev/vs/editor/editor.main'
 // require.config({ paths: { 'vs': '../node_modules/monaco-editor/dev/vs' } });
 // import {editor} from './node_modules/monaco-editor'
-// import * as helloworld from './editor';
 var monaco = require("monaco-editor");
 // declare function editorFun(value:string,task:string): string;
 ///////// <ressssssference path="./node_modules/monaco-editor/monaco.d.ts" />
@@ -171,7 +169,7 @@ var monaco = require("monaco-editor");
             _d),
         view: view,
         magnetize: {
-            afterDrag: true,
+            afterDrag: false,
         },
         consumeRightClick: false,
         modelEvents: [
@@ -216,11 +214,11 @@ var monaco = require("monaco-editor");
         hoverClass: "jtk-imp-drop-target",
         surface: surface,
         imageDropped: function (e, img, el, info) {
-            toolkit.update(info.obj, {
-                image: img,
-                width: img.naturalWidth,
-                height: img.naturalHeight
-            });
+            // toolkit.update(info.obj, {
+            //     image:img,
+            //     width:img.naturalWidth,
+            //     height:img.naturalHeight
+            // })
         }
     });
     /**
@@ -232,20 +230,20 @@ var monaco = require("monaco-editor");
         hoverClass: "jtk-imp-drop-target",
         surface: surface,
         imageDropped: function (e, img, el, info) {
-            var evtLoc = surface.mapEventLocation(e);
-            toolkit.addNode({
-                type: "basic.source",
-                label: "Source",
-                id: (0, browser_ui_1.uuid)(),
-                left: evtLoc.x,
-                top: evtLoc.y,
-                image: img,
-                width: img.naturalWidth,
-                height: img.naturalHeight
-            });
+            // const evtLoc = surface.mapEventLocation(e)
+            // toolkit.addNode({
+            //     type:"basic.source",
+            //     label:"Source",
+            //     id:uuid(),
+            //     left:evtLoc.x,
+            //     top:evtLoc.y,
+            //     image:img,
+            //     width:img.naturalWidth,
+            //     height:img.naturalHeight
+            // })
         }
     });
-    new inspector_1.ImageInspector(document.getElementById("inspector"), surface, model);
+    // new ImageInspector(document.getElementById("inspector"), surface, model)
     new browser_ui_1.ControlsComponent(document.getElementById("controls"), surface);
     // new Palette(surface, model)
     // debugger
@@ -272,8 +270,29 @@ var monaco = require("monaco-editor");
                             // json.edges.forEach((edge) => {
                             // 这里你可以按需处理边的信息，比如将边的 ID 作为键
                             // });
-                            // console.log('window map');
-                            // console.log(window.map);
+                            containers2.forEach(function (container) {
+                                container.addEventListener("click", function (event) {
+                                    var ele = event.currentTarget;
+                                    if (ele === container) {
+                                        console.log('event');
+                                        var dataJtkVertex = ele.getAttribute('data-jtk-vertex');
+                                        var code = window.map.get(dataJtkVertex).code;
+                                        var inspector = document.getElementById("inspector");
+                                        inspector.innerHTML = '';
+                                        var editor2 = monaco.editor.create(inspector, {
+                                            value: code,
+                                            language: 'java',
+                                            autoIndent: 'advanced',
+                                            scrollBeyondLastLine: false,
+                                            minimap: { enabled: false },
+                                            overviewRulerBorder: false,
+                                            contextmenu: false, // or set another keyCode here
+                                            wordWrap: 'on',
+                                            fontSize: 20
+                                        });
+                                    }
+                                });
+                            });
                             containers2.forEach(function (container) {
                                 var dataJtkVertex = container.getAttribute('data-jtk-vertex');
                                 // console.log(dataJtkVertex)
@@ -287,15 +306,13 @@ var monaco = require("monaco-editor");
                                     autoIndent: 'advanced',
                                     scrollBeyondLastLine: false,
                                     minimap: { enabled: false },
-                                    overviewRulerBorder: false
+                                    overviewRulerBorder: false,
+                                    contextmenu: false, // or set another keyCode here,
+                                    wordWrap: 'on',
+                                    fontSize: 20,
                                 });
                             });
                         });
-                        // editorFun(value, task);
-                        // 
-                        // toolkit.eachNode((idx,dn) => {
-                        //     console.log(dn)
-                        // })
                     }
                 });
             }

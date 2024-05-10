@@ -21578,39 +21578,39 @@
   });
 
   // node_modules/monaco-editor/esm/vs/base/common/linkedList.js
-  var Node5, LinkedList;
+  var Node4, LinkedList;
   var init_linkedList = __esm({
     "node_modules/monaco-editor/esm/vs/base/common/linkedList.js"() {
-      Node5 = class _Node {
+      Node4 = class _Node {
         constructor(element) {
           this.element = element;
           this.next = _Node.Undefined;
           this.prev = _Node.Undefined;
         }
       };
-      Node5.Undefined = new Node5(void 0);
+      Node4.Undefined = new Node4(void 0);
       LinkedList = class {
         constructor() {
-          this._first = Node5.Undefined;
-          this._last = Node5.Undefined;
+          this._first = Node4.Undefined;
+          this._last = Node4.Undefined;
           this._size = 0;
         }
         get size() {
           return this._size;
         }
         isEmpty() {
-          return this._first === Node5.Undefined;
+          return this._first === Node4.Undefined;
         }
         clear() {
           let node = this._first;
-          while (node !== Node5.Undefined) {
+          while (node !== Node4.Undefined) {
             const next = node.next;
-            node.prev = Node5.Undefined;
-            node.next = Node5.Undefined;
+            node.prev = Node4.Undefined;
+            node.next = Node4.Undefined;
             node = next;
           }
-          this._first = Node5.Undefined;
-          this._last = Node5.Undefined;
+          this._first = Node4.Undefined;
+          this._last = Node4.Undefined;
           this._size = 0;
         }
         unshift(element) {
@@ -21620,8 +21620,8 @@
           return this._insert(element, true);
         }
         _insert(element, atTheEnd) {
-          const newNode = new Node5(element);
-          if (this._first === Node5.Undefined) {
+          const newNode = new Node4(element);
+          if (this._first === Node4.Undefined) {
             this._first = newNode;
             this._last = newNode;
           } else if (atTheEnd) {
@@ -21645,7 +21645,7 @@
           };
         }
         shift() {
-          if (this._first === Node5.Undefined) {
+          if (this._first === Node4.Undefined) {
             return void 0;
           } else {
             const res = this._first.element;
@@ -21654,7 +21654,7 @@
           }
         }
         pop() {
-          if (this._last === Node5.Undefined) {
+          if (this._last === Node4.Undefined) {
             return void 0;
           } else {
             const res = this._last.element;
@@ -21663,25 +21663,25 @@
           }
         }
         _remove(node) {
-          if (node.prev !== Node5.Undefined && node.next !== Node5.Undefined) {
+          if (node.prev !== Node4.Undefined && node.next !== Node4.Undefined) {
             const anchor = node.prev;
             anchor.next = node.next;
             node.next.prev = anchor;
-          } else if (node.prev === Node5.Undefined && node.next === Node5.Undefined) {
-            this._first = Node5.Undefined;
-            this._last = Node5.Undefined;
-          } else if (node.next === Node5.Undefined) {
+          } else if (node.prev === Node4.Undefined && node.next === Node4.Undefined) {
+            this._first = Node4.Undefined;
+            this._last = Node4.Undefined;
+          } else if (node.next === Node4.Undefined) {
             this._last = this._last.prev;
-            this._last.next = Node5.Undefined;
-          } else if (node.prev === Node5.Undefined) {
+            this._last.next = Node4.Undefined;
+          } else if (node.prev === Node4.Undefined) {
             this._first = this._first.next;
-            this._first.prev = Node5.Undefined;
+            this._first.prev = Node4.Undefined;
           }
           this._size -= 1;
         }
         *[Symbol.iterator]() {
           let node = this._first;
-          while (node !== Node5.Undefined) {
+          while (node !== Node4.Undefined) {
             yield node.element;
             node = node.next;
           }
@@ -32977,7 +32977,7 @@
     const {
       DocumentFragment,
       HTMLTemplateElement,
-      Node: Node8,
+      Node: Node7,
       Element: Element2,
       NodeFilter,
       NamedNodeMap = window2.NamedNodeMap || window2.MozNamedAttrMap,
@@ -33367,7 +33367,7 @@
       return elm instanceof HTMLFormElement && (typeof elm.nodeName !== "string" || typeof elm.textContent !== "string" || typeof elm.removeChild !== "function" || !(elm.attributes instanceof NamedNodeMap) || typeof elm.removeAttribute !== "function" || typeof elm.setAttribute !== "function" || typeof elm.namespaceURI !== "string" || typeof elm.insertBefore !== "function" || typeof elm.hasChildNodes !== "function");
     };
     const _isNode = function _isNode2(object) {
-      return typeof Node8 === "object" ? object instanceof Node8 : object && typeof object === "object" && typeof object.nodeType === "number" && typeof object.nodeName === "string";
+      return typeof Node7 === "object" ? object instanceof Node7 : object && typeof object === "object" && typeof object.nodeType === "number" && typeof object.nodeName === "string";
     };
     const _executeHook = function _executeHook2(entryPoint, currentNode, data) {
       if (!hooks[entryPoint]) {
@@ -33612,7 +33612,7 @@
             throw typeErrorCreate("root node is forbidden and cannot be sanitized in-place");
           }
         }
-      } else if (dirty instanceof Node8) {
+      } else if (dirty instanceof Node7) {
         body = _initDocument("<!---->");
         importedNode = body.ownerDocument.importNode(dirty, true);
         if (importedNode.nodeType === 1 && importedNode.nodeName === "BODY") {
@@ -131372,10 +131372,10 @@ ${this._themeCSS}`;
   });
 
   // node_modules/monaco-editor/esm/vs/platform/instantiation/common/graph.js
-  var Node6, Graph;
+  var Node5, Graph;
   var init_graph = __esm({
     "node_modules/monaco-editor/esm/vs/platform/instantiation/common/graph.js"() {
-      Node6 = class {
+      Node5 = class {
         constructor(key, data) {
           this.key = key;
           this.data = data;
@@ -131415,7 +131415,7 @@ ${this._themeCSS}`;
           const key = this._hashFn(data);
           let node = this._nodes.get(key);
           if (!node) {
-            node = new Node6(key, data);
+            node = new Node5(key, data);
             this._nodes.set(key, node);
           }
           return node;
@@ -133427,11 +133427,11 @@ ${graph.toString()}`;
       return { dispose() {
       } };
     } else {
-      const handlers2 = registerGlobalHotReloadHandler();
-      handlers2.add(handler);
+      const handlers = registerGlobalHotReloadHandler();
+      handlers.add(handler);
       return {
         dispose() {
-          handlers2.delete(handler);
+          handlers.delete(handler);
         }
       };
     }
@@ -180477,7 +180477,7 @@ ${tagToString(tag)}`;
   });
 
   // app.ts
-  var import_browser_ui5 = __toESM(require_jsplumbtoolkit_browser_ui_cjs());
+  var import_browser_ui4 = __toESM(require_jsplumbtoolkit_browser_ui_cjs());
 
   // generate-templates.ts
   var import_browser_ui = __toESM(require_jsplumbtoolkit_browser_ui_cjs());
@@ -181401,26 +181401,6 @@ ${tagToString(tag)}`;
       }
     ]
   };
-  var INPUT_INSPECTORS = {
-    "text": {
-      template: (n) => `
-            <label>Label:<input type="text" jtk-att="label"  placeholder="enter label"/></label>
-            <label>Text:<input type="text" jtk-att="value" placeholder="enter text value" jtk-focus/></label>
-`
-    },
-    "boolean": {
-      template: (n) => `<label>Label:<input type="text" jtk-att="label"  placeholder="enter label"/></label>
-            <label>Value:<input type="checkbox" jtk-att="value" /></label>`
-    },
-    "color": {
-      template: (n) => `<label>Label:<input type="text" jtk-att="label"  placeholder="enter label"/></label>
-            <label>Color:<input type="color" jtk-att="value" /></label>`
-    },
-    "number": {
-      template: (n) => `<label>Label:<input type="text" jtk-att="label"  placeholder="enter label"/></label>
-            <label>Number:<input type="text" jtk-att="value"  jtk-focus/></label>`
-    }
-  };
 
   // model/basic.ts
   var basic_default = {
@@ -181504,17 +181484,6 @@ ${tagToString(tag)}`;
         }
       }
     ]
-  };
-  var BASIC_INSPECTORS = {
-    "source": {
-      template: (n) => `<label>Label:<input type="text" jtk-att="label"  placeholder="enter label"/></label>`
-    },
-    "display": {
-      template: (n) => `<label>Label:<input type="text" jtk-att="label"  placeholder="enter label"/></label>`
-    },
-    "properties": {
-      template: (n) => `<label>Label:<input type="text" jtk-att="label"  placeholder="enter label"/></label>`
-    }
   };
 
   // generate-templates.ts
@@ -181732,46 +181701,8 @@ ${tagToString(tag)}`;
     }
   };
 
-  // inspector.ts
-  var import_browser_ui3 = __toESM(require_jsplumbtoolkit_browser_ui_cjs());
-  var handlers = {
-    input: INPUT_INSPECTORS,
-    filter: FILTER_INSPECTORS,
-    transform: TRANSFORM_INSPECTORS,
-    basic: BASIC_INSPECTORS
-  };
-  var ImageInspector = class extends import_browser_ui3.VanillaInspector {
-    constructor(container, surface, model) {
-      super({
-        container,
-        surface,
-        templateResolver: (obj) => {
-          if ((0, import_browser_ui3.isNode)(obj)) {
-            return this._renderNodeTemplate(obj);
-          }
-          return "";
-        },
-        cacheTemplates: false,
-        renderEmptyContainer: () => `<h1>SELECT SOMETHING INNIT</h1>`,
-        refresh: (obj, cb) => null
-      });
-      __publicField(this, "model");
-      this.model = model;
-    }
-    _renderNodeTemplate(obj) {
-      console.log("render node template");
-      console.log(obj);
-      const [set, type] = obj.type.split(".");
-      try {
-        return handlers[set][type].template(obj);
-      } catch (e) {
-        return `<div/>`;
-      }
-    }
-  };
-
   // native-drop-handler.ts
-  var import_browser_ui4 = __toESM(require_jsplumbtoolkit_browser_ui_cjs());
+  var import_browser_ui3 = __toESM(require_jsplumbtoolkit_browser_ui_cjs());
   var CLASS_HOVER_DEFAULT = "jtk-native-drop-hover";
   var EVENT_DRAG_ENTER = "dragenter";
   var EVENT_DRAG_LEAVE = "dragleave";
@@ -181782,7 +181713,7 @@ ${tagToString(tag)}`;
       __publicField(this, "hoverClasses");
       __publicField(this, "surface");
       __publicField(this, "eventManager");
-      this.eventManager = new import_browser_ui4.EventManager();
+      this.eventManager = new import_browser_ui3.EventManager();
       this.surface = options2.surface;
       this.hoverClasses = [CLASS_HOVER_DEFAULT];
       if (options2.hoverClass) {
@@ -181790,7 +181721,7 @@ ${tagToString(tag)}`;
       }
       const element = options2.element || this.surface.getContainer().parentElement;
       const _addClass = (e) => {
-        (0, import_browser_ui4.consume)(e);
+        (0, import_browser_ui3.consume)(e);
         e.target.classList.add(...this.hoverClasses);
       };
       const enterOptions = [element, EVENT_DRAG_ENTER];
@@ -181800,7 +181731,7 @@ ${tagToString(tag)}`;
       enterOptions.push(_addClass);
       this.eventManager.on.apply(this.eventManager, enterOptions);
       const _removeClass = (e) => {
-        (0, import_browser_ui4.consume)(e);
+        (0, import_browser_ui3.consume)(e);
         e.target.classList.remove(...this.hoverClasses);
       };
       const leaveOptions = [element, EVENT_DRAG_LEAVE];
@@ -181810,7 +181741,7 @@ ${tagToString(tag)}`;
       leaveOptions.push(_removeClass);
       this.eventManager.on.apply(this.eventManager, leaveOptions);
       const _setDropEffect = (e) => {
-        (0, import_browser_ui4.consume)(e);
+        (0, import_browser_ui3.consume)(e);
         e.dataTransfer.dropEffect = "copy";
       };
       const copyOptions = [element, EVENT_DRAG_OVER];
@@ -181825,7 +181756,7 @@ ${tagToString(tag)}`;
       }
       dropOptions.push((e) => {
         if (!e.cancelBubble && !e.defaultPrevented) {
-          (0, import_browser_ui4.consume)(e);
+          (0, import_browser_ui3.consume)(e);
           e.target.classList.remove(...this.hoverClasses);
           options2.onDrop(
             e,
@@ -232511,11 +232442,11 @@ ${tagToString(tag)}`;
   init_editor_api();
 
   // app.ts
-  (0, import_browser_ui5.ready)(() => {
+  (0, import_browser_ui4.ready)(() => {
     let model;
-    const toolkit = (0, import_browser_ui5.newInstance)({
+    const toolkit = (0, import_browser_ui4.newInstance)({
       beforeConnect: (source, target) => {
-        return target.objectType === import_browser_ui5.Port.objectType && source.objectType === import_browser_ui5.Port.objectType && source.getParent().id !== target.getParent().id;
+        return target.objectType === import_browser_ui4.Port.objectType && source.objectType === import_browser_ui4.Port.objectType && source.getParent().id !== target.getParent().id;
       },
       portExtractor: (data) => {
         const t = model.nodeTypes[data.type];
@@ -232543,31 +232474,31 @@ ${tagToString(tag)}`;
         source: {
           isSource: true,
           maxConnections: 1e3,
-          anchor: import_browser_ui5.AnchorLocations.Right
+          anchor: import_browser_ui4.AnchorLocations.Right
         },
         target: {
           isTarget: true,
           maxConnections: 1e3,
-          anchor: import_browser_ui5.AnchorLocations.Left
+          anchor: import_browser_ui4.AnchorLocations.Left
         }
       },
       edges: {
-        [import_browser_ui5.DEFAULT]: {
+        [import_browser_ui4.DEFAULT]: {
           overlays: [
             {
-              type: import_browser_ui5.LabelOverlay.type,
+              type: import_browser_ui4.LabelOverlay.type,
               options: {
                 label: "x",
                 cssClass: "jtk-imp-overlay-delete",
                 events: {
-                  [import_browser_ui5.EVENT_CLICK]: (p) => {
+                  [import_browser_ui4.EVENT_CLICK]: (p) => {
                     toolkit.removeEdge(p.edge);
                   }
                 }
               }
             },
             {
-              type: import_browser_ui5.PlainArrowOverlay.type,
+              type: import_browser_ui4.PlainArrowOverlay.type,
               options: {
                 location: 1,
                 width: 7,
@@ -232576,19 +232507,19 @@ ${tagToString(tag)}`;
             }
           ],
           events: {
-            [import_browser_ui5.EVENT_DBL_CLICK]: (p) => toolkit.removeEdge(p.edge)
+            [import_browser_ui4.EVENT_DBL_CLICK]: (p) => toolkit.removeEdge(p.edge)
           }
         }
       }
     };
     const surface = toolkit.render(container, {
       layout: {
-        type: import_browser_ui5.AbsoluteLayout.type
+        type: import_browser_ui4.AbsoluteLayout.type
       },
       plugins: [
-        import_browser_ui5.ActiveFilteringPlugin.type,
+        import_browser_ui4.ActiveFilteringPlugin.type,
         {
-          type: import_browser_ui5.MiniviewPlugin.type,
+          type: import_browser_ui4.MiniviewPlugin.type,
           options: {
             container: miniview,
             typeFunction: (n) => n.type.split(/\./)[0]
@@ -232597,33 +232528,33 @@ ${tagToString(tag)}`;
       ],
       defaults: {
         endpoint: {
-          type: import_browser_ui5.BlankEndpoint.type,
+          type: import_browser_ui4.BlankEndpoint.type,
           options: {
             cssClass: "jtk-imp-blank-ep"
           }
         },
-        connector: import_browser_ui5.StateMachineConnector.type
+        connector: import_browser_ui4.StateMachineConnector.type
       },
       events: {
-        [import_browser_ui5.EVENT_CANVAS_CLICK]: () => {
+        [import_browser_ui4.EVENT_CANVAS_CLICK]: () => {
           toolkit.clearSelection();
         }
       },
       view,
       magnetize: {
-        afterDrag: true
+        afterDrag: false
       },
       consumeRightClick: false,
       modelEvents: [
         {
-          event: import_browser_ui5.EVENT_CLICK,
+          event: import_browser_ui4.EVENT_CLICK,
           selector: ".jtk-imp-delete-node",
           callback: (e, el, info) => {
             toolkit.removeNode(info.obj);
           }
         },
         {
-          event: import_browser_ui5.EVENT_CLICK,
+          event: import_browser_ui4.EVENT_CLICK,
           selector: ".jtk-imp-upload",
           callback: (e, el, info) => {
             let input = document.createElement("input");
@@ -232651,32 +232582,15 @@ ${tagToString(tag)}`;
       hoverClass: "jtk-imp-drop-target",
       surface,
       imageDropped: (e, img, el, info) => {
-        toolkit.update(info.obj, {
-          image: img,
-          width: img.naturalWidth,
-          height: img.naturalHeight
-        });
       }
     });
     new NativeImageDropHandler({
       hoverClass: "jtk-imp-drop-target",
       surface,
       imageDropped: (e, img, el, info) => {
-        const evtLoc = surface.mapEventLocation(e);
-        toolkit.addNode({
-          type: "basic.source",
-          label: "Source",
-          id: (0, import_browser_ui5.uuid)(),
-          left: evtLoc.x,
-          top: evtLoc.y,
-          image: img,
-          width: img.naturalWidth,
-          height: img.naturalHeight
-        });
       }
     });
-    new ImageInspector(document.getElementById("inspector"), surface, model);
-    new import_browser_ui5.ControlsComponent(document.getElementById("controls"), surface);
+    new import_browser_ui4.ControlsComponent(document.getElementById("controls"), surface);
     const selectionHeader = document.getElementById("selectionHeader");
     const liElements = selectionHeader.querySelectorAll("li");
     liElements.forEach((element) => {
@@ -232698,6 +232612,30 @@ ${tagToString(tag)}`;
                   window.map.set(node.id, node);
                 });
                 containers2.forEach((container2) => {
+                  container2.addEventListener("click", (event3) => {
+                    const ele = event3.currentTarget;
+                    if (ele === container2) {
+                      console.log("event");
+                      const dataJtkVertex = ele.getAttribute("data-jtk-vertex");
+                      const code = window.map.get(dataJtkVertex).code;
+                      const inspector = document.getElementById("inspector");
+                      inspector.innerHTML = "";
+                      const editor2 = editor.create(inspector, {
+                        value: code,
+                        language: "java",
+                        autoIndent: "advanced",
+                        scrollBeyondLastLine: false,
+                        minimap: { enabled: false },
+                        overviewRulerBorder: false,
+                        contextmenu: false,
+                        // or set another keyCode here
+                        wordWrap: "on",
+                        fontSize: 20
+                      });
+                    }
+                  });
+                });
+                containers2.forEach((container2) => {
                   const dataJtkVertex = container2.getAttribute("data-jtk-vertex");
                   const code = window.map.get(dataJtkVertex).code;
                   const editorsEles = container2.querySelectorAll(".editor");
@@ -232708,7 +232646,11 @@ ${tagToString(tag)}`;
                     autoIndent: "advanced",
                     scrollBeyondLastLine: false,
                     minimap: { enabled: false },
-                    overviewRulerBorder: false
+                    overviewRulerBorder: false,
+                    contextmenu: false,
+                    // or set another keyCode here,
+                    wordWrap: "on",
+                    fontSize: 20
                   });
                 });
               });

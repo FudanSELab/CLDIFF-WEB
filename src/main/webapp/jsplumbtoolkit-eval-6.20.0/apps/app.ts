@@ -27,7 +27,6 @@ import {NativeImageDropHandler} from "./native-drop-handler"
 // import {editor} from './node_modules/monaco-editor/dev/vs/editor/editor.main'
 // require.config({ paths: { 'vs': '../node_modules/monaco-editor/dev/vs' } });
 // import {editor} from './node_modules/monaco-editor'
-// import * as helloworld from './editor';
 import * as monaco from 'monaco-editor';
 
 interface Noode {
@@ -59,16 +58,11 @@ interface JsonData {
     edges: Eddge[];
 }
 
-// 在全局作用域下定义一个全局对象，例如 window.map
 declare global {
     interface Window {
         map: Map<string, Noode>;
     }
 }
-
-
-
-
 
 // declare function editorFun(value:string,task:string): string;
 ///////// <ressssssference path="./node_modules/monaco-editor/monaco.d.ts" />
@@ -238,7 +232,7 @@ ready(() => {
         },
         view,
         magnetize:{
-            afterDrag:true,
+            afterDrag:false,
         },
         consumeRightClick:false,
         modelEvents:[
@@ -286,11 +280,11 @@ ready(() => {
         hoverClass:"jtk-imp-drop-target",
         surface,
         imageDropped:(e:DragEvent, img:HTMLImageElement, el:HTMLCanvasElement, info:SurfaceObjectInfo<ImageProcessorNode>) => {
-            toolkit.update(info.obj, {
-                image:img,
-                width:img.naturalWidth,
-                height:img.naturalHeight
-            })
+            // toolkit.update(info.obj, {
+            //     image:img,
+            //     width:img.naturalWidth,
+            //     height:img.naturalHeight
+            // })
         }
     })
 
@@ -304,26 +298,28 @@ ready(() => {
         surface,
         imageDropped:(e:DragEvent, img:HTMLImageElement, el:HTMLElement, info:SurfaceObjectInfo<ImageProcessorNode>) => {
 
-            const evtLoc = surface.mapEventLocation(e)
-            toolkit.addNode({
-                type:"basic.source",
-                label:"Source",
-                id:uuid(),
-                left:evtLoc.x,
-                top:evtLoc.y,
-                image:img,
-                width:img.naturalWidth,
-                height:img.naturalHeight
-            })
+            // const evtLoc = surface.mapEventLocation(e)
+            // toolkit.addNode({
+            //     type:"basic.source",
+            //     label:"Source",
+            //     id:uuid(),
+            //     left:evtLoc.x,
+            //     top:evtLoc.y,
+            //     image:img,
+            //     width:img.naturalWidth,
+            //     height:img.naturalHeight
+            // })
         }
     })
 
-    new ImageInspector(document.getElementById("inspector"), surface, model)
+    // new ImageInspector(document.getElementById("inspector"), surface, model)
     new ControlsComponent(document.getElementById("controls"), surface)
 
     // new Palette(surface, model)
 
     // debugger
+
+
 
     const selectionHeader = document.getElementById("selectionHeader")
     const liElements = selectionHeader.querySelectorAll('li');
@@ -350,8 +346,33 @@ ready(() => {
                             // json.edges.forEach((edge) => {
                                 // 这里你可以按需处理边的信息，比如将边的 ID 作为键
                             // });
-                            // console.log('window map');
-                            // console.log(window.map);
+                            containers2.forEach((container) => {
+                                container.addEventListener("click", (event) => {
+                                    const ele = event.currentTarget as HTMLElement;
+                                    if(ele === container){
+                                        console.log('event')
+                                        const dataJtkVertex = ele.getAttribute('data-jtk-vertex');
+                                        const code = window.map.get(dataJtkVertex).code;
+                                        const inspector = document.getElementById("inspector")
+                                        inspector.innerHTML = ''
+                                        const editor2 = monaco.editor.create(inspector as HTMLElement, {
+                                            value: code,
+                                            language: 'java',
+                                            autoIndent: 'advanced',
+                                            scrollBeyondLastLine: false,
+                                            minimap: { enabled: false },
+                                            overviewRulerBorder: false,
+                                            contextmenu: false, // or set another keyCode here
+                                            wordWrap: 'on',
+                                            fontSize: 20
+
+                                        });
+
+                                    }
+                                   
+
+                                });
+                            });
 
                             containers2.forEach((container) => {
                                 const dataJtkVertex = container.getAttribute('data-jtk-vertex');
@@ -366,23 +387,18 @@ ready(() => {
                                     autoIndent: 'advanced',
                                     scrollBeyondLastLine: false,
                                     minimap: { enabled: false },
-                                    overviewRulerBorder: false
+                                    overviewRulerBorder: false,
+                                    contextmenu: false, // or set another keyCode here,
+                                    wordWrap: 'on',
+                                    fontSize: 20,
+                                   
                                 });
     
     
                             });
                         });
                         
-
-
-                        
-                        
-                        // editorFun(value, task);
-                        // 
-                        // toolkit.eachNode((idx,dn) => {
-                        //     console.log(dn)
-                           
-                        // })
+                       
                     }
                 })
 

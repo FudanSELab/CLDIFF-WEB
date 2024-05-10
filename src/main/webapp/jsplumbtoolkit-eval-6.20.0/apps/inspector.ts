@@ -6,6 +6,7 @@ import { INPUT_INSPECTORS } from "./model/inputs"
 import { FILTER_INSPECTORS } from './model/filters'
 import { TRANSFORM_INSPECTORS } from './model/transforms'
 import { BASIC_INSPECTORS } from './model/basic'
+import * as monaco from 'monaco-editor';
 
 const handlers:Record<string, Record<string, {template:(n:Node) => string}>> = {
     input:INPUT_INSPECTORS,
@@ -24,7 +25,8 @@ export class ImageInspector extends VanillaInspector {
             surface,
             templateResolver:(obj:Base) => {
                 if (isNode(obj)) {
-                    return this._renderNodeTemplate(obj)
+                    this._renderNodeTemplate(obj,container)
+                    // return this._renderNodeTemplate(obj)
                 }
 
                 return ''
@@ -37,13 +39,27 @@ export class ImageInspector extends VanillaInspector {
         this.model = model
     }
 
-    _renderNodeTemplate(obj:Node):string {
+    _renderNodeTemplate(obj:Node,container:HTMLElement):string {
+        console.log(obj.data.id)
+        const code = window.map.get(obj.data.id).code;
+        console.log(container)
+        console.log(code)
+        const editor2 = monaco.editor.create(container as HTMLElement, {
+            value: code,
+            language: 'java',
+            autoIndent: 'advanced',
+            scrollBeyondLastLine: false,
+            minimap: { enabled: false },
+            overviewRulerBorder: false
+        });
         console.log('render node template')
         // entrance for right bar
-        console.log(obj)
+        // console.log(obj)
         const [set, type] = obj.type.split(".")
         try {
-            return handlers[set][type].template(obj)
+            // console.log(handlers[set][type].template(obj))
+            // return handlers[set][type].template(obj)
+            return `<div/>`
         } catch (e) {
             return `<div/>`
         }

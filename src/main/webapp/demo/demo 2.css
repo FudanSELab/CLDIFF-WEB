@@ -1,0 +1,341 @@
+.node {
+    width: 420px;
+    height: 150px;
+    /*//90 vh ,45vw*/
+    /*width:10vw;*/
+    /*height: 4vh;*/
+}
+.test{
+
+    height: 45vh;
+}
+/*.h2,h2{*/
+/*    margin-top: -40px;*/
+/*}*/
+
+.blank{
+    position: absolute;
+    height: 0;
+    width: 0;
+    visibility: hidden;
+}
+
+.title{
+    /*width: 420px;*/
+    /*height: 30px;*/
+    text-align: center;
+    margin-bottom: unset;
+
+}
+
+/*#canvas{*/
+/*    backface-visibility: hidden;*/
+/*    -webkit-filter: blur(0);*/
+/*    filter: blur(.0px);*/
+/*    transform: translateZ(0);*/
+/*    -webkit-font-smoothing: subpixel-antialiased;*/
+/*}*/
+.demo {
+    /* for IE10+ touch devices */
+    touch-action:none;
+}
+#canvas{
+    position: relative;
+    width: 500vw;
+    height:800vh;
+    /*float: left;*/
+
+}
+
+#rightEditor {
+    /*border: 1px solid gray;*/
+   /*float: right;*/
+    z-index: 200;
+    height:400vh;
+}
+
+#panic-button{
+    position: fixed;
+    top:200px;
+}
+/*#rightEditor:hover {*/
+
+/*    box-shadow: 0 0 0 3px tomato;*/
+/*}*/
+
+
+.jtk-node{
+    position: absolute;
+}
+.flowchart-demo .window {
+
+    border: 2px solid #346789;
+    box-shadow: 2px 2px 19px ;
+    -o-box-shadow: 2px 2px 19px #aaa;
+    -webkit-box-shadow: 2px 2px 19px #aaa;
+    -moz-box-shadow: 2px 2px 19px #aaa;
+    -moz-border-radius: 0.5em;
+    border-radius: 0.5em;
+    opacity: 0.8;
+    width: 426px;
+    height:186px;
+    /*display: flex;*/
+    /*justify-content: center;*/
+    /*align-items: center;*/
+    cursor: pointer;
+    /*text-align: center;*/
+    z-index: 20;
+    position: absolute;
+    background-color: #eeeeef;
+    color: black;
+    font-family: helvetica, sans-serif;
+    /*padding: 0.5em;*/
+    font-size: 0.9em;
+    -webkit-transition: -webkit-box-shadow 0.15s ease-in;
+    -moz-transition: -moz-box-shadow 0.15s ease-in;
+    -o-transition: -o-box-shadow 0.15s ease-in;
+    transition: box-shadow 0.15s ease-in;
+    backface-visibility: hidden;
+    /*-webkit-filter: blur(0);*/
+    /*filter: blur(.0px);*/
+    transform: translateZ(0);
+    -webkit-font-smoothing: subpixel-antialiased;
+}
+svg {
+    backface-visibility: hidden;
+    -webkit-transform: translateZ(0) ;
+    transform: translateZ(0);
+}
+.flowchart-demo .window:hover {
+    box-shadow: 2px 2px 19px #444;
+    -o-box-shadow: 2px 2px 19px #444;
+    -webkit-box-shadow: 2px 2px 19px #444;
+    -moz-box-shadow: 2px 2px 19px #444;
+    cursor: pointer;
+    /*opacity: 0.6;*/
+}
+
+.flowchart-demo .active {
+    border: 1px dotted green;
+}
+
+.flowchart-demo .hover {
+    border: 1px dotted red;
+}
+
+
+.flowchart-demo .jtk-connector {
+    z-index: 4;
+}
+
+.flowchart-demo .jtk-endpoint, .endpointTargetLabel, .endpointSourceLabel {
+    z-index: 21;
+    cursor: pointer;
+}
+
+
+.window.jtk-connected {
+    border: 1px solid green;
+}
+
+.jtk-drag {
+    outline: 4px solid pink !important;
+}
+
+path, .jtk-endpoint {
+    cursor: pointer;
+}
+
+.jtk-overlay {
+    background-color:transparent;
+}
+
+/*.dropdown{*/
+/*    margin-left: 50px;*/
+/*}*/
+
+body{
+    margin-left: 20px;
+    margin-right: 20px;
+    background-color: #EDF1F9;
+}
+
+#leftPanel{
+    border-width: 1px;
+    /*border: solid #e1e1e8;*/
+    background-color: #ffffff;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+    -webkit-box-shadow: 0 1px 4px rgb(0 0 0 / 30%), 0 0 5px rgb(0 0 0 / 10%) inset;
+    box-shadow: 0 1px 4px rgb(0 0 0 / 30%), 0 0 5px rgb(0 0 0 / 10%) inset;
+    margin-top:20px;
+    height:1000px;
+}
+
+#rightPanel{
+    border-width: 1px;
+    /*border: solid #e1e1e8;*/
+    background-color: #ffffff;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    -webkit-box-shadow: 0 1px 4px rgb(0 0 0 / 30%), 0 0 5px rgb(0 0 0 / 10%) inset;
+    box-shadow: 0 1px 4px rgb(0 0 0 / 30%), 0 0 5px rgb(0 0 0 / 10%) inset;
+    margin-top:20px;
+    margin-left:20px;
+    height:1000px;
+}
+
+#selectionHeader{
+    border-width: 1px;
+    /*border: solid #e1e1e8;*/
+    background-color: #ffffff;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+    -webkit-box-shadow: 0 1px 4px rgb(0 0 0 / 30%), 0 0 5px rgb(0 0 0 / 10%) inset;
+    box-shadow: 0 1px 4px rgb(0 0 0 / 30%), 0 0 5px rgb(0 0 0 / 10%) inset;
+}
+
+#rightTitleHeader{
+    border-width: 1px;
+    /*border: solid #e1e1e8;*/
+    background-color: #ffffff;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+    -webkit-box-shadow: 0 1px 4px rgb(0 0 0 / 30%), 0 0 5px rgb(0 0 0 / 10%) inset;
+    box-shadow: 0 1px 4px rgb(0 0 0 / 30%), 0 0 5px rgb(0 0 0 / 10%) inset;
+    margin-left: 20px;
+}
+
+body > div:nth-child(2) > div.col-md-7 > div > div > button{
+    margin-top: 20px;
+}
+
+h1{
+    color:#2c7be5;
+    font-family: Poppins,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+}
+h2{
+    color:#5e6e82;
+    margin-top:15px;
+    margin-bottom: 15px;
+}
+
+h4{
+    padding-left:15px;
+    color:#5e6e82;
+}
+#span{
+    padding-left:15px;
+    color:#5e6e82;
+}
+
+#muButton{
+    color:#2c7be5;
+    margin-top:15px;
+}
+
+.nav-link-icon {
+    font-size: .875rem;
+    width: 12px;
+    height: 12px;
+    max-width: 1.5rem;
+    font-size: .875rem;
+}
+
+#rightPanel {
+    padding-left:0px;
+    padding-right:0px;
+}
+
+.row{
+    margin-left:120px;
+}
+
+.alert{
+    margin-bottom:2px;
+    margin-left:15px;
+    margin-right:15px;
+    padding:5px;
+}
+#leftPanel{
+    transform: scale(1,1);
+    /*contain: content;*/
+    overflow: scroll;
+}
+
+/*#leftPanel > span.glyphicon.glyphicon-minus {*/
+/*    z-index: 2001;*/
+
+/*    !*float: right;*!*/
+/*    !*position: fixed;*!*/
+/*    position: sticky;*/
+/*    top: 20px;*/
+/*    left: 85%;*/
+/*    font-size: 24px;*/
+
+/*}*/
+#opt{
+    z-index: 2001;
+    position: sticky;
+    /*position: fixed;*/
+    top: 20px;
+    left: 90%;
+}
+/*#leftPanel > span.glyphicon.glyphicon-plus {*/
+/*    z-index: 2001;*/
+/*    !*float: right;*!*/
+/*    position: sticky;*/
+/*    !*position: fixed;*!*/
+/*    top: 20px;*/
+/*    left: 80%;*/
+/*    font-size: 240px;*/
+
+
+/*}*/
+
+
+
+
+
+.flowchart-demo .aLabel {
+    background-color: white;
+    padding: 0.4em;
+    font: 18px sans-serif;
+    color: #444;
+    z-index: 21;
+    border: 1px dotted gray;
+    opacity: 0.8;
+
+    cursor: pointer;
+}
+
+.flowchart-demo .aLabel.jtk-hover {
+    background-color: #5C96BC;
+    color: white;
+    border: 1px solid white;
+}
+
+#defuse{
+    background-color: peachpuff;
+}
+#override{
+    background-color: blue;
+
+}
+#abstract {
+    background-color: indianred;
+}
+#implement {
+    background-color: yellow;
+}
+#systematic {
+    background-color: aqua;
+}

@@ -4,9 +4,11 @@
 # browserify ./model/basic.js ./model/filters.js ./model/inputs.js ./model/math.js ./model/transforms.js  app.js definitions.js generate-templates.js inspector.js native-drop-handler.js palette.js process.js > bundle2.js
 # tsc --outFile bundle2.js
 # tsc xxx.ts
-./node_modules/.bin/esbuild app.js --bundle --outfile=out.js
-browserify app.js -o out.js
+# ./node_modules/.bin/esbuild app.js --bundle --outfile=out.js
+# browserify app.js -o out.js
+tsc xxx.ts
 npm run build
+# npm run serve
 
 
 

@@ -3319,6 +3319,9 @@
         var o2 = vl[e2];
         if (null == o2)
           throw new Error("jsPlumb Toolkit - parse - [" + e2 + "] is an unsupported type");
+        console.log("etni");
+        console.log(e2);
+        console.log(t2);
         return o2(t2, n2, i2);
       }
       function kl(e2, t2, n2) {
@@ -232598,60 +232601,63 @@ ${tagToString(tag)}`;
         const target = event2.target;
         if (target.tagName.toLowerCase() === "a") {
           const value = target.getAttribute("value");
+          const filePath = value.replace("transformed_data", "transformed_data3");
           const task = target.textContent;
           toolkit.clear();
           toolkit.load({
-            url: value,
+            url: filePath,
             onload: () => {
+              var nodes = toolkit.getNodes();
+              console.log(nodes);
               const containers2 = document.querySelectorAll(".jtk-node");
-              const filePath = value.replace("transformed_data", "transformed_data2");
-              fetch(filePath).then((response) => response.json()).then((json) => {
-                console.log(json);
-                window.map = /* @__PURE__ */ new Map();
-                json.nodes.forEach((node) => {
-                  window.map.set(node.id, node);
+              window.map = /* @__PURE__ */ new Map();
+              nodes.forEach((node) => {
+                window.map.set(node.id, node);
+              });
+              containers2.forEach((container2) => {
+                container2.addEventListener("click", (event3) => {
+                  const ele = event3.currentTarget;
+                  if (ele === container2) {
+                    console.log("event");
+                    const dataJtkVertex = ele.getAttribute("data-jtk-vertex");
+                    const code = window.map.get(dataJtkVertex).data.code;
+                    const inspector = document.getElementById("inspector");
+                    inspector.innerHTML = "";
+                    const editor2 = editor.create(inspector, {
+                      value: code,
+                      language: "java",
+                      autoIndent: "advanced",
+                      scrollBeyondLastLine: false,
+                      minimap: { enabled: false },
+                      overviewRulerBorder: false,
+                      contextmenu: false,
+                      // or set another keyCode here
+                      wordWrap: "on",
+                      fontSize: 20,
+                      accessibilitySupport: "off",
+                      domReadOnly: true
+                    });
+                  }
                 });
-                containers2.forEach((container2) => {
-                  container2.addEventListener("click", (event3) => {
-                    const ele = event3.currentTarget;
-                    if (ele === container2) {
-                      console.log("event");
-                      const dataJtkVertex = ele.getAttribute("data-jtk-vertex");
-                      const code = window.map.get(dataJtkVertex).code;
-                      const inspector = document.getElementById("inspector");
-                      inspector.innerHTML = "";
-                      const editor2 = editor.create(inspector, {
-                        value: code,
-                        language: "java",
-                        autoIndent: "advanced",
-                        scrollBeyondLastLine: false,
-                        minimap: { enabled: false },
-                        overviewRulerBorder: false,
-                        contextmenu: false,
-                        // or set another keyCode here
-                        wordWrap: "on",
-                        fontSize: 20
-                      });
-                    }
-                  });
-                });
-                containers2.forEach((container2) => {
-                  const dataJtkVertex = container2.getAttribute("data-jtk-vertex");
-                  const code = window.map.get(dataJtkVertex).code;
-                  const editorsEles = container2.querySelectorAll(".editor");
-                  const editorEle = editorsEles[0];
-                  const editor2 = editor.create(editorEle, {
-                    value: code,
-                    language: "java",
-                    autoIndent: "advanced",
-                    scrollBeyondLastLine: false,
-                    minimap: { enabled: false },
-                    overviewRulerBorder: false,
-                    contextmenu: false,
-                    // or set another keyCode here,
-                    wordWrap: "on",
-                    fontSize: 20
-                  });
+              });
+              containers2.forEach((container2) => {
+                const dataJtkVertex = container2.getAttribute("data-jtk-vertex");
+                const code = window.map.get(dataJtkVertex).data.code;
+                const editorsEles = container2.querySelectorAll(".editor");
+                const editorEle = editorsEles[0];
+                const editor2 = editor.create(editorEle, {
+                  value: code,
+                  language: "java",
+                  autoIndent: "advanced",
+                  scrollBeyondLastLine: false,
+                  minimap: { enabled: false },
+                  overviewRulerBorder: false,
+                  contextmenu: false,
+                  // or set another keyCode here,
+                  wordWrap: "on",
+                  fontSize: 20,
+                  accessibilitySupport: "off",
+                  domReadOnly: true
                 });
               });
             }

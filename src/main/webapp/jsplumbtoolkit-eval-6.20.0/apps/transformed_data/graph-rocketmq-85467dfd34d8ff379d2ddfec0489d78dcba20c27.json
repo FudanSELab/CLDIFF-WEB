@@ -1,6 +1,5 @@
 {
-    "nodes": [
-        {
+    "nodes": [{
             "id": "61",
             "label": "moveFieldAccess",
             "left": 200,
@@ -193,8 +192,7 @@
             "type": "input.number"
         }
     ],
-    "edges": [
-        {
+    "edges": [{
             "source": "65.out:conr",
             "target": "75.in:conl"
         },

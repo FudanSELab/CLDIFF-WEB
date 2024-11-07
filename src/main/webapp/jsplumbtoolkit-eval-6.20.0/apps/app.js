@@ -253,64 +253,69 @@ var monaco = require("monaco-editor");
         element.addEventListener("click", function (event) {
             var target = event.target;
             if (target.tagName.toLowerCase() === 'a') {
-                var value_1 = target.getAttribute('value');
+                var value = target.getAttribute('value');
+                var filePath = value.replace('transformed_data', 'transformed_data3');
                 var task = target.textContent;
                 toolkit.clear();
                 toolkit.load({
-                    url: value_1,
+                    url: filePath,
                     onload: function () {
+                        var nodes = toolkit.getNodes();
+                        console.log(nodes);
                         var containers2 = document.querySelectorAll('.jtk-node');
-                        var filePath = value_1.replace('transformed_data', 'transformed_data2');
-                        fetch(filePath).then(function (response) { return response.json(); }).then(function (json) {
-                            console.log(json);
-                            window.map = new Map();
-                            json.nodes.forEach(function (node) {
-                                window.map.set(node.id, node);
+                        // fetch(filePath).then((response) => response.json()).then((json: JsonData) => {
+                        // console.log(json);
+                        window.map = new Map();
+                        nodes.forEach(function (node) {
+                            window.map.set(node.id, node);
+                        });
+                        // json.edges.forEach((edge) => {
+                        // 这里你可以按需处理边的信息，比如将边的 ID 作为键
+                        // });
+                        containers2.forEach(function (container) {
+                            container.addEventListener("click", function (event) {
+                                var ele = event.currentTarget;
+                                if (ele === container) {
+                                    console.log('event');
+                                    var dataJtkVertex = ele.getAttribute('data-jtk-vertex');
+                                    var code = window.map.get(dataJtkVertex).data.code;
+                                    var inspector = document.getElementById("inspector");
+                                    inspector.innerHTML = '';
+                                    var editor2 = monaco.editor.create(inspector, {
+                                        value: code,
+                                        language: 'java',
+                                        autoIndent: 'advanced',
+                                        scrollBeyondLastLine: false,
+                                        minimap: { enabled: false },
+                                        overviewRulerBorder: false,
+                                        contextmenu: false, // or set another keyCode here
+                                        wordWrap: 'on',
+                                        fontSize: 20,
+                                        accessibilitySupport: "off",
+                                        domReadOnly: true
+                                    });
+                                }
                             });
-                            // json.edges.forEach((edge) => {
-                            // 这里你可以按需处理边的信息，比如将边的 ID 作为键
-                            // });
-                            containers2.forEach(function (container) {
-                                container.addEventListener("click", function (event) {
-                                    var ele = event.currentTarget;
-                                    if (ele === container) {
-                                        console.log('event');
-                                        var dataJtkVertex = ele.getAttribute('data-jtk-vertex');
-                                        var code = window.map.get(dataJtkVertex).code;
-                                        var inspector = document.getElementById("inspector");
-                                        inspector.innerHTML = '';
-                                        var editor2 = monaco.editor.create(inspector, {
-                                            value: code,
-                                            language: 'java',
-                                            autoIndent: 'advanced',
-                                            scrollBeyondLastLine: false,
-                                            minimap: { enabled: false },
-                                            overviewRulerBorder: false,
-                                            contextmenu: false, // or set another keyCode here
-                                            wordWrap: 'on',
-                                            fontSize: 20
-                                        });
-                                    }
-                                });
-                            });
-                            containers2.forEach(function (container) {
-                                var dataJtkVertex = container.getAttribute('data-jtk-vertex');
-                                // console.log(dataJtkVertex)
-                                var code = window.map.get(dataJtkVertex).code;
-                                // console.log(code)
-                                var editorsEles = container.querySelectorAll('.editor');
-                                var editorEle = editorsEles[0];
-                                var editor2 = monaco.editor.create(editorEle, {
-                                    value: code,
-                                    language: 'java',
-                                    autoIndent: 'advanced',
-                                    scrollBeyondLastLine: false,
-                                    minimap: { enabled: false },
-                                    overviewRulerBorder: false,
-                                    contextmenu: false, // or set another keyCode here,
-                                    wordWrap: 'on',
-                                    fontSize: 20,
-                                });
+                        });
+                        containers2.forEach(function (container) {
+                            var dataJtkVertex = container.getAttribute('data-jtk-vertex');
+                            // console.log(dataJtkVertex)
+                            var code = window.map.get(dataJtkVertex).data.code;
+                            // console.log(code)
+                            var editorsEles = container.querySelectorAll('.editor');
+                            var editorEle = editorsEles[0];
+                            var editor2 = monaco.editor.create(editorEle, {
+                                value: code,
+                                language: 'java',
+                                autoIndent: 'advanced',
+                                scrollBeyondLastLine: false,
+                                minimap: { enabled: false },
+                                overviewRulerBorder: false,
+                                contextmenu: false, // or set another keyCode here,
+                                wordWrap: 'on',
+                                fontSize: 20,
+                                accessibilitySupport: "off",
+                                domReadOnly: true
                             });
                         });
                     }

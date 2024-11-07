@@ -41,11 +41,11 @@ export class ImageInspector extends VanillaInspector {
 
     _renderNodeTemplate(obj:Node,container:HTMLElement):string {
         console.log(obj.data.id)
-        const code = window.map.get(obj.data.id).code;
+        // const code = window.map.get(obj.data.id).data['code'];
         console.log(container)
-        console.log(code)
+        console.log(obj.data.code)
         const editor2 = monaco.editor.create(container as HTMLElement, {
-            value: code,
+            value: obj.data.code,
             language: 'java',
             autoIndent: 'advanced',
             scrollBeyondLastLine: false,

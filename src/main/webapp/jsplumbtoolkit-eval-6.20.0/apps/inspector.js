@@ -50,11 +50,11 @@ var ImageInspector = /** @class */ (function (_super) {
     }
     ImageInspector.prototype._renderNodeTemplate = function (obj, container) {
         console.log(obj.data.id);
-        var code = window.map.get(obj.data.id).code;
+        // const code = window.map.get(obj.data.id).data['code'];
         console.log(container);
-        console.log(code);
+        console.log(obj.data.code);
         var editor2 = monaco.editor.create(container, {
-            value: code,
+            value: obj.data.code,
             language: 'java',
             autoIndent: 'advanced',
             scrollBeyondLastLine: false,

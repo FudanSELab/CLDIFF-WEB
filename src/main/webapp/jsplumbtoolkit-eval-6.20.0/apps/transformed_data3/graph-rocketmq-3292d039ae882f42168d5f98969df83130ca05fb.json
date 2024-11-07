@@ -1,13 +1,12 @@
 {
-    "nodes": [
-        {
+    "nodes": [{
             "code": "            content = MixAll.file2String(this.namesrvController.getNamesrvConfig().getKvConfigPath());\n",
             "file_name": "f115b528668736544f5a8632670655f875145f72__CLDIFF__namesrv/src/main/java/org/apache/rocketmq/namesrv/kvconfig/KVConfigManager.java",
             "id": "58",
             "desc": "moveMethodInvocation",
             "label": "58. moveMethodInvocation",
-            "left": 200,
-            "top": 200,
+            "left": 2000,
+            "top": 1500,
             "url": "url",
             "type": "basic.source",
             "group_mine": 0
@@ -18,8 +17,8 @@
             "id": "59",
             "desc": "addTry",
             "label": "59. addTry",
-            "left": 200,
-            "top": 200,
+            "left": 2000,
+            "top": 1000,
             "url": "url",
             "type": "basic.source",
             "group_mine": 0
@@ -30,8 +29,8 @@
             "id": "60",
             "desc": "updateVariableDeclaration   by",
             "label": "60. updateVariableDeclaration   by",
-            "left": 200,
-            "top": 200,
+            "left": 500,
+            "top": 1000,
             "url": "url",
             "type": "basic.source",
             "group_mine": 0
@@ -42,8 +41,8 @@
             "id": "50",
             "desc": "moveMethodInvocation",
             "label": "50. moveMethodInvocation",
-            "left": 200,
-            "top": 200,
+            "left": 1000,
+            "top": 0,
             "url": "url",
             "type": "transform.overlay",
             "group_mine": 1
@@ -54,8 +53,8 @@
             "id": "51",
             "desc": "moveMethodInvocation",
             "label": "51. moveMethodInvocation",
-            "left": 200,
-            "top": 200,
+            "left": 500,
+            "top": 0,
             "url": "url",
             "type": "transform.overlay",
             "group_mine": 1
@@ -66,8 +65,8 @@
             "id": "52",
             "desc": "addTry",
             "label": "52. addTry",
-            "left": 200,
-            "top": 200,
+            "left": 500,
+            "top": 500,
             "url": "url",
             "type": "transform.overlay",
             "group_mine": 1
@@ -78,8 +77,8 @@
             "id": "53",
             "desc": "addTry",
             "label": "53. addTry",
-            "left": 200,
-            "top": 200,
+            "left": 0,
+            "top": 0,
             "url": "url",
             "type": "transform.overlay",
             "group_mine": 1
@@ -90,8 +89,8 @@
             "id": "54",
             "desc": "updateVariableDeclaration   by",
             "label": "54. updateVariableDeclaration   by",
-            "left": 200,
-            "top": 200,
+            "left": 1000,
+            "top": 500,
             "url": "url",
             "type": "transform.overlay",
             "group_mine": 1
@@ -102,8 +101,8 @@
             "id": "55",
             "desc": "updateVariableDeclaration   by",
             "label": "55. updateVariableDeclaration   by",
-            "left": 200,
-            "top": 200,
+            "left": 500,
+            "top": 0,
             "url": "url",
             "type": "transform.overlay",
             "group_mine": 1
@@ -114,8 +113,8 @@
             "id": "57",
             "desc": "updateMethodDeclaration declaration",
             "label": "57. updateMethodDeclaration declaration",
-            "left": 200,
-            "top": 200,
+            "left": 1500,
+            "top": 0,
             "url": "url",
             "type": "input.number",
             "group_mine": 2
@@ -126,15 +125,14 @@
             "id": "56",
             "desc": "updateMethodDeclaration declaration",
             "label": "56. updateMethodDeclaration declaration",
-            "left": 200,
-            "top": 200,
+            "left": 0,
+            "top": 1000,
             "url": "url",
             "type": "filter.invert",
             "group_mine": 3
         }
     ],
-    "edges": [
-        {
+    "edges": [{
             "link_type_str": "def-use",
             "source": "60.out:conr",
             "text": "def-use",

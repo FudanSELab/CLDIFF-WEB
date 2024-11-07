@@ -1,13 +1,12 @@
 {
-    "nodes": [
-        {
+    "nodes": [{
             "code": "/**\n * Exclusive lock implementation to put message\n */\npublic class PutMessageReentrantLock implements PutMessageLock {\n    private ReentrantLock putMessageNormalLock = new ReentrantLock(); // NonfairSync\n\n    @Override\n    public void lock() {\n        putMessageNormalLock.lock();\n    }\n\n    @Override\n    public void unlock() {\n        putMessageNormalLock.unlock();\n    }\n}\n",
             "file_name": "0adad6f0025483647e760c1145f7736462c0ec79__CLDIFF__store/src/main/java/org/apache/rocketmq/store/PutMessageReentrantLock.java",
             "id": "46",
             "desc": "addClassDeclaration",
             "label": "46. addClassDeclaration",
-            "left": 200,
-            "top": 200,
+            "left": 0,
+            "top": 2000,
             "url": "url",
             "type": "basic.source",
             "group_mine": 0
@@ -18,8 +17,8 @@
             "id": "47",
             "desc": "addClassDeclaration",
             "label": "47. addClassDeclaration",
-            "left": 200,
-            "top": 200,
+            "left": 1500,
+            "top": 2000,
             "url": "url",
             "type": "transform.overlay",
             "group_mine": 1
@@ -30,8 +29,8 @@
             "id": "35",
             "desc": "addExpressionStatement",
             "label": "35. addExpressionStatement",
-            "left": 200,
-            "top": 200,
+            "left": 1500,
+            "top": 1000,
             "url": "url",
             "type": "filter.invert",
             "group_mine": 3
@@ -42,8 +41,8 @@
             "id": "36",
             "desc": "updateExpressionStatement   by",
             "label": "36. updateExpressionStatement   by",
-            "left": 200,
-            "top": 200,
+            "left": 0,
+            "top": 1000,
             "url": "url",
             "type": "filter.invert",
             "group_mine": 3
@@ -54,8 +53,8 @@
             "id": "37",
             "desc": "updateExpressionStatement   by",
             "label": "37. updateExpressionStatement   by",
-            "left": 200,
-            "top": 200,
+            "left": 0,
+            "top": 500,
             "url": "url",
             "type": "filter.invert",
             "group_mine": 3
@@ -66,8 +65,8 @@
             "id": "38",
             "desc": "updateExpressionStatement   by",
             "label": "38. updateExpressionStatement   by",
-            "left": 200,
-            "top": 200,
+            "left": 500,
+            "top": 500,
             "url": "url",
             "type": "filter.invert",
             "group_mine": 3
@@ -78,8 +77,8 @@
             "id": "39",
             "desc": "updateExpressionStatement   by",
             "label": "39. updateExpressionStatement   by",
-            "left": 200,
-            "top": 200,
+            "left": 1500,
+            "top": 500,
             "url": "url",
             "type": "filter.invert",
             "group_mine": 3
@@ -90,8 +89,8 @@
             "id": "40",
             "desc": "addFieldDeclaration",
             "label": "40. addFieldDeclaration",
-            "left": 200,
-            "top": 200,
+            "left": 600,
+            "top": 0,
             "url": "url",
             "type": "filter.invert",
             "group_mine": 3
@@ -102,7 +101,7 @@
             "id": "41",
             "desc": "deleteFieldDeclaration",
             "label": "41. deleteFieldDeclaration",
-            "left": 200,
+            "left": 2500,
             "top": 200,
             "url": "url",
             "type": "filter.invert",
@@ -114,8 +113,8 @@
             "id": "42",
             "desc": "deleteFieldDeclaration",
             "label": "42. deleteFieldDeclaration",
-            "left": 200,
-            "top": 200,
+            "left": 2500,
+            "top": 600,
             "url": "url",
             "type": "filter.invert",
             "group_mine": 3
@@ -126,8 +125,8 @@
             "id": "43",
             "desc": "deleteMethodDeclaration",
             "label": "43. deleteMethodDeclaration",
-            "left": 200,
-            "top": 200,
+            "left": 500,
+            "top": 1000,
             "url": "url",
             "type": "filter.invert",
             "group_mine": 3
@@ -138,8 +137,8 @@
             "id": "44",
             "desc": "deleteMethodDeclaration",
             "label": "44. deleteMethodDeclaration",
-            "left": 200,
-            "top": 200,
+            "left": 2000,
+            "top": 1000,
             "url": "url",
             "type": "filter.invert",
             "group_mine": 3
@@ -150,15 +149,14 @@
             "id": "45",
             "desc": "addInterface",
             "label": "45. addInterface",
-            "left": 200,
-            "top": 200,
+            "left": 1000,
+            "top": 2000,
             "url": "url",
             "type": "basic.source",
             "group_mine": 4
         }
     ],
-    "edges": [
-        {
+    "edges": [{
             "link_type_str": "def-use@field",
             "source": "37.out:conr",
             "text": "def-use@field",

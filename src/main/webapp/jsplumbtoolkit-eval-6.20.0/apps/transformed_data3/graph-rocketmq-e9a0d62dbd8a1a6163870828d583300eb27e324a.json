@@ -1,13 +1,12 @@
 {
-    "nodes": [
-        {
+    "nodes": [{
             "code": "    public void setWaitTimeMillsInPullQueue(final long waitTimeMillsInPullQueue) {\n        this.waitTimeMillsInPullQueue = waitTimeMillsInPullQueue;\n    }\n",
             "file_name": "cba30897c169c7182e3f8b53ead169e5a458f13e__CLDIFF__common/src/main/java/org/apache/rocketmq/common/BrokerConfig.java",
             "id": "10",
             "desc": "addMethodDeclaration",
             "label": "10. addMethodDeclaration",
-            "left": 200,
-            "top": 200,
+            "left": 2000,
+            "top": 500,
             "url": "url",
             "type": "basic.source",
             "group_mine": 0
@@ -18,8 +17,8 @@
             "id": "11",
             "desc": "addMethodDeclaration",
             "label": "11. addMethodDeclaration",
-            "left": 200,
-            "top": 200,
+            "left": 2000,
+            "top": 900,
             "url": "url",
             "type": "basic.source",
             "group_mine": 0
@@ -30,8 +29,8 @@
             "id": "12",
             "desc": "addMethodDeclaration",
             "label": "12. addMethodDeclaration",
-            "left": 200,
-            "top": 200,
+            "left": 2000,
+            "top": 1500,
             "url": "url",
             "type": "basic.source",
             "group_mine": 0
@@ -42,8 +41,8 @@
             "id": "13",
             "desc": "addMethodDeclaration",
             "label": "13. addMethodDeclaration",
-            "left": 200,
-            "top": 200,
+            "left": 1500,
+            "top": 1100,
             "url": "url",
             "type": "basic.source",
             "group_mine": 0
@@ -54,7 +53,7 @@
             "id": "14",
             "desc": "addFieldDeclaration",
             "label": "14. addFieldDeclaration",
-            "left": 200,
+            "left": 1500,
             "top": 200,
             "url": "url",
             "type": "basic.source",
@@ -66,8 +65,8 @@
             "id": "15",
             "desc": "addFieldDeclaration",
             "label": "15. addFieldDeclaration",
-            "left": 200,
-            "top": 200,
+            "left": 1500,
+            "top": 1500,
             "url": "url",
             "type": "basic.source",
             "group_mine": 0
@@ -78,8 +77,8 @@
             "id": "0",
             "desc": "moveMethodInvocation",
             "label": "0. moveMethodInvocation",
-            "left": 200,
-            "top": 200,
+            "left": 0,
+            "top": 1400,
             "url": "url",
             "type": "transform.overlay",
             "group_mine": 1
@@ -90,8 +89,8 @@
             "id": "1",
             "desc": "moveMethodInvocation",
             "label": "1. moveMethodInvocation",
-            "left": 200,
-            "top": 200,
+            "left": 0,
+            "top": 800,
             "url": "url",
             "type": "transform.overlay",
             "group_mine": 1
@@ -102,8 +101,8 @@
             "id": "2",
             "desc": "moveMethodInvocation",
             "label": "2. moveMethodInvocation",
-            "left": 200,
-            "top": 200,
+            "left": 0,
+            "top": 0,
             "url": "url",
             "type": "transform.overlay",
             "group_mine": 1
@@ -114,8 +113,8 @@
             "id": "3",
             "desc": "moveMethodInvocation",
             "label": "3. moveMethodInvocation",
-            "left": 200,
-            "top": 200,
+            "left": 0,
+            "top": 500,
             "url": "url",
             "type": "transform.overlay",
             "group_mine": 1
@@ -126,7 +125,7 @@
             "id": "4",
             "desc": "addExpressionStatement",
             "label": "4. addExpressionStatement",
-            "left": 200,
+            "left": 1000,
             "top": 200,
             "url": "url",
             "type": "transform.overlay",
@@ -138,8 +137,8 @@
             "id": "5",
             "desc": "addExpressionStatement",
             "label": "5. addExpressionStatement",
-            "left": 200,
-            "top": 200,
+            "left": 1000,
+            "top": 600,
             "url": "url",
             "type": "transform.overlay",
             "group_mine": 1
@@ -150,8 +149,8 @@
             "id": "6",
             "desc": "addIf",
             "label": "6. addIf",
-            "left": 200,
-            "top": 200,
+            "left": 1000,
+            "top": 1800,
             "url": "url",
             "type": "transform.overlay",
             "group_mine": 1
@@ -163,7 +162,7 @@
             "desc": "deleteWhile",
             "label": "7. deleteWhile",
             "left": 200,
-            "top": 200,
+            "top": 1100,
             "url": "url",
             "type": "transform.overlay",
             "group_mine": 1
@@ -174,8 +173,8 @@
             "id": "8",
             "desc": "deleteTry",
             "label": "8. deleteTry",
-            "left": 200,
-            "top": 200,
+            "left": 1000,
+            "top": 1400,
             "url": "url",
             "type": "transform.overlay",
             "group_mine": 1
@@ -186,15 +185,14 @@
             "id": "9",
             "desc": "addMethodDeclaration",
             "label": "9. addMethodDeclaration",
-            "left": 200,
-            "top": 200,
+            "left": 600,
+            "top": 400,
             "url": "url",
             "type": "transform.overlay",
             "group_mine": 1
         }
     ],
-    "edges": [
-        {
+    "edges": [{
             "link_type_str": "def-use@taicu",
             "source": "15.out:conr",
             "text": "def-use@taicu",

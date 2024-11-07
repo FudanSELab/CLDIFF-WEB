@@ -1,6 +1,5 @@
 {
-    "nodes": [
-        {
+    "nodes": [{
             "code": "                consumeMessageContext.getProps().put(MixAll.CONSUME_CONTEXT_TYPE, returnType.name());\n",
             "file_name": "9d76ea923159ff36d462b1809104164e270fce96__CLDIFF__client/src/main/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessageConcurrentlyService.java",
             "id": "23",
@@ -19,7 +18,7 @@
             "desc": "addIf",
             "label": "24. addIf",
             "left": 200,
-            "top": 200,
+            "top": 600,
             "url": "url",
             "type": "basic.source",
             "group_mine": 0
@@ -30,7 +29,7 @@
             "id": "25",
             "desc": "moveExpressionStatement",
             "label": "25. moveExpressionStatement",
-            "left": 200,
+            "left": 800,
             "top": 200,
             "url": "url",
             "type": "transform.overlay",
@@ -42,15 +41,14 @@
             "id": "26",
             "desc": "addIf",
             "label": "26. addIf",
-            "left": 200,
-            "top": 200,
+            "left": 800,
+            "top": 600,
             "url": "url",
             "type": "transform.overlay",
             "group_mine": 1
         }
     ],
-    "edges": [
-        {
+    "edges": [{
             "link_type_str": "systematic",
             "source": "23.out:conr",
             "text": "systematic",

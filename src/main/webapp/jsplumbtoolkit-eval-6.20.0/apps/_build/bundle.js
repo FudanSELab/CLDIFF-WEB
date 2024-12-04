@@ -232660,6 +232660,56 @@ ${tagToString(tag)}`;
                   domReadOnly: true
                 });
               });
+              console.log("node print:");
+              const myFileColorMap = /* @__PURE__ */ new Map();
+              const myFileNameNodeIdMap = /* @__PURE__ */ new Map();
+              nodes.forEach((node) => {
+                var file_name = node.data.file_name.split("__CLDIFF__");
+                myFileColorMap.set(file_name[1], "");
+                myFileNameNodeIdMap.set(file_name[1], Number(node.data.id));
+              });
+              const idAttributeMap = /* @__PURE__ */ new Map();
+              containers2.forEach((container2) => {
+                var idd = container2.getAttribute("data-jtk-vertex");
+                var attributeName = container2.children[0].getAttributeNames()[1];
+                idAttributeMap.set(Number(idd), attributeName);
+              });
+              myFileColorMap.forEach((value2, key) => {
+                var idd = myFileNameNodeIdMap.get(key);
+                var attri = idAttributeMap.get(idd).replace("data-", "").replace("-bg", "");
+                switch (attri) {
+                  case "basic":
+                    myFileColorMap.set(key, "#d7c9d0");
+                    break;
+                  case "filter":
+                    myFileColorMap.set(key, "##8bafbc");
+                    break;
+                  case "transform":
+                    myFileColorMap.set(key, "#dfdf86");
+                    break;
+                  case "input":
+                    myFileColorMap.set(key, "#a1c18a");
+                    break;
+                  case "math":
+                    myFileColorMap.set(key, "#deaeb7");
+                    break;
+                  default:
+                    console.log("Value is unknown");
+                    break;
+                }
+              });
+              const files = document.getElementById("files");
+              files.innerHTML = "";
+              var str = "";
+              myFileColorMap.forEach((value2, key) => {
+                var index = key.lastIndexOf("/");
+                var className = key.substring(index + 1, key.length);
+                var prefix = key.replace(className, "");
+                console.log(className);
+                str = str + ' <div class="banner" style="background-color:' + value2 + '"><span>' + prefix + "\n" + className + "</span></div>";
+              });
+              console.log(str);
+              files.innerHTML = str;
             }
           });
         }

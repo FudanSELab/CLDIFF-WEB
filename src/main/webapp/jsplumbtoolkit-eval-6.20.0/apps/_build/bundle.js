@@ -232705,10 +232705,8 @@ ${tagToString(tag)}`;
                 var index = key.lastIndexOf("/");
                 var className = key.substring(index + 1, key.length);
                 var prefix = key.replace(className, "");
-                console.log(className);
                 str = str + ' <div class="banner" style="background-color:' + value2 + '"><span>' + prefix + "\n" + className + "</span></div>";
               });
-              console.log(str);
               files.innerHTML = str;
             }
           });

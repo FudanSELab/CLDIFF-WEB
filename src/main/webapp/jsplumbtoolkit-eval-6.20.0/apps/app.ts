@@ -1,4 +1,3 @@
-
 import {
     ready,
     newInstance,
@@ -22,11 +21,6 @@ import {CANVAS_SIZE, ImageProcessorInput, ImageProcessorNode, ImageProcessorOutp
 import {ImageInspector} from "./inspector"
 import {NativeImageDropHandler} from "./native-drop-handler"
 
-// const editor  = require('./node_modules/monaco-editor')
-// import {editor} from "."
-// import {editor} from './node_modules/monaco-editor/dev/vs/editor/editor.main'
-// require.config({ paths: { 'vs': '../node_modules/monaco-editor/dev/vs' } });
-// import {editor} from './node_modules/monaco-editor'
 import * as monaco from 'monaco-editor';
 
 interface Noode {
@@ -63,6 +57,8 @@ declare global {
         map: Map<string, Node>;
     }
 }
+
+
 
 // declare function editorFun(value:string,task:string): string;
 ///////// <ressssssference path="./node_modules/monaco-editor/monaco.d.ts" />
@@ -405,21 +401,16 @@ ready(() => {
 
                         });
                        
-
-                        //TODO
-                        
+                        // banner
                         console.log('node print:')
                         const myFileColorMap = new Map<string, string>();
                         const myFileNameNodeIdMap = new Map<string, number>();
 
                         nodes.forEach((node)=>{
-                            // console.log(node.data);
                             var file_name = node.data.file_name.split("__CLDIFF__");
                             myFileColorMap.set(file_name[1], "");
                             myFileNameNodeIdMap.set(file_name[1], Number(node.data.id));
                         });
-                        // console.log(myFileColorMap)
-                        // console.log(myFileNameNodeIdMap)
                         
                         const idAttributeMap = new Map<number, string>();
                         containers2.forEach((container) => {
@@ -427,7 +418,6 @@ ready(() => {
                             var attributeName = container.children[0].getAttributeNames()[1]
                             idAttributeMap.set(Number(idd), attributeName);
                         })
-                        // console.log(idAttributeMap)        
                         myFileColorMap.forEach((value,key)=>{
                             var idd = myFileNameNodeIdMap.get(key);
                             var attri = idAttributeMap.get(idd).replace('data-','').replace('-bg','');
@@ -457,13 +447,10 @@ ready(() => {
                         var str = ""
                         myFileColorMap.forEach((value,key)=>{
                             var index =  key.lastIndexOf('/')
-                            
                             var className = key.substring(index+1,key.length)
                             var prefix = key.replace(className,'')
-                            console.log(className)
                             str = str + " <div class=\"banner\" style=\"background-color:"+value+"\"><span>"+ prefix+'\n'+ className+ "</span></div>"
                         })
-                        console.log(str)
                         files.innerHTML = str
                     }
                 })

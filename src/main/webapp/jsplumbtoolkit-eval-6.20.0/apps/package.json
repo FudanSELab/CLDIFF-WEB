@@ -5,8 +5,10 @@
     "scripts": {
         "compile": "tsc",
         "build-es6": "./node_modules/.bin/esbuild app.ts --target=es2016 --bundle --loader:.ttf=file --format=iife --outfile=_build/bundle.js",
+        "build-es6-test": "./node_modules/.bin/esbuild test.ts --target=es2016 --bundle --loader:.ttf=file --format=esm --outfile=_build/bundle_test.js",
         "build-es6-watch": "./node_modules/.bin/esbuild app.ts --watch --target=es2016 --bundle --format=iife --outfile=_build/bundle.js",
         "build": "npm run build-es6;",
+        "build_test": "npm run build-es6-test;",
         "serve": "./node_modules/.bin/http-server ."
     },
     "repository": {

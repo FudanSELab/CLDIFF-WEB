@@ -232445,6 +232445,17 @@ ${tagToString(tag)}`;
   init_editor_api();
 
   // app.ts
+  function stripTabs(input, stripChar) {
+    if (input.endsWith("\n")) {
+      input = input.substring(0, input.length - 1);
+    }
+    let lines = input.split("\n");
+    const allStartWithTab = (lines2) => lines2.every((line) => line.startsWith(stripChar));
+    while (allStartWithTab(lines)) {
+      lines = lines.map((line) => line.startsWith(stripChar) ? line.slice(1) : line);
+    }
+    return lines.join("\n");
+  }
   (0, import_browser_ui4.ready)(() => {
     let model;
     const toolkit = (0, import_browser_ui4.newInstance)({
@@ -232624,7 +232635,7 @@ ${tagToString(tag)}`;
                     const inspector = document.getElementById("inspector");
                     inspector.innerHTML = "";
                     const editor2 = editor.create(inspector, {
-                      value: code,
+                      value: stripTabs(stripTabs(code, "	"), " "),
                       language: "java",
                       autoIndent: "advanced",
                       scrollBeyondLastLine: false,
@@ -232633,7 +232644,7 @@ ${tagToString(tag)}`;
                       contextmenu: false,
                       // or set another keyCode here
                       wordWrap: "on",
-                      fontSize: 20,
+                      fontSize: 14,
                       accessibilitySupport: "off",
                       domReadOnly: true
                     });
@@ -232646,7 +232657,7 @@ ${tagToString(tag)}`;
                 const editorsEles = container2.querySelectorAll(".editor");
                 const editorEle = editorsEles[0];
                 const editor2 = editor.create(editorEle, {
-                  value: code,
+                  value: stripTabs(stripTabs(code, "	"), " "),
                   language: "java",
                   autoIndent: "advanced",
                   scrollBeyondLastLine: false,

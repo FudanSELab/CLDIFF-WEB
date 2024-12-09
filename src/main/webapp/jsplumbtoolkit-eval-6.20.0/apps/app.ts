@@ -59,6 +59,27 @@ declare global {
 }
 
 
+function stripTabs(input: string, stripChar:string): string {
+    if(input.endsWith('\n')){
+        input = input.substring(0,input.length-1)
+    }
+    let lines = input.split('\n');
+    // Check if all lines start with a tab
+    const allStartWithTab = (lines: string[]) => lines.every(line => line.startsWith(stripChar));
+  
+    // Iteratively strip tabs if all lines start with tabs
+    while (allStartWithTab(lines)) {
+      lines = lines.map(line => line.startsWith(stripChar) ? line.slice(1) : line);
+    }
+    return lines.join('\n');
+}
+  
+//   // Example usage
+//   const input = "\t\tLine 1\n\t\tLine 2\n\tLine 3\n";
+//   const result = stripTabs(input);
+//   console.log(result);
+  
+
 
 // declare function editorFun(value:string,task:string): string;
 ///////// <ressssssference path="./node_modules/monaco-editor/monaco.d.ts" />
@@ -357,7 +378,7 @@ ready(() => {
                                     const inspector = document.getElementById("inspector")
                                     inspector.innerHTML = ''
                                     const editor2 = monaco.editor.create(inspector as HTMLElement, {
-                                        value: code,
+                                        value: stripTabs(stripTabs(code,"\t")," "),
                                         language: 'java',
                                         autoIndent: 'advanced',
                                         scrollBeyondLastLine: false,
@@ -365,7 +386,7 @@ ready(() => {
                                         overviewRulerBorder: false,
                                         contextmenu: false, // or set another keyCode here
                                         wordWrap: 'on',
-                                        fontSize: 20,
+                                        fontSize: 14,
                                         accessibilitySupport: "off",
                                         domReadOnly: true
 
@@ -384,7 +405,7 @@ ready(() => {
                             const editorsEles = container.querySelectorAll('.editor')
                             const editorEle = editorsEles[0] as HTMLElement
                             const editor2 = monaco.editor.create(editorEle as HTMLElement, {
-                                value: code,
+                                value: stripTabs(stripTabs(code,"\t")," "),
                                 language: 'java',
                                 autoIndent: 'advanced',
                                 scrollBeyondLastLine: false,

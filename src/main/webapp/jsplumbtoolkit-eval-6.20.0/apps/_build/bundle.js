@@ -232627,6 +232627,9 @@ ${tagToString(tag)}`;
                     const dataJtkVertex = ele.getAttribute("data-jtk-vertex");
                     const code = window.map.get(dataJtkVertex).data.code;
                     const inspector = document.getElementById("inspector");
+                    inspector.removeAttribute("data-keybinding-context");
+                    inspector.removeAttribute("data-mode-id");
+                    inspector.removeAttribute("style");
                     inspector.innerHTML = "";
                     const editor2 = editor.create(inspector, {
                       value: stripTabs(stripTabs(code, "	"), " "),

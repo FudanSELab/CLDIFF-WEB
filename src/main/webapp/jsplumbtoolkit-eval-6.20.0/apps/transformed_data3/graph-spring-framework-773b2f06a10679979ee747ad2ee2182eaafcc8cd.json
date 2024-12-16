@@ -17,8 +17,8 @@
             "id": "2",
             "desc": "addMethodDeclaration",
             "label": "2. addMethodDeclaration",
-            "left": 2000,
-            "top": 1000,
+            "left": 2300,
+            "top": 1500,
             "url": "url",
             "type": "transform.overlay",
             "group_mine": 1
@@ -29,8 +29,8 @@
             "id": "3",
             "desc": "updateMethodDeclaration declaration",
             "label": "3. updateMethodDeclaration declaration",
-            "left": 2000,
-            "top": 1500,
+            "left": 2300,
+            "top": 700,
             "url": "url",
             "type": "transform.overlay",
             "group_mine": 1
@@ -41,8 +41,8 @@
             "id": "4",
             "desc": "addMethodDeclaration",
             "label": "4. addMethodDeclaration",
-            "left": 2000,
-            "top": 1000,
+            "left": 2500,
+            "top": -100,
             "url": "url",
             "type": "input.number",
             "group_mine": 2
@@ -53,8 +53,8 @@
             "id": "5",
             "desc": "addMethodDeclaration",
             "label": "5. addMethodDeclaration",
-            "left": 2000,
-            "top": 0,
+            "left": 2500,
+            "top": -700,
             "url": "url",
             "type": "input.number",
             "group_mine": 2
@@ -65,8 +65,8 @@
             "id": "6",
             "desc": "addFieldDeclaration",
             "label": "6. addFieldDeclaration",
-            "left": 2000,
-            "top": 500,
+            "left": 3300,
+            "top": -100,
             "url": "url",
             "type": "input.number",
             "group_mine": 2
@@ -89,8 +89,8 @@
             "id": "1",
             "desc": "updateExpressionStatement   by",
             "label": "1. updateExpressionStatement   by",
-            "left": 1500,
-            "top": 1500,
+            "left": 0,
+            "top": 1400,
             "url": "url",
             "type": "filter.invert",
             "group_mine": 3
@@ -101,10 +101,10 @@
             "id": "10",
             "desc": "addExpressionStatement",
             "label": "10. addExpressionStatement",
-            "left": 1500,
-            "top": 0,
+            "left": 1800,
+            "top": -700,
             "url": "url",
-            "type": "basic.source",
+            "type": "basic.display",
             "group_mine": 4
         },
         {
@@ -114,9 +114,9 @@
             "desc": "updateMethodDeclaration declaration",
             "label": "11. updateMethodDeclaration declaration",
             "left": 0,
-            "top": 0,
+            "top": -100,
             "url": "url",
-            "type": "basic.source",
+            "type": "basic.display",
             "group_mine": 4
         },
         {
@@ -125,10 +125,10 @@
             "id": "12",
             "desc": "updateReturn   by",
             "label": "12. updateReturn   by",
-            "left": -500,
-            "top": 0,
+            "left": 0,
+            "top": -600,
             "url": "url",
-            "type": "basic.source",
+            "type": "basic.display",
             "group_mine": 4
         },
         {
@@ -137,10 +137,10 @@
             "id": "13",
             "desc": "updateReturn   by",
             "label": "13. updateReturn   by",
-            "left": 500,
-            "top": 0,
+            "left": 900,
+            "top": -100,
             "url": "url",
-            "type": "basic.source",
+            "type": "basic.display",
             "group_mine": 4
         },
         {
@@ -149,10 +149,10 @@
             "id": "14",
             "desc": "updateExpressionStatement   by",
             "label": "14. updateExpressionStatement   by",
-            "left": 1000,
-            "top": 50,
+            "left": 900,
+            "top": -700,
             "url": "url",
-            "type": "basic.source",
+            "type": "basic.display",
             "group_mine": 4
         },
         {
@@ -161,10 +161,10 @@
             "id": "15",
             "desc": "addFieldDeclaration",
             "label": "15. addFieldDeclaration",
-            "left": 1000,
-            "top": 500,
+            "left": 1800,
+            "top": -100,
             "url": "url",
-            "type": "basic.source",
+            "type": "basic.display",
             "group_mine": 4
         },
         {
@@ -176,7 +176,7 @@
             "left": 1000,
             "top": 1000,
             "url": "url",
-            "type": "transform.overlay",
+            "type": "transform.crop",
             "group_mine": 5
         },
         {
@@ -185,10 +185,10 @@
             "id": "8",
             "desc": "updateExpressionStatement   by",
             "label": "8. updateExpressionStatement   by",
-            "left": 1500,
-            "top": 1500,
+            "left": 1000,
+            "top": 1400,
             "url": "url",
-            "type": "transform.overlay",
+            "type": "transform.crop",
             "group_mine": 5
         }
     ],

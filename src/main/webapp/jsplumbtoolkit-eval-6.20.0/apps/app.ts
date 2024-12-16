@@ -9,7 +9,8 @@ import {
     PlainArrowOverlay,
     Port,
     EVENT_CLICK, Edge, SurfaceObjectInfo, LabelOverlay, MiniviewPlugin, Node,
-    ControlsComponent, uuid
+    ControlsComponent, uuid,
+    att
 } from "@jsplumbtoolkit/browser-ui"
 
 import { initialize } from './generate-templates'
@@ -60,12 +61,13 @@ declare global {
 
 
 function stripTabs(input: string, stripChar:string): string {
+    //     console.log( `\\u${stripChar.charCodeAt(0).toString(16).padStart(4, '0')}`);
     if(input.endsWith('\n')){
         input = input.substring(0,input.length-1)
     }
     let lines = input.split('\n');
     // Check if all lines start with a tab
-    const allStartWithTab = (lines: string[]) => lines.every(line => line.startsWith(stripChar));
+    const allStartWithTab = (lines: string[]) => lines.every(line => line.startsWith(stripChar) || line === "");
   
     // Iteratively strip tabs if all lines start with tabs
     while (allStartWithTab(lines)) {
@@ -399,9 +401,7 @@ ready(() => {
 
                         containers2.forEach((container) => {
                             const dataJtkVertex = container.getAttribute('data-jtk-vertex');
-                            // console.log(dataJtkVertex)
                             const code = window.map.get(dataJtkVertex).data.code;
-                            // console.log(code)
                             const editorsEles = container.querySelectorAll('.editor')
                             const editorEle = editorsEles[0] as HTMLElement
                             const editor2 = monaco.editor.create(editorEle as HTMLElement, {
@@ -418,12 +418,27 @@ ready(() => {
                                 domReadOnly: true
                                 
                             });
+                            let debugPos = true;
+                            // debugger position
+                            if(debugPos){
+                                const containerNew = container as HTMLElement
+                                const onMouseDown = (event: MouseEvent) => {
+                                    console.log(containerNew.style.left)
+                                    console.log(containerNew.style.top)
+                                    const legend = container.querySelectorAll('.legend')
+                                    const legendEle = legend[0] as HTMLElement
+                                    legendEle.textContent = containerNew.style.left + " : " + containerNew.style.top;
 
+                                };
+                                containerNew.addEventListener('mousedown', onMouseDown);
+                            }
+                            
 
                         });
+
+
                        
                         // banner
-                        console.log('node print:')
                         const myFileColorMap = new Map<string, string>();
                         const myFileNameNodeIdMap = new Map<string, number>();
 
@@ -436,23 +451,31 @@ ready(() => {
                         const idAttributeMap = new Map<number, string>();
                         containers2.forEach((container) => {
                             var idd = container.getAttribute('data-jtk-vertex');
-                            var attributeName = container.children[0].getAttributeNames()[1]
+                            // var attributeName = container.children[0].getAttributeNames()[1]
+                            var attributeName = container.getAttribute("class").split(' ')[0].replace('jtk-imp-','').replace('-','.')
                             idAttributeMap.set(Number(idd), attributeName);
                         })
                         myFileColorMap.forEach((value,key)=>{
                             var idd = myFileNameNodeIdMap.get(key);
-                            var attri = idAttributeMap.get(idd).replace('data-','').replace('-bg','');
+                            var attri = idAttributeMap.get(idd);
+                            console.log(attri)
                             switch (attri) {
-                                case "basic":
+                                case "basic.source":
                                   myFileColorMap.set(key,"#d7c9d0");
                                   break;
-                                case "filter":
-                                    myFileColorMap.set(key,"##8bafbc");
+                                case "basic.display":
+                                    myFileColorMap.set(key,"#c8c7c0");
+                                    break;
+                                case "filter.invert":
+                                    myFileColorMap.set(key,"#8bafbc");
                                   break;
-                                case "transform":
+                                case "transform.overlay":
                                     myFileColorMap.set(key,"#dfdf86");
                                   break;
-                                case "input":
+                                case "transform.crop":
+                                    myFileColorMap.set(key,"#ddaf76");
+                                  break;
+                                case "input.number":
                                     myFileColorMap.set(key,"#a1c18a");
                                     break;
                                 case "math":
@@ -488,10 +511,9 @@ ready(() => {
     toolkit.load({
         url:'./dataset.json',
         onload:() => {
-            // toolkit.filter(o => o.type === "basic.source").eachNode((idx,dn) => {
-            toolkit.eachNode((idx,dn) => {
-                console.log(dn)
-            })
+            // toolkit.eachNode((idx,dn) => {
+            //     // console.log(dn)
+            // })
         }
     })
 })

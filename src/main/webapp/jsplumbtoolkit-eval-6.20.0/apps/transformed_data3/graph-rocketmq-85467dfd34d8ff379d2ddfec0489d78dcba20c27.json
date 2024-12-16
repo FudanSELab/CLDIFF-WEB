@@ -5,8 +5,8 @@
             "id": "61",
             "desc": "moveFieldAccess",
             "label": "61. moveFieldAccess",
-            "left": 1800,
-            "top": -500,
+            "left": 3600,
+            "top": -1000,
             "url": "url",
             "type": "basic.source",
             "group_mine": 0
@@ -17,8 +17,8 @@
             "id": "62",
             "desc": "moveFieldAccess",
             "label": "62. moveFieldAccess",
-            "left": 2200,
-            "top": -500,
+            "left": 3600,
+            "top": -600,
             "url": "url",
             "type": "basic.source",
             "group_mine": 0
@@ -29,8 +29,8 @@
             "id": "63",
             "desc": "moveFieldAccess",
             "label": "63. moveFieldAccess",
-            "left": 2600,
-            "top": -500,
+            "left": 4000,
+            "top": -600,
             "url": "url",
             "type": "basic.source",
             "group_mine": 0
@@ -41,8 +41,8 @@
             "id": "64",
             "desc": "moveFieldAccess",
             "label": "64. moveFieldAccess",
-            "left": 3000,
-            "top": -500,
+            "left": 4000,
+            "top": -1000,
             "url": "url",
             "type": "basic.source",
             "group_mine": 0
@@ -53,8 +53,8 @@
             "id": "65",
             "desc": "addExpressionStatement",
             "label": "65. addExpressionStatement",
-            "left": 200,
-            "top": 300,
+            "left": 2200,
+            "top": -1000,
             "url": "url",
             "type": "basic.source",
             "group_mine": 0
@@ -65,8 +65,8 @@
             "id": "66",
             "desc": "addExpressionStatement",
             "label": "66. addExpressionStatement",
-            "left": 600,
-            "top": 300,
+            "left": 2200,
+            "top": 400,
             "url": "url",
             "type": "basic.source",
             "group_mine": 0
@@ -77,8 +77,8 @@
             "id": "67",
             "desc": "addExpressionStatement",
             "label": "67. addExpressionStatement",
-            "left": 800,
-            "top": -500,
+            "left": 1400,
+            "top": -1000,
             "url": "url",
             "type": "basic.source",
             "group_mine": 0
@@ -89,8 +89,8 @@
             "id": "68",
             "desc": "updateExpressionStatement   by",
             "label": "68. updateExpressionStatement   by",
-            "left": 100,
-            "top": -100,
+            "left": -300,
+            "top": -600,
             "url": "url",
             "type": "basic.source",
             "group_mine": 0
@@ -101,8 +101,8 @@
             "id": "69",
             "desc": "updateExpressionStatement   by",
             "label": "69. updateExpressionStatement   by",
-            "left": 400,
-            "top": -100,
+            "left": -200,
+            "top": 400,
             "url": "url",
             "type": "basic.source",
             "group_mine": 0
@@ -114,7 +114,7 @@
             "desc": "updateExpressionStatement   by",
             "label": "70. updateExpressionStatement   by",
             "left": 800,
-            "top": -100,
+            "top": 400,
             "url": "url",
             "type": "basic.source",
             "group_mine": 0
@@ -125,8 +125,8 @@
             "id": "71",
             "desc": "updateExpressionStatement   by",
             "label": "71. updateExpressionStatement   by",
-            "left": 1200,
-            "top": -100,
+            "left": 1400,
+            "top": -300,
             "url": "url",
             "type": "basic.source",
             "group_mine": 0
@@ -137,8 +137,8 @@
             "id": "72",
             "desc": "addMethodDeclaration",
             "label": "72. addMethodDeclaration",
-            "left": 1200,
-            "top": 300,
+            "left": 3000,
+            "top": 400,
             "url": "url",
             "type": "basic.source",
             "group_mine": 0
@@ -149,8 +149,8 @@
             "id": "73",
             "desc": "addMethodDeclaration",
             "label": "73. addMethodDeclaration",
-            "left": 1500,
-            "top": 300,
+            "left": 3000,
+            "top": -1000,
             "url": "url",
             "type": "basic.source",
             "group_mine": 0
@@ -161,8 +161,8 @@
             "id": "74",
             "desc": "addFieldDeclaration",
             "label": "74. addFieldDeclaration",
-            "left": 0,
-            "top": -500,
+            "left": 500,
+            "top": -1200,
             "url": "url",
             "type": "basic.source",
             "group_mine": 0
@@ -173,8 +173,8 @@
             "id": "75",
             "desc": "addFieldDeclaration",
             "label": "75. addFieldDeclaration",
-            "left": 600,
-            "top": 0,
+            "left": 2400,
+            "top": -400,
             "url": "url",
             "type": "basic.source",
             "group_mine": 0
@@ -186,7 +186,7 @@
             "desc": "addMethodDeclaration",
             "label": "79. addMethodDeclaration",
             "left": 800,
-            "top": 550,
+            "top": 800,
             "url": "url",
             "type": "transform.overlay",
             "group_mine": 1
@@ -198,7 +198,7 @@
             "desc": "addMethodDeclaration",
             "label": "80. addMethodDeclaration",
             "left": 800,
-            "top": 850,
+            "top": 1200,
             "url": "url",
             "type": "transform.overlay",
             "group_mine": 1
@@ -210,7 +210,7 @@
             "desc": "addMethodDeclaration",
             "label": "81. addMethodDeclaration",
             "left": 800,
-            "top": 1200,
+            "top": 1400,
             "url": "url",
             "type": "transform.overlay",
             "group_mine": 1
@@ -222,7 +222,7 @@
             "desc": "addMethodDeclaration",
             "label": "82. addMethodDeclaration",
             "left": 800,
-            "top": 1500,
+            "top": 1700,
             "url": "url",
             "type": "transform.overlay",
             "group_mine": 1
@@ -234,7 +234,7 @@
             "desc": "addFieldDeclaration",
             "label": "83. addFieldDeclaration",
             "left": 200,
-            "top": 800,
+            "top": 1000,
             "url": "url",
             "type": "transform.overlay",
             "group_mine": 1
@@ -246,7 +246,7 @@
             "desc": "addFieldDeclaration",
             "label": "84. addFieldDeclaration",
             "left": 200,
-            "top": 1200,
+            "top": 1400,
             "url": "url",
             "type": "transform.overlay",
             "group_mine": 1
@@ -258,7 +258,7 @@
             "desc": "addExpressionStatement",
             "label": "76. addExpressionStatement",
             "left": 1400,
-            "top": 1200,
+            "top": 1400,
             "url": "url",
             "type": "input.number",
             "group_mine": 2
@@ -270,7 +270,7 @@
             "desc": "addExpressionStatement",
             "label": "77. addExpressionStatement",
             "left": 1400,
-            "top": 800,
+            "top": 1000,
             "url": "url",
             "type": "input.number",
             "group_mine": 2
@@ -282,7 +282,7 @@
             "desc": "addExpressionStatement",
             "label": "78. addExpressionStatement",
             "left": 1400,
-            "top": 1600,
+            "top": 1800,
             "url": "url",
             "type": "input.number",
             "group_mine": 2

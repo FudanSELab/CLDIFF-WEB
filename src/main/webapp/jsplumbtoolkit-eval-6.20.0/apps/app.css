@@ -1,8 +1,10 @@
 :root {
     --jtk-imp-color-basic: #d7c9d0;
+    --jtk-imp-color-basic-display: #c8c7c0;
     --jtk-imp-color-filter: #8bafbc;
     /* #70bdd8;*/
     --jtk-imp-color-transform: #dfdf86;
+    --jtk-imp-color-transform-crop: #ddaf76;
     /*#eded5b;*/
     --jtk-imp-color-input: #a1c18a;
     /*#b9e698;*/
@@ -103,9 +105,13 @@ main {
     content: "✖";
 }
 
-[data-basic-bg],
+[bg-basic-source-bg],
 [jtk-miniview-type='basic'] {
     background-color: var(--jtk-imp-color-basic);
+}
+[bg-basic-display-bg],
+[jtk-miniview-type='basic'] {
+    background-color: var(--jtk-imp-color-basic-display);
 }
 
 [data-filter-bg],
@@ -113,9 +119,14 @@ main {
     background-color: var(--jtk-imp-color-filter);
 }
 
-[data-transform-bg],
+
+[bg-transform-overlay-bg],
 [jtk-miniview-type='transform'] {
     background-color: var(--jtk-imp-color-transform);
+}
+[bg-transform-crop-bg],
+[jtk-miniview-type='transform'] {
+    background-color: var(--jtk-imp-color-transform-crop);
 }
 
 [data-input-bg],
@@ -345,16 +356,24 @@ svg.jtk-surface-selected-connection {
     background-color: var(--jtk-imp-color-math);
 }
 
-.katavorio-clone-drag[data-type^='basic'] {
+.katavorio-clone-drag[data-type='basic.source'] {
     background-color: var(--jtk-imp-color-basic);
+}
+
+.katavorio-clone-drag[data-type='basic.display'] {
+    background-color: var(--jtk-imp-color-basic-display);
 }
 
 .katavorio-clone-drag[data-type^='filter'] {
     background-color: var(--jtk-imp-color-filter);
 }
 
-.katavorio-clone-drag[data-type^='transform'] {
+.katavorio-clone-drag[data-type='transform.overlay'] {
     background-color: var(--jtk-imp-color-transform);
+}
+
+.katavorio-clone-drag[data-type^='transform.crop'] {
+    background-color: var(--jtk-imp-color-transform-crop);
 }
 
 div.jtk-node>div {

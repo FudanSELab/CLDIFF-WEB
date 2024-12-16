@@ -123,14 +123,10 @@ export default {
             id:TRANSFORM_CROP,
             name:"Crop",
             inputs:[
-                { id:"image", label:"Image", type:"image" },
-                { id:"width", label:"Width", type:"number", defaultValue:150 },
-                { id:"height", label:"Height", type:"number", defaultValue:150 },
-                { id:"x", label:"X", type:"number", defaultValue:0 },
-                { id:"y", label:"Y", type:"number", defaultValue:0 }
+                { id:"conl", label:"l", type:"string" }
             ],
             outputs:[
-                { id:"image", label:"Image", type:"image" }
+                { id:"conr", label:"r", type:"string" }
             ],
             compute: async function(node:Node) {
                 const data = node.data
@@ -221,9 +217,7 @@ export const TRANSFORM_INSPECTORS:Record<string, any> = {
     [TRANSFORM_CROP]:{
         template:(n:Node) => `<label>Label:<input type="text" jtk-att="${ATTRIBUTE_LABEL}" placeholder="enter label"/></label>
             <label>X:<input type="text" jtk-att="x" jtk-focus/></label>
-            <label>Y:<input type="text" jtk-att="y"/></label>
-            <label>Width:<input type="text" jtk-att="${ATTRIBUTE_WIDTH}"/></label>
-            <label>Height:<input type="text" jtk-att="${ATTRIBUTE_HEIGHT}"/></label>`
+            <label>Y:<input type="text" jtk-att="y"/></label>`
     },
     [TRANSFORM_OVERLAY]:{
         template:(n:Node) => `<label>Label:<input type="text" jtk-att="${ATTRIBUTE_LABEL}" placeholder="enter label"/></label>

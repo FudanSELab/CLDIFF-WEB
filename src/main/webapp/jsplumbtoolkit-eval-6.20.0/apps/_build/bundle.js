@@ -181144,14 +181144,10 @@ ${tagToString(tag)}`;
         id: TRANSFORM_CROP,
         name: "Crop",
         inputs: [
-          { id: "image", label: "Image", type: "image" },
-          { id: "width", label: "Width", type: "number", defaultValue: 150 },
-          { id: "height", label: "Height", type: "number", defaultValue: 150 },
-          { id: "x", label: "X", type: "number", defaultValue: 0 },
-          { id: "y", label: "Y", type: "number", defaultValue: 0 }
+          { id: "conl", label: "l", type: "string" }
         ],
         outputs: [
-          { id: "image", label: "Image", type: "image" }
+          { id: "conr", label: "r", type: "string" }
         ],
         compute: function(node) {
           return __async(this, null, function* () {
@@ -181243,9 +181239,7 @@ ${tagToString(tag)}`;
     [TRANSFORM_CROP]: {
       template: (n) => `<label>Label:<input type="text" jtk-att="${ATTRIBUTE_LABEL}" placeholder="enter label"/></label>
             <label>X:<input type="text" jtk-att="x" jtk-focus/></label>
-            <label>Y:<input type="text" jtk-att="y"/></label>
-            <label>Width:<input type="text" jtk-att="${ATTRIBUTE_WIDTH}"/></label>
-            <label>Height:<input type="text" jtk-att="${ATTRIBUTE_HEIGHT}"/></label>`
+            <label>Y:<input type="text" jtk-att="y"/></label>`
     },
     [TRANSFORM_OVERLAY]: {
       template: (n) => `<label>Label:<input type="text" jtk-att="${ATTRIBUTE_LABEL}" placeholder="enter label"/></label>
@@ -181491,7 +181485,7 @@ ${tagToString(tag)}`;
 
   // generate-templates.ts
   var header = `<div class="jtk-imp-$set-$type jtk-imp-$set">
-            <div data-header data-$set-bg>{{label}}<div class="jtk-imp-delete-node"></div></div>
+            <div data-header data-$set-bg bg-$set-$type-bg>{{label}}<div class="jtk-imp-delete-node"></div></div>
             <div class="jtk-imp-ports">`;
   function processSet(set, uiDefinitions, processors, nodeTypes, inject) {
     const setId = set.set;
@@ -181536,19 +181530,19 @@ ${tagToString(tag)}`;
       }
     };
     processSet(transforms_default, uiDefinitions, processors, nodeTypes, (set, type) => {
-      return `<div class="editor" style="width:${CANVAS_SIZE.w}px;height:${CANVAS_SIZE.h}px"></div>`;
+      return `<div class="editor" style="width:${CANVAS_SIZE.w}px;height:${CANVAS_SIZE.h}px"></div><div class="legend"></div>`;
     });
     processSet(filters_default, uiDefinitions, processors, nodeTypes, (set, type) => {
-      return `<div class="editor" style="width:${CANVAS_SIZE.w}px;height:${CANVAS_SIZE.h}px"></div>`;
+      return `<div class="editor" style="width:${CANVAS_SIZE.w}px;height:${CANVAS_SIZE.h}px"></div><div class="legend"></div>`;
     });
     processSet(INPUT_TYPES, uiDefinitions, processors, nodeTypes, (set, type) => {
-      return `<div class="editor" style="width:${CANVAS_SIZE.w}px;height:${CANVAS_SIZE.h}px"></div>`;
+      return `<div class="editor" style="width:${CANVAS_SIZE.w}px;height:${CANVAS_SIZE.h}px"></div><div class="legend"></div>`;
     });
     processSet(math_default, uiDefinitions, processors, nodeTypes, (set, type) => {
-      return `<div class="editor" style="width:${CANVAS_SIZE.w}px;height:${CANVAS_SIZE.h}px"></div>`;
+      return `<div class="editor" style="width:${CANVAS_SIZE.w}px;height:${CANVAS_SIZE.h}px"></div><div class="legend"></div>`;
     });
     processSet(basic_default, uiDefinitions, processors, nodeTypes, (set, type) => {
-      return `<div class="editor" style="width:${CANVAS_SIZE.w}px;height:${CANVAS_SIZE.h}px"></div>`;
+      return `<div class="editor" style="width:${CANVAS_SIZE.w}px;height:${CANVAS_SIZE.h}px"></div><div class="legend"></div>`;
     });
     return { uiDefinitions, processors, nodeTypes };
   }
@@ -232450,7 +232444,7 @@ ${tagToString(tag)}`;
       input = input.substring(0, input.length - 1);
     }
     let lines = input.split("\n");
-    const allStartWithTab = (lines2) => lines2.every((line) => line.startsWith(stripChar));
+    const allStartWithTab = (lines2) => lines2.every((line) => line.startsWith(stripChar) || line === "");
     while (allStartWithTab(lines)) {
       lines = lines.map((line) => line.startsWith(stripChar) ? line.slice(1) : line);
     }
@@ -232670,8 +232664,19 @@ ${tagToString(tag)}`;
                   accessibilitySupport: "off",
                   domReadOnly: true
                 });
+                let debugPos = true;
+                if (debugPos) {
+                  const containerNew = container2;
+                  const onMouseDown = (event3) => {
+                    console.log(containerNew.style.left);
+                    console.log(containerNew.style.top);
+                    const legend = container2.querySelectorAll(".legend");
+                    const legendEle = legend[0];
+                    legendEle.textContent = containerNew.style.left + " : " + containerNew.style.top;
+                  };
+                  containerNew.addEventListener("mousedown", onMouseDown);
+                }
               });
-              console.log("node print:");
               const myFileColorMap = /* @__PURE__ */ new Map();
               const myFileNameNodeIdMap = /* @__PURE__ */ new Map();
               nodes.forEach((node) => {
@@ -232682,23 +232687,30 @@ ${tagToString(tag)}`;
               const idAttributeMap = /* @__PURE__ */ new Map();
               containers2.forEach((container2) => {
                 var idd = container2.getAttribute("data-jtk-vertex");
-                var attributeName = container2.children[0].getAttributeNames()[1];
+                var attributeName = container2.getAttribute("class").split(" ")[0].replace("jtk-imp-", "").replace("-", ".");
                 idAttributeMap.set(Number(idd), attributeName);
               });
               myFileColorMap.forEach((value2, key) => {
                 var idd = myFileNameNodeIdMap.get(key);
-                var attri = idAttributeMap.get(idd).replace("data-", "").replace("-bg", "");
+                var attri = idAttributeMap.get(idd);
+                console.log(attri);
                 switch (attri) {
-                  case "basic":
+                  case "basic.source":
                     myFileColorMap.set(key, "#d7c9d0");
                     break;
-                  case "filter":
-                    myFileColorMap.set(key, "##8bafbc");
+                  case "basic.display":
+                    myFileColorMap.set(key, "#c8c7c0");
                     break;
-                  case "transform":
+                  case "filter.invert":
+                    myFileColorMap.set(key, "#8bafbc");
+                    break;
+                  case "transform.overlay":
                     myFileColorMap.set(key, "#dfdf86");
                     break;
-                  case "input":
+                  case "transform.crop":
+                    myFileColorMap.set(key, "#ddaf76");
+                    break;
+                  case "input.number":
                     myFileColorMap.set(key, "#a1c18a");
                     break;
                   case "math":
@@ -232727,9 +232739,6 @@ ${tagToString(tag)}`;
     toolkit.load({
       url: "./dataset.json",
       onload: () => {
-        toolkit.eachNode((idx, dn) => {
-          console.log(dn);
-        });
       }
     });
   });

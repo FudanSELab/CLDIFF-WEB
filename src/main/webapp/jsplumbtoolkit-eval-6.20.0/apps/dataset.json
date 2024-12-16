@@ -11,44 +11,44 @@
             "id": "2",
             "type": "basic.source",
             "url": "/gafas.png",
-            "left": 500,
-            "top": 600,
+            "left": 50,
+            "top": 800,
             "label": "2. basic.source"
         },
         {
             "id": "3",
             "type": "transform.overlay",
-            "left": 350,
-            "top": 180,
+            "left": 550,
+            "top": 300,
             "label": "3. transform.overlay"
         },
         {
             "id": "4",
             "type": "basic.display",
-            "left": 650,
-            "top": 150,
+            "left": 1200,
+            "top": 500,
             "label": "4. basic.display"
         },
         {
             "id": "5",
             "type": "input.number",
-            "left": 650,
-            "top": 550,
+            "left": 500,
+            "top": 1000,
             "label": "5. input.number",
             "value": 80
         },
         {
             "id": "6",
             "type": "filter.invert",
-            "left": 950,
-            "top": 250,
+            "left": 1500,
+            "top": 1000,
             "label": "6. filter.invert"
         },
         {
             "id": "7",
             "type": "basic.display",
-            "left": 1220,
-            "top": 150,
+            "left": 1500,
+            "top": 50,
             "label": "7. basic.display"
         }
     ],

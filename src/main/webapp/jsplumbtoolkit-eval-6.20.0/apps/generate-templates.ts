@@ -45,7 +45,7 @@ function monaco(){
  */
 
 const header = `<div class="jtk-imp-$set-$type jtk-imp-$set">
-            <div data-header data-$set-bg>{{label}}<div class="jtk-imp-delete-node"></div></div>
+            <div data-header data-$set-bg bg-$set-$type-bg>{{label}}<div class="jtk-imp-delete-node"></div></div>
             <div class="jtk-imp-ports">`
             
 
@@ -117,19 +117,19 @@ export function initialize(toolkit:JsPlumbToolkit) {
     // console.log(uiDefinitions)
 
     processSet(transforms, uiDefinitions, processors, nodeTypes,(set, type) => {
-        return `<div class="editor" style="width:${CANVAS_SIZE.w}px;height:${CANVAS_SIZE.h}px"></div>`
+        return `<div class="editor" style="width:${CANVAS_SIZE.w}px;height:${CANVAS_SIZE.h}px"></div><div class="legend"></div>`
     })
     processSet(filters, uiDefinitions, processors, nodeTypes,(set, type) => {
-        return `<div class="editor" style="width:${CANVAS_SIZE.w}px;height:${CANVAS_SIZE.h}px"></div>`
-})
+        return `<div class="editor" style="width:${CANVAS_SIZE.w}px;height:${CANVAS_SIZE.h}px"></div><div class="legend"></div>`
+    })
     // input.number
     processSet(INPUT_TYPES, uiDefinitions, processors, nodeTypes,(set, type) => {
-        return `<div class="editor" style="width:${CANVAS_SIZE.w}px;height:${CANVAS_SIZE.h}px"></div>`
-})
+        return `<div class="editor" style="width:${CANVAS_SIZE.w}px;height:${CANVAS_SIZE.h}px"></div><div class="legend"></div>`
+    })
 
     processSet(math, uiDefinitions, processors, nodeTypes,(set, type) => {
-        return `<div class="editor" style="width:${CANVAS_SIZE.w}px;height:${CANVAS_SIZE.h}px"></div>`
-})
+        return `<div class="editor" style="width:${CANVAS_SIZE.w}px;height:${CANVAS_SIZE.h}px"></div><div class="legend"></div>`
+    })
 
 
     // Source and display nodes have a canvas and image dimensions, and the display node has a download button.
@@ -138,11 +138,7 @@ export function initialize(toolkit:JsPlumbToolkit) {
         // if (type.id === TYPE_SOURCE || type.id === TYPE_DISPLAY) {
             // const extraButtons = type.id === TYPE_DISPLAY ? `<a class="jtk-imp-download" title="Download image">${downloadIcon}</a>` : `<a class="jtk-imp-upload" title="Upload image">${uploadIcon}</a>`
             // return `<canvas width="${CANVAS_SIZE.w}" height="${CANVAS_SIZE.h}"/><div data-width="{{width}}" data-height="{{height}}" class="jtk-imp-dim">{{width}}x{{height}}</div>${extraButtons}`
-            return `<div class="editor" style="width:${CANVAS_SIZE.w}px;height:${CANVAS_SIZE.h}px"></div>`
-        // } else {
-            // return ""
-        // }
-        
+            return `<div class="editor" style="width:${CANVAS_SIZE.w}px;height:${CANVAS_SIZE.h}px"></div><div class="legend"></div>`
     })
 
     return { uiDefinitions, processors, nodeTypes }

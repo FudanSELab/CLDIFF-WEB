@@ -423,7 +423,7 @@ ready(() => {
                                 domReadOnly: true
                                 
                             });
-                            let debugPos = true;
+                            let debugPos = false;
                             // debugger position
                             if(debugPos){
                                 const containerNew = container as HTMLElement
@@ -498,7 +498,7 @@ ready(() => {
                             var index =  key.lastIndexOf('/')
                             var className = key.substring(index+1,key.length)
                             var prefix = key.replace(className,'')
-                            str = str + " <div class=\"banner\" style=\"background-color:"+value+"\"><span>"+ prefix+'\n'+ className+ "</span></div>"
+                            str = str + " <div class=\"banner\" style=\"background-color:"+value+"\"><span>"+className +'\n'+ prefix+ "</span></div>"
                         })
                         files.innerHTML = str
                     }

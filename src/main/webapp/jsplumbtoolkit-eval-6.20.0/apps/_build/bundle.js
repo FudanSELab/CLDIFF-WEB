@@ -232667,7 +232667,7 @@ ${tagToString(tag)}`;
                   accessibilitySupport: "off",
                   domReadOnly: true
                 });
-                let debugPos = true;
+                let debugPos = false;
                 if (debugPos) {
                   const containerNew = container2;
                   const onMouseDown = (event3) => {
@@ -232731,7 +232731,7 @@ ${tagToString(tag)}`;
                 var index = key.lastIndexOf("/");
                 var className = key.substring(index + 1, key.length);
                 var prefix = key.replace(className, "");
-                str = str + ' <div class="banner" style="background-color:' + value2 + '"><span>' + prefix + "\n" + className + "</span></div>";
+                str = str + ' <div class="banner" style="background-color:' + value2 + '"><span>' + className + "\n" + prefix + "</span></div>";
               });
               files.innerHTML = str;
             }

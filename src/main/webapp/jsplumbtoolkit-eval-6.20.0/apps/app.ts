@@ -17,41 +17,41 @@ import { initialize } from './generate-templates'
 import { Processor } from './process'
 // import {Palette } from './palette'
 
-import {imageToDataURL, readImageFromFile, setCanvasImageFromImage} from '@jsplumb/canvas-image-processing'
+// import {imageToDataURL, readImageFromFile, setCanvasImageFromImage} from '@jsplumb/canvas-image-processing'
 import {CANVAS_SIZE, ImageProcessorInput, ImageProcessorNode, ImageProcessorOutput} from "./definitions"
-import {ImageInspector} from "./inspector"
+// import {ImageInspector} from "./inspector"
 import {NativeImageDropHandler} from "./native-drop-handler"
 
 import * as monaco from 'monaco-editor';
 
-interface Noode {
-    code: string;
-    file_name: string;
-    id: string;
-    desc: string;
-    group: number;
-    label: string;
-    left: number;
-    top: number;
-    url: string;
-    type: string;
-}
+// interface Noode {
+//     code: string;
+//     file_name: string;
+//     id: string;
+//     desc: string;
+//     group: number;
+//     label: string;
+//     left: number;
+//     top: number;
+//     url: string;
+//     type: string;
+// }
 
-interface Eddge {
-    link_type_str: string;
-    source: string;
-    text: string;
-    type: number;
-    value: number;
-    target: string;
-    source2: number;
-    target2: number;
-}
+// interface Eddge {
+//     link_type_str: string;
+//     source: string;
+//     text: string;
+//     type: number;
+//     value: number;
+//     target: string;
+//     source2: number;
+//     target2: number;
+// }
 
-interface JsonData {
-    nodes: Noode[];
-    edges: Eddge[];
-}
+// interface JsonData {
+//     nodes: Noode[];
+//     edges: Eddge[];
+// }
 
 declare global {
     interface Window {
@@ -215,7 +215,8 @@ ready(() => {
                 ],
                 events:{
                     [EVENT_DBL_CLICK]:(p:{edge:Edge}) => toolkit.removeEdge(p.edge)
-                }
+                },
+                label:"{{label}}"
             }
         }
     }
@@ -249,41 +250,15 @@ ready(() => {
                 toolkit.clearSelection()
             }
         },
+        // view,
+        simpleEdgeStyles:true, 
         view,
         magnetize:{
             afterDrag:false,
         },
         consumeRightClick:false,
         modelEvents:[
-            {
-                event: EVENT_CLICK,
-                selector: ".jtk-imp-delete-node",
-                callback: (e: MouseEvent, el: HTMLElement, info: SurfaceObjectInfo<ImageProcessorNode>) => {
-                    toolkit.removeNode(info.obj)
-                }
-            },
-            {
-                event: EVENT_CLICK,
-                selector: ".jtk-imp-upload",
-                callback: (e: MouseEvent, el: HTMLElement, info: SurfaceObjectInfo<ImageProcessorNode>) => {
-                    let input = document.createElement('input');
-                    input.type = 'file';
-                    input.onchange = _ => {
-                        let files =   Array.from(input.files);
-                        if (files.length > 0 && files[0].type.match(/image.*/)) {
-                            readImageFromFile(files[0]).then((img) => {
-                                toolkit.update(info.obj, {
-                                    image: img,
-                                    width: img.naturalWidth,
-                                    height: img.naturalHeight
-                                })
-                            })
-                        }
-                    };
-                    input.click();
-
-                }
-            }
+          
         ],
         zoomToFit:true
     })
@@ -347,7 +322,7 @@ ready(() => {
             const target = event.target as HTMLElement;
             if (target.tagName.toLowerCase() === 'a') {
                 const value = target.getAttribute('value');
-                const filePath = value.replace('transformed_data','transformed_data3')
+                const filePath = value.replace('transformed_data','transformed_data4')
                 const task = target.textContent;
                 toolkit.clear();
                 toolkit.load({

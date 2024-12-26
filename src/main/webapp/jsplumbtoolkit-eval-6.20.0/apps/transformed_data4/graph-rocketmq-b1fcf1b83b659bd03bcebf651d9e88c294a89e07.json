@@ -1,0 +1,706 @@
+{
+    "nodes": [
+        {
+            "code": "/**\n * Exclusive lock implementation to put message\n */\npublic class PutMessageReentrantLock implements PutMessageLock {\n    private ReentrantLock putMessageNormalLock = new ReentrantLock(); // NonfairSync\n\n    @Override\n    public void lock() {\n        putMessageNormalLock.lock();\n    }\n\n    @Override\n    public void unlock() {\n        putMessageNormalLock.unlock();\n    }\n}\n",
+            "file_name": "0adad6f0025483647e760c1145f7736462c0ec79__CLDIFF__store/src/main/java/org/apache/rocketmq/store/PutMessageReentrantLock.java",
+            "id": "46",
+            "desc": "addClassDeclaration",
+            "label": "46. addClassDeclaration",
+            "left": 0,
+            "top": 2000,
+            "url": "url",
+            "type": "basic.source",
+            "group_mine": 0
+        },
+        {
+            "code": "/**\n * Spin lock Implementation to put message, suggest using this witb low race conditions\n *\n */\npublic class PutMessageSpinLock implements PutMessageLock {\n    //true: Can lock, false : in lock.\n    private AtomicBoolean putMessageSpinLock = new AtomicBoolean(true);\n\n    @Override\n    public void lock() {\n        boolean flag;\n        do {\n            flag = this.putMessageSpinLock.compareAndSet(true, false);\n        }\n        while (!flag);\n    }\n\n    @Override\n    public void unlock() {\n        this.putMessageSpinLock.compareAndSet(false, true);\n    }\n}\n",
+            "file_name": "0adad6f0025483647e760c1145f7736462c0ec79__CLDIFF__store/src/main/java/org/apache/rocketmq/store/PutMessageSpinLock.java",
+            "id": "47",
+            "desc": "addClassDeclaration",
+            "label": "47. addClassDeclaration",
+            "left": 1500,
+            "top": 2000,
+            "url": "url",
+            "type": "transform.overlay",
+            "group_mine": 1
+        },
+        {
+            "code": "        this.putMessageLock =  defaultMessageStore.getMessageStoreConfig().isUseReentrantLockWhenPutMessage() ? new PutMessageReentrantLock() : new PutMessageSpinLock();\n",
+            "file_name": "0adad6f0025483647e760c1145f7736462c0ec79__CLDIFF__store/src/main/java/org/apache/rocketmq/store/CommitLog.java",
+            "id": "35",
+            "desc": "addExpressionStatement",
+            "label": "35. addExpressionStatement",
+            "left": 200,
+            "top": 1200,
+            "url": "url",
+            "type": "filter.invert",
+            "group_mine": 3
+        },
+        {
+            "code": "        putMessageLock.lock(); //spin or ReentrantLock ,depending on store config\n",
+            "file_name": "0adad6f0025483647e760c1145f7736462c0ec79__CLDIFF__store/src/main/java/org/apache/rocketmq/store/CommitLog.java",
+            "id": "36",
+            "desc": "updateExpressionStatement   by",
+            "label": "36. updateExpressionStatement   by",
+            "left": -800,
+            "top": 1200,
+            "url": "url",
+            "type": "filter.invert",
+            "group_mine": 3
+        },
+        {
+            "code": "        putMessageLock.lock();\n",
+            "file_name": "0adad6f0025483647e760c1145f7736462c0ec79__CLDIFF__store/src/main/java/org/apache/rocketmq/store/CommitLog.java",
+            "id": "37",
+            "desc": "updateExpressionStatement   by",
+            "label": "37. updateExpressionStatement   by",
+            "left": -400,
+            "top": 200,
+            "url": "url",
+            "type": "filter.invert",
+            "group_mine": 3
+        },
+        {
+            "code": "            putMessageLock.unlock();\n",
+            "file_name": "0adad6f0025483647e760c1145f7736462c0ec79__CLDIFF__store/src/main/java/org/apache/rocketmq/store/CommitLog.java",
+            "id": "38",
+            "desc": "updateExpressionStatement   by",
+            "label": "38. updateExpressionStatement   by",
+            "left": 700,
+            "top": 500,
+            "url": "url",
+            "type": "filter.invert",
+            "group_mine": 3
+        },
+        {
+            "code": "            putMessageLock.unlock();\n",
+            "file_name": "0adad6f0025483647e760c1145f7736462c0ec79__CLDIFF__store/src/main/java/org/apache/rocketmq/store/CommitLog.java",
+            "id": "39",
+            "desc": "updateExpressionStatement   by",
+            "label": "39. updateExpressionStatement   by",
+            "left": 1700,
+            "top": 200,
+            "url": "url",
+            "type": "filter.invert",
+            "group_mine": 3
+        },
+        {
+            "code": "    private final PutMessageLock putMessageLock;\n",
+            "file_name": "0adad6f0025483647e760c1145f7736462c0ec79__CLDIFF__store/src/main/java/org/apache/rocketmq/store/CommitLog.java",
+            "id": "40",
+            "desc": "addFieldDeclaration",
+            "label": "40. addFieldDeclaration",
+            "left": 600,
+            "top": 0,
+            "url": "url",
+            "type": "filter.invert",
+            "group_mine": 3
+        },
+        {
+            "code": "    private AtomicBoolean putMessageSpinLock = new AtomicBoolean(true);\n",
+            "file_name": "0adad6f0025483647e760c1145f7736462c0ec79__CLDIFF__store/src/main/java/org/apache/rocketmq/store/CommitLog.java",
+            "id": "41",
+            "desc": "deleteFieldDeclaration",
+            "label": "41. deleteFieldDeclaration",
+            "left": 2700,
+            "top": 200,
+            "url": "url",
+            "type": "filter.invert",
+            "group_mine": 3
+        },
+        {
+            "code": "    private ReentrantLock putMessageNormalLock = new ReentrantLock(); // NonfairSync\n",
+            "file_name": "0adad6f0025483647e760c1145f7736462c0ec79__CLDIFF__store/src/main/java/org/apache/rocketmq/store/CommitLog.java",
+            "id": "42",
+            "desc": "deleteFieldDeclaration",
+            "label": "42. deleteFieldDeclaration",
+            "left": 2700,
+            "top": 800,
+            "url": "url",
+            "type": "filter.invert",
+            "group_mine": 3
+        },
+        {
+            "code": "    private void lockForPutMessage() {\n        if (this.defaultMessageStore.getMessageStoreConfig().isUseReentrantLockWhenPutMessage()) {\n            putMessageNormalLock.lock();\n        } else {\n            boolean flag;\n            do {\n                flag = this.putMessageSpinLock.compareAndSet(true, false);\n            }\n            while (!flag);\n        }\n    }\n\n",
+            "file_name": "0adad6f0025483647e760c1145f7736462c0ec79__CLDIFF__store/src/main/java/org/apache/rocketmq/store/CommitLog.java",
+            "id": "43",
+            "desc": "deleteMethodDeclaration",
+            "label": "43. deleteMethodDeclaration",
+            "left": 1000,
+            "top": 1100,
+            "url": "url",
+            "type": "filter.invert",
+            "group_mine": 3
+        },
+        {
+            "code": "    private void releasePutMessageLock() {\n        if (this.defaultMessageStore.getMessageStoreConfig().isUseReentrantLockWhenPutMessage()) {\n            putMessageNormalLock.unlock();\n        } else {\n            this.putMessageSpinLock.compareAndSet(false, true);\n        }\n    }\n",
+            "file_name": "0adad6f0025483647e760c1145f7736462c0ec79__CLDIFF__store/src/main/java/org/apache/rocketmq/store/CommitLog.java",
+            "id": "44",
+            "desc": "deleteMethodDeclaration",
+            "label": "44. deleteMethodDeclaration",
+            "left": 2100,
+            "top": 1000,
+            "url": "url",
+            "type": "filter.invert",
+            "group_mine": 3
+        },
+        {
+            "code": "/**\n * Used when trying to put message\n */\npublic interface PutMessageLock {\n    void lock();\n    void unlock();\n}\n",
+            "file_name": "0adad6f0025483647e760c1145f7736462c0ec79__CLDIFF__store/src/main/java/org/apache/rocketmq/store/PutMessageLock.java",
+            "id": "45",
+            "desc": "addInterface",
+            "label": "45. addInterface",
+            "left": 725,
+            "top": 2000,
+            "url": "url",
+            "type": "basic.source",
+            "group_mine": 4
+        }
+    ],
+    "edges": [
+        {
+            "link_type_str": "def-use@field",
+            "source": "37.out:conr",
+            "text": "def-use@field",
+            "type": 57,
+            "value": 1,
+            "target": "40.in:conl",
+            "source2": 37,
+            "target2": 40,
+            "data": {
+                "color": "cadetblue",
+                "lineWidth": 3,
+                "outlineColor": "pink",
+                "outlineWidth": 3,
+                "label": "similar"
+            }
+        },
+        {
+            "link_type_str": "def-use@field",
+            "source": "39.out:conr",
+            "text": "def-use@field",
+            "type": 57,
+            "value": 1,
+            "target": "40.in:conl",
+            "source2": 39,
+            "target2": 40,
+            "data": {
+                "color": "cadetblue",
+                "lineWidth": 3,
+                "outlineColor": "pink",
+                "outlineWidth": 3,
+                "label": "similar"
+            }
+        },
+        {
+            "link_type_str": "def-use@field",
+            "source": "36.out:conr",
+            "text": "def-use@field",
+            "type": 57,
+            "value": 1,
+            "target": "40.in:conl",
+            "source2": 36,
+            "target2": 40,
+            "data": {
+                "color": "cadetblue",
+                "lineWidth": 3,
+                "outlineColor": "pink",
+                "outlineWidth": 3,
+                "label": "similar"
+            }
+        },
+        {
+            "link_type_str": "def-use@field",
+            "source": "38.out:conr",
+            "text": "def-use@field",
+            "type": 57,
+            "value": 1,
+            "target": "40.in:conl",
+            "source2": 38,
+            "target2": 40,
+            "data": {
+                "color": "cadetblue",
+                "lineWidth": 3,
+                "outlineColor": "pink",
+                "outlineWidth": 3,
+                "label": "similar"
+            }
+        },
+        {
+            "link_type_str": "def-use@field",
+            "source": "35.out:conr",
+            "text": "def-use@field",
+            "type": 57,
+            "value": 1,
+            "target": "40.in:conl",
+            "source2": 35,
+            "target2": 40,
+            "data": {
+                "color": "cadetblue",
+                "lineWidth": 3,
+                "outlineColor": "pink",
+                "outlineWidth": 3,
+                "label": "similar"
+            }
+        },
+        {
+            "link_type_str": "def-use@class",
+            "source": "37.out:conr",
+            "text": "def-use@class",
+            "type": 55,
+            "value": 1,
+            "target": "46.in:conl",
+            "source2": 37,
+            "target2": 46,
+            "data": {
+                "color": "cadetblue",
+                "lineWidth": 3,
+                "outlineColor": "pink",
+                "outlineWidth": 3,
+                "label": "similar"
+            }
+        },
+        {
+            "link_type_str": "def-use@class",
+            "source": "39.out:conr",
+            "text": "def-use@class",
+            "type": 55,
+            "value": 1,
+            "target": "46.in:conl",
+            "source2": 39,
+            "target2": 46,
+            "data": {
+                "color": "cadetblue",
+                "lineWidth": 3,
+                "outlineColor": "pink",
+                "outlineWidth": 3,
+                "label": "similar"
+            }
+        },
+        {
+            "link_type_str": "def-use@class",
+            "source": "36.out:conr",
+            "text": "def-use@class",
+            "type": 55,
+            "value": 1,
+            "target": "46.in:conl",
+            "source2": 36,
+            "target2": 46,
+            "data": {
+                "color": "cadetblue",
+                "lineWidth": 3,
+                "outlineColor": "pink",
+                "outlineWidth": 3,
+                "label": "similar"
+            }
+        },
+        {
+            "link_type_str": "def-use@class",
+            "source": "38.out:conr",
+            "text": "def-use@class",
+            "type": 55,
+            "value": 1,
+            "target": "46.in:conl",
+            "source2": 38,
+            "target2": 46,
+            "data": {
+                "color": "cadetblue",
+                "lineWidth": 3,
+                "outlineColor": "pink",
+                "outlineWidth": 3,
+                "label": "similar"
+            }
+        },
+        {
+            "link_type_str": "def-use@class",
+            "source": "35.out:conr",
+            "text": "def-use@class",
+            "type": 55,
+            "value": 1,
+            "target": "46.in:conl",
+            "source2": 35,
+            "target2": 46,
+            "data": {
+                "color": "cadetblue",
+                "lineWidth": 3,
+                "outlineColor": "pink",
+                "outlineWidth": 3,
+                "label": "similar"
+            }
+        },
+        {
+            "link_type_str": "def-use@taicu",
+            "source": "46.out:conr",
+            "text": "def-use@taicu",
+            "type": 51,
+            "value": 1,
+            "target": "43.in:conl",
+            "source2": 46,
+            "target2": 43,
+            "data": {
+                "color": "cadetblue",
+                "lineWidth": 3,
+                "outlineColor": "pink",
+                "outlineWidth": 3,
+                "label": "similar"
+            }
+        },
+        {
+            "link_type_str": "def-use@taicu",
+            "source": "46.out:conr",
+            "text": "def-use@taicu",
+            "type": 51,
+            "value": 1,
+            "target": "44.in:conl",
+            "source2": 46,
+            "target2": 44,
+            "data": {
+                "color": "cadetblue",
+                "lineWidth": 3,
+                "outlineColor": "pink",
+                "outlineWidth": 3,
+                "label": "similar"
+            }
+        },
+        {
+            "link_type_str": "def-use@class",
+            "source": "37.out:conr",
+            "text": "def-use@class",
+            "type": 55,
+            "value": 1,
+            "target": "47.in:conl",
+            "source2": 37,
+            "target2": 47,
+            "data": {
+                "color": "cadetblue",
+                "lineWidth": 3,
+                "outlineColor": "pink",
+                "outlineWidth": 3,
+                "label": "similar"
+            }
+        },
+        {
+            "link_type_str": "def-use@class",
+            "source": "39.out:conr",
+            "text": "def-use@class",
+            "type": 55,
+            "value": 1,
+            "target": "47.in:conl",
+            "source2": 39,
+            "target2": 47,
+            "data": {
+                "color": "cadetblue",
+                "lineWidth": 3,
+                "outlineColor": "pink",
+                "outlineWidth": 3,
+                "label": "similar"
+            }
+        },
+        {
+            "link_type_str": "def-use@class",
+            "source": "36.out:conr",
+            "text": "def-use@class",
+            "type": 55,
+            "value": 1,
+            "target": "47.in:conl",
+            "source2": 36,
+            "target2": 47,
+            "data": {
+                "color": "cadetblue",
+                "lineWidth": 3,
+                "outlineColor": "pink",
+                "outlineWidth": 3,
+                "label": "similar"
+            }
+        },
+        {
+            "link_type_str": "def-use@class",
+            "source": "38.out:conr",
+            "text": "def-use@class",
+            "type": 55,
+            "value": 1,
+            "target": "47.in:conl",
+            "source2": 38,
+            "target2": 47,
+            "data": {
+                "color": "cadetblue",
+                "lineWidth": 3,
+                "outlineColor": "pink",
+                "outlineWidth": 3,
+                "label": "similar"
+            }
+        },
+        {
+            "link_type_str": "def-use@class",
+            "source": "35.out:conr",
+            "text": "def-use@class",
+            "type": 55,
+            "value": 1,
+            "target": "47.in:conl",
+            "source2": 35,
+            "target2": 47,
+            "data": {
+                "color": "cadetblue",
+                "lineWidth": 3,
+                "outlineColor": "pink",
+                "outlineWidth": 3,
+                "label": "similar"
+            }
+        },
+        {
+            "link_type_str": "def-use@taicu",
+            "source": "47.out:conr",
+            "text": "def-use@taicu",
+            "type": 51,
+            "value": 1,
+            "target": "43.in:conl",
+            "source2": 47,
+            "target2": 43,
+            "data": {
+                "color": "cadetblue",
+                "lineWidth": 3,
+                "outlineColor": "pink",
+                "outlineWidth": 3,
+                "label": "similar"
+            }
+        },
+        {
+            "link_type_str": "def-use@taicu",
+            "source": "47.out:conr",
+            "text": "def-use@taicu",
+            "type": 51,
+            "value": 1,
+            "target": "43.in:conl",
+            "source2": 47,
+            "target2": 43,
+            "data": {
+                "color": "cadetblue",
+                "lineWidth": 3,
+                "outlineColor": "pink",
+                "outlineWidth": 3,
+                "label": "similar"
+            }
+        },
+        {
+            "link_type_str": "def-use@taicu",
+            "source": "47.out:conr",
+            "text": "def-use@taicu",
+            "type": 51,
+            "value": 1,
+            "target": "44.in:conl",
+            "source2": 47,
+            "target2": 44,
+            "data": {
+                "color": "cadetblue",
+                "lineWidth": 3,
+                "outlineColor": "pink",
+                "outlineWidth": 3,
+                "label": "similar"
+            }
+        },
+        {
+            "link_type_str": "def-use@class",
+            "source": "37.out:conr",
+            "text": "def-use@class",
+            "type": 55,
+            "value": 1,
+            "target": "45.in:conl",
+            "source2": 37,
+            "target2": 45,
+            "data": {
+                "color": "cadetblue",
+                "lineWidth": 3,
+                "outlineColor": "pink",
+                "outlineWidth": 3,
+                "label": "similar"
+            }
+        },
+        {
+            "link_type_str": "def-use@class",
+            "source": "39.out:conr",
+            "text": "def-use@class",
+            "type": 55,
+            "value": 1,
+            "target": "45.in:conl",
+            "source2": 39,
+            "target2": 45,
+            "data": {
+                "color": "cadetblue",
+                "lineWidth": 3,
+                "outlineColor": "pink",
+                "outlineWidth": 3,
+                "label": "similar"
+            }
+        },
+        {
+            "link_type_str": "def-use@class",
+            "source": "36.out:conr",
+            "text": "def-use@class",
+            "type": 55,
+            "value": 1,
+            "target": "45.in:conl",
+            "source2": 36,
+            "target2": 45,
+            "data": {
+                "color": "cadetblue",
+                "lineWidth": 3,
+                "outlineColor": "pink",
+                "outlineWidth": 3,
+                "label": "similar"
+            }
+        },
+        {
+            "link_type_str": "def-use@class",
+            "source": "38.out:conr",
+            "text": "def-use@class",
+            "type": 55,
+            "value": 1,
+            "target": "45.in:conl",
+            "source2": 38,
+            "target2": 45,
+            "data": {
+                "color": "cadetblue",
+                "lineWidth": 3,
+                "outlineColor": "pink",
+                "outlineWidth": 3,
+                "label": "similar"
+            }
+        },
+        {
+            "link_type_str": "def-use@taicu",
+            "source": "45.out:conr",
+            "text": "def-use@taicu",
+            "type": 51,
+            "value": 1,
+            "target": "43.in:conl",
+            "source2": 45,
+            "target2": 43,
+            "data": {
+                "color": "cadetblue",
+                "lineWidth": 3,
+                "outlineColor": "pink",
+                "outlineWidth": 3,
+                "label": "similar"
+            }
+        },
+        {
+            "link_type_str": "def-use@taicu",
+            "source": "45.out:conr",
+            "text": "def-use@taicu",
+            "type": 51,
+            "value": 1,
+            "target": "44.in:conl",
+            "source2": 45,
+            "target2": 44,
+            "data": {
+                "color": "cadetblue",
+                "lineWidth": 3,
+                "outlineColor": "pink",
+                "outlineWidth": 3,
+                "label": "similar"
+            }
+        },
+        {
+            "link_type_str": "systematic",
+            "source": "36.out:conr",
+            "text": "systematic",
+            "type": 44,
+            "value": 1,
+            "target": "37.in:conl",
+            "source2": 36,
+            "target2": 37,
+            "data": {
+                "color": "cadetblue",
+                "lineWidth": 3,
+                "outlineColor": "pink",
+                "outlineWidth": 3,
+                "label": "similar"
+            }
+        },
+        {
+            "link_type_str": "systematic",
+            "source": "36.out:conr",
+            "text": "systematic",
+            "type": 44,
+            "value": 1,
+            "target": "38.in:conl",
+            "source2": 36,
+            "target2": 38,
+            "data": {
+                "color": "cadetblue",
+                "lineWidth": 3,
+                "outlineColor": "pink",
+                "outlineWidth": 3,
+                "label": "similar"
+            }
+        },
+        {
+            "link_type_str": "systematic",
+            "source": "36.out:conr",
+            "text": "systematic",
+            "type": 44,
+            "value": 1,
+            "target": "39.in:conl",
+            "source2": 36,
+            "target2": 39,
+            "data": {
+                "color": "cadetblue",
+                "lineWidth": 3,
+                "outlineColor": "pink",
+                "outlineWidth": 3,
+                "label": "similar"
+            }
+        },
+        {
+            "link_type_str": "systematic",
+            "source": "37.out:conr",
+            "text": "systematic",
+            "type": 44,
+            "value": 1,
+            "target": "38.in:conl",
+            "source2": 37,
+            "target2": 38,
+            "data": {
+                "color": "cadetblue",
+                "lineWidth": 3,
+                "outlineColor": "pink",
+                "outlineWidth": 3,
+                "label": "similar"
+            }
+        },
+        {
+            "link_type_str": "systematic",
+            "source": "37.out:conr",
+            "text": "systematic",
+            "type": 44,
+            "value": 1,
+            "target": "39.in:conl",
+            "source2": 37,
+            "target2": 39,
+            "data": {
+                "color": "cadetblue",
+                "lineWidth": 3,
+                "outlineColor": "pink",
+                "outlineWidth": 3,
+                "label": "similar"
+            }
+        },
+        {
+            "link_type_str": "systematic",
+            "source": "38.out:conr",
+            "text": "systematic",
+            "type": 44,
+            "value": 1,
+            "target": "39.in:conl",
+            "source2": 38,
+            "target2": 39,
+            "data": {
+                "color": "cadetblue",
+                "lineWidth": 3,
+                "outlineColor": "pink",
+                "outlineWidth": 3,
+                "label": "similar"
+            }
+        }
+    ]
+}

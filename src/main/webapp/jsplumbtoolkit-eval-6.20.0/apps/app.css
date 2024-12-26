@@ -102,7 +102,7 @@ main {
 }
 
 .jtk-imp-delete-node:after {
-    content: "✖";
+    /* content: "✖"; */
 }
 
 [bg-basic-source-bg],
@@ -398,4 +398,8 @@ div.jtk-node>div {
     overflow-wrap: break-word; 
     display: flex;
     box-sizing: border-box;
+}
+
+#container > div.jtk-surface-canvas.jtk-draggable.katavorio-delegated-draggable > svg > g > text {
+    font-size:45pt;
 }

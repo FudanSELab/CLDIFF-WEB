@@ -93,16 +93,44 @@ def singleTransform(file):
         json.dump(j,f,indent=4)
 
 
-singleTransform('graph-rocketmq-d8c446e854e6cce1b54c0d9d97f3189832b88001.json')
-singleTransform('graph-spring-framework-773b2f06a10679979ee747ad2ee2182eaafcc8cd.json')
-singleTransform('graph-spring-framework-4882dfcc0d6d0bde167c722cb82d899414fb1209.json')
-singleTransform('graph-spring-framework-046380988b9f98bed43fad1943c8f10f6a1429de.json')
+# singleTransform('graph-rocketmq-d8c446e854e6cce1b54c0d9d97f3189832b88001.json')
+# singleTransform('graph-spring-framework-773b2f06a10679979ee747ad2ee2182eaafcc8cd.json')
+# singleTransform('graph-spring-framework-4882dfcc0d6d0bde167c722cb82d899414fb1209.json')
+# singleTransform('graph-spring-framework-046380988b9f98bed43fad1943c8f10f6a1429de.json')
+
+def transform4():
+    # {'def-use@method', 'def-use@class', 'def-use@taicu', 'defUseField', 'defUse', 'def-use', 'defUseMethod', 'defUseTaicu', 'def-use@field', 'systematic'}
+    linktype = set()
+    files = os.listdir('./transformed_data3')
+    data = {
+        "color":"cadetblue",
+        "lineWidth":3,
+        "outlineColor":"pink",
+        "outlineWidth":3,
+        "label":"XX"  
+    }
+    dic =  {
+        'def-use@method': "method def-use", 
+        'def-use@class': "class def-use", 
+        'def-use@taicu': "fine-grained def-use",
+        'defUseField': "field def-use", 
+        'defUse': "def-use",
+        'def-use': "def-use" ,
+        'defUseMethod': "method def-use",
+        'defUseTaicu': "fine-grained def-use",
+        'def-use@field': "field def-use",
+        'systematic': "similar"
+    }
+    for file in files:
+        with open('./transformed_data3/' + file, 'r') as f:
+            j = json.load(f)
+            for edge in j['edges']:
+                t = edge['text']
+                edge['data'] = data
+                edge['data']['label'] = dic[t]
+        with open('./transformed_data4/' + file, 'w') as f:
+            json.dump(j, f, indent=4)
+
+transform4()
 
 
-# "data": {
-#                 "color": "cadetblue",
-#                 "lineWidth": 3,
-#                 "outlineColor": "pink",
-#                 "outlineWidth": 5,
-#                 "label": "Blue and pink"
-#             },

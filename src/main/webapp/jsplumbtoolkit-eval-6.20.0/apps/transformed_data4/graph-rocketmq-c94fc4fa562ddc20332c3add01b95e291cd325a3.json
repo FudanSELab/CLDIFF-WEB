@@ -1,0 +1,334 @@
+{
+    "nodes": [
+        {
+            "code": "    public void setWaitTimeMillsInPullQueue(final long waitTimeMillsInPullQueue) {\n        this.waitTimeMillsInPullQueue = waitTimeMillsInPullQueue;\n    }\n",
+            "file_name": "cba30897c169c7182e3f8b53ead169e5a458f13e__CLDIFF__common/src/main/java/org/apache/rocketmq/common/BrokerConfig.java",
+            "id": "10",
+            "desc": "addMethodDeclaration",
+            "label": "10. addMethodDeclaration",
+            "left": 1400,
+            "top": 0,
+            "url": "url",
+            "type": "basic.source",
+            "group_mine": 0
+        },
+        {
+            "code": "    public long getWaitTimeMillsInPullQueue() {\n        return waitTimeMillsInPullQueue;\n    }\n",
+            "file_name": "cba30897c169c7182e3f8b53ead169e5a458f13e__CLDIFF__common/src/main/java/org/apache/rocketmq/common/BrokerConfig.java",
+            "id": "11",
+            "desc": "addMethodDeclaration",
+            "label": "11. addMethodDeclaration",
+            "left": 1400,
+            "top": 700,
+            "url": "url",
+            "type": "basic.source",
+            "group_mine": 0
+        },
+        {
+            "code": "    public void setBrokerFastFailureEnable(final boolean brokerFastFailureEnable) {\n        this.brokerFastFailureEnable = brokerFastFailureEnable;\n    }\n",
+            "file_name": "cba30897c169c7182e3f8b53ead169e5a458f13e__CLDIFF__common/src/main/java/org/apache/rocketmq/common/BrokerConfig.java",
+            "id": "12",
+            "desc": "addMethodDeclaration",
+            "label": "12. addMethodDeclaration",
+            "left": 2500,
+            "top": 1400,
+            "url": "url",
+            "type": "basic.source",
+            "group_mine": 0
+        },
+        {
+            "code": "    public boolean isBrokerFastFailureEnable() {\n        return brokerFastFailureEnable;\n    }\n",
+            "file_name": "cba30897c169c7182e3f8b53ead169e5a458f13e__CLDIFF__common/src/main/java/org/apache/rocketmq/common/BrokerConfig.java",
+            "id": "13",
+            "desc": "addMethodDeclaration",
+            "label": "13. addMethodDeclaration",
+            "left": 1400,
+            "top": 1400,
+            "url": "url",
+            "type": "basic.source",
+            "group_mine": 0
+        },
+        {
+            "code": "    private long waitTimeMillsInPullQueue = 5 * 1000;\n",
+            "file_name": "cba30897c169c7182e3f8b53ead169e5a458f13e__CLDIFF__common/src/main/java/org/apache/rocketmq/common/BrokerConfig.java",
+            "id": "14",
+            "desc": "addFieldDeclaration",
+            "label": "14. addFieldDeclaration",
+            "left": 2000,
+            "top": 700,
+            "url": "url",
+            "type": "basic.source",
+            "group_mine": 0
+        },
+        {
+            "code": "    private boolean brokerFastFailureEnable = true;\n",
+            "file_name": "cba30897c169c7182e3f8b53ead169e5a458f13e__CLDIFF__common/src/main/java/org/apache/rocketmq/common/BrokerConfig.java",
+            "id": "15",
+            "desc": "addFieldDeclaration",
+            "label": "15. addFieldDeclaration",
+            "left": 2000,
+            "top": 1300,
+            "url": "url",
+            "type": "basic.source",
+            "group_mine": 0
+        },
+        {
+            "code": "        cleanExpiredRequestInQueue(this.brokerController.getSendThreadPoolQueue(),\n            this.brokerController.getBrokerConfig().getWaitTimeMillsInSendQueue());\n",
+            "file_name": "cba30897c169c7182e3f8b53ead169e5a458f13e__CLDIFF__broker/src/main/java/org/apache/rocketmq/broker/latency/BrokerFastFailure.java",
+            "id": "0",
+            "desc": "moveMethodInvocation",
+            "label": "0. moveMethodInvocation",
+            "left": 600,
+            "top": 0,
+            "url": "url",
+            "type": "transform.overlay",
+            "group_mine": 1
+        },
+        {
+            "code": "            this.brokerController.getBrokerConfig().getWaitTimeMillsInSendQueue());\n",
+            "file_name": "cba30897c169c7182e3f8b53ead169e5a458f13e__CLDIFF__broker/src/main/java/org/apache/rocketmq/broker/latency/BrokerFastFailure.java",
+            "id": "1",
+            "desc": "moveMethodInvocation",
+            "label": "1. moveMethodInvocation",
+            "left": -600,
+            "top": 0,
+            "url": "url",
+            "type": "transform.overlay",
+            "group_mine": 1
+        },
+        {
+            "code": "        cleanExpiredRequestInQueue(this.brokerController.getPullThreadPoolQueue(),\n",
+            "file_name": "cba30897c169c7182e3f8b53ead169e5a458f13e__CLDIFF__broker/src/main/java/org/apache/rocketmq/broker/latency/BrokerFastFailure.java",
+            "id": "2",
+            "desc": "moveMethodInvocation",
+            "label": "2. moveMethodInvocation",
+            "left": 0,
+            "top": -100,
+            "url": "url",
+            "type": "transform.overlay",
+            "group_mine": 1
+        },
+        {
+            "code": "            this.brokerController.getBrokerConfig().getWaitTimeMillsInPullQueue());\n",
+            "file_name": "cba30897c169c7182e3f8b53ead169e5a458f13e__CLDIFF__broker/src/main/java/org/apache/rocketmq/broker/latency/BrokerFastFailure.java",
+            "id": "3",
+            "desc": "moveMethodInvocation",
+            "label": "3. moveMethodInvocation",
+            "left": -600,
+            "top": 400,
+            "url": "url",
+            "type": "transform.overlay",
+            "group_mine": 1
+        },
+        {
+            "code": "        cleanExpiredRequestInQueue(this.brokerController.getSendThreadPoolQueue(),\n            this.brokerController.getBrokerConfig().getWaitTimeMillsInSendQueue());\n",
+            "file_name": "cba30897c169c7182e3f8b53ead169e5a458f13e__CLDIFF__broker/src/main/java/org/apache/rocketmq/broker/latency/BrokerFastFailure.java",
+            "id": "4",
+            "desc": "addExpressionStatement",
+            "label": "4. addExpressionStatement",
+            "left": -600,
+            "top": 900,
+            "url": "url",
+            "type": "transform.overlay",
+            "group_mine": 1
+        },
+        {
+            "code": "        cleanExpiredRequestInQueue(this.brokerController.getPullThreadPoolQueue(),\n            this.brokerController.getBrokerConfig().getWaitTimeMillsInPullQueue());\n",
+            "file_name": "cba30897c169c7182e3f8b53ead169e5a458f13e__CLDIFF__broker/src/main/java/org/apache/rocketmq/broker/latency/BrokerFastFailure.java",
+            "id": "5",
+            "desc": "addExpressionStatement",
+            "label": "5. addExpressionStatement",
+            "left": -600,
+            "top": 1400,
+            "url": "url",
+            "type": "transform.overlay",
+            "group_mine": 1
+        },
+        {
+            "code": "                if (brokerController.getBrokerConfig().isBrokerFastFailureEnable()) {\n                    cleanExpiredRequest();\n                }\n",
+            "file_name": "cba30897c169c7182e3f8b53ead169e5a458f13e__CLDIFF__broker/src/main/java/org/apache/rocketmq/broker/latency/BrokerFastFailure.java",
+            "id": "6",
+            "desc": "addIf",
+            "label": "6. addIf",
+            "left": 600,
+            "top": 1400,
+            "url": "url",
+            "type": "transform.overlay",
+            "group_mine": 1
+        },
+        {
+            "code": "        while (true) {\n            try {\n                if (!this.brokerController.getSendThreadPoolQueue().isEmpty()) {\n                    final Runnable runnable = this.brokerController.getSendThreadPoolQueue().peek();\n                    if (null == runnable) {\n                        break;\n                    }\n                    final RequestTask rt = castRunnable(runnable);\n                    if (rt == null || rt.isStopRun()) {\n                        break;\n                    }\n\n                    final long behind = System.currentTimeMillis() - rt.getCreateTimestamp();\n                    if (behind >= this.brokerController.getBrokerConfig().getWaitTimeMillsInSendQueue()) {\n                        if (this.brokerController.getSendThreadPoolQueue().remove(runnable)) {\n                            rt.setStopRun(true);\n                            rt.returnResponse(RemotingSysResponseCode.SYSTEM_BUSY, String.format(\"[TIMEOUT_CLEAN_QUEUE]broker busy, start flow control for a while, period in queue: %sms, size of queue: %d\", behind, this.brokerController.getSendThreadPoolQueue().size()));\n                        }\n                    } else {\n                        break;\n                    }\n                } else {\n                    break;\n                }\n            } catch (Throwable ignored) {\n            }\n        }\n",
+            "file_name": "cba30897c169c7182e3f8b53ead169e5a458f13e__CLDIFF__broker/src/main/java/org/apache/rocketmq/broker/latency/BrokerFastFailure.java",
+            "id": "7",
+            "desc": "deleteWhile",
+            "label": "7. deleteWhile",
+            "left": 0,
+            "top": 400,
+            "url": "url",
+            "type": "transform.overlay",
+            "group_mine": 1
+        },
+        {
+            "code": "            try {\n                if (!this.brokerController.getSendThreadPoolQueue().isEmpty()) {\n                    final Runnable runnable = this.brokerController.getSendThreadPoolQueue().peek();\n                    if (null == runnable) {\n                        break;\n                    }\n                    final RequestTask rt = castRunnable(runnable);\n                    if (rt == null || rt.isStopRun()) {\n                        break;\n                    }\n\n                    final long behind = System.currentTimeMillis() - rt.getCreateTimestamp();\n                    if (behind >= this.brokerController.getBrokerConfig().getWaitTimeMillsInSendQueue()) {\n                        if (this.brokerController.getSendThreadPoolQueue().remove(runnable)) {\n                            rt.setStopRun(true);\n                            rt.returnResponse(RemotingSysResponseCode.SYSTEM_BUSY, String.format(\"[TIMEOUT_CLEAN_QUEUE]broker busy, start flow control for a while, period in queue: %sms, size of queue: %d\", behind, this.brokerController.getSendThreadPoolQueue().size()));\n                        }\n                    } else {\n                        break;\n                    }\n                } else {\n                    break;\n                }\n            } catch (Throwable ignored) {\n            }\n",
+            "file_name": "cba30897c169c7182e3f8b53ead169e5a458f13e__CLDIFF__broker/src/main/java/org/apache/rocketmq/broker/latency/BrokerFastFailure.java",
+            "id": "8",
+            "desc": "deleteTry",
+            "label": "8. deleteTry",
+            "left": 600,
+            "top": 700,
+            "url": "url",
+            "type": "transform.overlay",
+            "group_mine": 1
+        },
+        {
+            "code": "    void cleanExpiredRequestInQueue(final BlockingQueue<Runnable> blockingQueue, final long maxWaitTimeMillsInQueue) {\n        while (true) {\n            try {\n                if (!blockingQueue.isEmpty()) {\n                    final Runnable runnable = blockingQueue.peek();\n                    if (null == runnable) {\n                        break;\n                    }\n                    final RequestTask rt = castRunnable(runnable);\n                    if (rt == null || rt.isStopRun()) {\n                        break;\n                    }\n\n                    final long behind = System.currentTimeMillis() - rt.getCreateTimestamp();\n                    if (behind >= maxWaitTimeMillsInQueue) {\n                        if (blockingQueue.remove(runnable)) {\n                            rt.setStopRun(true);\n                            rt.returnResponse(RemotingSysResponseCode.SYSTEM_BUSY, String.format(\"[TIMEOUT_CLEAN_QUEUE]broker busy, start flow control for a while, period in queue: %sms, size of queue: %d\", behind, blockingQueue.size()));\n                        }\n                    } else {\n                        break;\n                    }\n                } else {\n                    break;\n                }\n            } catch (Throwable ignored) {\n            }\n        }\n    }\n",
+            "file_name": "cba30897c169c7182e3f8b53ead169e5a458f13e__CLDIFF__broker/src/main/java/org/apache/rocketmq/broker/latency/BrokerFastFailure.java",
+            "id": "9",
+            "desc": "addMethodDeclaration",
+            "label": "9. addMethodDeclaration",
+            "left": 0,
+            "top": 1000,
+            "url": "url",
+            "type": "transform.overlay",
+            "group_mine": 1
+        }
+    ],
+    "edges": [
+        {
+            "link_type_str": "def-use@taicu",
+            "source": "15.out:conr",
+            "text": "def-use@taicu",
+            "type": 51,
+            "value": 1,
+            "target": "13.in:conl",
+            "source2": 15,
+            "target2": 13,
+            "data": {
+                "color": "cadetblue",
+                "lineWidth": 3,
+                "outlineColor": "pink",
+                "outlineWidth": 3,
+                "label": "method def-use"
+            }
+        },
+        {
+            "link_type_str": "def-use@taicu",
+            "source": "15.out:conr",
+            "text": "def-use@taicu",
+            "type": 51,
+            "value": 1,
+            "target": "12.in:conl",
+            "source2": 15,
+            "target2": 12,
+            "data": {
+                "color": "cadetblue",
+                "lineWidth": 3,
+                "outlineColor": "pink",
+                "outlineWidth": 3,
+                "label": "method def-use"
+            }
+        },
+        {
+            "link_type_str": "def-use@taicu",
+            "source": "14.out:conr",
+            "text": "def-use@taicu",
+            "type": 51,
+            "value": 1,
+            "target": "11.in:conl",
+            "source2": 14,
+            "target2": 11,
+            "data": {
+                "color": "cadetblue",
+                "lineWidth": 3,
+                "outlineColor": "pink",
+                "outlineWidth": 3,
+                "label": "method def-use"
+            }
+        },
+        {
+            "link_type_str": "def-use@taicu",
+            "source": "14.out:conr",
+            "text": "def-use@taicu",
+            "type": 51,
+            "value": 1,
+            "target": "10.in:conl",
+            "source2": 14,
+            "target2": 10,
+            "data": {
+                "color": "cadetblue",
+                "lineWidth": 3,
+                "outlineColor": "pink",
+                "outlineWidth": 3,
+                "label": "method def-use"
+            }
+        },
+        {
+            "link_type_str": "def-use@method",
+            "source": "4.out:conr",
+            "text": "def-use@method",
+            "type": 56,
+            "value": 1,
+            "target": "9.in:conl",
+            "source2": 4,
+            "target2": 9,
+            "data": {
+                "color": "cadetblue",
+                "lineWidth": 3,
+                "outlineColor": "pink",
+                "outlineWidth": 3,
+                "label": "method def-use"
+            }
+        },
+        {
+            "link_type_str": "def-use@method",
+            "source": "5.out:conr",
+            "text": "def-use@method",
+            "type": 56,
+            "value": 1,
+            "target": "9.in:conl",
+            "source2": 5,
+            "target2": 9,
+            "data": {
+                "color": "cadetblue",
+                "lineWidth": 3,
+                "outlineColor": "pink",
+                "outlineWidth": 3,
+                "label": "method def-use"
+            }
+        },
+        {
+            "link_type_str": "def-use@method",
+            "source": "8.out:conr",
+            "text": "def-use@method",
+            "type": 56,
+            "value": 1,
+            "target": "11.in:conl",
+            "source2": 8,
+            "target2": 11,
+            "data": {
+                "color": "cadetblue",
+                "lineWidth": 3,
+                "outlineColor": "pink",
+                "outlineWidth": 3,
+                "label": "method def-use"
+            }
+        },
+        {
+            "link_type_str": "def-use@method",
+            "source": "6.out:conr",
+            "text": "def-use@method",
+            "type": 56,
+            "value": 1,
+            "target": "13.in:conl",
+            "source2": 6,
+            "target2": 13,
+            "data": {
+                "color": "cadetblue",
+                "lineWidth": 3,
+                "outlineColor": "pink",
+                "outlineWidth": 3,
+                "label": "method def-use"
+            }
+        }
+    ]
+}

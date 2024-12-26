@@ -1,0 +1,334 @@
+{
+    "nodes": [
+        {
+            "code": "\t\t\ttxObject.setReadOnly(definition.isReadOnly());\n",
+            "file_name": "7d02ba0694b7b20f3af0ecb739851a008aff5b95__CLDIFF__spring-orm/src/main/java/org/springframework/orm/jpa/JpaTransactionManager.java",
+            "id": "9",
+            "desc": "addExpressionStatement",
+            "label": "9. addExpressionStatement",
+            "left": 0,
+            "top": 500,
+            "url": "url",
+            "type": "basic.source",
+            "group_mine": 0
+        },
+        {
+            "code": "\tpublic static void resetConnectionAfterTransaction(\n\t\t\tConnection con, @Nullable Integer previousIsolationLevel, boolean resetReadOnly) {\n\n\t\tAssert.notNull(con, \"No Connection specified\");\n\t\ttry {\n\t\t\t// Reset transaction isolation to previous value, if changed for the transaction.\n\t\t\tif (previousIsolationLevel != null) {\n\t\t\t\tif (logger.isDebugEnabled()) {\n\t\t\t\t\tlogger.debug(\"Resetting isolation level of JDBC Connection [\" +\n\t\t\t\t\t\t\tcon + \"] to \" + previousIsolationLevel);\n\t\t\t\t}\n\t\t\t\tcon.setTransactionIsolation(previousIsolationLevel);\n\t\t\t}\n\n\t\t\t// Reset read-only flag if we originally switched it to true on transaction begin.\n\t\t\tif (resetReadOnly) {\n\t\t\t\tif (logger.isDebugEnabled()) {\n\t\t\t\t\tlogger.debug(\"Resetting read-only flag of JDBC Connection [\" + con + \"]\");\n\t\t\t\t}\n\t\t\t\tcon.setReadOnly(false);\n\t\t\t}\n\t\t}\n\t\tcatch (Throwable ex) {\n\t\t\tlogger.debug(\"Could not reset JDBC Connection after transaction\", ex);\n\t\t}\n\t}\n",
+            "file_name": "7d02ba0694b7b20f3af0ecb739851a008aff5b95__CLDIFF__spring-jdbc/src/main/java/org/springframework/jdbc/datasource/DataSourceUtils.java",
+            "id": "2",
+            "desc": "addMethodDeclaration",
+            "label": "2. addMethodDeclaration",
+            "left": 2300,
+            "top": 1500,
+            "url": "url",
+            "type": "transform.overlay",
+            "group_mine": 1
+        },
+        {
+            "code": "\t@Deprecated\n\tpublic static void resetConnectionAfterTransaction(Connection con, @Nullable Integer previousIsolationLevel) {\n\t\tAssert.notNull(con, \"No Connection specified\");\n\t\ttry {\n\t\t\t// Reset transaction isolation to previous value, if changed for the transaction.\n\t\t\tif (previousIsolationLevel != null) {\n\t\t\t\tif (logger.isDebugEnabled()) {\n\t\t\t\t\tlogger.debug(\"Resetting isolation level of JDBC Connection [\" +\n\t\t\t\t\t\t\tcon + \"] to \" + previousIsolationLevel);\n\t\t\t\t}\n\t\t\t\tcon.setTransactionIsolation(previousIsolationLevel);\n\t\t\t}\n\n\t\t\t// Reset read-only flag.\n\t\t\tif (con.isReadOnly()) {\n\t\t\t\tif (logger.isDebugEnabled()) {\n\t\t\t\t\tlogger.debug(\"Resetting read-only flag of JDBC Connection [\" + con + \"]\");\n\t\t\t\t}\n\t\t\t\tcon.setReadOnly(false);\n\t\t\t}\n\t\t}\n\t\tcatch (Throwable ex) {\n\t\t\tlogger.debug(\"Could not reset JDBC Connection after transaction\", ex);\n\t\t}\n\t}\n",
+            "file_name": "7d02ba0694b7b20f3af0ecb739851a008aff5b95__CLDIFF__spring-jdbc/src/main/java/org/springframework/jdbc/datasource/DataSourceUtils.java",
+            "id": "3",
+            "desc": "updateMethodDeclaration declaration",
+            "label": "3. updateMethodDeclaration declaration",
+            "left": 2300,
+            "top": 700,
+            "url": "url",
+            "type": "transform.overlay",
+            "group_mine": 1
+        },
+        {
+            "code": "\tpublic boolean isReadOnly() {\n\t\treturn this.readOnly;\n\t}\n",
+            "file_name": "7d02ba0694b7b20f3af0ecb739851a008aff5b95__CLDIFF__spring-jdbc/src/main/java/org/springframework/jdbc/datasource/JdbcTransactionObjectSupport.java",
+            "id": "4",
+            "desc": "addMethodDeclaration",
+            "label": "4. addMethodDeclaration",
+            "left": 2500,
+            "top": -100,
+            "url": "url",
+            "type": "input.number",
+            "group_mine": 2
+        },
+        {
+            "code": "\tpublic void setReadOnly(boolean readOnly) {\n\t\tthis.readOnly = readOnly;\n\t}\n",
+            "file_name": "7d02ba0694b7b20f3af0ecb739851a008aff5b95__CLDIFF__spring-jdbc/src/main/java/org/springframework/jdbc/datasource/JdbcTransactionObjectSupport.java",
+            "id": "5",
+            "desc": "addMethodDeclaration",
+            "label": "5. addMethodDeclaration",
+            "left": 2500,
+            "top": -700,
+            "url": "url",
+            "type": "input.number",
+            "group_mine": 2
+        },
+        {
+            "code": "\tprivate boolean readOnly = false;\n",
+            "file_name": "7d02ba0694b7b20f3af0ecb739851a008aff5b95__CLDIFF__spring-jdbc/src/main/java/org/springframework/jdbc/datasource/JdbcTransactionObjectSupport.java",
+            "id": "6",
+            "desc": "addFieldDeclaration",
+            "label": "6. addFieldDeclaration",
+            "left": 3300,
+            "top": -100,
+            "url": "url",
+            "type": "input.number",
+            "group_mine": 2
+        },
+        {
+            "code": "\t\t\ttxObject.setReadOnly(definition.isReadOnly());\n",
+            "file_name": "7d02ba0694b7b20f3af0ecb739851a008aff5b95__CLDIFF__spring-jdbc/src/main/java/org/springframework/jdbc/datasource/DataSourceTransactionManager.java",
+            "id": "0",
+            "desc": "addExpressionStatement",
+            "label": "0. addExpressionStatement",
+            "left": 0,
+            "top": 1000,
+            "url": "url",
+            "type": "filter.invert",
+            "group_mine": 3
+        },
+        {
+            "code": "\t\t\tDataSourceUtils.resetConnectionAfterTransaction(\n\t\t\t\t\tcon, txObject.getPreviousIsolationLevel(), txObject.isReadOnly());\n",
+            "file_name": "7d02ba0694b7b20f3af0ecb739851a008aff5b95__CLDIFF__spring-jdbc/src/main/java/org/springframework/jdbc/datasource/DataSourceTransactionManager.java",
+            "id": "1",
+            "desc": "updateExpressionStatement   by",
+            "label": "1. updateExpressionStatement   by",
+            "left": 0,
+            "top": 1400,
+            "url": "url",
+            "type": "filter.invert",
+            "group_mine": 3
+        },
+        {
+            "code": "\t\t\tthis.readOnly = readOnly;\n",
+            "file_name": "7d02ba0694b7b20f3af0ecb739851a008aff5b95__CLDIFF__spring-orm/src/main/java/org/springframework/orm/jpa/vendor/HibernateJpaDialect.java",
+            "id": "10",
+            "desc": "addExpressionStatement",
+            "label": "10. addExpressionStatement",
+            "left": 1800,
+            "top": -700,
+            "url": "url",
+            "type": "basic.display",
+            "group_mine": 4
+        },
+        {
+            "code": "\t\tpublic SessionTransactionData(Session session, @Nullable FlushMode previousFlushMode,\n\t\t\t\t@Nullable Connection preparedCon, @Nullable Integer previousIsolationLevel, boolean readOnly) {\n\n\t\t\tthis.session = session;\n\t\t\tthis.previousFlushMode = previousFlushMode;\n\t\t\tthis.preparedCon = preparedCon;\n\t\t\tthis.previousIsolationLevel = previousIsolationLevel;\n\t\t\tthis.readOnly = readOnly;\n\t\t}\n",
+            "file_name": "7d02ba0694b7b20f3af0ecb739851a008aff5b95__CLDIFF__spring-orm/src/main/java/org/springframework/orm/jpa/vendor/HibernateJpaDialect.java",
+            "id": "11",
+            "desc": "updateMethodDeclaration declaration",
+            "label": "11. updateMethodDeclaration declaration",
+            "left": 0,
+            "top": -100,
+            "url": "url",
+            "type": "basic.display",
+            "group_mine": 4
+        },
+        {
+            "code": "\t\treturn new SessionTransactionData(\n\t\t\t\tsession, previousFlushMode, preparedCon, previousIsolationLevel, definition.isReadOnly());\n",
+            "file_name": "7d02ba0694b7b20f3af0ecb739851a008aff5b95__CLDIFF__spring-orm/src/main/java/org/springframework/orm/jpa/vendor/HibernateJpaDialect.java",
+            "id": "12",
+            "desc": "updateReturn   by",
+            "label": "12. updateReturn   by",
+            "left": 0,
+            "top": -600,
+            "url": "url",
+            "type": "basic.display",
+            "group_mine": 4
+        },
+        {
+            "code": "\t\treturn new SessionTransactionData(session, previousFlushMode, null, null, readOnly);\n",
+            "file_name": "7d02ba0694b7b20f3af0ecb739851a008aff5b95__CLDIFF__spring-orm/src/main/java/org/springframework/orm/jpa/vendor/HibernateJpaDialect.java",
+            "id": "13",
+            "desc": "updateReturn   by",
+            "label": "13. updateReturn   by",
+            "left": 900,
+            "top": -100,
+            "url": "url",
+            "type": "basic.display",
+            "group_mine": 4
+        },
+        {
+            "code": "\t\t\t\tDataSourceUtils.resetConnectionAfterTransaction(\n\t\t\t\t\t\tconToReset, this.previousIsolationLevel, this.readOnly);\n",
+            "file_name": "7d02ba0694b7b20f3af0ecb739851a008aff5b95__CLDIFF__spring-orm/src/main/java/org/springframework/orm/jpa/vendor/HibernateJpaDialect.java",
+            "id": "14",
+            "desc": "updateExpressionStatement   by",
+            "label": "14. updateExpressionStatement   by",
+            "left": 900,
+            "top": -700,
+            "url": "url",
+            "type": "basic.display",
+            "group_mine": 4
+        },
+        {
+            "code": "\t\tprivate final boolean readOnly;\n",
+            "file_name": "7d02ba0694b7b20f3af0ecb739851a008aff5b95__CLDIFF__spring-orm/src/main/java/org/springframework/orm/jpa/vendor/HibernateJpaDialect.java",
+            "id": "15",
+            "desc": "addFieldDeclaration",
+            "label": "15. addFieldDeclaration",
+            "left": 1800,
+            "top": -100,
+            "url": "url",
+            "type": "basic.display",
+            "group_mine": 4
+        },
+        {
+            "code": "\t\t\t\t\ttxObject.setReadOnly(definition.isReadOnly());\n",
+            "file_name": "7d02ba0694b7b20f3af0ecb739851a008aff5b95__CLDIFF__spring-orm/src/main/java/org/springframework/orm/hibernate5/HibernateTransactionManager.java",
+            "id": "7",
+            "desc": "addExpressionStatement",
+            "label": "7. addExpressionStatement",
+            "left": 1000,
+            "top": 1000,
+            "url": "url",
+            "type": "transform.crop",
+            "group_mine": 5
+        },
+        {
+            "code": "\t\t\t\tDataSourceUtils.resetConnectionAfterTransaction(\n\t\t\t\t\t\tcon, txObject.getPreviousIsolationLevel(), txObject.isReadOnly());\n",
+            "file_name": "7d02ba0694b7b20f3af0ecb739851a008aff5b95__CLDIFF__spring-orm/src/main/java/org/springframework/orm/hibernate5/HibernateTransactionManager.java",
+            "id": "8",
+            "desc": "updateExpressionStatement   by",
+            "label": "8. updateExpressionStatement   by",
+            "left": 1000,
+            "top": 1400,
+            "url": "url",
+            "type": "transform.crop",
+            "group_mine": 5
+        }
+    ],
+    "edges": [
+        {
+            "link_type_str": "systematic",
+            "source": "9.out:conr",
+            "text": "systematic",
+            "type": 44,
+            "value": 1,
+            "target": "0.in:conl",
+            "source2": 9,
+            "target2": 0,
+            "data": {
+                "color": "cadetblue",
+                "lineWidth": 3,
+                "outlineColor": "pink",
+                "outlineWidth": 3,
+                "label": "fine-grained def-use"
+            }
+        },
+        {
+            "link_type_str": "systematic",
+            "source": "9.out:conr",
+            "text": "systematic",
+            "type": 44,
+            "value": 1,
+            "target": "7.in:conl",
+            "source2": 9,
+            "target2": 7,
+            "data": {
+                "color": "cadetblue",
+                "lineWidth": 3,
+                "outlineColor": "pink",
+                "outlineWidth": 3,
+                "label": "fine-grained def-use"
+            }
+        },
+        {
+            "link_type_str": "systematic",
+            "source": "0.out:conr",
+            "text": "systematic",
+            "type": 44,
+            "value": 1,
+            "target": "7.in:conl",
+            "source2": 0,
+            "target2": 7,
+            "data": {
+                "color": "cadetblue",
+                "lineWidth": 3,
+                "outlineColor": "pink",
+                "outlineWidth": 3,
+                "label": "fine-grained def-use"
+            }
+        },
+        {
+            "link_type_str": "systematic",
+            "source": "1.out:conr",
+            "text": "systematic",
+            "type": 44,
+            "value": 1,
+            "target": "8.in:conl",
+            "source2": 1,
+            "target2": 8,
+            "data": {
+                "color": "cadetblue",
+                "lineWidth": 3,
+                "outlineColor": "pink",
+                "outlineWidth": 3,
+                "label": "fine-grained def-use"
+            }
+        },
+        {
+            "link_type_str": "defUseTaicu",
+            "source": "6.out:conr",
+            "text": "defUseTaicu",
+            "type": 51,
+            "value": 1,
+            "target": "4.in:conl",
+            "source2": 6,
+            "target2": 4,
+            "data": {
+                "color": "cadetblue",
+                "lineWidth": 3,
+                "outlineColor": "pink",
+                "outlineWidth": 3,
+                "label": "fine-grained def-use"
+            }
+        },
+        {
+            "link_type_str": "defUseField",
+            "source": "15.out:conr",
+            "text": "defUseField",
+            "type": 57,
+            "value": 1,
+            "target": "10.in:conl",
+            "source2": 15,
+            "target2": 10,
+            "data": {
+                "color": "cadetblue",
+                "lineWidth": 3,
+                "outlineColor": "pink",
+                "outlineWidth": 3,
+                "label": "fine-grained def-use"
+            }
+        },
+        {
+            "link_type_str": "defUseField",
+            "source": "15.out:conr",
+            "text": "defUseField",
+            "type": 57,
+            "value": 1,
+            "target": "14.in:conl",
+            "source2": 15,
+            "target2": 14,
+            "data": {
+                "color": "cadetblue",
+                "lineWidth": 3,
+                "outlineColor": "pink",
+                "outlineWidth": 3,
+                "label": "fine-grained def-use"
+            }
+        },
+        {
+            "link_type_str": "defUseTaicu",
+            "source": "15.out:conr",
+            "text": "defUseTaicu",
+            "type": 51,
+            "value": 1,
+            "target": "4.in:conl",
+            "source2": 15,
+            "target2": 4,
+            "data": {
+                "color": "cadetblue",
+                "lineWidth": 3,
+                "outlineColor": "pink",
+                "outlineWidth": 3,
+                "label": "fine-grained def-use"
+            }
+        }
+    ]
+}

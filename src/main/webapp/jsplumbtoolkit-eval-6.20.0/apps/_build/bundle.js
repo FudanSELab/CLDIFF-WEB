@@ -232516,7 +232516,8 @@ ${tagToString(tag)}`;
           ],
           events: {
             [import_browser_ui4.EVENT_DBL_CLICK]: (p) => toolkit.removeEdge(p.edge)
-          }
+          },
+          label: "{{label}}"
         }
       }
     };
@@ -232548,41 +232549,14 @@ ${tagToString(tag)}`;
           toolkit.clearSelection();
         }
       },
+      // view,
+      simpleEdgeStyles: true,
       view,
       magnetize: {
         afterDrag: false
       },
       consumeRightClick: false,
-      modelEvents: [
-        {
-          event: import_browser_ui4.EVENT_CLICK,
-          selector: ".jtk-imp-delete-node",
-          callback: (e, el, info) => {
-            toolkit.removeNode(info.obj);
-          }
-        },
-        {
-          event: import_browser_ui4.EVENT_CLICK,
-          selector: ".jtk-imp-upload",
-          callback: (e, el, info) => {
-            let input = document.createElement("input");
-            input.type = "file";
-            input.onchange = (_) => {
-              let files = Array.from(input.files);
-              if (files.length > 0 && files[0].type.match(/image.*/)) {
-                readImageFromFile(files[0]).then((img) => {
-                  toolkit.update(info.obj, {
-                    image: img,
-                    width: img.naturalWidth,
-                    height: img.naturalHeight
-                  });
-                });
-              }
-            };
-            input.click();
-          }
-        }
-      ],
+      modelEvents: [],
       zoomToFit: true
     });
     new NativeImageDropHandler({
@@ -232606,7 +232580,7 @@ ${tagToString(tag)}`;
         const target = event2.target;
         if (target.tagName.toLowerCase() === "a") {
           const value = target.getAttribute("value");
-          const filePath = value.replace("transformed_data", "transformed_data3");
+          const filePath = value.replace("transformed_data", "transformed_data4");
           const task = target.textContent;
           toolkit.clear();
           toolkit.load({

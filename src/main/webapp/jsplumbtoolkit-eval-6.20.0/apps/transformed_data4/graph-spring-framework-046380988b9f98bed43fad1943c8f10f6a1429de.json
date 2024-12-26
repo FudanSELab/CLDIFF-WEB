@@ -1,0 +1,322 @@
+{
+    "nodes": [
+        {
+            "code": "\t\t\tif (expires != null) {\n",
+            "file_name": "773b2f06a10679979ee747ad2ee2182eaafcc8cd__CLDIFF__spring-test/src/main/java/org/springframework/mock/web/MockHttpServletResponse.java",
+            "id": "0",
+            "desc": "moveNullLiteral",
+            "label": "0. moveNullLiteral",
+            "left": 3000,
+            "top": -200,
+            "url": "url",
+            "type": "basic.source",
+            "group_mine": 0
+        },
+        {
+            "code": "\t\t\tZonedDateTime expires = (cookie instanceof MockCookie ? ((MockCookie) cookie).getExpires() : null);\n",
+            "file_name": "773b2f06a10679979ee747ad2ee2182eaafcc8cd__CLDIFF__spring-test/src/main/java/org/springframework/mock/web/MockHttpServletResponse.java",
+            "id": "1",
+            "desc": "moveInstanceofExpression",
+            "label": "1. moveInstanceofExpression",
+            "left": 3000,
+            "top": 500,
+            "url": "url",
+            "type": "basic.source",
+            "group_mine": 0
+        },
+        {
+            "code": "\t\t\tZonedDateTime expires = (cookie instanceof MockCookie ? ((MockCookie) cookie).getExpires() : null);\n",
+            "file_name": "773b2f06a10679979ee747ad2ee2182eaafcc8cd__CLDIFF__spring-test/src/main/java/org/springframework/mock/web/MockHttpServletResponse.java",
+            "id": "2",
+            "desc": "moveMethodInvocation",
+            "label": "2. moveMethodInvocation",
+            "left": 2100,
+            "top": 500,
+            "url": "url",
+            "type": "basic.source",
+            "group_mine": 0
+        },
+        {
+            "code": "\t\t\tZonedDateTime expires = (cookie instanceof MockCookie ? ((MockCookie) cookie).getExpires() : null);\n",
+            "file_name": "773b2f06a10679979ee747ad2ee2182eaafcc8cd__CLDIFF__spring-test/src/main/java/org/springframework/mock/web/MockHttpServletResponse.java",
+            "id": "3",
+            "desc": "addVariableDeclaration",
+            "label": "3. addVariableDeclaration",
+            "left": 1500,
+            "top": -300,
+            "url": "url",
+            "type": "basic.source",
+            "group_mine": 0
+        },
+        {
+            "code": "\t\t\tif (expires != null) {\n\t\t\t\tbuf.append(expires.format(DateTimeFormatter.RFC_1123_DATE_TIME));\n\t\t\t}\n\t\t\telse {\n\t\t\t\tHttpHeaders headers = new HttpHeaders();\n\t\t\t\theaders.setExpires(maxAge > 0 ? System.currentTimeMillis() + 1000L * maxAge : 0);\n\t\t\t\tbuf.append(headers.getFirst(HttpHeaders.EXPIRES));\n\t\t\t}\n",
+            "file_name": "773b2f06a10679979ee747ad2ee2182eaafcc8cd__CLDIFF__spring-test/src/main/java/org/springframework/mock/web/MockHttpServletResponse.java",
+            "id": "4",
+            "desc": "updateIf condition  by",
+            "label": "4. updateIf condition  by",
+            "left": 1500,
+            "top": 500,
+            "url": "url",
+            "type": "basic.source",
+            "group_mine": 0
+        },
+        {
+            "code": "\t\t\t\tbuf.append(expires.format(DateTimeFormatter.RFC_1123_DATE_TIME));\n",
+            "file_name": "773b2f06a10679979ee747ad2ee2182eaafcc8cd__CLDIFF__spring-test/src/main/java/org/springframework/mock/web/MockHttpServletResponse.java",
+            "id": "5",
+            "desc": "updateExpressionStatement   by",
+            "label": "5. updateExpressionStatement   by",
+            "left": 2100,
+            "top": -300,
+            "url": "url",
+            "type": "basic.source",
+            "group_mine": 0
+        },
+        {
+            "code": "\t\tprivate final PartBodyStreamStorageFactory storageFactory = (maxInMemorySize > 0 ?\n\t\t\t\tnew DefaultPartBodyStreamStorageFactory(maxInMemorySize) :\n\t\t\t\tnew DefaultPartBodyStreamStorageFactory());\n",
+            "file_name": "773b2f06a10679979ee747ad2ee2182eaafcc8cd__CLDIFF__spring-web/src/main/java/org/springframework/http/codec/multipart/SynchronossPartHttpMessageReader.java",
+            "id": "6",
+            "desc": "moveConditionalExpression",
+            "label": "6. moveConditionalExpression",
+            "left": -500,
+            "top": 1500,
+            "url": "url",
+            "type": "transform.overlay",
+            "group_mine": 1
+        },
+        {
+            "code": "\t\t\tAssert.state(this.parser != null && this.listener != null, \"Not initialized yet\");\n",
+            "file_name": "773b2f06a10679979ee747ad2ee2182eaafcc8cd__CLDIFF__spring-web/src/main/java/org/springframework/http/codec/multipart/SynchronossPartHttpMessageReader.java",
+            "id": "7",
+            "desc": "addExpressionStatement",
+            "label": "7. addExpressionStatement",
+            "left": 1000,
+            "top": 300,
+            "url": "url",
+            "type": "transform.overlay",
+            "group_mine": 1
+        },
+        {
+            "code": "\t\t\t\tif (this.parser != null) {\n\t\t\t\t\tthis.parser.close();\n\t\t\t\t}\n",
+            "file_name": "773b2f06a10679979ee747ad2ee2182eaafcc8cd__CLDIFF__spring-web/src/main/java/org/springframework/http/codec/multipart/SynchronossPartHttpMessageReader.java",
+            "id": "8",
+            "desc": "addIf",
+            "label": "8. addIf",
+            "left": -500,
+            "top": 300,
+            "url": "url",
+            "type": "transform.overlay",
+            "group_mine": 1
+        },
+        {
+            "code": "\t\t\t\tif (this.listener != null) {\n\t\t\t\t\tint index = this.storageFactory.getCurrentPartIndex();\n\t\t\t\t\tthis.listener.onError(\"Failure while parsing part[\" + index + \"]\", ex);\n\t\t\t\t}\n",
+            "file_name": "773b2f06a10679979ee747ad2ee2182eaafcc8cd__CLDIFF__spring-web/src/main/java/org/springframework/http/codec/multipart/SynchronossPartHttpMessageReader.java",
+            "id": "9",
+            "desc": "addIf",
+            "label": "9. addIf",
+            "left": 1000,
+            "top": 1000,
+            "url": "url",
+            "type": "transform.overlay",
+            "group_mine": 1
+        },
+        {
+            "code": "\t\t\t\tif (this.parser != null) {\n\t\t\t\t\tthis.parser.close();\n\t\t\t\t}\n",
+            "file_name": "773b2f06a10679979ee747ad2ee2182eaafcc8cd__CLDIFF__spring-web/src/main/java/org/springframework/http/codec/multipart/SynchronossPartHttpMessageReader.java",
+            "id": "10",
+            "desc": "addIf",
+            "label": "10. addIf",
+            "left": 0,
+            "top": -300,
+            "url": "url",
+            "type": "transform.overlay",
+            "group_mine": 1
+        },
+        {
+            "code": "\t\t\t\tif (this.listener != null) {\n\t\t\t\t\tthis.listener.onError(\"Error while closing parser\", ex);\n\t\t\t\t}\n",
+            "file_name": "773b2f06a10679979ee747ad2ee2182eaafcc8cd__CLDIFF__spring-web/src/main/java/org/springframework/http/codec/multipart/SynchronossPartHttpMessageReader.java",
+            "id": "11",
+            "desc": "addIf",
+            "label": "11. addIf",
+            "left": -500,
+            "top": -300,
+            "url": "url",
+            "type": "transform.overlay",
+            "group_mine": 1
+        },
+        {
+            "code": "\t\t@Nullable\n\t\tprivate NioMultipartParserListener listener;\n",
+            "file_name": "773b2f06a10679979ee747ad2ee2182eaafcc8cd__CLDIFF__spring-web/src/main/java/org/springframework/http/codec/multipart/SynchronossPartHttpMessageReader.java",
+            "id": "12",
+            "desc": "updateFieldDeclaration ",
+            "label": "12. updateFieldDeclaration ",
+            "left": 300,
+            "top": 1000,
+            "url": "url",
+            "type": "transform.overlay",
+            "group_mine": 1
+        },
+        {
+            "code": "\t\t@Nullable\n\t\tprivate NioMultipartParser parser;\n",
+            "file_name": "773b2f06a10679979ee747ad2ee2182eaafcc8cd__CLDIFF__spring-web/src/main/java/org/springframework/http/codec/multipart/SynchronossPartHttpMessageReader.java",
+            "id": "13",
+            "desc": "updateFieldDeclaration ",
+            "label": "13. updateFieldDeclaration ",
+            "left": 1000,
+            "top": -300,
+            "url": "url",
+            "type": "transform.overlay",
+            "group_mine": 1
+        },
+        {
+            "code": "\t\tprivate final PartBodyStreamStorageFactory storageFactory = (maxInMemorySize > 0 ?\n\t\t\t\tnew DefaultPartBodyStreamStorageFactory(maxInMemorySize) :\n\t\t\t\tnew DefaultPartBodyStreamStorageFactory());\n",
+            "file_name": "773b2f06a10679979ee747ad2ee2182eaafcc8cd__CLDIFF__spring-web/src/main/java/org/springframework/http/codec/multipart/SynchronossPartHttpMessageReader.java",
+            "id": "14",
+            "desc": "updateFieldDeclaration ",
+            "label": "14. updateFieldDeclaration ",
+            "left": 300,
+            "top": 1500,
+            "url": "url",
+            "type": "transform.overlay",
+            "group_mine": 1
+        }
+    ],
+    "edges": [
+        {
+            "link_type_str": "systematic",
+            "source": "8.out:conr",
+            "text": "systematic",
+            "type": 44,
+            "value": 1,
+            "target": "10.in:conl",
+            "source2": 8,
+            "target2": 10,
+            "data": {
+                "color": "cadetblue",
+                "lineWidth": 3,
+                "outlineColor": "pink",
+                "outlineWidth": 3,
+                "label": "field def-use"
+            }
+        },
+        {
+            "link_type_str": "defUse",
+            "source": "3.out:conr",
+            "text": "defUse",
+            "type": 5,
+            "value": 1,
+            "target": "5.in:conl",
+            "source2": 3,
+            "target2": 5,
+            "data": {
+                "color": "cadetblue",
+                "lineWidth": 3,
+                "outlineColor": "pink",
+                "outlineWidth": 3,
+                "label": "field def-use"
+            }
+        },
+        {
+            "link_type_str": "defUseField",
+            "source": "12.out:conr",
+            "text": "defUseField",
+            "type": 57,
+            "value": 1,
+            "target": "11.in:conl",
+            "source2": 12,
+            "target2": 11,
+            "data": {
+                "color": "cadetblue",
+                "lineWidth": 3,
+                "outlineColor": "pink",
+                "outlineWidth": 3,
+                "label": "field def-use"
+            }
+        },
+        {
+            "link_type_str": "defUseField",
+            "target": "13.out:conr",
+            "text": "defUseField",
+            "type": 57,
+            "value": 1,
+            "source": "10.in:conl",
+            "source2": 13,
+            "target2": 10,
+            "data": {
+                "color": "cadetblue",
+                "lineWidth": 3,
+                "outlineColor": "pink",
+                "outlineWidth": 3,
+                "label": "field def-use"
+            }
+        },
+        {
+            "link_type_str": "defUseField",
+            "source": "12.out:conr",
+            "text": "defUseField",
+            "type": 57,
+            "value": 1,
+            "target": "9.in:conl",
+            "source2": 12,
+            "target2": 9,
+            "data": {
+                "color": "cadetblue",
+                "lineWidth": 3,
+                "outlineColor": "pink",
+                "outlineWidth": 3,
+                "label": "field def-use"
+            }
+        },
+        {
+            "link_type_str": "defUseField",
+            "source": "13.out:conr",
+            "text": "defUseField",
+            "type": 57,
+            "value": 1,
+            "target": "8.in:conl",
+            "source2": 13,
+            "target2": 8,
+            "data": {
+                "color": "cadetblue",
+                "lineWidth": 3,
+                "outlineColor": "pink",
+                "outlineWidth": 3,
+                "label": "field def-use"
+            }
+        },
+        {
+            "link_type_str": "defUseField",
+            "source": "12.out:conr",
+            "text": "defUseField",
+            "type": 57,
+            "value": 1,
+            "target": "7.in:conl",
+            "source2": 12,
+            "target2": 7,
+            "data": {
+                "color": "cadetblue",
+                "lineWidth": 3,
+                "outlineColor": "pink",
+                "outlineWidth": 3,
+                "label": "field def-use"
+            }
+        },
+        {
+            "link_type_str": "defUseField",
+            "source": "13.out:conr",
+            "text": "defUseField",
+            "type": 57,
+            "value": 1,
+            "target": "7.in:conl",
+            "source2": 13,
+            "target2": 7,
+            "data": {
+                "color": "cadetblue",
+                "lineWidth": 3,
+                "outlineColor": "pink",
+                "outlineWidth": 3,
+                "label": "field def-use"
+            }
+        }
+    ]
+}

@@ -1,5 +1,6 @@
 {
-    "nodes": [{
+    "nodes": [
+        {
             "code": "        this.remotingServer.registerProcessor(RequestCode.QUERY_MESSAGE, queryProcessor, this.queryMessageExecutor);\n",
             "file_name": "5a2e71098793be75cc5b2c8984e99ad3651eba40__CLDIFF__broker/src/main/java/org/apache/rocketmq/broker/BrokerController.java",
             "id": "61",
@@ -288,7 +289,8 @@
             "group_mine": 2
         }
     ],
-    "edges": [{
+    "edges": [
+        {
             "link_type_str": "def-use@field",
             "source": "65.out:conr",
             "text": "def-use@field",
@@ -296,7 +298,14 @@
             "value": 1,
             "target": "75.in:conl",
             "source2": 65,
-            "target2": 75
+            "target2": 75,
+            "data": {
+                "color": "cadetblue",
+                "lineWidth": 3,
+                "outlineColor": "pink",
+                "outlineWidth": 3,
+                "label": "similar"
+            }
         },
         {
             "link_type_str": "def-use@field",
@@ -306,7 +315,14 @@
             "value": 1,
             "target": "75.in:conl",
             "source2": 67,
-            "target2": 75
+            "target2": 75,
+            "data": {
+                "color": "cadetblue",
+                "lineWidth": 3,
+                "outlineColor": "pink",
+                "outlineWidth": 3,
+                "label": "similar"
+            }
         },
         {
             "link_type_str": "def-use@field",
@@ -316,7 +332,14 @@
             "value": 1,
             "target": "74.in:conl",
             "source2": 67,
-            "target2": 74
+            "target2": 74,
+            "data": {
+                "color": "cadetblue",
+                "lineWidth": 3,
+                "outlineColor": "pink",
+                "outlineWidth": 3,
+                "label": "similar"
+            }
         },
         {
             "link_type_str": "def-use@taicu",
@@ -326,7 +349,14 @@
             "value": 1,
             "target": "73.in:conl",
             "source2": 75,
-            "target2": 73
+            "target2": 73,
+            "data": {
+                "color": "cadetblue",
+                "lineWidth": 3,
+                "outlineColor": "pink",
+                "outlineWidth": 3,
+                "label": "similar"
+            }
         },
         {
             "link_type_str": "def-use@taicu",
@@ -336,7 +366,14 @@
             "value": 1,
             "target": "72.in:conl",
             "source2": 75,
-            "target2": 72
+            "target2": 72,
+            "data": {
+                "color": "cadetblue",
+                "lineWidth": 3,
+                "outlineColor": "pink",
+                "outlineWidth": 3,
+                "label": "similar"
+            }
         },
         {
             "link_type_str": "def-use@field",
@@ -346,7 +383,14 @@
             "value": 1,
             "target": "74.in:conl",
             "source2": 68,
-            "target2": 74
+            "target2": 74,
+            "data": {
+                "color": "cadetblue",
+                "lineWidth": 3,
+                "outlineColor": "pink",
+                "outlineWidth": 3,
+                "label": "similar"
+            }
         },
         {
             "link_type_str": "def-use@field",
@@ -356,7 +400,14 @@
             "value": 1,
             "target": "74.in:conl",
             "source2": 69,
-            "target2": 74
+            "target2": 74,
+            "data": {
+                "color": "cadetblue",
+                "lineWidth": 3,
+                "outlineColor": "pink",
+                "outlineWidth": 3,
+                "label": "similar"
+            }
         },
         {
             "link_type_str": "def-use@field",
@@ -366,7 +417,14 @@
             "value": 1,
             "target": "74.in:conl",
             "source2": 70,
-            "target2": 74
+            "target2": 74,
+            "data": {
+                "color": "cadetblue",
+                "lineWidth": 3,
+                "outlineColor": "pink",
+                "outlineWidth": 3,
+                "label": "similar"
+            }
         },
         {
             "link_type_str": "def-use@field",
@@ -376,7 +434,14 @@
             "value": 1,
             "target": "74.in:conl",
             "source2": 71,
-            "target2": 74
+            "target2": 74,
+            "data": {
+                "color": "cadetblue",
+                "lineWidth": 3,
+                "outlineColor": "pink",
+                "outlineWidth": 3,
+                "label": "similar"
+            }
         },
         {
             "link_type_str": "def-use@field",
@@ -386,7 +451,14 @@
             "value": 1,
             "target": "75.in:conl",
             "source2": 66,
-            "target2": 75
+            "target2": 75,
+            "data": {
+                "color": "cadetblue",
+                "lineWidth": 3,
+                "outlineColor": "pink",
+                "outlineWidth": 3,
+                "label": "similar"
+            }
         },
         {
             "link_type_str": "def-use@method",
@@ -396,7 +468,14 @@
             "value": 1,
             "target": "72.in:conl",
             "source2": 66,
-            "target2": 72
+            "target2": 72,
+            "data": {
+                "color": "cadetblue",
+                "lineWidth": 3,
+                "outlineColor": "pink",
+                "outlineWidth": 3,
+                "label": "similar"
+            }
         },
         {
             "link_type_str": "def-use@taicu",
@@ -406,7 +485,14 @@
             "value": 1,
             "target": "82.in:conl",
             "source2": 84,
-            "target2": 82
+            "target2": 82,
+            "data": {
+                "color": "cadetblue",
+                "lineWidth": 3,
+                "outlineColor": "pink",
+                "outlineWidth": 3,
+                "label": "similar"
+            }
         },
         {
             "link_type_str": "def-use@taicu",
@@ -416,7 +502,14 @@
             "value": 1,
             "target": "81.in:conl",
             "source2": 84,
-            "target2": 81
+            "target2": 81,
+            "data": {
+                "color": "cadetblue",
+                "lineWidth": 3,
+                "outlineColor": "pink",
+                "outlineWidth": 3,
+                "label": "similar"
+            }
         },
         {
             "link_type_str": "def-use@taicu",
@@ -426,7 +519,14 @@
             "value": 1,
             "target": "80.in:conl",
             "source2": 83,
-            "target2": 80
+            "target2": 80,
+            "data": {
+                "color": "cadetblue",
+                "lineWidth": 3,
+                "outlineColor": "pink",
+                "outlineWidth": 3,
+                "label": "similar"
+            }
         },
         {
             "link_type_str": "def-use@taicu",
@@ -436,7 +536,14 @@
             "value": 1,
             "target": "79.in:conl",
             "source2": 83,
-            "target2": 79
+            "target2": 79,
+            "data": {
+                "color": "cadetblue",
+                "lineWidth": 3,
+                "outlineColor": "pink",
+                "outlineWidth": 3,
+                "label": "similar"
+            }
         },
         {
             "link_type_str": "def-use@method",
@@ -446,7 +553,14 @@
             "value": 1,
             "target": "80.in:conl",
             "source2": 77,
-            "target2": 80
+            "target2": 80,
+            "data": {
+                "color": "cadetblue",
+                "lineWidth": 3,
+                "outlineColor": "pink",
+                "outlineWidth": 3,
+                "label": "similar"
+            }
         },
         {
             "link_type_str": "systematic",
@@ -456,7 +570,14 @@
             "value": 1,
             "target": "69.in:conl",
             "source2": 68,
-            "target2": 69
+            "target2": 69,
+            "data": {
+                "color": "cadetblue",
+                "lineWidth": 3,
+                "outlineColor": "pink",
+                "outlineWidth": 3,
+                "label": "similar"
+            }
         },
         {
             "link_type_str": "systematic",
@@ -466,7 +587,14 @@
             "value": 1,
             "target": "70.in:conl",
             "source2": 68,
-            "target2": 70
+            "target2": 70,
+            "data": {
+                "color": "cadetblue",
+                "lineWidth": 3,
+                "outlineColor": "pink",
+                "outlineWidth": 3,
+                "label": "similar"
+            }
         },
         {
             "link_type_str": "systematic",
@@ -476,7 +604,14 @@
             "value": 1,
             "target": "71.in:conl",
             "source2": 68,
-            "target2": 71
+            "target2": 71,
+            "data": {
+                "color": "cadetblue",
+                "lineWidth": 3,
+                "outlineColor": "pink",
+                "outlineWidth": 3,
+                "label": "similar"
+            }
         },
         {
             "link_type_str": "systematic",
@@ -486,7 +621,14 @@
             "value": 1,
             "target": "70.in:conl",
             "source2": 69,
-            "target2": 70
+            "target2": 70,
+            "data": {
+                "color": "cadetblue",
+                "lineWidth": 3,
+                "outlineColor": "pink",
+                "outlineWidth": 3,
+                "label": "similar"
+            }
         },
         {
             "link_type_str": "systematic",
@@ -496,8 +638,14 @@
             "value": 1,
             "target": "71.in:conl",
             "source2": 69,
-            "target2": 71
-            
+            "target2": 71,
+            "data": {
+                "color": "cadetblue",
+                "lineWidth": 3,
+                "outlineColor": "pink",
+                "outlineWidth": 3,
+                "label": "similar"
+            }
         },
         {
             "link_type_str": "systematic",
@@ -507,7 +655,14 @@
             "value": 1,
             "target": "71.in:conl",
             "source2": 70,
-            "target2": 71
+            "target2": 71,
+            "data": {
+                "color": "cadetblue",
+                "lineWidth": 3,
+                "outlineColor": "pink",
+                "outlineWidth": 3,
+                "label": "similar"
+            }
         },
         {
             "link_type_str": "systematic",
@@ -517,7 +672,14 @@
             "value": 1,
             "target": "77.in:conl",
             "source2": 76,
-            "target2": 77
+            "target2": 77,
+            "data": {
+                "color": "cadetblue",
+                "lineWidth": 3,
+                "outlineColor": "pink",
+                "outlineWidth": 3,
+                "label": "similar"
+            }
         }
     ]
 }

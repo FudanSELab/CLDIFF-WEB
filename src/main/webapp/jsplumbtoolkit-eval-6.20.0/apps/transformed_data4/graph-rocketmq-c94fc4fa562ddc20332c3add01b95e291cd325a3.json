@@ -208,7 +208,7 @@
                 "lineWidth": 3,
                 "outlineColor": "pink",
                 "outlineWidth": 3,
-                "label": "method def-use"
+                "label": "fine-grained def-use"
             }
         },
         {
@@ -225,7 +225,7 @@
                 "lineWidth": 3,
                 "outlineColor": "pink",
                 "outlineWidth": 3,
-                "label": "method def-use"
+                "label": "fine-grained def-use"
             }
         },
         {
@@ -242,7 +242,7 @@
                 "lineWidth": 3,
                 "outlineColor": "pink",
                 "outlineWidth": 3,
-                "label": "method def-use"
+                "label": "fine-grained def-use"
             }
         },
         {
@@ -259,7 +259,7 @@
                 "lineWidth": 3,
                 "outlineColor": "pink",
                 "outlineWidth": 3,
-                "label": "method def-use"
+                "label": "fine-grained def-use"
             }
         },
         {

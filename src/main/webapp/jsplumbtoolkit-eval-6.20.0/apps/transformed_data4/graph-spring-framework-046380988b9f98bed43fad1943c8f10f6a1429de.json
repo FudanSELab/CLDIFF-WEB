@@ -196,7 +196,7 @@
                 "lineWidth": 3,
                 "outlineColor": "pink",
                 "outlineWidth": 3,
-                "label": "field def-use"
+                "label": "similar"
             }
         },
         {
@@ -213,7 +213,7 @@
                 "lineWidth": 3,
                 "outlineColor": "pink",
                 "outlineWidth": 3,
-                "label": "field def-use"
+                "label": "def-use"
             }
         },
         {

@@ -208,7 +208,7 @@
                 "lineWidth": 3,
                 "outlineColor": "pink",
                 "outlineWidth": 3,
-                "label": "fine-grained def-use"
+                "label": "similar"
             }
         },
         {
@@ -225,7 +225,7 @@
                 "lineWidth": 3,
                 "outlineColor": "pink",
                 "outlineWidth": 3,
-                "label": "fine-grained def-use"
+                "label": "similar"
             }
         },
         {
@@ -242,7 +242,7 @@
                 "lineWidth": 3,
                 "outlineColor": "pink",
                 "outlineWidth": 3,
-                "label": "fine-grained def-use"
+                "label": "similar"
             }
         },
         {
@@ -259,7 +259,7 @@
                 "lineWidth": 3,
                 "outlineColor": "pink",
                 "outlineWidth": 3,
-                "label": "fine-grained def-use"
+                "label": "similar"
             }
         },
         {
@@ -293,7 +293,7 @@
                 "lineWidth": 3,
                 "outlineColor": "pink",
                 "outlineWidth": 3,
-                "label": "fine-grained def-use"
+                "label": "field def-use"
             }
         },
         {
@@ -310,7 +310,7 @@
                 "lineWidth": 3,
                 "outlineColor": "pink",
                 "outlineWidth": 3,
-                "label": "fine-grained def-use"
+                "label": "field def-use"
             }
         },
         {

@@ -1,5 +1,6 @@
 import os
 import json
+import copy 
 
 def transform2():
     files = os.listdir('./data')
@@ -126,7 +127,7 @@ def transform4():
             j = json.load(f)
             for edge in j['edges']:
                 t = edge['text']
-                edge['data'] = data
+                edge['data'] = copy.copy(data)
                 edge['data']['label'] = dic[t]
         with open('./transformed_data4/' + file, 'w') as f:
             json.dump(j, f, indent=4)

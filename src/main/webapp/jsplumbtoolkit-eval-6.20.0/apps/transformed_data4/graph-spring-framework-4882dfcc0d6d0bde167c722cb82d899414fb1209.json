@@ -100,7 +100,7 @@
                 "lineWidth": 3,
                 "outlineColor": "pink",
                 "outlineWidth": 3,
-                "label": "method def-use"
+                "label": "similar"
             }
         },
         {

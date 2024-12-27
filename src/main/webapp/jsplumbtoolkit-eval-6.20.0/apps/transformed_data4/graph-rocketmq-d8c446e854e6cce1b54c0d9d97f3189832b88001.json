@@ -229,9 +229,9 @@
             "target2": 4,
             "data": {
                 "color": "cadetblue",
-                "lineWidth": 3,
+                "lineWidth": 2,
                 "outlineColor": "pink",
-                "outlineWidth": 3,
+                "outlineWidth": 2,
                 "label": "similar"
             }
         },
@@ -246,10 +246,10 @@
             "target2": 1,
             "data": {
                 "color": "cadetblue",
-                "lineWidth": 3,
+                "lineWidth": 2,
                 "outlineColor": "pink",
-                "outlineWidth": 3,
-                "label": "field def-use"
+                "outlineWidth": 2,
+                "label": "field\ndef-use"
             }
         },
         {
@@ -263,10 +263,10 @@
             "target2": 1,
             "data": {
                 "color": "cadetblue",
-                "lineWidth": 3,
+                "lineWidth": 2,
                 "outlineColor": "pink",
-                "outlineWidth": 3,
-                "label": "field def-use"
+                "outlineWidth": 2,
+                "label": "field\ndef-use"
             }
         },
         {
@@ -280,10 +280,10 @@
             "target2": 3,
             "data": {
                 "color": "cadetblue",
-                "lineWidth": 3,
+                "lineWidth": 2,
                 "outlineColor": "pink",
-                "outlineWidth": 3,
-                "label": "field def-use"
+                "outlineWidth": 2,
+                "label": "field\ndef-use"
             }
         },
         {
@@ -297,10 +297,10 @@
             "target2": 4,
             "data": {
                 "color": "cadetblue",
-                "lineWidth": 3,
+                "lineWidth": 2,
                 "outlineColor": "pink",
-                "outlineWidth": 3,
-                "label": "field def-use"
+                "outlineWidth": 2,
+                "label": "field\ndef-use"
             }
         },
         {
@@ -314,10 +314,10 @@
             "target2": 0,
             "data": {
                 "color": "cadetblue",
-                "lineWidth": 3,
+                "lineWidth": 2,
                 "outlineColor": "pink",
-                "outlineWidth": 3,
-                "label": "field def-use"
+                "outlineWidth": 2,
+                "label": "field\ndef-use"
             }
         },
         {
@@ -331,10 +331,10 @@
             "target2": 5,
             "data": {
                 "color": "cadetblue",
-                "lineWidth": 3,
+                "lineWidth": 2,
                 "outlineColor": "pink",
-                "outlineWidth": 3,
-                "label": "fine-grained def-use"
+                "outlineWidth": 2,
+                "label": "fine-grained\ndef-use"
             }
         },
         {
@@ -348,10 +348,10 @@
             "target2": 12,
             "data": {
                 "color": "cadetblue",
-                "lineWidth": 3,
+                "lineWidth": 2,
                 "outlineColor": "pink",
-                "outlineWidth": 3,
-                "label": "fine-grained def-use"
+                "outlineWidth": 2,
+                "label": "fine-grained\ndef-use"
             }
         },
         {
@@ -365,10 +365,10 @@
             "target2": 14,
             "data": {
                 "color": "cadetblue",
-                "lineWidth": 3,
+                "lineWidth": 2,
                 "outlineColor": "pink",
-                "outlineWidth": 3,
-                "label": "fine-grained def-use"
+                "outlineWidth": 2,
+                "label": "fine-grained\ndef-use"
             }
         },
         {
@@ -382,10 +382,10 @@
             "target2": 10,
             "data": {
                 "color": "cadetblue",
-                "lineWidth": 3,
+                "lineWidth": 2,
                 "outlineColor": "pink",
-                "outlineWidth": 3,
-                "label": "fine-grained def-use"
+                "outlineWidth": 2,
+                "label": "fine-grained\ndef-use"
             }
         },
         {
@@ -399,10 +399,10 @@
             "target2": 8,
             "data": {
                 "color": "cadetblue",
-                "lineWidth": 3,
+                "lineWidth": 2,
                 "outlineColor": "pink",
-                "outlineWidth": 3,
-                "label": "method def-use"
+                "outlineWidth": 2,
+                "label": "method\ndef-use"
             }
         },
         {
@@ -416,10 +416,10 @@
             "target2": 1,
             "data": {
                 "color": "cadetblue",
-                "lineWidth": 3,
+                "lineWidth": 2,
                 "outlineColor": "pink",
-                "outlineWidth": 3,
-                "label": "method def-use"
+                "outlineWidth": 2,
+                "label": "method\ndef-use"
             }
         },
         {
@@ -433,10 +433,10 @@
             "target2": 0,
             "data": {
                 "color": "cadetblue",
-                "lineWidth": 3,
+                "lineWidth": 2,
                 "outlineColor": "pink",
-                "outlineWidth": 3,
-                "label": "method def-use"
+                "outlineWidth": 2,
+                "label": "method\ndef-use"
             }
         },
         {
@@ -450,10 +450,10 @@
             "target2": 8,
             "data": {
                 "color": "cadetblue",
-                "lineWidth": 3,
+                "lineWidth": 2,
                 "outlineColor": "pink",
-                "outlineWidth": 3,
-                "label": "method def-use"
+                "outlineWidth": 2,
+                "label": "method\ndef-use"
             }
         }
     ]

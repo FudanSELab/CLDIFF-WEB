@@ -61,9 +61,9 @@
             "target2": 25,
             "data": {
                 "color": "cadetblue",
-                "lineWidth": 3,
+                "lineWidth": 2,
                 "outlineColor": "pink",
-                "outlineWidth": 3,
+                "outlineWidth": 2,
                 "label": "similar"
             }
         },
@@ -78,9 +78,9 @@
             "target2": 26,
             "data": {
                 "color": "cadetblue",
-                "lineWidth": 3,
+                "lineWidth": 2,
                 "outlineColor": "pink",
-                "outlineWidth": 3,
+                "outlineWidth": 2,
                 "label": "similar"
             }
         }

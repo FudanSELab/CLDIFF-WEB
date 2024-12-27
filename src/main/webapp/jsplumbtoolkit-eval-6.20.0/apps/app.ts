@@ -15,43 +15,13 @@ import {
 
 import { initialize } from './generate-templates'
 import { Processor } from './process'
-// import {Palette } from './palette'
 
-// import {imageToDataURL, readImageFromFile, setCanvasImageFromImage} from '@jsplumb/canvas-image-processing'
 import {CANVAS_SIZE, ImageProcessorInput, ImageProcessorNode, ImageProcessorOutput} from "./definitions"
-// import {ImageInspector} from "./inspector"
 import {NativeImageDropHandler} from "./native-drop-handler"
 
 import * as monaco from 'monaco-editor';
 
-// interface Noode {
-//     code: string;
-//     file_name: string;
-//     id: string;
-//     desc: string;
-//     group: number;
-//     label: string;
-//     left: number;
-//     top: number;
-//     url: string;
-//     type: string;
-// }
 
-// interface Eddge {
-//     link_type_str: string;
-//     source: string;
-//     text: string;
-//     type: number;
-//     value: number;
-//     target: string;
-//     source2: number;
-//     target2: number;
-// }
-
-// interface JsonData {
-//     nodes: Noode[];
-//     edges: Eddge[];
-// }
 
 declare global {
     interface Window {
@@ -115,62 +85,10 @@ ready(() => {
 
     const processor = new Processor(toolkit, model, () => {
         toolkit.eachNode((idx,dn) => {
-            // const el = surface.getRenderedElement(dn)
-            // var canvas = el.querySelector("canvas")
-            // console.log("canvas", canvas)
-            // var monacoDiv = document.createElement(`div`);
-            // monacoDiv.setAttribute("class", "node");
-            // canvas.appendChild(monacoDiv);
-
-            // const value = `function hello() {
-            //     alert('Hello world!');
-            // }`;
-            
-            // const myEditor = editor.create(monacoDiv, {
-            //     value,
-            //     language: "javascript",
-            //     automaticLayout: true,
-            // });
-                        
-            // require.config({ paths: { 'vs': '../node_modules/monaco-editor/dev/vs' } });
-            // require(['vs/editor/editor.main'], function() {
-            //     var monacoDiv = document.createElement(`div`);
-            //     monacoDiv.setAttribute("class", "node");
-            //     canvas.appendChild(monacoDiv);
-            //     var editor = monaco.editor.create(monacoDiv, {
-            //         value: [
-            //         'System.out.println("sss");'
-            //     ].join('\n'),
-            //     language: 'java',
-            //     autoIndent: true,
-            //     contentLeft: 0,
-            //     automaticLayout: true,
-            //     minimap: { enabled: false },
-            //     overviewRulerBorder: false,
-            //     });
-            // });
+          
+           
         })
-        // toolkit.filter(o => o.type === "basic.display").eachNode((idx,dn) => {
-        //     const el = surface.getRenderedElement(dn),
-        //         canvas = el.querySelector("canvas"),
-        //         a = el.querySelector(".jtk-imp-download") as HTMLAnchorElement
-
-        //     const hasImage = setCanvasImageFromImage(canvas, CANVAS_SIZE.w, CANVAS_SIZE.h,  dn.data["in:image"])
-        //     el.setAttribute("data-has-image", "" + hasImage)
-
-        //     if (hasImage) {
-        //         a.href = imageToDataURL(dn.data["in:image"])
-        //         a.download = `${dn.data.label}.png`
-        //     } else {
-        //         const ctx = canvas.getContext("2d")
-        //         ctx.fillStyle = "white"
-        //         ctx.fillRect(0, 0, canvas.width, canvas.height)
-        //     }
-        // })
-        // toolkit.filter(o => o.type === "basic.source").eachNode((idx,dn) => {
-        //     const canvas = surface.getRenderedElement(dn).querySelector("canvas")
-        //     setCanvasImageFromImage(canvas, CANVAS_SIZE.w, CANVAS_SIZE.h, dn.data["out:image"])
-        // })
+       
     }, () => {
         alert("ERROR " )
     })
@@ -220,6 +138,7 @@ ready(() => {
             }
         }
     }
+    
 
     // Render to a Surface.
     const surface = toolkit.render(container, {
@@ -292,21 +211,10 @@ ready(() => {
         surface,
         imageDropped:(e:DragEvent, img:HTMLImageElement, el:HTMLElement, info:SurfaceObjectInfo<ImageProcessorNode>) => {
 
-            // const evtLoc = surface.mapEventLocation(e)
-            // toolkit.addNode({
-            //     type:"basic.source",
-            //     label:"Source",
-            //     id:uuid(),
-            //     left:evtLoc.x,
-            //     top:evtLoc.y,
-            //     image:img,
-            //     width:img.naturalWidth,
-            //     height:img.naturalHeight
-            // })
+            
         }
     })
 
-    // new ImageInspector(document.getElementById("inspector"), surface, model)
     new ControlsComponent(document.getElementById("controls"), surface)
 
     // new Palette(surface, model)
@@ -398,7 +306,7 @@ ready(() => {
                                 domReadOnly: true
                                 
                             });
-                            let debugPos = false;
+                            let debugPos = true;
                             // debugger position
                             if(debugPos){
                                 const containerNew = container as HTMLElement
@@ -483,10 +391,6 @@ ready(() => {
         });
     });
 
-    
-    
-
-    // toolkit.addEdge();
     
     toolkit.load({
         url:'./dataset.json',

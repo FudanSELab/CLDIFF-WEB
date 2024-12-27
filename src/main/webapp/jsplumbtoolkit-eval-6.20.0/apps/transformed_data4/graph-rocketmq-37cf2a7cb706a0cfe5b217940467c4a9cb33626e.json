@@ -37,10 +37,10 @@
             "target2": 48,
             "data": {
                 "color": "cadetblue",
-                "lineWidth": 3,
+                "lineWidth": 2,
                 "outlineColor": "pink",
-                "outlineWidth": 3,
-                "label": "fine-grained def-use"
+                "outlineWidth": 2,
+                "label": "fine-grained\ndef-use"
             }
         }
     ]

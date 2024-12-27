@@ -205,9 +205,9 @@
             "target2": 0,
             "data": {
                 "color": "cadetblue",
-                "lineWidth": 3,
+                "lineWidth": 2,
                 "outlineColor": "pink",
-                "outlineWidth": 3,
+                "outlineWidth": 2,
                 "label": "similar"
             }
         },
@@ -222,9 +222,9 @@
             "target2": 7,
             "data": {
                 "color": "cadetblue",
-                "lineWidth": 3,
+                "lineWidth": 2,
                 "outlineColor": "pink",
-                "outlineWidth": 3,
+                "outlineWidth": 2,
                 "label": "similar"
             }
         },
@@ -239,9 +239,9 @@
             "target2": 7,
             "data": {
                 "color": "cadetblue",
-                "lineWidth": 3,
+                "lineWidth": 2,
                 "outlineColor": "pink",
-                "outlineWidth": 3,
+                "outlineWidth": 2,
                 "label": "similar"
             }
         },
@@ -256,9 +256,9 @@
             "target2": 8,
             "data": {
                 "color": "cadetblue",
-                "lineWidth": 3,
+                "lineWidth": 2,
                 "outlineColor": "pink",
-                "outlineWidth": 3,
+                "outlineWidth": 2,
                 "label": "similar"
             }
         },
@@ -273,10 +273,10 @@
             "target2": 4,
             "data": {
                 "color": "cadetblue",
-                "lineWidth": 3,
+                "lineWidth": 2,
                 "outlineColor": "pink",
-                "outlineWidth": 3,
-                "label": "fine-grained def-use"
+                "outlineWidth": 2,
+                "label": "fine-grained\ndef-use"
             }
         },
         {
@@ -290,10 +290,10 @@
             "target2": 10,
             "data": {
                 "color": "cadetblue",
-                "lineWidth": 3,
+                "lineWidth": 2,
                 "outlineColor": "pink",
-                "outlineWidth": 3,
-                "label": "field def-use"
+                "outlineWidth": 2,
+                "label": "field\ndef-use"
             }
         },
         {
@@ -307,10 +307,10 @@
             "target2": 14,
             "data": {
                 "color": "cadetblue",
-                "lineWidth": 3,
+                "lineWidth": 2,
                 "outlineColor": "pink",
-                "outlineWidth": 3,
-                "label": "field def-use"
+                "outlineWidth": 2,
+                "label": "field\ndef-use"
             }
         },
         {
@@ -324,10 +324,10 @@
             "target2": 4,
             "data": {
                 "color": "cadetblue",
-                "lineWidth": 3,
+                "lineWidth": 2,
                 "outlineColor": "pink",
-                "outlineWidth": 3,
-                "label": "fine-grained def-use"
+                "outlineWidth": 2,
+                "label": "fine-grained\ndef-use"
             }
         }
     ]

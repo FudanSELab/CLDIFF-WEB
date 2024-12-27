@@ -193,9 +193,9 @@
             "target2": 10,
             "data": {
                 "color": "cadetblue",
-                "lineWidth": 3,
+                "lineWidth": 2,
                 "outlineColor": "pink",
-                "outlineWidth": 3,
+                "outlineWidth": 2,
                 "label": "similar"
             }
         },
@@ -210,9 +210,9 @@
             "target2": 5,
             "data": {
                 "color": "cadetblue",
-                "lineWidth": 3,
+                "lineWidth": 2,
                 "outlineColor": "pink",
-                "outlineWidth": 3,
+                "outlineWidth": 2,
                 "label": "def-use"
             }
         },
@@ -227,10 +227,10 @@
             "target2": 11,
             "data": {
                 "color": "cadetblue",
-                "lineWidth": 3,
+                "lineWidth": 2,
                 "outlineColor": "pink",
-                "outlineWidth": 3,
-                "label": "field def-use"
+                "outlineWidth": 2,
+                "label": "field\ndef-use"
             }
         },
         {
@@ -244,10 +244,10 @@
             "target2": 10,
             "data": {
                 "color": "cadetblue",
-                "lineWidth": 3,
+                "lineWidth": 2,
                 "outlineColor": "pink",
-                "outlineWidth": 3,
-                "label": "field def-use"
+                "outlineWidth": 2,
+                "label": "field\ndef-use"
             }
         },
         {
@@ -261,10 +261,10 @@
             "target2": 9,
             "data": {
                 "color": "cadetblue",
-                "lineWidth": 3,
+                "lineWidth": 2,
                 "outlineColor": "pink",
-                "outlineWidth": 3,
-                "label": "field def-use"
+                "outlineWidth": 2,
+                "label": "field\ndef-use"
             }
         },
         {
@@ -278,10 +278,10 @@
             "target2": 8,
             "data": {
                 "color": "cadetblue",
-                "lineWidth": 3,
+                "lineWidth": 2,
                 "outlineColor": "pink",
-                "outlineWidth": 3,
-                "label": "field def-use"
+                "outlineWidth": 2,
+                "label": "field\ndef-use"
             }
         },
         {
@@ -295,10 +295,10 @@
             "target2": 7,
             "data": {
                 "color": "cadetblue",
-                "lineWidth": 3,
+                "lineWidth": 2,
                 "outlineColor": "pink",
-                "outlineWidth": 3,
-                "label": "field def-use"
+                "outlineWidth": 2,
+                "label": "field\ndef-use"
             }
         },
         {
@@ -312,10 +312,10 @@
             "target2": 7,
             "data": {
                 "color": "cadetblue",
-                "lineWidth": 3,
+                "lineWidth": 2,
                 "outlineColor": "pink",
-                "outlineWidth": 3,
-                "label": "field def-use"
+                "outlineWidth": 2,
+                "label": "field\ndef-use"
             }
         }
     ]

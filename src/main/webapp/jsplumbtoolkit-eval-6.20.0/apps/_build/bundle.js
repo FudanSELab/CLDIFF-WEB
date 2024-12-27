@@ -232641,7 +232641,7 @@ ${tagToString(tag)}`;
                   accessibilitySupport: "off",
                   domReadOnly: true
                 });
-                let debugPos = false;
+                let debugPos = true;
                 if (debugPos) {
                   const containerNew = container2;
                   const onMouseDown = (event3) => {

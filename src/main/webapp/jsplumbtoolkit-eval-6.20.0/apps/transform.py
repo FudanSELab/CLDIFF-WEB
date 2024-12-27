@@ -105,21 +105,21 @@ def transform4():
     files = os.listdir('./transformed_data3')
     data = {
         "color":"cadetblue",
-        "lineWidth":3,
+        "lineWidth":2,
         "outlineColor":"pink",
-        "outlineWidth":3,
+        "outlineWidth":2,
         "label":"XX"  
     }
     dic =  {
-        'def-use@method': "method def-use", 
-        'def-use@class': "class def-use", 
-        'def-use@taicu': "fine-grained def-use",
-        'defUseField': "field def-use", 
+        'def-use@method': "method\ndef-use", 
+        'def-use@class': "class\ndef-use", 
+        'def-use@taicu': "fine-grained\ndef-use",
+        'defUseField': "field\ndef-use", 
         'defUse': "def-use",
         'def-use': "def-use" ,
-        'defUseMethod': "method def-use",
-        'defUseTaicu': "fine-grained def-use",
-        'def-use@field': "field def-use",
+        'defUseMethod': "method\ndef-use",
+        'defUseTaicu': "fine-grained\ndef-use",
+        'def-use@field': "field\ndef-use",
         'systematic': "similar"
     }
     for file in files:

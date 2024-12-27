@@ -97,9 +97,9 @@
             "target2": 4,
             "data": {
                 "color": "cadetblue",
-                "lineWidth": 3,
+                "lineWidth": 2,
                 "outlineColor": "pink",
-                "outlineWidth": 3,
+                "outlineWidth": 2,
                 "label": "similar"
             }
         },
@@ -114,10 +114,10 @@
             "target2": 5,
             "data": {
                 "color": "cadetblue",
-                "lineWidth": 3,
+                "lineWidth": 2,
                 "outlineColor": "pink",
-                "outlineWidth": 3,
-                "label": "method def-use"
+                "outlineWidth": 2,
+                "label": "method\ndef-use"
             }
         },
         {
@@ -131,10 +131,10 @@
             "target2": 2,
             "data": {
                 "color": "cadetblue",
-                "lineWidth": 3,
+                "lineWidth": 2,
                 "outlineColor": "pink",
-                "outlineWidth": 3,
-                "label": "method def-use"
+                "outlineWidth": 2,
+                "label": "method\ndef-use"
             }
         }
     ]

@@ -18,8 +18,8 @@
             "id": "11",
             "desc": "addMethodDeclaration",
             "label": "11. addMethodDeclaration",
-            "left": 1400,
-            "top": 700,
+            "left": 1500,
+            "top": 600,
             "url": "url",
             "type": "basic.source",
             "group_mine": 0
@@ -54,7 +54,7 @@
             "id": "14",
             "desc": "addFieldDeclaration",
             "label": "14. addFieldDeclaration",
-            "left": 2000,
+            "left": 2500,
             "top": 700,
             "url": "url",
             "type": "basic.source",
@@ -175,7 +175,7 @@
             "desc": "deleteTry",
             "label": "8. deleteTry",
             "left": 600,
-            "top": 700,
+            "top": 400,
             "url": "url",
             "type": "transform.overlay",
             "group_mine": 1
@@ -186,7 +186,7 @@
             "id": "9",
             "desc": "addMethodDeclaration",
             "label": "9. addMethodDeclaration",
-            "left": 0,
+            "left": 500,
             "top": 1000,
             "url": "url",
             "type": "transform.overlay",
@@ -205,10 +205,10 @@
             "target2": 13,
             "data": {
                 "color": "cadetblue",
-                "lineWidth": 3,
+                "lineWidth": 2,
                 "outlineColor": "pink",
-                "outlineWidth": 3,
-                "label": "fine-grained def-use"
+                "outlineWidth": 2,
+                "label": "fine-grained\ndef-use"
             }
         },
         {
@@ -222,10 +222,10 @@
             "target2": 12,
             "data": {
                 "color": "cadetblue",
-                "lineWidth": 3,
+                "lineWidth": 2,
                 "outlineColor": "pink",
-                "outlineWidth": 3,
-                "label": "fine-grained def-use"
+                "outlineWidth": 2,
+                "label": "fine-grained\ndef-use"
             }
         },
         {
@@ -239,10 +239,10 @@
             "target2": 11,
             "data": {
                 "color": "cadetblue",
-                "lineWidth": 3,
+                "lineWidth": 2,
                 "outlineColor": "pink",
-                "outlineWidth": 3,
-                "label": "fine-grained def-use"
+                "outlineWidth": 2,
+                "label": "fine-grained\ndef-use"
             }
         },
         {
@@ -256,10 +256,10 @@
             "target2": 10,
             "data": {
                 "color": "cadetblue",
-                "lineWidth": 3,
+                "lineWidth": 2,
                 "outlineColor": "pink",
-                "outlineWidth": 3,
-                "label": "fine-grained def-use"
+                "outlineWidth": 2,
+                "label": "fine-grained\ndef-use"
             }
         },
         {
@@ -273,10 +273,10 @@
             "target2": 9,
             "data": {
                 "color": "cadetblue",
-                "lineWidth": 3,
+                "lineWidth": 2,
                 "outlineColor": "pink",
-                "outlineWidth": 3,
-                "label": "method def-use"
+                "outlineWidth": 2,
+                "label": "method\ndef-use"
             }
         },
         {
@@ -290,10 +290,10 @@
             "target2": 9,
             "data": {
                 "color": "cadetblue",
-                "lineWidth": 3,
+                "lineWidth": 2,
                 "outlineColor": "pink",
-                "outlineWidth": 3,
-                "label": "method def-use"
+                "outlineWidth": 2,
+                "label": "method\ndef-use"
             }
         },
         {
@@ -307,10 +307,10 @@
             "target2": 11,
             "data": {
                 "color": "cadetblue",
-                "lineWidth": 3,
+                "lineWidth": 2,
                 "outlineColor": "pink",
-                "outlineWidth": 3,
-                "label": "method def-use"
+                "outlineWidth": 2,
+                "label": "method\ndef-use"
             }
         },
         {
@@ -324,10 +324,10 @@
             "target2": 13,
             "data": {
                 "color": "cadetblue",
-                "lineWidth": 3,
+                "lineWidth": 2,
                 "outlineColor": "pink",
-                "outlineWidth": 3,
-                "label": "method def-use"
+                "outlineWidth": 2,
+                "label": "method\ndef-use"
             }
         }
     ]

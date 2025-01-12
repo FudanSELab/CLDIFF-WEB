@@ -117,7 +117,7 @@
                 "lineWidth": 2,
                 "outlineColor": "pink",
                 "outlineWidth": 2,
-                "label": "method\ndef-use"
+                "label": "M\ndef-use"
             }
         },
         {
@@ -134,7 +134,7 @@
                 "lineWidth": 2,
                 "outlineColor": "pink",
                 "outlineWidth": 2,
-                "label": "method\ndef-use"
+                "label": "M\ndef-use"
             }
         }
     ]

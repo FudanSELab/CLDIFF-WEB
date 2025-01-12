@@ -276,7 +276,7 @@
                 "lineWidth": 2,
                 "outlineColor": "pink",
                 "outlineWidth": 2,
-                "label": "fine-grained\ndef-use"
+                "label": "def-use"
             }
         },
         {
@@ -293,7 +293,7 @@
                 "lineWidth": 2,
                 "outlineColor": "pink",
                 "outlineWidth": 2,
-                "label": "field\ndef-use"
+                "label": "F\ndef-use"
             }
         },
         {
@@ -310,7 +310,7 @@
                 "lineWidth": 2,
                 "outlineColor": "pink",
                 "outlineWidth": 2,
-                "label": "field\ndef-use"
+                "label": "F\ndef-use"
             }
         },
         {
@@ -327,7 +327,7 @@
                 "lineWidth": 2,
                 "outlineColor": "pink",
                 "outlineWidth": 2,
-                "label": "fine-grained\ndef-use"
+                "label": "def-use"
             }
         }
     ]

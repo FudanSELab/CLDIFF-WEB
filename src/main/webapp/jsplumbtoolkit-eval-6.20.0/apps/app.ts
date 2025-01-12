@@ -221,7 +221,7 @@ ready(() => {
 
     // debugger
 
-
+    
 
     const selectionHeader = document.getElementById("selectionHeader")
     const liElements = selectionHeader.querySelectorAll('li');
@@ -386,7 +386,6 @@ ready(() => {
                         files.innerHTML = str
                     }
                 })
-
             }
         });
     });

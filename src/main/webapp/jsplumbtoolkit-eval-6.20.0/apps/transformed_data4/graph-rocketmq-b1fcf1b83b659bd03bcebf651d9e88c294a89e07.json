@@ -126,8 +126,8 @@
             "id": "43",
             "desc": "deleteMethodDeclaration",
             "label": "43. deleteMethodDeclaration",
-            "left": 1000,
-            "top": 1100,
+            "left": 1400,
+            "top": 2700,
             "url": "url",
             "type": "filter.invert",
             "group_mine": 3
@@ -138,8 +138,8 @@
             "id": "44",
             "desc": "deleteMethodDeclaration",
             "label": "44. deleteMethodDeclaration",
-            "left": 2100,
-            "top": 1000,
+            "left": 300,
+            "top": 2700,
             "url": "url",
             "type": "filter.invert",
             "group_mine": 3
@@ -172,7 +172,7 @@
                 "lineWidth": 2,
                 "outlineColor": "pink",
                 "outlineWidth": 2,
-                "label": "field\ndef-use"
+                "label": "F\ndef-use"
             }
         },
         {
@@ -189,7 +189,7 @@
                 "lineWidth": 2,
                 "outlineColor": "pink",
                 "outlineWidth": 2,
-                "label": "field\ndef-use"
+                "label": "F\ndef-use"
             }
         },
         {
@@ -206,7 +206,7 @@
                 "lineWidth": 2,
                 "outlineColor": "pink",
                 "outlineWidth": 2,
-                "label": "field\ndef-use"
+                "label": "F\ndef-use"
             }
         },
         {
@@ -223,7 +223,7 @@
                 "lineWidth": 2,
                 "outlineColor": "pink",
                 "outlineWidth": 2,
-                "label": "field\ndef-use"
+                "label": "F\ndef-use"
             }
         },
         {
@@ -240,7 +240,7 @@
                 "lineWidth": 2,
                 "outlineColor": "pink",
                 "outlineWidth": 2,
-                "label": "field\ndef-use"
+                "label": "F\ndef-use"
             }
         },
         {
@@ -257,7 +257,7 @@
                 "lineWidth": 2,
                 "outlineColor": "pink",
                 "outlineWidth": 2,
-                "label": "class\ndef-use"
+                "label": "C\ndef-use"
             }
         },
         {
@@ -274,7 +274,7 @@
                 "lineWidth": 2,
                 "outlineColor": "pink",
                 "outlineWidth": 2,
-                "label": "class\ndef-use"
+                "label": "C\ndef-use"
             }
         },
         {
@@ -291,7 +291,7 @@
                 "lineWidth": 2,
                 "outlineColor": "pink",
                 "outlineWidth": 2,
-                "label": "class\ndef-use"
+                "label": "C\ndef-use"
             }
         },
         {
@@ -308,7 +308,7 @@
                 "lineWidth": 2,
                 "outlineColor": "pink",
                 "outlineWidth": 2,
-                "label": "class\ndef-use"
+                "label": "C\ndef-use"
             }
         },
         {
@@ -325,7 +325,7 @@
                 "lineWidth": 2,
                 "outlineColor": "pink",
                 "outlineWidth": 2,
-                "label": "class\ndef-use"
+                "label": "C\ndef-use"
             }
         },
         {
@@ -342,7 +342,7 @@
                 "lineWidth": 2,
                 "outlineColor": "pink",
                 "outlineWidth": 2,
-                "label": "fine-grained\ndef-use"
+                "label": "def-use"
             }
         },
         {
@@ -359,7 +359,7 @@
                 "lineWidth": 2,
                 "outlineColor": "pink",
                 "outlineWidth": 2,
-                "label": "fine-grained\ndef-use"
+                "label": "def-use"
             }
         },
         {
@@ -376,7 +376,7 @@
                 "lineWidth": 2,
                 "outlineColor": "pink",
                 "outlineWidth": 2,
-                "label": "class\ndef-use"
+                "label": "C\ndef-use"
             }
         },
         {
@@ -393,7 +393,7 @@
                 "lineWidth": 2,
                 "outlineColor": "pink",
                 "outlineWidth": 2,
-                "label": "class\ndef-use"
+                "label": "C\ndef-use"
             }
         },
         {
@@ -410,7 +410,7 @@
                 "lineWidth": 2,
                 "outlineColor": "pink",
                 "outlineWidth": 2,
-                "label": "class\ndef-use"
+                "label": "C\ndef-use"
             }
         },
         {
@@ -427,7 +427,7 @@
                 "lineWidth": 2,
                 "outlineColor": "pink",
                 "outlineWidth": 2,
-                "label": "class\ndef-use"
+                "label": "C\ndef-use"
             }
         },
         {
@@ -444,7 +444,7 @@
                 "lineWidth": 2,
                 "outlineColor": "pink",
                 "outlineWidth": 2,
-                "label": "class\ndef-use"
+                "label": "C\ndef-use"
             }
         },
         {
@@ -461,7 +461,7 @@
                 "lineWidth": 2,
                 "outlineColor": "pink",
                 "outlineWidth": 2,
-                "label": "fine-grained\ndef-use"
+                "label": "def-use"
             }
         },
         {
@@ -478,7 +478,7 @@
                 "lineWidth": 2,
                 "outlineColor": "pink",
                 "outlineWidth": 2,
-                "label": "fine-grained\ndef-use"
+                "label": "def-use"
             }
         },
         {
@@ -495,7 +495,7 @@
                 "lineWidth": 2,
                 "outlineColor": "pink",
                 "outlineWidth": 2,
-                "label": "fine-grained\ndef-use"
+                "label": "def-use"
             }
         },
         {
@@ -512,7 +512,7 @@
                 "lineWidth": 2,
                 "outlineColor": "pink",
                 "outlineWidth": 2,
-                "label": "class\ndef-use"
+                "label": "C\ndef-use"
             }
         },
         {
@@ -529,7 +529,7 @@
                 "lineWidth": 2,
                 "outlineColor": "pink",
                 "outlineWidth": 2,
-                "label": "class\ndef-use"
+                "label": "C\ndef-use"
             }
         },
         {
@@ -546,7 +546,7 @@
                 "lineWidth": 2,
                 "outlineColor": "pink",
                 "outlineWidth": 2,
-                "label": "class\ndef-use"
+                "label": "C\ndef-use"
             }
         },
         {
@@ -563,7 +563,7 @@
                 "lineWidth": 2,
                 "outlineColor": "pink",
                 "outlineWidth": 2,
-                "label": "class\ndef-use"
+                "label": "C\ndef-use"
             }
         },
         {
@@ -580,7 +580,7 @@
                 "lineWidth": 2,
                 "outlineColor": "pink",
                 "outlineWidth": 2,
-                "label": "fine-grained\ndef-use"
+                "label": "def-use"
             }
         },
         {
@@ -597,7 +597,7 @@
                 "lineWidth": 2,
                 "outlineColor": "pink",
                 "outlineWidth": 2,
-                "label": "fine-grained\ndef-use"
+                "label": "def-use"
             }
         },
         {

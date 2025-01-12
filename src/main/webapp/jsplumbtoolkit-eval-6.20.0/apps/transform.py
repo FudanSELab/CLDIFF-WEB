@@ -111,15 +111,15 @@ def transform4():
         "label":"XX"  
     }
     dic =  {
-        'def-use@method': "method\ndef-use", 
-        'def-use@class': "class\ndef-use", 
-        'def-use@taicu': "fine-grained\ndef-use",
-        'defUseField': "field\ndef-use", 
+        'def-use@method': "M\ndef-use", 
+        'def-use@class': "C\ndef-use", 
+        'def-use@taicu': "def-use",
+        'defUseField': "F\ndef-use", 
         'defUse': "def-use",
         'def-use': "def-use" ,
-        'defUseMethod': "method\ndef-use",
-        'defUseTaicu': "fine-grained\ndef-use",
-        'def-use@field': "field\ndef-use",
+        'defUseMethod': "M\ndef-use",
+        'defUseTaicu': "def-use",
+        'def-use@field': "F\ndef-use",
         'systematic': "similar"
     }
     for file in files:
